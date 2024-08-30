@@ -6,29 +6,23 @@ import importlib
 import os
 
 # --------Set up Firecrawl, OpenAI and local folder--------
-fire_app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
-
-num_thread = 5
-
-css = """footer {visibility: hidden}
-.logo img {height:100px; width:auto; margin:0 auto;}
-"""
-
-open_source_model = "Qwen/Qwen1.5-32B-Chat-AWQ"
-
 prompt_path = pl.Path('prompt')
 prompt_list = list(prompt_path.glob('*.py'))
 prompt_list = [str(prompt).split('/')[-1].split('.')[0] for prompt in prompt_list]
-
+fire_app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
+css = """footer {visibility: hidden}
+.logo img {height:100px; width:auto; margin:0 auto;}
+"""
+num_thread = 5
+open_source_model = ""
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 p = pl.Path('data')
 if not p.exists():
     p.mkdir()
 r = pl.Path('results')
 if not r.exists():
     r.mkdir()
-
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-# --------Set up Firecrawl, OpenAI and local folder--------
+# ----------------------------------------------------------
 
 def process_url_markdown(url):
     scrape_result = fire_app.scrape_url(url, params={"formats": ["markdown"], "excludeTags": ["a", "img", "video"]})
@@ -59,9 +53,9 @@ def process_url_json(url, model_type, prompt_type):
 
 def process_url(url, mode, model_type, prompt_type):
     if mode == "Markdown":
-        return gr.update(visible=True, value=process_url_markdown(url)), gr.update(visible=False)
+        return process_url_markdown(url), None
     elif mode == "JSON":
-        return gr.update(visible=False), gr.update(visible=True, value=process_url_json(url, model_type, prompt_type))
+        return None, process_url_json(url, model_type, prompt_type)
     
 def set_uninteractive(url):
     return gr.update(interactive=False)
@@ -71,27 +65,27 @@ def set_interactive(url):
 
 def set_visible_and_interactive(mode):
     if mode == "Markdown":
-        return gr.update(visible=False, interactive=False), gr.update(visible=False, interactive=False)
+        return gr.update(visible=False, interactive=False), gr.update(visible=False, interactive=False), gr.update(visible=True), gr.update(visible=False)
     elif mode == "JSON":
-        return gr.update(visible=True, interactive=True), gr.update(visible=True, interactive=True)
+        return gr.update(visible=True, interactive=True), gr.update(visible=True, interactive=True), gr.update(visible=False), gr.update(visible=True)
 
-with gr.Blocks(css=css, title='SPIN Demo') as app:
+with gr.Blocks(css=css, title='JSON Extractor') as app:
     with gr.Row():
         logo_img=gr.Image('https://web.faa.illinois.edu/app/uploads/sites/14/2022/12/University-Wordmark-Full-Color-RGB-1-1200x0-c-default.webp',elem_classes='logo', show_download_button=False, show_label=False, container=False)
     with gr.Row():
-        gr.Markdown('# SPIN Demo')
+        gr.Markdown('# JSON Extractor')
     with gr.Row():
         with gr.Column(scale=1):
             mode = gr.Radio(["Markdown", "JSON"], label="Output Format", info="Choose the output format", value="Markdown")
             model_type = gr.Radio(["Proprietary", "Open Source"], label="Model Type", info="Choose the model type", value="Proprietary", visible=False)
-            prompt_type = gr.Dropdown(choices=prompt_list, label="Prompt Type", info="Choose the prompt type", visible=False)
+            prompt_type = gr.Dropdown(choices=prompt_list, label="Object Type", info="Choose the object type that you want to extract information from", visible=False)
             input_url = gr.Textbox(label="Input URL to be processed")
             submit_button = gr.Button("Submit")
         with gr.Column(scale=2):
             output_markdown = gr.Markdown(visible=True)
             output_json = gr.JSON(visible=False)
     
-    mode.change(set_visible_and_interactive, inputs=mode, outputs=[model_type, prompt_type])
+    mode.change(set_visible_and_interactive, inputs=mode, outputs=[model_type, prompt_type, output_markdown, output_json])
     submit_button.click(set_uninteractive, inputs=input_url, outputs=submit_button).then(process_url, inputs=[input_url, mode, model_type, prompt_type], outputs=[output_markdown, output_json]).then(set_interactive, inputs=input_url, outputs=submit_button)
 
 if __name__ == "__main__":
