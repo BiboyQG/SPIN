@@ -1,41 +1,13 @@
-import gradio as gr
-import time
+import openai
 
-counter = 1
+response = openai.ChatCompletion.create(
+        model="Qwen/Qwen1.5-32B-Chat-AWQ",
+        messages=[
+            {"role": "system", "content": "You are an expert at summarizing car review articles in JSON format."},
+            {"role": "user", "content": "hello"}
+        ],
+        max_tokens=14000,
+        temperature=0.8
+    )
 
-def visible_component(input_text):
-    return gr.update(visible=True)
-
-
-def generate_output(input_text):
-    #gr.update(output_text,visible=True)
-    global counter
-    time.sleep(2)
-    output_text = "Hello, " + input_text + "!"
-    counter += 1
-    return output_text
-
-with gr.Blocks() as demo:
-    with gr.Row():
-    
-        # column for inputs
-        with gr.Column():
-            input_text = gr.Textbox(label="Input Text")
-            submit_button = gr.Button("Submit")
-                   
-        # column for outputs
-        with gr.Column():
-            output_text = gr.Textbox(visible=False)
-            
-    submit_button.click(
-        fn=visible_component,
-        inputs=input_text,
-        outputs=output_text
-    ).then(
-        #time.sleep(2),
-        fn=generate_output,
-        inputs=input_text,
-        outputs=output_text
-        )
-
-demo.launch()
+print(response.choices[0].message.content)
