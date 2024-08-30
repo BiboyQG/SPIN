@@ -8,7 +8,7 @@ import os
 # --------Set up Firecrawl, OpenAI and local folder--------
 fire_app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
 
-num_thread = 1
+num_thread = 5
 
 css = """footer {visibility: hidden}
 .logo img {height:100px; width:auto; margin:0 auto;}
