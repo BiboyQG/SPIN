@@ -1,8 +1,8 @@
 from firecrawl import FirecrawlApp
+from openai import OpenAI
 import pathlib as pl
 import gradio as gr
 import importlib
-import openai
 import os
 
 # --------Set up Firecrawl, OpenAI and local folder--------
@@ -26,6 +26,8 @@ if not p.exists():
 r = pl.Path('results')
 if not r.exists():
     r.mkdir()
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 # --------Set up Firecrawl, OpenAI and local folder--------
 
 def process_url_markdown(url):
@@ -38,28 +40,17 @@ def process_url_json(url, model_type, prompt_type):
     llm_prompt = prompt_module.llm_prompt
     query = llm_prompt.format(scrape_result)
     if model_type == "Proprietary":
-        openai.base_url = "https://api.openai.com/v1"
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are an expert at summarizing car review articles in JSON format."},
                 {"role": "user", "content": query}
             ],
-            max_tokens=128000,
+            max_tokens=16384,
             temperature=0.8
         )
     elif model_type == "Open Source":
-        openai.base_url = "http://localhost:8000/v1"
-        response = openai.ChatCompletion.create(
-            model=open_source_model,
-            messages=[
-                {"role": "system", "content": "You are an expert at summarizing car review articles in JSON format."},
-                {"role": "user", "content": query}
-            ],
-            max_tokens=20480,
-            temperature=0.8
-        )
-    return response.choices[0].message.content
+        return "Not supported yet."
 
 def process_url(url, mode, model_type, prompt_type):
     if mode == "Markdown":
