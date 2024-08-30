@@ -36,19 +36,24 @@ def process_url_markdown(url):
 
 def process_url_json(url, model_type, prompt_type):
     scrape_result = fire_app.scrape_url(url, params={"formats": ["markdown"], "excludeTags": ["a", "img", "video"]})['markdown']
+    # prompt_module = importlib.import_module(f"prompt.{prompt_type}")
+    # llm_prompt = prompt_module.llm_prompt
+    # query = llm_prompt.format(scrape_result)
     prompt_module = importlib.import_module(f"prompt.{prompt_type}")
-    llm_prompt = prompt_module.llm_prompt
-    query = llm_prompt.format(scrape_result)
+    response_format = prompt_module.response_format
     if model_type == "Proprietary":
         response = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "You are an expert at summarizing car review articles in JSON format."},
-                {"role": "user", "content": query}
+                {"role": "user", "content": "Extract the following information in JSON format: " + scrape_result}
             ],
             max_tokens=16384,
-            temperature=0.8
+            temperature=0.8,
+            response_format=response_format
         )
+        print(response.choices[0].message.content)
+        return response.choices[0].message.content
     elif model_type == "Open Source":
         return "Not supported yet."
 

@@ -119,3 +119,200 @@ Your output:
 Now, let's start:
 {0}
 '''
+
+response_format = {
+    "type": "json_schema",
+    "json_schema": {
+        "name": "extracted_data",
+        "strict": True,
+        "schema": {
+            "type": "object",
+            "properties": {
+                "make": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "year": {
+                    "type": "number"
+                },
+                "vehicleType": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "object",
+                    "properties": {
+                        "base": {
+                            "type": "number"
+                        },
+                        "asTested": {
+                            "type": "number"
+                        }
+                    },
+                    "additionalProperties": False,
+                    "required": ["base", "asTested"]
+                },
+                "powertrain": {
+                    "type": "object",
+                    "properties": {
+                        "engine": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "horsepower": {
+                                    "type": "number"
+                                },
+                                "torque": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["type", "horsepower", "torque"],
+                            "additionalProperties": False
+                        },
+                        "electricMotor": {
+                            "type": "object",
+                            "properties": {
+                                "horsepower": {
+                                    "type": "number"
+                                },
+                                "torque": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["horsepower", "torque"],
+                            "additionalProperties": False
+                        },
+                        "combinedOutput": {
+                            "type": "object",
+                            "properties": {
+                                "horsepower": {
+                                    "type": "number"
+                                },
+                                "torque": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["horsepower", "torque"],
+                            "additionalProperties": False
+                        }
+                    },
+                    "additionalProperties": False,
+                    "required": ["engine", "electricMotor", "combinedOutput"]
+                },
+                "battery": {
+                    "type": "object",
+                    "properties": {
+                        "size": {
+                            "type": "string"
+                        },
+                        "onboardCharger": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": False,
+                    "required": ["size", "onboardCharger"]
+                },
+                "fuelEfficiency": {
+                    "type": "object",
+                    "properties": {
+                        "observed": {
+                            "type": "string"
+                        },
+                        "highway": {
+                            "type": "object",
+                            "properties": {
+                                "ev": {
+                                    "type": "string"
+                                },
+                                "hybrid": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": False,
+                            "required": ["ev", "hybrid"]
+                        },
+                        
+                    },
+                    "additionalProperties": False,
+                    "required": ["observed", "highway"]
+                },
+                "performance": {
+                    "type": "object",
+                    "properties": {
+                        "acceleration": {
+                            "type": "object",
+                            "properties": {
+                                "0to60": {
+                                    "type": "number"
+                                },
+                                "0to100": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["0to60", "0to100"],
+                            "additionalProperties": False
+                        },
+                        "quarterMile": {
+                            "type": "object",
+                            "properties": {
+                                "time": {
+                                    "type": "number"
+                                },
+                                "speed": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["time", "speed"],
+                            "additionalProperties": False
+                        }
+                    },
+                    "additionalProperties": False,
+                    "required": ["acceleration", "quarterMile"]
+                },
+                "dimensions": {
+                    "type": "object",
+                    "properties": {
+                        "wheelbase": {
+                            "type": "number"
+                        },
+                        "length": {
+                            "type": "number"
+                        },
+                        "width": {
+                            "type": "number"
+                        },
+                        "height": {
+                            "type": "number"
+                        }
+                    },
+                    "additionalProperties": False,
+                    "required": ["wheelbase", "length", "width", "height"]
+                },
+                "brakes": {
+                    "type": "string"
+                },
+                "tires": {
+                    "type": "string"
+                },
+                "suspensionAndChassis": {
+                    "type": "object",
+                    "properties": {
+                        "suspension": {
+                            "type": "string"
+                        },
+                        "brakes": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": False,
+                    "required": ["suspension", "brakes"]
+                },
+            },
+            "required": ["make", "model", "year", "vehicleType", "price", "powertrain", "battery", "fuelEfficiency", "performance", "dimensions", "brakes", "tires", "suspensionAndChassis"],
+            "additionalProperties": False
+        }
+    }
+}
