@@ -1,4 +1,8 @@
-llm_prompt = '''You are an expert at summarizing car review articles in JSON format. Extract the most relevant and useful information from the provided article, focusing on the following key aspects of the vehicle:
+def get_file_name(json_object):
+    return f"{json_object['make']}_{json_object['model']}_{json_object['year']}"
+
+
+llm_prompt = """You are an expert at summarizing car review articles in JSON format. Extract the most relevant and useful information from the provided article, focusing on the following key aspects of the vehicle:
 
 - Make and model
 - Year
@@ -60,17 +64,19 @@ Your output:
     "onboardCharger": "11.0-kW"
   }},
   "fuelEfficiency": {{
-    "observed": "19 MPGe",
-    "highway": {{
-      "ev": "58 MPGe",
-      "hybrid": "22 mpg"
-    }},
-    "evRange": "24 mi"
+    "observed": "28 mpg",
+      "epa": {{
+        "combined": 30,
+        "city": 28,
+        "highway": 32
+      }}
   }},
   "performance": {{
     "acceleration": {{
       "0to60": 3.1,
-      "0to100": 7.3
+      "0to100": 7.3,
+      "0to130": 0,
+      "0to150": 0
     }},
     "quarterMile": {{
       "time": 11.3,
@@ -93,16 +99,18 @@ Your output:
     }},
     "curbWeight": 5672
   }},
-  "brakes": "Porsche Ceramic Composite Brakes",
-  "tires": "Pirelli P Zero Corsa PZC4",
+  "brakes": {{
+    "front": "17.3-in vented, cross-drilled, carbon-ceramic disc",
+    "rear": "16.1-in vented, cross-drilled, carbon-ceramic disc"
+  }},
+  "tires": {{
+    "front": "Pirelli P Zero Corsa PZC4",
+    "rear": "Pirelli P Zero Corsa PZC4"
+  }},
   "suspensionAndChassis": {{
     "suspension": {{
       "front": "multilink",
       "rear": "multilink"
-    }},
-    "brakes": {{
-      "front": "17.3-in vented, cross-drilled, carbon-ceramic disc",
-      "rear": "16.1-in vented, cross-drilled, carbon-ceramic disc"
     }}
   }},
   "strengths": [
@@ -113,12 +121,13 @@ Your output:
   "weaknesses": [
     "Occasionally janky transmission behavior",
     "Porsche's options-heavy cost spiral"
-  ]
+  ],
+  "overallVerdict": "The 2024 Porsche Cayenne Turbo E-Hybrid Coupe is a powerful and luxurious SUV that offers a great driving experience. However, it may not be the best choice for those who prioritize fuel efficiency or affordability."
 }}
 
 Now, let's start:
 {0}
-'''
+"""
 
 response_format = {
     "type": "json_schema",
@@ -167,12 +176,9 @@ response_format = {
                                 },
                                 "torque": {
                                     "type": "number"
-                                },
-                                "displacement": {
-                                    "type": "string"
                                 }
                             },
-                            "required": ["type", "horsepower", "torque", "displacement"],
+                            "required": ["type", "horsepower", "torque"],
                             "additionalProperties": False
                         },
                         "transmission": {
@@ -279,10 +285,30 @@ response_format = {
                             "type": "number"
                         },
                         "passengerVolume": {
-                            "type": "number"
+                            "type": "object",
+                            "properties": {
+                                "front": {
+                                    "type": "number"
+                                },
+                                "rear": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["front", "rear"],
+                            "additionalProperties": False
                         },
                         "cargoVolume": {
-                            "type": "number"
+                            "type": "object",
+                            "properties": {
+                                "behindFront": {
+                                    "type": "number"
+                                },
+                                "behindRear": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["behindFront", "behindRear"],
+                            "additionalProperties": False
                         },
                         "curbWeight": {
                             "type": "number"

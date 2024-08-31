@@ -3,25 +3,40 @@ from openai import OpenAI
 import pathlib as pl
 import gradio as gr
 import importlib
+import json
 import os
 
-# --------Set up Firecrawl, OpenAI and local folder--------
+# ---------------Set up Firecrawl and OpenAI---------------
+fire_app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
+open_source_model = "Qwen/Qwen2-72B-Instruct-AWQ"
+# ---------------------------------------------------------
+
+# ---------------Set up prompt-----------------------------
 prompt_path = pl.Path("prompt")
 prompt_list = list(prompt_path.glob("*.py"))
 prompt_list = [str(prompt).split("/")[-1].split(".")[0] for prompt in prompt_list]
-fire_app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
+# ---------------------------------------------------------
+
+# ---------------Set up CSS and number of threads----------
+num_thread = 5
 css = """footer {visibility: hidden}
 .logo img {height:100px; width:auto; margin:0 auto;}
 """
-num_thread = 5
-open_source_model = ""
-p = pl.Path("data")
-if not p.exists():
-    p.mkdir()
+# ---------------------------------------------------------
+
+# ---------------Set up results folder---------------------
 r = pl.Path("results")
 if not r.exists():
     r.mkdir()
-# ----------------------------------------------------------
+    for model_type in ["open-source", "proprietary"]:
+        model_dir = r / model_type
+        model_dir.mkdir(exist_ok=True)
+        print(f"Created {model_dir} directory")
+        for prompt in prompt_list:
+            prompt_dir = model_dir / prompt
+            prompt_dir.mkdir(exist_ok=True)
+            print(f"Created {prompt_dir} directory")
+# ---------------------------------------------------------
 
 
 def process_url_markdown(url):
@@ -44,7 +59,7 @@ def process_url_json(url, model_type, prompt_type):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an expert at summarizing car review articles in JSON format.",
+                    "content": f"You are an expert at summarizing {prompt_type} review articles in JSON format.",
                 },
                 {
                     "role": "user",
@@ -56,27 +71,29 @@ def process_url_json(url, model_type, prompt_type):
             temperature=0.0,
             response_format=response_format,
         )
-        print(response.choices[0].message.content)
-        return response.choices[0].message.content
-    elif model_type == "Open Source":
+    elif model_type == "Open-Source":
         client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
         prompt_module = importlib.import_module(f"prompt.{prompt_type}")
         llm_prompt = prompt_module.llm_prompt
         query = llm_prompt.format(scrape_result)
         response = client.chat.completions.create(
-            model="Qwen/Qwen2-72B-Instruct-AWQ",
+            model=open_source_model,
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an expert at summarizing car review articles in JSON format.",
+                    "content": f"You are an expert at summarizing {prompt_type} review articles in JSON format.",
                 },
                 {"role": "user", "content": query},
             ],
             max_tokens=26000,
             temperature=0.0,
         )
-        print(response.choices[0].message.content)
-        return response.choices[0].message.content
+    json_string = response.choices[0].message.content
+    json_object = json.loads(json_string)
+    file_name = prompt_module.get_file_name(json_object)
+    with open(f"results/{model_type.lower()}/{prompt_type}/{file_name}.json", "w") as f:
+        json.dump(json_object, f)
+    return json_string
 
 
 def process_url(url, mode, model_type, prompt_type):
@@ -131,7 +148,7 @@ with gr.Blocks(css=css, title="JSON Extractor") as app:
                 value="Markdown",
             )
             model_type = gr.Radio(
-                ["Proprietary", "Open Source"],
+                ["Proprietary", "Open-Source"],
                 label="Model Type",
                 info="Choose the model type",
                 value="Proprietary",
@@ -154,6 +171,7 @@ with gr.Blocks(css=css, title="JSON Extractor") as app:
         inputs=mode,
         outputs=[model_type, prompt_type, output_markdown, output_json],
     )
+
     submit_button.click(
         set_uninteractive, inputs=input_url, outputs=submit_button
     ).then(
