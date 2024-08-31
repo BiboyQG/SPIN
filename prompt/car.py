@@ -167,40 +167,20 @@ response_format = {
                                 },
                                 "torque": {
                                     "type": "number"
+                                },
+                                "displacement": {
+                                    "type": "string"
                                 }
                             },
-                            "required": ["type", "horsepower", "torque"],
+                            "required": ["type", "horsepower", "torque", "displacement"],
                             "additionalProperties": False
                         },
-                        "electricMotor": {
-                            "type": "object",
-                            "properties": {
-                                "horsepower": {
-                                    "type": "number"
-                                },
-                                "torque": {
-                                    "type": "number"
-                                }
-                            },
-                            "required": ["horsepower", "torque"],
-                            "additionalProperties": False
-                        },
-                        "combinedOutput": {
-                            "type": "object",
-                            "properties": {
-                                "horsepower": {
-                                    "type": "number"
-                                },
-                                "torque": {
-                                    "type": "number"
-                                }
-                            },
-                            "required": ["horsepower", "torque"],
-                            "additionalProperties": False
+                        "transmission": {
+                            "type": "string"
                         }
                     },
                     "additionalProperties": False,
-                    "required": ["engine", "electricMotor", "combinedOutput"]
+                    "required": ["engine", "transmission"]
                 },
                 "battery": {
                     "type": "object",
@@ -221,23 +201,25 @@ response_format = {
                         "observed": {
                             "type": "string"
                         },
-                        "highway": {
+                        "epa": {
                             "type": "object",
                             "properties": {
-                                "ev": {
-                                    "type": "string"
+                                "combined": {
+                                    "type": "number"
                                 },
-                                "hybrid": {
-                                    "type": "string"
+                                "city": {
+                                    "type": "number"
+                                },
+                                "highway": {
+                                    "type": "number"
                                 }
                             },
-                            "additionalProperties": False,
-                            "required": ["ev", "hybrid"]
-                        },
-                        
+                            "required": ["combined", "city", "highway"],
+                            "additionalProperties": False
+                        }
                     },
                     "additionalProperties": False,
-                    "required": ["observed", "highway"]
+                    "required": ["observed", "epa"]
                 },
                 "performance": {
                     "type": "object",
@@ -250,9 +232,15 @@ response_format = {
                                 },
                                 "0to100": {
                                     "type": "number"
+                                },
+                                "0to130": {
+                                    "type": "number"
+                                },
+                                "0to150": {
+                                    "type": "number"
                                 }
                             },
-                            "required": ["0to60", "0to100"],
+                            "required": ["0to60", "0to100", "0to130", "0to150"],
                             "additionalProperties": False
                         },
                         "quarterMile": {
@@ -267,10 +255,13 @@ response_format = {
                             },
                             "required": ["time", "speed"],
                             "additionalProperties": False
+                        },
+                        "topSpeed": {
+                            "type": "number"
                         }
                     },
                     "additionalProperties": False,
-                    "required": ["acceleration", "quarterMile"]
+                    "required": ["acceleration", "quarterMile", "topSpeed"]
                 },
                 "dimensions": {
                     "type": "object",
@@ -286,32 +277,83 @@ response_format = {
                         },
                         "height": {
                             "type": "number"
+                        },
+                        "passengerVolume": {
+                            "type": "number"
+                        },
+                        "cargoVolume": {
+                            "type": "number"
+                        },
+                        "curbWeight": {
+                            "type": "number"
                         }
                     },
                     "additionalProperties": False,
-                    "required": ["wheelbase", "length", "width", "height"]
+                    "required": ["wheelbase", "length", "width", "height", "passengerVolume", "cargoVolume", "curbWeight"]
                 },
                 "brakes": {
-                    "type": "string"
+                    "type": "object",
+                    "properties": {
+                        "front": {
+                            "type": "string"
+                        },
+                        "rear": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": False,
+                    "required": ["front", "rear"]
                 },
                 "tires": {
-                    "type": "string"
+                    "type": "object",
+                    "properties": {
+                        "front": {
+                            "type": "string"
+                        },
+                        "rear": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": False,
+                    "required": ["front", "rear"]
                 },
                 "suspensionAndChassis": {
                     "type": "object",
                     "properties": {
                         "suspension": {
-                            "type": "string"
-                        },
-                        "brakes": {
-                            "type": "string"
+                            "type": "object",
+                            "properties": {
+                                "front": {
+                                    "type": "string"
+                                },
+                                "rear": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["front", "rear"],
+                            "additionalProperties": False
                         }
                     },
                     "additionalProperties": False,
-                    "required": ["suspension", "brakes"]
+                    "required": ["suspension"]
                 },
+                "strengths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "weaknesses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "overallVerdict": {
+                    "type": "string"
+                }
             },
-            "required": ["make", "model", "year", "vehicleType", "price", "powertrain", "battery", "fuelEfficiency", "performance", "dimensions", "brakes", "tires", "suspensionAndChassis"],
+            "required": ["make", "model", "year", "vehicleType", "price", "powertrain", "battery", "fuelEfficiency", "performance", "dimensions", "brakes", "tires", "suspensionAndChassis", "strengths", "weaknesses", "overallVerdict"],
             "additionalProperties": False
         }
     }
