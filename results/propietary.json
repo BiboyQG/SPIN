@@ -1,0 +1,78 @@
+{
+    "make": "McLaren",
+    "model": "750S",
+    "year": 2024,
+    "vehicleType": "mid-engine, rear-wheel-drive, 2-passenger, 2-door coupe",
+    "price": {
+        "base": 333040,
+        "asTested": 449790
+    },
+    "powertrain": {
+        "engine": {
+            "type": "twin-turbocharged and intercooled DOHC 32-valve V-8",
+            "horsepower": 740,
+            "torque": 590,
+            "displacement": "244 in3, 3994 cm3"
+        },
+        "transmission": "7-speed dual-clutch automatic"
+    },
+    "battery": {
+        "size": "N/A",
+        "onboardCharger": "N/A"
+    },
+    "fuelEfficiency": {
+        "observed": "12 mpg",
+        "epa": {
+            "combined": 17,
+            "city": 15,
+            "highway": 19
+        }
+    },
+    "performance": {
+        "acceleration": {
+            "0to60": 2.3,
+            "0to100": 4.8,
+            "0to130": 7.7,
+            "0to150": 10.7
+        },
+        "quarterMile": {
+            "time": 9.8,
+            "speed": 145
+        },
+        "topSpeed": 206
+    },
+    "dimensions": {
+        "wheelbase": 105.1,
+        "length": 179.9,
+        "width": 76,
+        "height": 47.1,
+        "passengerVolume": 47,
+        "cargoVolume": 7,
+        "curbWeight": 3206
+    },
+    "brakes": {
+        "front": "15.4-in vented, cross-drilled carbon-ceramic disc",
+        "rear": "15.0-in vented, cross-drilled, carbon-ceramic disc"
+    },
+    "tires": {
+        "front": "Pirelli P Zero Trofeo 245/35ZR-19 (93Y) MC1",
+        "rear": "Pirelli P Zero Trofeo 305/30ZR-20 (103Y) MC1"
+    },
+    "suspensionAndChassis": {
+        "suspension": {
+            "front": "control arms",
+            "rear": "control arms"
+        }
+    },
+    "strengths": [
+        "Mega straight-line speed",
+        "Lithe and lively moves",
+        "Steering feel for days",
+        "Shockingly supple ride"
+    ],
+    "weaknesses": [
+        "Engine's shriek can't be heard from the cabin",
+        "Ingress and egress become tiresome"
+    ],
+    "overallVerdict": "Less weight is better than more power."
+}
