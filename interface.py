@@ -15,7 +15,6 @@ css = """footer {visibility: hidden}
 """
 num_thread = 5
 open_source_model = ""
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 p = pl.Path("data")
 if not p.exists():
     p.mkdir()
@@ -36,12 +35,10 @@ def process_url_json(url, model_type, prompt_type):
     scrape_result = fire_app.scrape_url(
         url, params={"formats": ["markdown"], "excludeTags": ["a", "img", "video"]}
     )["markdown"]
-    # prompt_module = importlib.import_module(f"prompt.{prompt_type}")
-    # llm_prompt = prompt_module.llm_prompt
-    # query = llm_prompt.format(scrape_result)
     prompt_module = importlib.import_module(f"prompt.{prompt_type}")
     response_format = prompt_module.response_format
     if model_type == "Proprietary":
+        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
@@ -56,13 +53,30 @@ def process_url_json(url, model_type, prompt_type):
                 },
             ],
             max_tokens=16384,
-            temperature=0.8,
+            temperature=0.0,
             response_format=response_format,
         )
         print(response.choices[0].message.content)
         return response.choices[0].message.content
     elif model_type == "Open Source":
-        return "Not supported yet."
+        client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
+        prompt_module = importlib.import_module(f"prompt.{prompt_type}")
+        llm_prompt = prompt_module.llm_prompt
+        query = llm_prompt.format(scrape_result)
+        response = client.chat.completions.create(
+            model="Qwen/Qwen2-72B-Instruct-AWQ",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert at summarizing car review articles in JSON format.",
+                },
+                {"role": "user", "content": query},
+            ],
+            max_tokens=26000,
+            temperature=0.0,
+        )
+        print(response.choices[0].message.content)
+        return response.choices[0].message.content
 
 
 def process_url(url, mode, model_type, prompt_type):
