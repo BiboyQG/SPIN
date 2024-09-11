@@ -147,7 +147,8 @@ response_format = {
                     "type": "number"
                 },
                 "vehicleType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The type of vehicle, e.g. 'sedan', 'SUV', 'coupe', etc."
                 },
                 "price": {
                     "type": "object",
