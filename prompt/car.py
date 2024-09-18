@@ -1,3 +1,7 @@
+from pydantic import BaseModel, Field
+from typing import List, Optional
+import json
+
 def get_file_name(json_object):
     return f"{json_object['make']}_{json_object['model']}_{json_object['year']}"
 
@@ -412,3 +416,133 @@ response_format = {
     }
 }
 
+class Price(BaseModel):
+    base: float
+    as_tested: float = Field(..., alias="asTested")
+
+
+class Engine(BaseModel):
+    type: str
+    horsepower: int
+    torque: int
+
+
+class ElectricMotor(BaseModel):
+    horsepower: int
+    torque: int
+
+
+class CombinedOutput(BaseModel):
+    horsepower: int
+    torque: int
+
+
+class Powertrain(BaseModel):
+    engine: Engine
+    electric_motor: Optional[ElectricMotor] = Field(None, alias="electricMotor")
+    combined_output: Optional[CombinedOutput] = Field(None, alias="combinedOutput")
+    transmission: str
+
+
+class Battery(BaseModel):
+    size: str
+    onboard_charger: str = Field(..., alias="onboardCharger")
+
+
+class EPAFuelEfficiency(BaseModel):
+    combined: float
+    city: float
+    highway: float
+
+
+class FuelEfficiency(BaseModel):
+    observed: str
+    epa: EPAFuelEfficiency
+
+
+class Acceleration(BaseModel):
+    zero_to_60: float = Field(..., alias="0to60")
+    zero_to_100: float = Field(..., alias="0to100")
+    zero_to_130: float = Field(..., alias="0to130")
+    zero_to_150: float = Field(..., alias="0to150")
+
+
+class QuarterMile(BaseModel):
+    time: float
+    speed: float
+
+
+class Performance(BaseModel):
+    acceleration: Acceleration
+    quarter_mile: QuarterMile = Field(..., alias="quarterMile")
+    top_speed: float = Field(..., alias="topSpeed")
+
+
+class PassengerVolume(BaseModel):
+    front: float
+    rear: float
+
+
+class CargoVolume(BaseModel):
+    behind_front: float = Field(..., alias="behindFront")
+    behind_rear: float = Field(..., alias="behindRear")
+
+
+class Dimensions(BaseModel):
+    wheelbase: float
+    length: float
+    width: float
+    height: float
+    passenger_volume: PassengerVolume = Field(..., alias="passengerVolume")
+    cargo_volume: CargoVolume = Field(..., alias="cargoVolume")
+    curb_weight: float = Field(..., alias="curbWeight")
+
+
+class Brakes(BaseModel):
+    front: str
+    rear: str
+
+
+class Tires(BaseModel):
+    front: str
+    rear: str
+
+
+class Suspension(BaseModel):
+    front: str
+    rear: str
+
+
+class SuspensionAndChassis(BaseModel):
+    suspension: Suspension
+
+
+class Car(BaseModel):
+    make: str
+    model: str
+    year: int
+    vehicle_type: str = Field(..., alias="vehicleType")
+    price: Price
+    powertrain: Powertrain
+    battery: Optional[Battery] = None
+    fuel_efficiency: FuelEfficiency = Field(..., alias="fuelEfficiency")
+    performance: Performance
+    dimensions: Dimensions
+    brakes: Brakes
+    tires: Tires
+    suspension_and_chassis: SuspensionAndChassis = Field(
+        ..., alias="suspensionAndChassis"
+    )
+    strengths: List[str]
+    weaknesses: List[str]
+    overall_verdict: str = Field(..., alias="overallVerdict")
+
+    class Config:
+        allow_population_by_field_name = True
+        alias_generator = lambda field_name: "".join(
+            word.capitalize() if i > 0 else word
+            for i, word in enumerate(field_name.split("_"))
+        )
+
+    def json(self, **kwargs):
+        return json.loads(super().json(by_alias=True, exclude_none=True, **kwargs))
