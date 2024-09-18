@@ -1,0 +1,110 @@
+Volvo
+
+**_UPDATE 9/4/24:_** _According to Volvo, new EPA data gives range for the 2025 EX90 of 300 or 310 miles, up from 296 or 308 miles. We have revised the story that follows to include the new figures, which are not yet published on EPA's website._
+
+Volvo takes a big step into its electric future with the release of the 2025 . It has spent a long time percolating, but the new Volvo flagship EV is finally here. For those who haven't been following along, the EX90 is a dual-motor , with a floor-spanning lithium-ion battery that stores 107.0 kWh of usable energy and can deliver a claimed 300 to 310 miles of range. But mostly, it's a Volvo.
+
+## A Familiar Shape
+
+On the outside, the new EX90 looks like a refreshed version of the , especially from the rear three-quarter view. After all, it rides on the same 117.5-inch wheelbase, but it stands 1.6 inches wider and stretches 3.3 inches longer. When you look at the front, however, the difference between the two is apparent: The EX90 has no grille opening between the Thor's-hammer headlights. Oh, and there's the not small matter of the subtle bulge above the windshield, which houses a lidar sensor. That's a tell.
+
+Volvo
+
+Inside, the EX90 looks wildly different from the XC90, but still very much like a Volvo. The small screen in front of the driver is mounted on the steering column, where it can move with the steering-wheel adjustment. The center screen measures a rather large 14.5 inches and is oriented portrait-style. It's powered by Google but also supports wireless Apple CarPlay and Android Auto.
+
+The shifter has moved to the right stalk, whereas the left-hand one is for turn signals and wipers. The only physical control anywhere on the console is for the stereo. To move the mirrors or tweak the steering column, Volvo expects you to press a touchscreen button, which brings up the appropriate menu. The idea is that you do this once and save it to your profile, but we'll see how that goes. Also, Volvo has aped VW in its driver window controls, adopting only left and right buttons, but adding a toggle (and a light) to indicate front and rear, in the name of . . . simplicity?
+
+All of this exists on a lovely background of sustainably sourced materials. Volvo took pains to make it look like fine Scandinavian furniture, and it largely works. We sampled two such interiors, including one with a wool-blend upholstery made from recycled polyester and responsibly produced wool. The other was called Dawn quilted Nordico, a leather-free upholstery. Both looked great, especially considering the handsome wood accents they came paired with.
+
+Volvo
+
+## On the Move
+
+Two versions of the powertrain are offered. The standard one develops 402 horsepower and 568 lb-ft of torque, while the Performance powertrain up that to 510 horses and 671 lb-ft. Basically, the more powerful one swaps in a bigger rear motor; otherwise the coaxial permanent-magnet motors are the same. In either case, both are engaged at launch, but the rear one shuts down as you approach cruising speed, leaving you with front-wheel drive. In the twisties, however, the rear motor can vector torque to help with agility. Volvo says the two powertrains are good for runs to 60 mph in 5.7 seconds for the standard version and 4.7 seconds for the Performance setup, but we suspect they'll do slightly better.
+
+We drove the Performance model and don't doubt any of the above. The big EX90 moved out smartly, despite the approximately three-ton curb weight of our sample car, which was loaded to the gills. But what stood out even more was the suppleness of the suspension. This was surprising in light of our car's 22-inch wheels, as you'd have guessed the car had more sidewall. The dual-chamber air springs (up from one-chamber units in the XC90) likely had much do with it. The suspension can lower the car 0.4 inch at 43 mph and 0.8 inch at 62 mph, and do rear-axle load leveling to boot. The air springs are paired with adaptive dampers that automatically tweak the damping to suit conditions. It all smooths out the road beautifully, with only the occasional tug when you're hustling.
+
+Volvo
+
+The steering is nicely weighted too, but the overriding theme is one of sheer quietness, and we say that with full knowledge that EVs are quiet. This one is on another level. And that's a good thing considering our car was equipped with the optional Bowers & Wilkins stereo that can reproduce Dolby Atmos sound through its 25-speaker system. You want a perfect backdrop for unbelievable sound on the move? This is it.
+
+## EX90 Pricing
+
+The entry point for the EX90 is the Plus version at $81,290, some $6195 more than the PHEV XC90 Plus. This full-blown EV comes with goodies such as a fixed panoramic sunroof, Volvo's Pilot Assist, parking assist, a 360-degree camera, a digital key, an air purifier, a head-up display, Bose premium audio, and 20-inch wheels. From there, you can add $5000 for the Performance powertrain or $4350 for the Ultra package, which brings with it air springs, adaptive dampers, soft-close doors, massaging front seats, laminated rear windows, and 21-inch wheels. Two options are available on the Ultra: a Bower & Wilkins premium sound system for $3200 and 22-inch wheels for $800. Six-passenger seating is available on all models for $500.
+
+Volvo
+
+What Volvo doesn't say just yet is what's up with the hands-free driving feature, which will eventually be enabled in some limited scope that will probably start with limited-access highways. The lidar sensor is the tip-off, but all EX90s will have that plus eight cameras, five radars, and 16 ultrasonic sensors. When the necessary approvals are received, Volvo will push an over-the-air update.
+
+In any trim, the Volvo EX90 is a worthy addition to the lineup. It shows what Volvo can do when it wants to produce an EV: build a great car that just happens to be electric.
+
+Volvo
+
+#### Specifications
+
+**Specifications**
+
+**2025 Volvo EX90**
+
+Vehicle Type: front- and rear-motor, all-wheel-drive, 6- or 7-passenger, 4-door wagon
+
+**PRICE**
+Plus, $81,290; Ultra, $85,640; Performance Plus, $86,290; Performance Ultra, $90,640
+
+**POWERTRAIN**
+Front Motor: permanent-magnet synchronous AC, 232 or 241 hp
+
+Rear Motor: permanent-magnet synchronous AC, 170 or 268 hp
+
+Combined Power: 402 or 510 hp
+
+
+Combined Torque: 568 or 671 lb-ft
+
+Battery Pack: liquid-cooled lithium-ion, 107.0 kWh
+
+Onboard Charger: 11.0 kW
+
+Peak DC Fast-Charge Rate: 250 kW
+
+Transmissions, F/R: direct-drive
+
+**DIMENSIONS**
+Wheelbase: 117.5 in
+
+Length: 198.3 in
+
+Width: 77.3 in
+
+Height: 68.8 in
+
+Passenger Volume, F/M/R: 58/51/21 ft3
+
+Cargo Volume, behind F/M/R: 71–74/36/13–14 ft3
+
+
+Front-Trunk Volume: 2–3 ft3
+
+Curb Weight ( _C/D_ est): 5700–6100 lb
+
+**PERFORMANCE ( _C/D_ EST)**
+60 mph: 4.5–5.5 sec
+
+1/4-Mile: 13.0–14.3 sec
+
+Top Speed: 112 mph
+
+**EPA FUEL ECONOMY ( _C/D_ EST)**
+Combined/City/Highway: 79–81/82–84/76–79 MPGe
+
+Range: 300–310 mi
+
+Technical Editor
+
+Dan Edmunds was born into the world of automobiles, but not how you might think. His father was a retired racing driver who opened Autoresearch, a race-car-building shop, where Dan cut his teeth as a metal fabricator. Engineering school followed, then SCCA Showroom Stock racing, and that combination landed him suspension development jobs at two different automakers. His writing career began when he was picked up by Edmunds.com (no relation) to build a testing department.
+
+###### Watch Next
+
+Advertisement - Continue Reading Below
+
+Advertisement - Continue Reading Below
