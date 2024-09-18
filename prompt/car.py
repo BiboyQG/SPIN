@@ -182,12 +182,38 @@ response_format = {
                             "required": ["type", "horsepower", "torque"],
                             "additionalProperties": False
                         },
+                        "electricMotor": {
+                            "type": "object",
+                            "properties": {
+                                "horsepower": {
+                                    "type": "number"
+                                },
+                                "torque": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["horsepower", "torque"],
+                            "additionalProperties": False
+                        },
+                        "combinedOutput": {
+                            "type": "object",
+                            "properties": {
+                                "horsepower": {
+                                    "type": "number"
+                                },
+                                "torque": {
+                                    "type": "number"
+                                }
+                            },
+                            "required": ["horsepower", "torque"],
+                            "additionalProperties": False
+                        },
                         "transmission": {
                             "type": "string"
                         }
                     },
                     "additionalProperties": False,
-                    "required": ["engine", "transmission"]
+                    "required": ["engine", "electricMotor", "combinedOutput", "transmission"]
                 },
                 "battery": {
                     "type": "object",
@@ -385,3 +411,4 @@ response_format = {
         }
     }
 }
+
