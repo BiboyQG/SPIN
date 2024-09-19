@@ -1,0 +1,90 @@
+{
+    "make": "Volvo",
+    "model": "EX90",
+    "year": 2025,
+    "vehicleType": "wagon",
+    "price": {
+        "base": 81290,
+        "asTested": 90640
+    },
+    "powertrain": {
+        "engine": {
+            "type": "permanent-magnet synchronous AC",
+            "horsepower": 402,
+            "torque": 568
+        },
+        "electricMotor": {
+            "horsepower": 510,
+            "torque": 671
+        },
+        "combinedOutput": {
+            "horsepower": 510,
+            "torque": 671
+        },
+        "transmission": "direct-drive"
+    },
+    "battery": {
+        "size": "107.0 kWh",
+        "onboardCharger": "11.0 kW"
+    },
+    "fuelEfficiency": {
+        "observed": "79\u201381 MPGe",
+        "epa": {
+            "combined": 80,
+            "city": 83,
+            "highway": 78
+        }
+    },
+    "performance": {
+        "acceleration": {
+            "0to60": 4.5,
+            "0to100": 10.0,
+            "0to130": 15.5,
+            "0to150": 20.0
+        },
+        "quarterMile": {
+            "time": 13.0,
+            "speed": 112
+        },
+        "topSpeed": 112
+    },
+    "dimensions": {
+        "wheelbase": 117.5,
+        "length": 198.3,
+        "width": 77.3,
+        "height": 68.8,
+        "passengerVolume": {
+            "front": 58,
+            "rear": 51
+        },
+        "cargoVolume": {
+            "behindFront": 71,
+            "behindRear": 36
+        },
+        "curbWeight": 5700
+    },
+    "brakes": {
+        "front": "disc",
+        "rear": "disc"
+    },
+    "tires": {
+        "front": "22-inch",
+        "rear": "22-inch"
+    },
+    "suspensionAndChassis": {
+        "suspension": {
+            "front": "dual-chamber air springs",
+            "rear": "dual-chamber air springs"
+        }
+    },
+    "strengths": [
+        "Impressive electric range",
+        "Luxurious interior materials",
+        "Advanced technology features"
+    ],
+    "weaknesses": [
+        "High price point",
+        "Limited physical controls"
+    ],
+    "overallVerdict": "The Volvo EX90 is a worthy addition to the lineup, showcasing Volvo's commitment to producing a high-quality electric vehicle."
+}
