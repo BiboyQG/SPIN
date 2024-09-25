@@ -541,7 +541,7 @@ class Car(BaseModel):
     vehicle_type: str = Field(description="The type of vehicle, e.g. 'sedan', 'SUV', 'coupe', etc.", alias="vehicleType")
     price: Price
     powertrain: Powertrain
-    battery: Battery = None
+    battery: Battery
     fuel_efficiency: FuelEfficiency = Field(..., alias="fuelEfficiency")
     performance: Performance
     dimensions: Dimensions
