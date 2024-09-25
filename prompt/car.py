@@ -174,44 +174,19 @@ response_format = {
                             "type": "object",
                             "properties": {
                                 "type": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "Type of the engine of the car according to the article, e.g. 'permanent-magnet synchronous AC', 'turbocharged and intercooled DOHC 16-valve inline-4', 'twin-turbocharged V8', 'N/A' (for non-engine cars)."
                                 },
                                 "horsepower": {
-                                    "type": "number"
+                                    "type": "string",
+                                    "description": "Horsepower of the engine, which should be a specific value or two values according to the article with the unit 'hp' included. E.g. '402 or 510 hp', '295 hp', 'N/A' (if not applicable)."
                                 },
                                 "torque": {
-                                    "type": "number"
+                                    "type": "string",
+                                    "description": "Torque of the engine, which should be a specific value or two values according to the article with the unit 'lb-ft' included. E.g. '568 or 671 lb-ft', '295 lb-ft', 'N/A' (if not applicable)."
                                 }
                             },
                             "required": ["type", "horsepower", "torque"],
-                            "additionalProperties": False
-                        },
-                        "electricMotor": {
-                            "type": "object",
-                            "properties": {
-                                "horsepower": {
-                                    "type": "number",
-                                    "description": "Horsepower of the electric motor. If the car is not electric, the value should be 0."
-                                },
-                                "torque": {
-                                    "type": "number",
-                                    "description": "Torque of the electric motor. If the car is not electric, the value should be 0."
-                                }
-                            },
-                            "required": ["horsepower", "torque"],
-                            "additionalProperties": False
-                        },
-                        "combinedOutput": {
-                            "type": "object",
-                            "properties": {
-                                "horsepower": {
-                                    "type": "number"
-                                },
-                                "torque": {
-                                    "type": "number"
-                                }
-                            },
-                            "required": ["horsepower", "torque"],
                             "additionalProperties": False
                         },
                         "transmission": {
@@ -434,25 +409,20 @@ class Price(BaseModel):
 
 
 class Engine(BaseModel):
-    type: str
-    horsepower: int
-    torque: int
+    type: str = Field(
+        description="Type of the engine of the car according to the article, e.g. 'permanent-magnet synchronous AC', 'turbocharged and intercooled DOHC 16-valve inline-4', 'twin-turbocharged V8', 'N/A' (for non-engine cars)."
+    )
+    horsepower: str = Field(
+        description="Horsepower of the engine, which should be a specific value or two values according to the article with the unit 'hp' included. E.g. '402 or 510 hp', '295 hp', 'N/A' (if not applicable)."
+    )
+    torque: str = Field(
+        description="Torque of the engine, which should be a specific value or two values according to the article with the unit 'lb-ft' included. E.g. '568 or 671 lb-ft', '295 lb-ft', 'N/A' (if not applicable)."
+    )
 
-
-class ElectricMotor(BaseModel):
-    horsepower: int = Field(description="Horsepower of the electric motor. If the car is not electric, the value should be 0.")
-    torque: int = Field(description="Torque of the electric motor. If the car is not electric, the value should be 0.")
-
-
-class CombinedOutput(BaseModel):
-    horsepower: int
-    torque: int
 
 
 class Powertrain(BaseModel):
-    engine: Engine
-    electric_motor: ElectricMotor = Field(None, alias="electricMotor")
-    combined_output: CombinedOutput = Field(None, alias="combinedOutput")
+    engine: Engine = Field(..., alias="engine")
     transmission: str = Field(description="Transmission of the car, such as 'direct-drive', 'CVT', 'single-speed', 'multi-speed', 'dual-motor', 'in-wheel motor', etc.")
 
 
