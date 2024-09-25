@@ -242,24 +242,24 @@ response_format = {
                     "properties": {
                         "observed": {
                             "type": "string",
-                            "description": "Observed fuel efficiency of the car. The value should be a range or a specific value according to the article with the unit 'mpg' included. Eg. '79-81 mpg', '17 mpg', '0 mpg' (if not applicable)."
+                            "description": "Observed fuel efficiency of the car. The value should be a range or a specific value according to the article with the unit 'MPGe' included. Eg. '79-81 MPGe', '17 MPGe', '0 MPGe' (if not applicable)."
                         },
                         "epa": {
                             "type": "object",
                             "properties": {
                                 "combined": {
-                                    "type": "number"
+                                    "type": "string"
                                 },
                                 "city": {
-                                    "type": "number"
+                                    "type": "string"
                                 },
                                 "highway": {
-                                    "type": "number"
+                                    "type": "string"
                                 }
                             },
                             "required": ["combined", "city", "highway"],
                             "additionalProperties": False,
-                            "description": "Fuel efficiency of the car according to EPA of city, highway and combined. For each of them, the value should be a range or a specific value according to the article with the unit 'mpg' included. Eg. '79-81 mpg', '17 mpg', '0 mpg' (if not applicable)."
+                            "description": "Fuel efficiency of the car according to EPA of city, highway and combined. For each of them, the value should be a range or a specific value according to the article with the unit 'MPGe' included. Eg. '79-81 MPGe', '17 MPGe', '0 MPGe' (if not applicable)."
                         }
                     },
                     "additionalProperties": False,
@@ -469,9 +469,9 @@ class EPAFuelEfficiency(BaseModel):
 
 class FuelEfficiency(BaseModel):
     observed: str = Field(
-        description="Observed fuel efficiency of the car. The value should be a range or a specific value according to the article with the unit 'mpg' included. Eg. '79-81 mpg', '17 mpg', '0 mpg' (if not applicable)."
+        description="Observed fuel efficiency of the car. The value should be a range or a specific value according to the article with the unit 'MPGe' included. Eg. '79-81 MPGe', '17 MPGe', '0 MPGe' (if not applicable)."
     )
-    epa: EPAFuelEfficiency = Field(description="Fuel efficiency of the car according to EPA of city, highway and combined. For each of them, the value should be a range or a specific value according to the article with the unit 'mpg' included. Eg. '79-81 mpg', '17 mpg', '0 mpg' (if not applicable).")
+    epa: EPAFuelEfficiency = Field(description="Fuel efficiency of the car according to EPA of city, highway and combined. For each of them, the value should be a range or a specific value according to the article with the unit 'MPGe' included. Eg. '79-81 MPGe', '17 MPGe', '0 MPGe' (if not applicable).")
 
 
 class Acceleration(BaseModel):
