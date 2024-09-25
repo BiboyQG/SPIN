@@ -190,10 +190,12 @@ response_format = {
                             "type": "object",
                             "properties": {
                                 "horsepower": {
-                                    "type": "number"
+                                    "type": "number",
+                                    "description": "Horsepower of the electric motor. If the car is not electric, the value should be 0."
                                 },
                                 "torque": {
-                                    "type": "number"
+                                    "type": "number",
+                                    "description": "Torque of the electric motor. If the car is not electric, the value should be 0."
                                 }
                             },
                             "required": ["horsepower", "torque"],
@@ -213,7 +215,8 @@ response_format = {
                             "additionalProperties": False
                         },
                         "transmission": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Transmission of the car, such as 'direct-drive', 'CVT', 'single-speed', 'multi-speed', 'dual-motor', 'in-wheel motor', etc."
                         }
                     },
                     "additionalProperties": False,
@@ -223,10 +226,12 @@ response_format = {
                     "type": "object",
                     "properties": {
                         "size": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Size of the battery in kWh. The unit is always kWh and should be included. Eg. '100.0 kWh', '107.5 kWh', '0 kWh' (for non-hybrid cars)."
                         },
                         "onboardCharger": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Onboard charger of the car. The unit is always kW and should be included. Eg. '11.0 kW', '10.5 kW', '0 kW' (for non-hybrid cars)."
                         }
                     },
                     "additionalProperties": False,
@@ -236,7 +241,8 @@ response_format = {
                     "type": "object",
                     "properties": {
                         "observed": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Observed fuel efficiency of the car. The value should be a range or a specific value according to the article with the unit 'mpg' included. Eg. '79-81 mpg', '17 mpg', '0 mpg' (if not applicable)."
                         },
                         "epa": {
                             "type": "object",
@@ -252,7 +258,8 @@ response_format = {
                                 }
                             },
                             "required": ["combined", "city", "highway"],
-                            "additionalProperties": False
+                            "additionalProperties": False,
+                            "description": "Fuel efficiency of the car according to EPA of city, highway and combined. For each of them, the value should be a range or a specific value according to the article with the unit 'mpg' included. Eg. '79-81 mpg', '17 mpg', '0 mpg' (if not applicable)."
                         }
                     },
                     "additionalProperties": False,
@@ -265,36 +272,39 @@ response_format = {
                             "type": "object",
                             "properties": {
                                 "0to60": {
-                                    "type": "number"
+                                    "type": "string"
                                 },
                                 "0to100": {
-                                    "type": "number"
+                                    "type": "string"
                                 },
                                 "0to130": {
-                                    "type": "number"
+                                    "type": "string"
                                 },
                                 "0to150": {
-                                    "type": "number"
+                                    "type": "string"
                                 }
                             },
                             "required": ["0to60", "0to100", "0to130", "0to150"],
-                            "additionalProperties": False
+                            "additionalProperties": False,
+                            "description": "Acceleration of the car. For each of them, the value should be a range or a specific value according to the article with the unit 's' excluded. Eg. '3.1-3.5', '7.3', 'N/A' (if not applicable)."
                         },
                         "quarterMile": {
                             "type": "object",
                             "properties": {
                                 "time": {
-                                    "type": "number"
+                                    "type": "string"
                                 },
                                 "speed": {
                                     "type": "number"
                                 }
                             },
                             "required": ["time", "speed"],
-                            "additionalProperties": False
+                            "additionalProperties": False,
+                            "description": "Quarter mile of the car. The value for time should be a range or a specific value according to the article with the unit 's' excluded. Eg. '11.3', '15.1', 'N/A' (if not applicable). The value for speed should be a specific value according to the article with the unit 'mph' included. Eg. 112, 125, 0 (if not applicable)."
                         },
                         "topSpeed": {
-                            "type": "number"
+                            "type": "number",
+                            "description": "Top speed of the car. The value should be a specific value according to the article. Eg. 112, 125, 0 (if not applicable)."
                         }
                     },
                     "additionalProperties": False,
@@ -339,10 +349,12 @@ response_format = {
                                 }
                             },
                             "required": ["behindFront", "behindRear"],
-                            "additionalProperties": False
+                            "additionalProperties": False,
+                            "description": "Cargo volume of the car. The value for behindFront and behindRear should be a range or a specific value according to the article without the unit. Eg. '71-74', '36', 'N/A' (if not applicable)."
                         },
                         "curbWeight": {
-                            "type": "number"
+                            "type": "string",
+                            "description": "Curb weight of the car. The value should be a range or a specific value according to the article with the unit 'lbs' included. Eg. '5700-6100 lbs', '5200 lbs', 'N/A' (if not applicable)."
                         }
                     },
                     "additionalProperties": False,
@@ -417,7 +429,7 @@ response_format = {
 }
 
 class Price(BaseModel):
-    base: float
+    base: int
     as_tested: float = Field(..., alias="asTested")
 
 
@@ -428,8 +440,8 @@ class Engine(BaseModel):
 
 
 class ElectricMotor(BaseModel):
-    horsepower: int
-    torque: int
+    horsepower: int = Field(description="Horsepower of the electric motor. If the car is not electric, the value should be 0.")
+    torque: int = Field(description="Torque of the electric motor. If the car is not electric, the value should be 0.")
 
 
 class CombinedOutput(BaseModel):
@@ -439,43 +451,48 @@ class CombinedOutput(BaseModel):
 
 class Powertrain(BaseModel):
     engine: Engine
-    electric_motor: Optional[ElectricMotor] = Field(None, alias="electricMotor")
-    combined_output: Optional[CombinedOutput] = Field(None, alias="combinedOutput")
-    transmission: str
+    electric_motor: ElectricMotor = Field(None, alias="electricMotor")
+    combined_output: CombinedOutput = Field(None, alias="combinedOutput")
+    transmission: str = Field(description="Transmission of the car, such as 'direct-drive', 'CVT', 'single-speed', 'multi-speed', 'dual-motor', 'in-wheel motor', etc.")
 
 
 class Battery(BaseModel):
-    size: str
-    onboard_charger: str = Field(..., alias="onboardCharger")
+    size: str = Field(description="Size of the battery in kWh. The unit is always kWh and should be included. Eg. '100.0 kWh', '107.5 kWh', '0 kWh' (for non-hybrid cars).")
+    onboard_charger: str = Field(description="Onboard charger of the car. The unit is always kW and should be included. Eg. '11.0 kW', '10.5 kW', '0 kW' (for non-hybrid cars).", alias="onboardCharger")
 
 
 class EPAFuelEfficiency(BaseModel):
-    combined: float
-    city: float
-    highway: float
+    combined: str
+    city: str
+    highway: str
 
 
 class FuelEfficiency(BaseModel):
-    observed: str
-    epa: EPAFuelEfficiency
+    observed: str = Field(
+        description="Observed fuel efficiency of the car. The value should be a range or a specific value according to the article with the unit 'mpg' included. Eg. '79-81 mpg', '17 mpg', '0 mpg' (if not applicable)."
+    )
+    epa: EPAFuelEfficiency = Field(description="Fuel efficiency of the car according to EPA of city, highway and combined. For each of them, the value should be a range or a specific value according to the article with the unit 'mpg' included. Eg. '79-81 mpg', '17 mpg', '0 mpg' (if not applicable).")
 
 
 class Acceleration(BaseModel):
-    zero_to_60: float = Field(..., alias="0to60")
-    zero_to_100: float = Field(..., alias="0to100")
-    zero_to_130: float = Field(..., alias="0to130")
-    zero_to_150: float = Field(..., alias="0to150")
+    zero_to_60: str = Field(..., alias="0to60")
+    zero_to_100: str = Field(..., alias="0to100")
+    zero_to_130: str = Field(..., alias="0to130")
+    zero_to_150: str = Field(..., alias="0to150")
 
 
 class QuarterMile(BaseModel):
-    time: float
-    speed: float
+    time: str
+    speed: int
 
 
 class Performance(BaseModel):
-    acceleration: Acceleration
-    quarter_mile: QuarterMile = Field(..., alias="quarterMile")
-    top_speed: float = Field(..., alias="topSpeed")
+    acceleration: Acceleration = Field(description="Acceleration of the car. For each of them, the value should be a range or a specific value according to the article with the unit 's' excluded. Eg. '3.1-3.5', '7.3', 'N/A' (if not applicable).")
+    quarter_mile: QuarterMile = Field(description="Quarter mile of the car. The value for time should be a range or a specific value according to the article with the unit 's' excluded. Eg. '11.3', '15.1', 'N/A' (if not applicable). The value for speed should be a specific value according to the article with the unit 'mph' included. Eg. 112, 125, 0 (if not applicable).", alias="quarterMile")
+    top_speed: int = Field(
+        description="Top speed of the car. The value should be a specific value according to the article. Eg. 112, 125, 0 (if not applicable).",
+        alias="topSpeed"
+    )
 
 
 class PassengerVolume(BaseModel):
@@ -494,8 +511,8 @@ class Dimensions(BaseModel):
     width: float
     height: float
     passenger_volume: PassengerVolume = Field(..., alias="passengerVolume")
-    cargo_volume: CargoVolume = Field(..., alias="cargoVolume")
-    curb_weight: float = Field(..., alias="curbWeight")
+    cargo_volume: CargoVolume = Field(description="Cargo volume of the car. The value for behindFront and behindRear should be a range or a specific value according to the article without the unit. Eg. '71-74', '36', 'N/A' (if not applicable).", alias="cargoVolume")
+    curb_weight: str = Field(description="Curb weight of the car. The value should be a range or a specific value according to the article with the unit 'lbs' included. Eg. '5700-6100 lbs', '5200 lbs', 'N/A' (if not applicable).", alias="curbWeight")
 
 
 class Brakes(BaseModel):
@@ -521,7 +538,7 @@ class Car(BaseModel):
     make: str
     model: str
     year: int
-    vehicle_type: str = Field(..., alias="vehicleType")
+    vehicle_type: str = Field(description="The type of vehicle, e.g. 'sedan', 'SUV', 'coupe', etc.", alias="vehicleType")
     price: Price
     powertrain: Powertrain
     battery: Optional[Battery] = None
