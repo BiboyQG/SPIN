@@ -1,1 +1,92 @@
-{"make": "Hyundai", "model": "Tucson", "year": 2025, "vehicleType": "crossover", "price": {"base": 29750, "asTested": 40775}, "powertrain": {"engine": {"type": "DOHC 16-valve 2.5-liter inline-4", "horsepower": 187, "torque": 178}, "electricMotor": {"horsepower": 97, "torque": 224}, "combinedOutput": {"horsepower": 268, "torque": 271}, "transmission": "6-speed automatic"}, "battery": {"size": "12.0-kWh lithium-ion battery pack", "onboardCharger": "7.2-kW"}, "fuelEfficiency": {"observed": "28 mpg", "epa": {"combined": 38, "city": 38, "highway": 38}}, "performance": {"acceleration": {"0to60": 7.1, "0to100": 9.0, "0to130": 0, "0to150": 0}, "quarterMile": {"time": 15.0, "speed": 0}, "topSpeed": 122}, "dimensions": {"wheelbase": 108.5, "length": 183.1, "width": 73.4, "height": 66.3, "passengerVolume": {"front": 55, "rear": 53}, "cargoVolume": {"behindFront": 39, "behindRear": 75}, "curbWeight": 4300}, "brakes": {"front": "disc", "rear": "disc"}, "tires": {"front": "225/60R18", "rear": "225/60R18"}, "suspensionAndChassis": {"suspension": {"front": "independent", "rear": "multi-link"}}, "strengths": ["Attractive interior design", "Comfortable ride", "Good fuel efficiency in hybrid models"], "weaknesses": ["Standard engine lacks power", "Not the quickest in its class"], "overallVerdict": "The refreshed Tucson excels at the mundane, offering a compelling package with striking looks and a confident driving style."}
+{
+    "make": "Hyundai",
+    "model": "Tucson",
+    "year": 2025,
+    "vehicleType": "crossover",
+    "price": {
+        "base": 29750,
+        "asTested": 40775
+    },
+    "powertrain": {
+        "engine": {
+            "type": "internal combustion",
+            "horsepower": 187,
+            "torque": 178
+        },
+        "electricMotor": {
+            "horsepower": 0,
+            "torque": 0
+        },
+        "combinedOutput": {
+            "horsepower": 268,
+            "torque": 271
+        },
+        "transmission": "6-speed automatic"
+    },
+    "battery": {
+        "size": "12.0 kWh",
+        "onboardCharger": "7.2 kW"
+    },
+    "fuelEfficiency": {
+        "observed": "28 mpg",
+        "epa": {
+            "combined": "26-38 mpg",
+            "city": "24-38 mpg",
+            "highway": "30-38 mpg"
+        }
+    },
+    "performance": {
+        "acceleration": {
+            "0to60": "7.2-9.0",
+            "0to100": "N/A",
+            "0to130": "N/A",
+            "0to150": "N/A"
+        },
+        "quarterMile": {
+            "time": "15.0-17.0",
+            "speed": 0
+        },
+        "topSpeed": 122
+    },
+    "dimensions": {
+        "wheelbase": 108.5,
+        "length": 182.7,
+        "width": 73.4,
+        "height": 66.3,
+        "passengerVolume": {
+            "front": 55,
+            "rear": 53
+        },
+        "cargoVolume": {
+            "behindFront": 39,
+            "behindRear": 75
+        },
+        "curbWeight": "3500-4300 lbs"
+    },
+    "brakes": {
+        "front": "disc",
+        "rear": "disc"
+    },
+    "tires": {
+        "front": "225/60R18",
+        "rear": "225/60R18"
+    },
+    "suspensionAndChassis": {
+        "suspension": {
+            "front": "independent",
+            "rear": "independent"
+        }
+    },
+    "strengths": [
+        "Attractive interior design",
+        "Comfortable ride",
+        "Good driving dynamics",
+        "Improved fuel efficiency in hybrid models"
+    ],
+    "weaknesses": [
+        "Standard engine lacks power",
+        "Not the quickest in its class",
+        "Disappointing real-world fuel economy for hybrids"
+    ],
+    "overallVerdict": "The refreshed Tucson excels at the mundane, offering a compelling package with striking looks and a confident driving style."
+}

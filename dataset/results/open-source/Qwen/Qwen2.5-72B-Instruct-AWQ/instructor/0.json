@@ -1,1 +1,91 @@
-{"make": "Volvo", "model": "EX90", "year": 2025, "vehicleType": "front- and rear-motor, all-wheel-drive, 6- or 7-passenger, 4-door wagon", "price": {"base": 81290.0, "asTested": 90640.0}, "powertrain": {"engine": {"type": "permanent-magnet synchronous AC", "horsepower": 402, "torque": 568}, "electricMotor": {"horsepower": 510, "torque": 671}, "combinedOutput": {"horsepower": 510, "torque": 671}, "transmission": "direct-drive"}, "battery": {"size": "107.0 kWh", "onboardCharger": "11.0 kW"}, "fuelEfficiency": {"observed": "N/A", "epa": {"combined": 79.0, "city": 82.0, "highway": 76.0}}, "performance": {"acceleration": {"0to60": 4.7, "0to100": 10.5, "0to130": 16.5, "0to150": 22.5}, "quarterMile": {"time": 13.0, "speed": 105.0}, "topSpeed": 112.0}, "dimensions": {"wheelbase": 117.5, "length": 198.3, "width": 77.3, "height": 68.8, "passengerVolume": {"front": 58.0, "rear": 51.0}, "cargoVolume": {"behindFront": 71.0, "behindRear": 13.0}, "curbWeight": 6100.0}, "brakes": {"front": "ventilated disc", "rear": "ventilated disc"}, "tires": {"front": "275/40R22", "rear": "275/40R22"}, "suspensionAndChassis": {"suspension": {"front": "independent, double wishbone, air springs", "rear": "independent, multi-link, air springs"}}, "strengths": ["Supple suspension", "Quiet interior", "Advanced technology", "Luxurious interior", "High performance"], "weaknesses": ["High price point", "Limited range compared to some competitors"], "overallVerdict": "The 2025 Volvo EX90 is a worthy addition to the lineup, showcasing Volvo's capability in producing a great electric vehicle. It offers a luxurious and quiet interior, advanced technology, and a supple suspension, making it a strong contender in the electric SUV market."}
+{
+    "make": "Volvo",
+    "model": "EX90",
+    "year": 2025,
+    "vehicleType": "4-door wagon",
+    "price": {
+        "base": 81290,
+        "asTested": 61000.0
+    },
+    "powertrain": {
+        "engine": {
+            "type": "N/A",
+            "horsepower": 0,
+            "torque": 0
+        },
+        "electricMotor": {
+            "horsepower": 402,
+            "torque": 568
+        },
+        "combinedOutput": {
+            "horsepower": 402,
+            "torque": 568
+        },
+        "transmission": "direct-drive"
+    },
+    "battery": {
+        "size": "107.0 kWh",
+        "onboardCharger": "11.0 kW"
+    },
+    "fuelEfficiency": {
+        "observed": "N/A",
+        "epa": {
+            "combined": "79-81 MPGe",
+            "city": "82-84 MPGe",
+            "highway": "76-79 MPGe"
+        }
+    },
+    "performance": {
+        "acceleration": {
+            "0to60": "4.5-5.5",
+            "0to100": "N/A",
+            "0to130": "N/A",
+            "0to150": "N/A"
+        },
+        "quarterMile": {
+            "time": "13.0-14.3",
+            "speed": 112
+        },
+        "topSpeed": 112
+    },
+    "dimensions": {
+        "wheelbase": 117.5,
+        "length": 198.3,
+        "width": 77.3,
+        "height": 68.8,
+        "passengerVolume": {
+            "front": 58.0,
+            "rear": 51.0
+        },
+        "cargoVolume": {
+            "behindFront": 71.0,
+            "behindRear": 36.0
+        },
+        "curbWeight": "5700-6100 lbs"
+    },
+    "brakes": {
+        "front": "N/A",
+        "rear": "N/A"
+    },
+    "tires": {
+        "front": "N/A",
+        "rear": "N/A"
+    },
+    "suspensionAndChassis": {
+        "suspension": {
+            "front": "Dual-chamber air springs with adaptive dampers",
+            "rear": "Dual-chamber air springs with adaptive dampers"
+        }
+    },
+    "strengths": [
+        "Supple suspension",
+        "Quiet interior",
+        "Advanced technology and features",
+        "Sustainable materials"
+    ],
+    "weaknesses": [
+        "Limited physical controls",
+        "High price point"
+    ],
+    "overallVerdict": "The 2025 Volvo EX90 is a worthy addition to the lineup, showcasing what Volvo can do when it wants to produce an EV: build a great car that just happens to be electric."
+}
