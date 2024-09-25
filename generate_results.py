@@ -80,7 +80,9 @@ def get_response_from_open_source_with_prompt(scrape_result, file_name):
         json.dump(json_object, f)
 
 def get_response_from_open_source_with_instructor(scrape_result, file_name):
-    client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
+    client = OpenAI(base_url="http://localhost:8888/v1")
+    # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
+    # client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
     client = instructor.from_openai(client)
     response = client.chat.completions.create(
         model=open_source_model,
@@ -89,7 +91,7 @@ def get_response_from_open_source_with_instructor(scrape_result, file_name):
                 "role": "system",
                 "content": f"You are an expert at summarizing {prompt_type} review articles in JSON format.",
             },
-            {"role": "user", "content": "The review of the car is: " + scrape_result},
+            {"role": "user", "content": f"The review of the {prompt_type} is: " + scrape_result},
         ],
         max_tokens=26000,
         temperature=0.0,
