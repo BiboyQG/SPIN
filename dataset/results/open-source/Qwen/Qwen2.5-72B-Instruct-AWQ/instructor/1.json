@@ -1,0 +1,83 @@
+{
+    "make": "Hyundai",
+    "model": "Tucson",
+    "year": 2025,
+    "vehicleType": "4-door wagon",
+    "price": {
+        "base": 29750,
+        "asTested": 4300.0
+    },
+    "powertrain": {
+        "engine": {
+            "type": "DOHC 16-valve 2.5-liter inline-4 or turbocharged and intercooled DOHC 16-valve 1.6-liter inline-4 + AC motor",
+            "horsepower": "187 or 231 or 268 hp",
+            "torque": "178 or 271 lb-ft"
+        },
+        "transmission": "8-speed or 6-speed automatic"
+    },
+    "battery": {
+        "size": "12.0 kWh",
+        "onboardCharger": "7.2 kW"
+    },
+    "fuelEfficiency": {
+        "observed": "28 MPGe",
+        "epa": {
+            "combined": "26-38",
+            "city": "24-38",
+            "highway": "30-38"
+        }
+    },
+    "performance": {
+        "acceleration": {
+            "0to60": "7.2-9.0",
+            "0to100": "N/A",
+            "0to130": "N/A",
+            "0to150": "N/A"
+        },
+        "quarterMile": {
+            "time": "15.0-17.0",
+            "speed": 115
+        },
+        "topSpeed": 122
+    },
+    "dimensions": {
+        "wheelbase": 108.5,
+        "length": 182.7,
+        "width": 73.4,
+        "height": 65.6,
+        "passengerVolume": {
+            "front": "53-55",
+            "rear": "52-53"
+        },
+        "cargoVolume": {
+            "behindFront": "32-39",
+            "behindRear": "66-75"
+        },
+        "curbWeight": "3500-4300 lbs"
+    },
+    "brakes": {
+        "front": "ventilated disc",
+        "rear": "disc"
+    },
+    "tires": {
+        "front": "235/55R18",
+        "rear": "235/55R18"
+    },
+    "suspensionAndChassis": {
+        "suspension": {
+            "front": "independent, MacPherson strut",
+            "rear": "independent, multi-link"
+        }
+    },
+    "strengths": [
+        "Striking looks",
+        "Confident driving style",
+        "Bang-for-your-buck interior",
+        "Improved hybrid and plug-in-hybrid models"
+    ],
+    "weaknesses": [
+        "Standard model is woefully slow",
+        "Real-world fuel economy falls short of EPA estimates"
+    ],
+    "overallVerdict": "The 2025 Hyundai Tucson succeeds by excelling at the mundane. It's neither the quickest in its class, nor the most fuel-efficient, but the striking looks, confident driving style, and bang-for-your-buck interior make the Hyundai into a compelling package."
+}

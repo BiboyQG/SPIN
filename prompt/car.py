@@ -195,7 +195,7 @@ response_format = {
                         }
                     },
                     "additionalProperties": False,
-                    "required": ["engine", "electricMotor", "combinedOutput", "transmission"]
+                    "required": ["engine", "transmission"]
                 },
                 "battery": {
                     "type": "object",
@@ -304,28 +304,30 @@ response_format = {
                             "type": "object",
                             "properties": {
                                 "front": {
-                                    "type": "number"
+                                    "type": "string",
+                                    
                                 },
                                 "rear": {
-                                    "type": "number"
+                                    "type": "string"
                                 }
                             },
                             "required": ["front", "rear"],
-                            "additionalProperties": False
+                            "additionalProperties": False,
+                            "description": "Passenger volume of the car. The value for front and rear should be a range or a specific value according to the article without the unit. Eg. '53-55', '51', 'N/A' (if not applicable)."
                         },
                         "cargoVolume": {
                             "type": "object",
                             "properties": {
                                 "behindFront": {
-                                    "type": "number"
+                                    "type": "string"
                                 },
                                 "behindRear": {
-                                    "type": "number"
+                                    "type": "string"
                                 }
                             },
                             "required": ["behindFront", "behindRear"],
                             "additionalProperties": False,
-                            "description": "Cargo volume of the car. The value for behindFront and behindRear should be a range or a specific value according to the article without the unit. Eg. '71-74', '36', 'N/A' (if not applicable)."
+                            "description": "Cargo volume of the car. The value for behindFront and behindRear should be a range or a specific value according to the article without the unit. Eg. '32-39', '66', 'N/A' (if not applicable)."
                         },
                         "curbWeight": {
                             "type": "string",
@@ -466,13 +468,13 @@ class Performance(BaseModel):
 
 
 class PassengerVolume(BaseModel):
-    front: float
-    rear: float
+    front: str
+    rear: str
 
 
 class CargoVolume(BaseModel):
-    behind_front: float = Field(..., alias="behindFront")
-    behind_rear: float = Field(..., alias="behindRear")
+    behind_front: str = Field(..., alias="behindFront")
+    behind_rear: str = Field(..., alias="behindRear")
 
 
 class Dimensions(BaseModel):
@@ -480,7 +482,7 @@ class Dimensions(BaseModel):
     length: float
     width: float
     height: float
-    passenger_volume: PassengerVolume = Field(..., alias="passengerVolume")
+    passenger_volume: PassengerVolume = Field(description="Passenger volume of the car. The value for front and rear should be a range or a specific value according to the article without the unit. Eg. '53-55', '51', 'N/A' (if not applicable).", alias="passengerVolume")
     cargo_volume: CargoVolume = Field(description="Cargo volume of the car. The value for behindFront and behindRear should be a range or a specific value according to the article without the unit. Eg. '71-74', '36', 'N/A' (if not applicable).", alias="cargoVolume")
     curb_weight: str = Field(description="Curb weight of the car. The value should be a range or a specific value according to the article with the unit 'lbs' included. Eg. '5700-6100 lbs', '5200 lbs', 'N/A' (if not applicable).", alias="curbWeight")
 
