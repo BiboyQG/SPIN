@@ -1,9 +1,9 @@
-import json
 from jsonschema import validate, ValidationError
+from collections import OrderedDict
 from deepdiff import DeepDiff
 from fuzzywuzzy import fuzz
+import json
 import csv
-from collections import OrderedDict
 import os
 
 
@@ -138,15 +138,6 @@ def evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir):
                     print(f"File not found: {model_path}")
 
     print(f"Total results processed: {len(results)}")
-    return results
-
-
-def evaluate_multiple_objects(ground_truth, test_objects):
-    results = []
-    for i, test_object in enumerate(test_objects, 1):
-        result = compare_json_objects(ground_truth, test_object)
-        result["test_object_id"] = f"Test Object {i}"
-        results.append(result)
     return results
 
 
