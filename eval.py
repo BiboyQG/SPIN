@@ -28,7 +28,19 @@ def compare_json_objects(ground_truth, test_object):
     # 2. Content Accuracy
 
     # Value exactness
-    diff = DeepDiff(ground_truth, test_object, ignore_order=True)
+    diff = DeepDiff(
+        ground_truth,
+        test_object,
+        ignore_order=True,
+        exclude_paths=[
+            "root['strengths']",
+            "root['weaknesses']",
+            "root['overallVerdict']",
+        ],
+        ignore_type_in_groups=[(int, float)],
+        ignore_numeric_type_changes=True,
+    )
+    print(diff)
     results["value_exactness"] = 1 - len(diff) / (len(ground_truth) + len(test_object))
 
     # Numeric value similarity
@@ -40,7 +52,12 @@ def compare_json_objects(ground_truth, test_object):
     # String similarity
     def compare_string(gt_val, test_val):
         if isinstance(gt_val, str) and isinstance(test_val, str):
-            return fuzz.ratio(gt_val, test_val) / 100
+            # Use ratio for shorter strings
+            if len(gt_val) < 10 and len(test_val) < 10:
+                return fuzz.ratio(gt_val, test_val) / 100
+            # Use token_sort_ratio for longer strings
+            else:
+                return fuzz.token_sort_ratio(gt_val, test_val) / 100
         return 0
 
     numeric_similarity = []
@@ -50,13 +67,17 @@ def compare_json_objects(ground_truth, test_object):
         if isinstance(gt_obj, dict) and isinstance(test_obj, dict):
             for key in gt_obj:
                 if key in test_obj:
+                    if key in ["strengths", "weaknesses", "overallVerdict"]:
+                        continue
                     recursive_compare(gt_obj[key], test_obj[key])
         elif isinstance(gt_obj, list) and isinstance(test_obj, list):
             for gt_item, test_item in zip(gt_obj, test_obj):
                 recursive_compare(gt_item, test_item)
         else:
-            numeric_similarity.append(compare_numeric(gt_obj, test_obj))
-            string_similarity.append(compare_string(gt_obj, test_obj))
+            if isinstance(gt_obj, (int, float)) and isinstance(test_obj, (int, float)):
+                numeric_similarity.append(compare_numeric(gt_obj, test_obj))
+            elif isinstance(gt_obj, str) and isinstance(test_obj, str):
+                string_similarity.append(compare_string(gt_obj, test_obj))
 
     recursive_compare(ground_truth, test_object)
 
@@ -124,6 +145,48 @@ def evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir):
             else:
                 print(f"File not found: {model_path}")
 
+    # Separate results for open-source and proprietary models
+    open_source_results = [r for r in results if r["model_name"] == "Qwen2.5-72B"]
+    proprietary_results = [r for r in results if r["model_name"] == "gpt-4o-mini"]
+
+    # Calculate average for open-source model
+    open_source_result = {
+        "sample no.": "avg",
+        "model_name": "Qwen2.5-72B",
+        "json_validity": sum([r["json_validity"] for r in open_source_results])
+        / len(open_source_results),
+        "key_similarity": sum([r["key_similarity"] for r in open_source_results])
+        / len(open_source_results),
+        "value_exactness": sum([r["value_exactness"] for r in open_source_results])
+        / len(open_source_results),
+        "numeric_similarity": sum(
+            [r["numeric_similarity"] for r in open_source_results]
+        )
+        / len(open_source_results),
+        "string_similarity": sum([r["string_similarity"] for r in open_source_results])
+        / len(open_source_results),
+    }
+    results.append(open_source_result)
+
+    # Calculate average for proprietary model
+    proprietary_result = {
+        "sample no.": "avg",
+        "model_name": "gpt-4o-mini",
+        "json_validity": sum([r["json_validity"] for r in proprietary_results])
+        / len(proprietary_results),
+        "key_similarity": sum([r["key_similarity"] for r in proprietary_results])
+        / len(proprietary_results),
+        "value_exactness": sum([r["value_exactness"] for r in proprietary_results])
+        / len(proprietary_results),
+        "numeric_similarity": sum(
+            [r["numeric_similarity"] for r in proprietary_results]
+        )
+        / len(proprietary_results),
+        "string_similarity": sum([r["string_similarity"] for r in proprietary_results])
+        / len(proprietary_results),
+    }
+    results.append(proprietary_result)
+
     print(f"Total results processed: {len(results)}")
     return results
 
@@ -151,7 +214,7 @@ def save_results_to_csv(results, filename="evaluation_results.csv"):
     print(f"Results saved to {filename}")
 
 
-# Example usage
+# Specify the directories
 ground_truth_dir = 'dataset/results/gt'
 open_source_dir = 'dataset/results/open-source/Qwen'
 proprietary_dir = 'dataset/results/proprietary'

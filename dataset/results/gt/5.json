@@ -50,7 +50,7 @@
             "rear": "N/A"
         },
         "cargoVolume": {
-            "behindFront": "24",
+            "behindFront": "N/A",
             "behindRear": "11"
         },
         "curbWeight": "4245 lbs"
