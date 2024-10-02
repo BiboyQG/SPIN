@@ -134,7 +134,7 @@ def save_results_to_csv(results, filename="evaluation_results.csv"):
         return
 
     # Get all unique keys from all result dictionaries
-    all_keys = set(["sample no.", "model_name", "json_validity", "key_similarity", "value_exactness", "numeric_similarity", "string_similarity"])
+    all_keys = ["json_validity", "key_similarity", "value_exactness", "numeric_similarity", "string_similarity"]
 
     # Define the order of columns, ensuring all keys are included
     fieldnames = ["sample no.", "model_name"] + [
