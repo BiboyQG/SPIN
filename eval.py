@@ -1,4 +1,3 @@
-from jsonschema import validate, ValidationError
 from collections import OrderedDict
 from deepdiff import DeepDiff
 from fuzzywuzzy import fuzz
@@ -18,17 +17,6 @@ def compare_json_objects(ground_truth, test_object):
         results["json_validity"] = True
     except json.JSONDecodeError:
         results["json_validity"] = False
-
-    # Schema matching
-    schema = {
-        "type": "object",
-        "properties": {key: {"type": "object"} for key in ground_truth.keys()},
-    }
-    try:
-        validate(instance=test_object, schema=schema)
-        results["schema_match"] = True
-    except ValidationError:
-        results["schema_match"] = False
 
     # Key similarity
     gt_keys = set(ground_truth.keys())
@@ -84,58 +72,57 @@ def compare_json_objects(ground_truth, test_object):
 
 def evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir):
     results = []
+    json_files = [f for f in os.listdir(ground_truth_dir) if f.endswith(".json")]
+    json_files.sort(key=lambda x: int(x.split(".")[0]))
 
-    for filename in os.listdir(ground_truth_dir):
-        if filename.endswith('.json'):
-            ground_truth_path = os.path.join(ground_truth_dir, filename)
-            print(f"Processing ground truth file: {ground_truth_path}")
-            
-            try:
-                with open(ground_truth_path, 'r') as f:
-                    ground_truth = json.load(f)
-            except Exception as e:
-                print(f"Error reading ground truth file {filename}: {str(e)}")
-                continue
+    for filename in json_files:
+        ground_truth_path = os.path.join(ground_truth_dir, filename)
+        print(f"Processing ground truth file: {ground_truth_path}")
+        
+        try:
+            with open(ground_truth_path, 'r') as f:
+                ground_truth = json.load(f)
+        except Exception as e:
+            print(f"Error reading ground truth file {filename}: {str(e)}")
+            continue
 
-            # Evaluate open-source models
-            print(f"Checking open-source models for {filename}")
-            for model_dir in os.listdir(open_source_dir):
-                model_path = os.path.join(open_source_dir, model_dir, 'instructor', filename)
-                print(f"Checking path: {model_path}")
-                if os.path.exists(model_path):
-                    print(f"Processing open-source model: {model_path}")
-                    try:
-                        with open(model_path, 'r') as f:
-                            test_object = json.load(f)
-                        result = compare_json_objects(ground_truth, test_object)
-                        result['model_type'] = 'open-source'
-                        result['model_name'] = model_dir
-                        result['file_name'] = filename
-                        results.append(result)
-                    except Exception as e:
-                        print(f"Error processing {model_path}: {str(e)}")
-                else:
-                    print(f"File not found: {model_path}")
+        # Evaluate open-source models
+        print(f"Checking open-source models for {filename}")
+        for model_dir in os.listdir(open_source_dir):
+            model_path = os.path.join(open_source_dir, model_dir, 'instructor', filename)
+            print(f"Checking path: {model_path}")
+            if os.path.exists(model_path):
+                print(f"Processing open-source model: {model_path}")
+                try:
+                    with open(model_path, 'r') as f:
+                        test_object = json.load(f)
+                    result = compare_json_objects(ground_truth, test_object)
+                    result['sample no.'] = filename.split('.')[0]
+                    result['model_name'] = "Qwen2.5-72B"
+                    results.append(result)
+                except Exception as e:
+                    print(f"Error processing {model_path}: {str(e)}")
+            else:
+                print(f"File not found: {model_path}")
 
-            # Evaluate proprietary models
-            print(f"Checking proprietary models for {filename}")
-            for model_dir in os.listdir(proprietary_dir):
-                model_path = os.path.join(proprietary_dir, model_dir, filename)
-                print(f"Checking path: {model_path}")
-                if os.path.exists(model_path):
-                    print(f"Processing proprietary model: {model_path}")
-                    try:
-                        with open(model_path, 'r') as f:
-                            test_object = json.load(f)
-                        result = compare_json_objects(ground_truth, test_object)
-                        result['model_type'] = 'proprietary'
-                        result['model_name'] = model_dir
-                        result['file_name'] = filename
-                        results.append(result)
-                    except Exception as e:
-                        print(f"Error processing {model_path}: {str(e)}")
-                else:
-                    print(f"File not found: {model_path}")
+        # Evaluate proprietary models
+        print(f"Checking proprietary models for {filename}")
+        for model_dir in os.listdir(proprietary_dir):
+            model_path = os.path.join(proprietary_dir, model_dir, filename)
+            print(f"Checking path: {model_path}")
+            if os.path.exists(model_path):
+                print(f"Processing proprietary model: {model_path}")
+                try:
+                    with open(model_path, 'r') as f:
+                        test_object = json.load(f)
+                    result = compare_json_objects(ground_truth, test_object)
+                    result['sample no.'] = filename.split('.')[0]
+                    result["model_name"] = model_dir
+                    results.append(result)
+                except Exception as e:
+                    print(f"Error processing {model_path}: {str(e)}")
+            else:
+                print(f"File not found: {model_path}")
 
     print(f"Total results processed: {len(results)}")
     return results
@@ -147,12 +134,12 @@ def save_results_to_csv(results, filename="evaluation_results.csv"):
         return
 
     # Get all unique keys from all result dictionaries
-    all_keys = set()
-    for result in results:
-        all_keys.update(result.keys())
+    all_keys = set(["sample no.", "model_name", "json_validity", "key_similarity", "value_exactness", "numeric_similarity", "string_similarity"])
 
     # Define the order of columns, ensuring all keys are included
-    fieldnames = ["model_type", "model_name", "file_name"] + [key for key in all_keys if key not in ["model_type", "model_name", "file_name"]]
+    fieldnames = ["sample no.", "model_name"] + [
+        key for key in all_keys if key not in ["model_name", "sample no."]
+    ]
 
     with open(filename, "w", newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)

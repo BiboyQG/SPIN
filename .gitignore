@@ -4,4 +4,4 @@
 
 .env
 
-test.py
+test*.py
