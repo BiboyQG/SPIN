@@ -7,7 +7,7 @@ import importlib
 import json
 import os
 
-open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
+open_source_model = "Qwen/Qwen2.5-72B-Instruct-GPTQ-Int8"
 openai_model = "gpt-4o-mini"
 prompt_type = "prof"
 
