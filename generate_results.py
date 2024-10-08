@@ -7,7 +7,7 @@ import importlib
 import json
 import os
 
-open_source_model = "Qwen/Qwen2.5-72B-Instruct-GPTQ-Int8"
+open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
 openai_model = "gpt-4o-mini"
 prompt_type = "prof"
 
@@ -56,9 +56,9 @@ def get_response_from_openai(scrape_result, file_name):
 
 
 def get_response_from_open_source_with_instructor(scrape_result, file_name):
-    client = OpenAI(base_url="http://localhost:8888/v1")
+    # client = OpenAI(base_url="http://localhost:8888/v1")
     # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
-    # client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
+    client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
     client = instructor.from_openai(client)
     prompt_module = importlib.import_module(f"prompt.{prompt_type}")
     response_model = getattr(prompt_module, prompt_type.capitalize())
