@@ -1,0 +1,143 @@
+# Hongye Liu
+
+Hongye Liu
+
+**Teaching Assistant Professor**
+
+(217) 244-0858
+
+[hl314@illinois.edu](mailto:hl314@illinois.edu)
+
+2231 Siebel Center for Comp Sci
+
+## Biography
+
+I joyfully joined the Illinois Department of Computer Science after years of research in Biomedical informatics all in the Boston Longwood Medical area including Harvard Medical School and its affiliated hospitals.
+
+There are two things that I feel very important in my career, one is I think learning is a life long journey, the other is there are always surprises and we must embrace changes. For example when I received my B. E. in Precision Machinery and Instrumentation from the Univ. of Science and Technology of China I didn’t expect at all I would get my PhD from MIT in the area of computer aided design for 3-D Printing— because there was not even AutoCAD in my college years.
+
+After my doctoral studies, I was drawn to the area of Biomedical research due to both my interest in helping cure diseases and my new found faith. In the years I spent in Boston Longwood Area, I have done research in diverse Data Science related areas such as Bioinformatics, Computational Biology, Biostatistics, and Machine learning.
+
+Over a 4-year period of encountering/interacting with students, reviewing academic works and college teaching, I discovered I feel happiest when I work with undergraduate students and I enjoy teaching undergraduate students and training next generation of computer scientists and data-centered professionals. I am passionate about mentoring undergraduate students and helping undergraduate students do research. My research is focused on understanding the needs of students with disabilities and broadening the participation of students with disabilities. I am currently PI of two projects at the Univ. of Illinois on helping students with disabilities and PI of a project on exploring UDL in teaching STEM courses. The projects are: SIIP project "UDL based best practices including utilizing Canvas for the needs of students with disability"; GIANT project "Applying a Theoretical Understanding of Text-Based Learning Modalities To Develop New Course Modalities That Meet the Needs of Student With Disabilities".
+
+Other interests include Biomedical applications that involve large high dimensional data analysis and machine learning and data-driven educational improvement for undergraduate students.
+
+## Professional Highlights
+
+- I have been part of the faculty spotlight demonstrating active learning methods by the SIIP ENGINE project
+https://publish.illinois.edu/siipcompendium/2021/10/11/faculty-spotlight-hongye-liu/
+
+## Research Areas
+
+- [Bioinformatics and Computational Biology](http://cs.illinois.edu/research/areas/bioinformatics-and-computational-biology)
+- [Computers and Education](https://cs.illinois.edu/research/areas/computers-and-education)
+
+## Chapters in Books
+
+- Springer Handbook of Bio-/Neuroinformatics 2014, pp 43-55 Information Processing at the Genomics Level. Kho A and Liu H.
+
+## Selected Articles in Journals
+
+- Jenkins RW, Aref AR, Lizotte PH, Ivanova E, Stinson S, Zhou CW, Bowden M, Deng J, Liu H, Miao D, He MX, Walker W, Zhang G, Tian T, Cheng C, Wei Z, Palakurthi S, Bittinger M, Vitzthum H, Kim JW, Merlino A, Quinn M, Venkataramani C, Kaplan JA, Portell A, Gokhale PC, Phillips B, Smart A, Rotem A, Jones RE, Keogh L, Anguiano M, Stapleton L, Jia Z, Barzily-Rokni M, Cañadas I, Thai TC, Hammond MR, Vlahos R, Wang ES, Zhang H, Li S, Hanna GJ, Huang W, Hoang MP, Piris A, Eliane JP, Stemmer-Rachamimov AO, Cameron L, Su MJ, Shah P, Izar B, Thakuria M, LeBoeuf NR, Rabinowits G, Gunda V, Parangi S, Cleary JM, Miller BC, Kitajima S, Thummalapalli R, Miao B, Barbie TU, Sivathanu V, Wong J, Richards WG, Bueno R, Yoon CH, Miret J, Herlyn M, Garraway LA, Van Allen EM, Freeman GJ, Kirschmeier PT, Lorch JH, Ott PA, Hodi FS, Flaherty KT, Kamm RD, Boland GM, Wong KK, Dornan D, Paweletz CP, Barbie DA. Ex Vivo Profiling of PD-1 Blockade Using Organotypic Tumor Spheroids.
+Cancer Discov. 2017 Nov 3. pii: CD-17-0833. doi: 10.1158/2159-8290.CD-17-0833. \[Epub ahead of print\]
+
+- Hirakawa M, Matos T, Liu H, Koreth J, Kim HT, Paul NE, Murase K, Whangbo J, Alho AC, Nikiforow S, Cutler C, Ho VT, Armand P, Alyea EP, Antin JH, Blazar BR, Lacerda JF, Soiffer RJ, Ritz J. Low-dose IL-2 selectively activates subsets of CD4+ Tregs and NK cells. JCI Insight. 2016 Nov. 3; 1(18):e89278
+- Lizotte PH, Ivanova EV, Awad MM, Jones RE, Keogh L, Liu H, Dries R, Almonte C, Herter-Sprie GS, Santos A, Feeney NB, Paweletz CP, Kulkarni MM, Bass AJ, Rustgi AK, Yuan GC, Kufe DW, Jänne PA, Hammerman PS, Sholl LM, Hodi FS, Richards WG, Bueno R, English JM, Bittinger MA, Wong KK. Multiparametric profiling of non-small-cell lung cancers reveals distinct immunophenotypes. JCI Insight. 2016 Sep. 8; 1(14):e89014
+- Lizotte PH, Jones RE, Keogh L, Ivanova E, Liu H, Awad MM, Hammerman PS, Gill RR, Richards WG, Barbie DA, Bass AJ, Bueno R, English JM, Bittinger M, Wong KK. Fine needle aspirate flow cytometric phenotyping characterizes immunosuppressive nature of the methothelioma microenvionment. Sci. Rep. 2016 Aug 19; 6:31745.
+- Rosen R, Amirault J, Liu H, Mitchell P, Hu L, Khatwa U, Onderdonk A. Changes in gastric and lung microflora with acid suppression: acid suppression and bacterial growth. JAMA Pediatr. 2014 Oct; 168(10):932-7
+- Fried AJ, Altrich ML, Liu H, Halsey JF, Bonilla FA. Correlation of Pneumococcal Antibody Concentration and Avidity with Patient Clinical and Immunologic Characteristics. J Clin Immunol. 2013 Feb 3.
+- Meijer DH, Kane MF, Mehta S, Liu H, Harrington E, Taylor CM, Stiles CD, Rowitch DH.
+Separated at birth? The functional and molecular divergence of OLIG1 and OLIG2.
+Nat Rev Neurosci. 2012 Dec;13(12):819-31. doi: 10.1038/nrn3386. Review.
+
+- Liu H and Kohane IS. Tissue and process specific microRNA-mRNA co-expression in mammalian development and malignancy. PLoS ONE 4(5): e5436. Epub 2009 May 5.
+- Ligon KL, Huillard E, Mehta S, Kesari S, Liu H, Alberta J A, Bachoo RM, Kane M, Louis DN, DePinho RA, Anderson DJ, Stiles CD, and Rowitch DH. Olig2-Regulated Lineage-Restricted Pathway Controls Replication Competence in Neural Stem Cells and Malignant Glioma. Neuron 53, 503-517, February 15, 2007.
+- Liu H, Kho AT, Kohane IS, and Sun Y. Predicting survival within the lung cancer histopathological hierarchy using a multi-scale genomic model of development. PLoS Med. 3(7):e232, 2006.
+- Liu H, Maekawa T, Patrikalakis NM, Sachs EM, and Cho W. Methods for Feature-Based Design of Heterogeneous Solids. Computer Aided Design. 36(12), 1141-1159, 2004.
+- Jackson TR, Liu H, Patrikalakis NM, Sachs EM and Cima MJ. Modeling and Designing Functionally Graded Material Components for Fabrication with Local Composition Control. Materials and Design. 20(2-3), 63-75, 1999.
+
+Click for more
+
+## Articles in Conference Proceedings
+
+- Zhao, D., Gopannagari, M., Ding, X., Tao, A., Varadhan, S., Dignan, B., Amos, J., Vogiatzis, C., Dalpiaz, D., Hardy, B., Angrave, L., and Liu, H. “Accessibility Nuggets, Video Vignettes, and other Instructor Development approaches to foster UDL adoption and Inclusive Engineering Education”, accepted to ASEE 2024
+
+- Ding, X., Gopannagari, M., Sun, K., Tao, A., Zhao, D., Varadhan, S., Vogiatzis, C., Hardy, B., Dalpiaz, D., Angrave, L., and Liu, H. (2024) “Evaluation of LLMs and other machine learning methods in the analysis of qualitative survey responses for accessible engineering education research”, accepted to ASEE2024.
+
+- Varadhan S., Ding X., Zhao D., Agarwal A., Dalpiaz D., Vogiatzis C., Huang Y., Angrave L., Liu H. Opportunities and Barriers to UDL-based Course Designs for Inclusive Learning in Undergraduate Engineering and other STEM courses. Accepted for publication in Proceedings of the ASEE Conference 2023.
+- Ding X., Sun K., Xiao Z., Varadhan S., Li J., Gersich N., Agarwal A., Gopannagari M., Vogiatzis C., Dalpiaz D., Amos J., Angrave L., Liu H. (2023) Evaluating the low-stakes assessment performance, student perceived accessibility, belongingness, and self-efficacy in connection to the use of digital notes in engineering and computing courses. Accepted for publication in Proceedings of the ASEE Conference 2023.
+- Amos J, Zhilin Z, Vanwani, K, Angrave L, Liu H (2021) Qualitative Analysis of college students’ perception of multiple representations and modalities in courses. 2021 ASEE Illinois-Indiana Regional Conference
+
+- Liu, H., Angrave, L., Amos, J., Dalpiaz, D., Vogiatzis, C., Xiao, Z.Y., Varadhan, S., Louie J. (2022) A Digital Book-Based Pedagogy to Improve Course Content Accessibility for Students with and without Disabilities in Engineering and other STEM courses (WIP), Proceedings of the ASEE Conference 2022, best DEI paper award in NEE session.
+
+- Liu, H., Moparthi, D., Dalpiaz, D., Amos, J., Angrave, L., Vogiatzis, C., Reck, R., Varadhan, S., Huang Y. (2022) Understanding the needs of students with and without disabilities for inclusive UDL-based design of Engineering courses through learning management systems. Proceedings of the ASEE Conference 2022 .
+- Amos, J.R., Zhang, Z., Angrave, L., Liu, H., Shen, Y. , Vawani, K. (2021) A UDL-based large-scale study on the needs of students with disabilities in engineering courses. Proceedings of the ASEE Conference, Long Beach CA, July, 2021, 2nd best DEI paper and 3rd best paper in NEE session.
+- Angrave L., Jensen K., Zhang Z., Mahipal C., Mussulman M., Schmitz C., Baird R., Liu H., Sui R., Wu M., Kooper R. 2020. Improving Student Accessibility, Equity, Course Performance, tand Lab Skills: How Introduction of ClassTranscribe Is Changing Engineering Education at the University of Illinois. In Proceedings of ASEE Annual Virtual Conference 2020. ASEE.
+
+- H. Liu, W. Cho, T. R. Jackson, N. M. Patrikalakis, and E. M. Sachs. "Algorithms for Design and Interrogation of Functionally Gradient Material Objects", Proceedings of 2000 ASME DETC/CIE, 26-th ASME Design Automation Conference September, 2000, Baltimore, Maryland, USA. p.141 and CDROM, NY:ASME, 2000.
+
+Click for more
+
+## Abstracts (in print or accepted)
+
+- [H. Liu, L. Angrave, (2023) "Opportunities and barriers in implementing UDL for accessibility – data from both students and faculty’s perspectives" Accessing Higher Ground November 2023](https://accessinghigherground.org/opportunities-and-barriers-in-implementing-udl-for-accessibility-data-from-both-students-and-facultys-perspectives/)
+- [Liu, H. and Angrave, L. Accessing Higher Ground 2022 conference panel- "Understanding the needs of students with disabilities based on Universal Design of Learning and some implementations"](https://accessinghigherground.org/understanding-the-needs-of-students-with-disabilities-based-on-universal-design-of-learning-and-some-implementations/)
+
+## Refereed Conference Papers and Presentations
+
+- Ding, X., Sun K., Xiao, Z., Varadhan, S., Li, J., Gersich, N., Agarwal, A., Gopannagari, M., Vogiatzis, C., Dalpiaz, D., Amos, J., Angrave, L., Liu, H. (2023) Evaluating the low-stakes assessment performance, student perceived accessibility, belongingness, and self-efficacy in connection to the use of digital notes in engineering and computing courses. Accepted for publication in Proceedings of the ASEE Conference 2023.
+- Liu, H., Angrave, L., Amos, J., Dalpiaz, D., Vogiatzis, C., Xiao, Z.Y., Varadhan, S., Louie, J. (2022) A Digital Book-Based Pedagogy to Improve Course Content Accessibility for Students with and without Disabilities in Engineering and other STEM courses (WIP), Proceedings of the ASEE Conference 2022, best DEI paper award in NEE session.
+
+- Liu, H., Moparthi, D., Dalpiaz, D., Amos, J., Angrave, L., Vogiatzis, C., Reck, R., Varadhan, S., Huang Y. (2022) Understanding the needs of students with and without disabilities for inclusive UDL-based design of Engineering courses through learning management systems. Proceedings of the ASEE Conference 2022 .
+- Amos, J.R., Zhang, Z., Angrave, L., Liu, H., Shen, Y. , Vawani, K. (2021) A UDL-based large-scale study on the needs of students with disabilities in engineering courses. Proceedings of the ASEE Conference, Long Beach CA, July, 2021, 2nd best DEI paper and 3rd best paper in NEE session.
+
+- Angrave L., Jensen K., Zhang Z., Mahipal C., Mussulman M., Schmitz C., Baird R., Liu H., Sui R., Wu M., Kooper R. 2020. Improving Student Accessibility, Equity, Course Performance, tand Lab Skills: How Introduction of ClassTranscribe Is Changing Engineering Education at the University of Illinois. In Proceedings of ASEE Annual Virtual Conference 2020. ASEE.
+
+- H. Liu, W. Cho, T. R. Jackson, N. M. Patrikalakis, and E. M. Sachs. "Algorithms for Design and Interrogation of Functionally Gradient Material Objects", Proceedings of 2000 ASME DETC/CIE, 26-th ASME Design Automation Conference September, 2000, Baltimore, Maryland, USA. p.141 and CDROM, NY:ASME, 2000.
+
+Click for more
+
+## Presentations
+
+- H. Liu, L. Angrave, (2023) "Opportunities and barriers in implementing UDL for accessibility – data from both students and faculty’s perspectives" Accessing Higher Ground November 2023
+https://accessinghigherground.org/opportunities-and-barriers-in-implementing-udl-for-accessibility-data-from-both-students-and-facultys-perspectives/
+- Tapia 2021 conference panel- "Understanding the Needs of Students with Disabilities based on Universal Design of Learning Principles"
+
+- Illinois Computer Science Summer Teaching Workshop- "Understanding the needs of students with disabilities — what does data in two semesters of COVID 19 tell us?" Aug 2021
+https://drive.google.com/file/d/1KJSB90ffd0DrELV9-IoiVfnTNv-i8u2D/view
+- AE3 Collins Scholar talk- "Universal design of learning and its practices -How to begin?" Jan. 2022
+- AE3 tPro2 talk- "Utilizing Canvas to help teach a course with universal design of learning -a few practical strategies" Jan. 2022
+
+## Other Scholarly Activities
+
+- UDL and Accessbility Research Lab: [https://publish.illinois.edu/udl-accessibility-group/](https://publish.illinois.edu/udl-accessibility-group/)
+
+## Service on Department Committees
+
+- Committee member for Broaderning Participation
+
+- Committee member for Undergraduate Student Award
+
+## Service on College Committees
+
+- Served in the committee for developing an Omsbundperson's position
+- Served in the summer Anti-racism task force (2020 Summer)
+
+## Service on Campus Committees
+
+- Served as consultant in the "Reimagine Our Future" Sustainability Competition 2021
+- Served in the Campus Canvas Transition Accessibility Team 2021-2022
+
+## Recent Courses Taught
+
+- CS 361 (STAT 361) - Prob & Stat for Computer Sci
+
+## Related News
+
+[Three Illinois CS Projects Earn Grainger Engineering Support for Diversity, Equity and Inclusion Efforts](https://siebelschool.illinois.edu/news/three-illinois-cs-projects-earn-grainger-engineering-support-for-diversity-equity-and-inclusion-efforts)
+
+[CS Professors Prepare to Enhance Engineering Teaching Through SIIP Grants](https://siebelschool.illinois.edu/news/cs-professors-prepare-to-enhance-engineering-teaching-through-siip-grants)
+
+[Illinois CS Adds Eight New Faculty, Broadening Expertise in NLP, Security, Robotics, and More](https://siebelschool.illinois.edu/news/illinois-cs-adds-eight-new-faculty-broadening-expertise-nlp-security-robotics-and-more)
+
+## News Notes

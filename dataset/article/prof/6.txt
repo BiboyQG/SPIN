@@ -1,0 +1,41 @@
+# Minjia Zhang
+
+Minjia Zhang he/him/his
+
+**Assistant Professor**
+
+[minjiaz@illinois.edu](mailto:minjiaz@illinois.edu)
+
+## For More Information
+
+- [Prof. Zhang's home page](https://minjiazhang.github.io/)
+
+## Education
+
+- Ph.D.
+
+\- Computer Science and Engineering
+
+\- Ohio State University, USA, 2016
+
+
+## Academic Positions
+
+- Tenure-Track Assistant Professor, Computer Science Department, Univ. of Illinois
+
+## Research Interests
+
+- Machine Learning Systems, Parallel Computing, AI Efficiency, Model Compression, Natural Language Processing
+
+
+## Recent Courses Taught
+
+- CS 598 AIE - AI Efficiency: Sys. & Algor.
+
+## Related News
+
+[Computer Science welcomes 17 new faculty members](https://siebelschool.illinois.edu/news/new-faculty)
+
+[Record Number of Nearly 60 Faculty Join Grainger Engineering](https://grainger.illinois.edu/news/stories/59031)
+
+## News Notes

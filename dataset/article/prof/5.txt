@@ -1,0 +1,132 @@
+# Mariana Silva
+
+Mariana Silva
+
+**Teaching Associate Professor and Education Innovation Fellow**
+
+(217) 300-6633
+
+[mfsilva@illinois.edu](mailto:mfsilva@illinois.edu)
+
+2213 Siebel Center for Comp Sci
+
+## For More Information
+
+- [http://mfsilva.web.illinois.edu/](http://mfsilva.web.illinois.edu/)
+
+## Education
+
+- PhD Theoretical and Applied Mechanics, University of Illinois at Urbana-Champaign, 2009
+- MS Mechanical Engineering, Federal University of Rio de Janeiro, Brazil, 2003
+- BS Mechanical Engineering, Federal University of Rio de Janeiro, Brazil, 2001
+
+## Academic Positions
+
+- Teaching Associate Professor, Fall 2020 - present
+- Teaching Assistant Professor, August 2017 - Fall 2020
+- Curriculum Development Coordinator, July 2014 - July 2017
+- Visiting Lecturer, January 2012 - July 2014
+- Postdoctoral Research Assistant, May 2010 - August 2012
+- Graduate Research Assistant, August 2003 - September 2009
+
+Click for more
+
+## Student Organizations
+
+- Women in Computer Science
+- Society of Women in Engineering
+
+## Research Interests
+
+- Fostering collaborations and group work during programming activities
+- Exploration of technological innovations for large-scale teaching, such as the development of online course assessments.
+
+## Research Areas
+
+- [Computers and Education](https://cs.illinois.edu/research/areas/computers-and-education)
+
+## Selected Articles in Journals
+
+- 1\. Morphew J., Silva M., Herman G., West M., “Frequent mastery testing with second-chance exams leads to enhanced student learning in undergraduate STEM”, Applied Cognitive Psychology, 2019, https://doi.org/10.1002/acp.3605.
+- Brittain, K., M. Silva, and D. A. Tortorelli, “Minmax topology optimization,” Structural and Multidisciplinary Optimization, 45(5), 657-668, 2011, DOI: 10.1007/s00158-011-0715-y.
+- Silva, M., P. Geubelle, and D. Tortorelli, “Energy release rate approximation for small surface-breaking cracks using the topological derivative,” Journal of the Mechanics and Physics of Solids, 59(5), 925-939, 2011
+- Silva, M., M. Matalon, and D. Tortorelli, “Higher order topological derivatives in elasticity,” International Journal of Solids and Structures, 47(22-23), 3053-3066, 2010
+- Silva, M., D. Tortorelli, J. Norato, C. Ha, and H. Bae, “Erratum to: Component and system reliability-based topology optimization using a single-loop method,” Structural and Multidisciplinary Optimization, 41(5), 821-822, 2010 (we corrected mislabeled figures).
+- Silva, M., D. Tortorelli, J. Norato, C. Ha, and H. Bae, “Component and system reliability-based topology optimization using a single-loop method,” Structural and Multidisciplinary Optimization, 41(1), 87-106, 2010
+- Silva, M., L. Borges, F. Rochinha, and L.A. Vidal, “A genetic algorithm applied to composite elastic parameters identification,” Inverse Problems in Science and Engineering, 12(1), 17-28, 2004.
+
+Click for more
+
+## Articles in Conference Proceedings
+
+- Silva, M.F.T., L. Borges, F. Rochinha, and L.A. Vidal, “Genetic algorithms for identification of elastic constants of composite materials,” Proceedings of the 4th International Conference on Inverse Problems in Engineering, 2002.
+- Figueiredo, F.C., M.F.T. Silva, S.F. Bastos, F.A. Rochinha, and L.M.S.A. Borges, “Numerical-experimental approach for identifying elastic constants in composites,” Proceedings of I ENCONTRO DA SBPMat- BRAZILIAN MRS MEETING 2003, 2003.
+- Silva, M., D. Tortorelli, J. Norato, and Bae H. , “Topology optimization with regards to system reliability,” Proceedings of the EngOpt 2008, International Conference on Engineering Optimization, Rio de Janeiro, Brazil, 2003
+- Silva, M., D. Tortorelli, J. Norato, and C. Ha, “Topology optimization under stochastic loads via the single loop method,” Proceedings of the 49th AIAA/ASME/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials Conference, Schaumburg, IL, AIAA-2008-2288, 2008.
+- Silva, M., P. Nakshatrala, and D.A. Tortorelli,"A robust topology optimization approach to energy wave tailoring in linear elastic structures," 10th World Congress on Computational Mechanics, Sao Paulo, Brazil, July, 2012.
+- Silva, M., D.A. Tortorelli, I. Szelengowicz, and C. Daraio, “Topology optimization in two-dimensional granular crystals,” ENGOTP2012 - 3rd International Conference on Engeneering Optimization, Rio de Janeiro, Brazil, July 1-5, 2012.
+- West M., Silva M., Herman G., “Randomized exams for large STEM courses spread via communities of practice”, Proceedings of the 122nd American Society for Engineering Education Annual Conference and Exposition (ASEE 2015), 26.1302.1-26.1302.15, 2015.
+- West M., Silva M., Herman G., “Sustainable reform of an introductory mechanics course sequence driven by a community of practice”, Proceedings of the ASME 2015 International Mechanical Engineering Congress & Exposition (IMECE 2015), IMECE2015-51493, 2015.
+- Essick R., West M., Silva M., Herman G., Mercier E., “Scaling-up collaborative learning for large introductory courses using active learning, TA training, and computerized team management”, Proceedings of the 123rd American Society for Engineering Education Annual Conference and Exposition (ASEE 2016), 2016.
+- Silva M., West M., “Algorithmic grading strategies for computerized mechanical drawing assessments”, Proceedings of the 124th American Society for Engineering Education Annual Conference and Exposition (ASEE 2017), 2017.
+- Tucker T., Shehab S., Silva M., Mercier E. "WIP: Evidence-based analysis of the design of collaborative problem-solving engineering tasks", Poster presented 126th American Society for Engineering Education Annual Conference and Exposition (ASEE 2019), 2019.
+- Morphew J.W., Silva M., Hermann G., West M., "Improving Mathematical Problem-Solving in an Introductory Engineering Course with the Testing Effect", Proceedings of the Annual meeting of the American Education Research Association. Toronto, Canada. April 5-9, 2019.
+- Tucker T., Shehab S., Silva M., Mercier E. “Evidence-based analysis of the design of collaborative engineering tasks”, paper accepted to appear in the 2020 American Educational Research Association Annual Meeting, 2020.
+- Silva M, Zilles C., West M., “Measuring the score advantage on asynchronous exams in an undergraduate CS course”, paper accepted to appear in SIGCSE 2020.
+- Akhil M., Dey P., Tan S., Johnson B., Fagen-Ulmschneider W. Silva, M., “Introducing junto: a Web Tool to Build Project Teams based on a Bidding Strategy” Proceedings of the 2020 American Society for Engineering Education Virtual Annual Conference (ASEE 2020), 2020.
+- Nytko N., West M., Silva M., “A simple and efficient markup tool to generate drawing-based online assessments”, Proceedings of the 2020 American Society for Engineering Education Virtual Annual Conference (ASEE 2020), 2020.
+- Silva M., Nytko N., Shaffer E., Amos J., “A case study of early performance prediction and intervention in a computer science course”, Proceedings of the 2020 American Society for Engineering Education Virtual Annual Conference (ASEE 2020), 2020.
+- Salim S, Lu L, Margotta A, Livingston E, Tucker T, Silva M, Mercier E, “Towards the effective implementation of collaborative problem solving in undergraduate engineering classrooms: co-designing guidelines for teaching assistants”, Proceedings of the 2020 American Society for Engineering Education Virtual Annual Conference (ASEE 2020), 2020.
+- West, M., Walters, N., Silva, M., Bretl, T., and Zilles, C. “Integrating diverse learning tools using the PrairieLearn platform”. In SPLICE 2021 workshop CS Education Infrastructure for All III: From Ideas to Practice at 52nd ACM Technical Symposium on Computer Science Education (2021).
+- Silva, M., Hieronymi, P., West, M., Nytko, N., Deshpande, A., Chuang, J., Hilgenfeldt, S. "Innovating and modernizing a Linear Algebra class through teaching computational skills", Proceedings of the 2022 American Society for Engineering Education Virtual Annual Conference (ASEE 2022), 2022.
+- Herman, G., Jiang, Y., Jiang, Y., Poulsen, S., West, M., Silva, M. "An Analytic Comparison of Student-Scheduled and Instructor-Scheduled Collaborative Learning in Online Contexts", Proceedings of the 2022 American Society for Engineering Education Virtual Annual Conference (ASEE 2022), 2022.
+- Garcia D., Fox A., Zilles C., West M., Silva M., Terrell N., Russell S., Ambrosio E., Shakir F., “A’s for All (as Time and Interest Allow)”, Proceedings of the 54th ACM Technical Symposium on Computer Science Education (SIGCSE 2023), 2023.
+- Chen H., West M., Hilgenfeldt S., Silva M., “Measuring the Impact of a Computational Linear Algebra Course on Students’ Exam Performance in a Subsequent Numerical Methods Course”, Proceedings of the 54th ACM Technical Symposium on Computer Science Education (SIGCSE 2023), 2023.
+- Zhao C., West M., Silva M., “How much deadline flexibility on formative assessments should we be giving to our students?”, Proceedings of the 2023 American Society for Engineering Education Conference (ASEE 2023), 2023.
+- Gulati R., West M., Zilles C., Silva M., “Comparing Student Outcomes in Online vs. In-person Sections of an On-campus Computer Science Course”, Proceedings of the 2023 American Society for Engineering Education Conference (ASEE 2023), 2023.
+- Morgan F., Butler L., Alawini A., Herman G., Silva M., “Developing tools, pedagogies, and policies for computer-based collaborative learning activities”, Proceedings of the 2023 American Society for Engineering Education Conference (ASEE 2023), 2023.
+
+Click for more
+
+## Teaching Honors
+
+- Scott H. Fisher Computer Science Teaching Award, University of Illinois at Urbana-Champaign (2022)
+- Rose Award for Teaching Excellence, Grainger College of Engineering, University of Illinois at Urbana-Champaign (2022)
+- Ranked as an Excellent Teacher by the Center for Innovation in Teaching and Learning (Fall 2012, Spring 2013, Fall 2013, Spring 2014, Spring 2016, Spring 2017)
+- J. O. Smith Memorial Award, Department of Mechanical Science and Engineering, University of Illinois at Urbana-Champaign (2009)
+
+## Public Service Honors
+
+- Education Innovation Fellow, Grainger College of Engineering, University of Illinois at Urbana-Champaign (2021-present)
+- Engineering Council Outstanding Award, University of Illinois at Urbana-Champaign (2014, 2015, 2016, 2017, 2018, 2019)
+- MechSE Staff Award for Exemplary Service, University of Illinois at Urbana-Champaign (Spring 2015)
+
+## Recent Courses Taught
+
+- CS 101 - Intro Computing: Engrg & Sci
+- CS 199 1PY (CS 199 PY1) - Python for Data
+- CS 199 D1 (CS 199 D2) - Real World Cases Scient Comput
+- CS 199 LD1 - Python and Linear Algebra Rev
+- CS 199 MTS - Seminar on Assessment Design
+- CS 357 (MATH 357) - Numerical Methods I
+- CS 500 - Topics in Comp Ed Rsrch
+- MATH 299 - Computational Tools Linear Alg
+- MATH 415 - Applied Linear Algebra
+
+Click for more
+
+## Related News
+
+[Game Time: Shaffer, Silva Build a New Bridge with Campus Middle School for Girls](https://siebelschool.illinois.edu/news/game-time-shaffer-silva-build-a-new-bridge-with-campus-middle-school-for-girls)
+
+[Silva Leads Team Studying Interconnections Between Online Learning, Equity, and Access](https://siebelschool.illinois.edu/news/silva-leads-team-studying-interconnections-between-online-learning-equity-access)
+
+[CS Professors Prepare to Enhance Engineering Teaching Through SIIP Grants](https://siebelschool.illinois.edu/news/cs-professors-prepare-to-enhance-engineering-teaching-through-siip-grants)
+
+[Undergraduates Present Research Results at ASEE 2020](https://siebelschool.illinois.edu/news/undergraduates-present-research-results-asee-2020)
+
+[Student Course Assistant Brings New Power to PrairieLearn](https://siebelschool.illinois.edu/news/student-course-assistant-brings-new-power-prairielearn)
+
+[Nine CS Faculty and Staff Receive Engineering, Campus Awards for Excellence](https://siebelschool.illinois.edu/news/nine-cs-faculty-and-staff-receive-engineering-campus-awards-excellence)
+
+## News Notes

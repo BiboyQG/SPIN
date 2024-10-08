@@ -1,0 +1,62 @@
+# Tianyin Xu
+
+Tianyin Xu
+
+**Assistant Professor**
+
+(217) 300-8117
+
+[tyxu@illinois.edu](mailto:tyxu@illinois.edu)
+
+4108 Siebel Center for Comp Sci
+
+## For More Information
+
+- [Tianyin Xu's homepage](https://tianyin.github.io/)
+
+## Research Areas
+
+- [Programming Languages / Formal Methods / Software Engineering](http://cs.illinois.edu/research/areas/programming-languages-formal-methods-and-software-engineering)
+- [Systems and Networking](http://cs.illinois.edu/research/areas/systems-and-networking)
+
+## Recent Courses Taught
+
+- CS 423 (CSE 423) - Operating Systems Design
+- CS 523 - Advanced Operating Systems
+- CS 591 DS (CS 591 IG) - Distributed Systems Seminar
+- CS 591 IG - ADV Sem in Distributed Systems
+- CS 591 SE - SOFTWARE ENGINEER. SEM.
+- CS 591 SE - Software Engineering Seminar
+- CS 591 SE (CS 591 SN) - Advanced Seminar
+- CS 591 SN - Systems and Networking Seminar
+- CS 598 TXU - Realiablity of Cloud-Scale Sys
+- CS 598 TXU - Reliable Software Systems
+- CS 598 XU - Reliability of Cloud-Scale Sys
+
+Click for more
+
+## Related News
+
+[Five CS students named 2025 Siebel Scholars](https://siebelschool.illinois.edu/news/2025-siebel-scholars)
+
+[CS students received the Jay Lepreau Best Paper Award](https://siebelschool.illinois.edu/news/jay-lepreau-best-paper)
+
+[CS professor Tianyin Xu and team develop a "push button" for testing cloud systems](https://siebelschool.illinois.edu/news/-acto-IBM)
+
+[Computer science professors and a grad student earn 13 Grainger Engineering college and Illinois campus 2024 teaching, research, and public engagement awards](https://siebelschool.illinois.edu/news/gcoe-illinois-2024-cs-awards)
+
+[CS professor Guan named to 2023 Clarivate Analytics Highly Cited Researchers list](https://siebelschool.illinois.edu/news/media-mentions/60496)
+
+[CS professors contribute to evaluation of new Intel server chips](https://siebelschool.illinois.edu/news/media-mentions/60450)
+
+## News Notes
+
+- 2/29/2024
+
+
+Illinois computer science professor [Tianyin Xu](/about/people/faculty/tyxu) is a recipient of The Grainger College of Engineering's [2024 Dean’s Award for Excellence in Research for Assistant Professor](https://grainger.illinois.edu/research/faculty-awards). Xu will be recognized formally at the Annual Engineering Awards Convocation in April.
+
+- 10/10/2023
+
+
+Illinois CS faculty presented a record four papers at [Mobicom 2023](https://sigmobile.org/mobicom/2023/), including three by [Deepak](/about/people/all-faculty/deepakv) [Vasisht](/about/people/all-faculty/deepakv)’s group, with one from [Indranil Gupta](/about/people/all-faculty/indy) and one involving [Tianyin Xu.](/about/people/all-faculty/tyxu) The papers cover topics from satellite networking to human body localization, drone mobility without cameras, and mobile app testing. Vasisht gave the keynote at the first workshop on satellite communications.

@@ -1,0 +1,57 @@
+# Matthew Caesar
+
+Matthew Caesar he/him/his
+
+**Professor**
+
+(847) 323-2968
+
+[caesar@illinois.edu](mailto:caesar@illinois.edu)
+
+3118 Siebel Center for Comp Sci
+
+## For More Information
+
+- [Matthew Caesar's home page](http://www.cs.illinois.edu/~caesar)
+
+## Education
+
+- Ph.D., Computer Science, University of California, Berkeley, 2007
+
+## Research Interests
+
+- Simplifying management and improving reliability of distributed systems and networks through principles of self-organization and self-diagnosis, with an emphasis on wide-area networks and networked systems.
+- My research focuses on the design, analysis, and implementation of distributed systems and networks on the extremely large scale, with an emphasis on network operations, measurement, and availability. I am particularly interested in improving availability and performance of the Internet infrastructure, including routing, DNS, and data centers.
+
+## Research Areas
+
+- [Security and Privacy](https://cs.illinois.edu/research/areas/security-and-privacy)
+- [Systems and Networking](http://cs.illinois.edu/research/areas/systems-and-networking)
+
+## Recent Courses Taught
+
+- CS 437 CHI (CS 437 CSP, CS 437 DSO, CS 437 IOT, CS 437 IT3, CS 437 IT4, CS 437 ITG, CS 437 MC3, CS 437 MC4, CS 437 MCS) - Topics in Internet of Things
+- CS 437 CSP (CS 437 DSO, CS 437 ITG, CS 437 ITU, CS 437 MCS) - Networked IoT Systems
+- CS 497 - CS Team Project
+- CS 498 ISE - IOT for Software Engineering
+- CS 498 ISE - IOT Software Engineering
+- CS 498 IT3 (CS 498 IT4, CS 498 ITC, CS 498 ITF, CS 498 ITO) - Internet of Things
+- ECE 435 (CS 436) - Computer Networking Laboratory
+
+Click for more
+
+## Related News
+
+[Mark Anastasio and Matthew Caesar elevated to IEEE Fellows](https://grainger.illinois.edu/news/stories/60906)
+
+[Caesar's Passion for IoT Helps Transition his Graduate Course into an Online, Hands-on Coursera Specialization](https://siebelschool.illinois.edu/news/caesars-passion-for-iot-helps-transition-his-graduate-course-into-an-online-hands-on-coursera-specialization)
+
+[CS, CSL Alum Shares Advice From Unique Student Experience](https://siebelschool.illinois.edu/news/cs-csl-alum-shares-advice-from-unique-student-experience)
+
+[Caesar Works to Improve Internet Connectivity During Disaster Response](https://siebelschool.illinois.edu/news/caesar-works-improve-internet-connectivity-during-disaster-response)
+
+[Amazon's Move Off Oracle Caused Prime Day Outage In One Major Warehouse](https://siebelschool.illinois.edu/news/media-mentions/amazons-move-oracle-caused-prime-day-outage-one-major-warehouse)
+
+[Internal Documents Show How Amazon Scrambled To Fix Prime Day Glitches](https://siebelschool.illinois.edu/news/media-mentions/internal-documents-show-how-amazon-scrambled-fix-prime-day-glitches)
+
+## News Notes
