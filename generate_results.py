@@ -45,7 +45,7 @@ def get_response_from_openai(scrape_result, file_name):
         max_tokens=16384,
         temperature=0.0,
         response_format=response_format,
-    )
+    )    
     json_string = response.choices[0].message.content
     json_object = json.loads(json_string)
     with open(proprietary_results_path / f"{file_name}.json", "w") as f:
@@ -59,7 +59,6 @@ def get_response_from_open_source_with_instructor(scrape_result, file_name):
     client = instructor.from_openai(client)
     prompt_module = importlib.import_module(f"prompt.{prompt_type}")
     response_model = getattr(prompt_module, prompt_type.capitalize())
-    print("hello")
     response = client.chat.completions.create(
         model=open_source_model,
         messages=[

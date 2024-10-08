@@ -48,7 +48,7 @@ class Course(BaseModel):
 class Contact(BaseModel):
     phone: str
     email: str
-class Professor(BaseModel):
+class Prof(BaseModel):
     name: str
     title: str
     contact: Contact
