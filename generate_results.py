@@ -9,7 +9,7 @@ import os
 
 open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
 openai_model = "gpt-4o-mini"
-prompt_type = "prof"
+prompt_type = "movie"
 
 prompt_module = importlib.import_module(f"prompt.{prompt_type}")
 
@@ -68,7 +68,7 @@ def get_response_from_open_source_with_instructor(scrape_result, file_name):
             },
             {"role": "user", "content": f"The article of the {prompt_type} is: " + scrape_result},
         ],
-        max_tokens=32768,
+        max_tokens=16384,
         temperature=0.0,
         response_model=response_model,
     )
@@ -85,7 +85,7 @@ def process_file(file, openai_func, open_source_instructor_func):
     # Run all three functions concurrently
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         futures = [
-            # executor.submit(openai_func, scrape_result, file_name),
+            executor.submit(openai_func, scrape_result, file_name),
             executor.submit(open_source_instructor_func, scrape_result, file_name)
         ]
         concurrent.futures.wait(futures)
