@@ -13,16 +13,13 @@ prompt_type = "prof"
 
 prompt_module = importlib.import_module(f"prompt.{prompt_type}")
 
-dataset_path = pl.Path("dataset/article")
+dataset_path = pl.Path(f"dataset/article/{prompt_type}")
 open_model_results_path = pl.Path(f"dataset/results/open-source/{open_source_model}/{prompt_type}")
-open_model_prompt_results_path = open_model_results_path / "prompt"
 open_model_instructor_results_path = open_model_results_path / "instructor"
 proprietary_results_path = pl.Path(f"dataset/results/proprietary/{openai_model}/{prompt_type}")
 
 if not open_model_results_path.exists():
     open_model_results_path.mkdir(parents=True)
-if not open_model_prompt_results_path.exists():
-    open_model_prompt_results_path.mkdir(parents=True)
 if not open_model_instructor_results_path.exists():
     open_model_instructor_results_path.mkdir(parents=True)
 if not proprietary_results_path.exists():
@@ -62,17 +59,17 @@ def get_response_from_open_source_with_instructor(scrape_result, file_name):
     client = instructor.from_openai(client)
     prompt_module = importlib.import_module(f"prompt.{prompt_type}")
     response_model = getattr(prompt_module, prompt_type.capitalize())
-    
+    print("hello")
     response = client.chat.completions.create(
         model=open_source_model,
         messages=[
             {
                 "role": "system",
-                "content": f"You are an expert at summarizing {prompt_type} review articles in JSON format.",
+                "content": f"You are an expert at summarizing {prompt_type} articles in JSON format.",
             },
-            {"role": "user", "content": f"The review of the {prompt_type} is: " + scrape_result},
+            {"role": "user", "content": f"The article of the {prompt_type} is: " + scrape_result},
         ],
-        max_tokens=26000,
+        max_tokens=32768,
         temperature=0.0,
         response_model=response_model,
     )
@@ -89,7 +86,7 @@ def process_file(file, openai_func, open_source_instructor_func):
     # Run all three functions concurrently
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         futures = [
-            executor.submit(openai_func, scrape_result, file_name),
+            # executor.submit(openai_func, scrape_result, file_name),
             executor.submit(open_source_instructor_func, scrape_result, file_name)
         ]
         concurrent.futures.wait(futures)
