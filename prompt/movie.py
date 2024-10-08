@@ -72,6 +72,7 @@ response_format = {
                         "type": "object",
                         "properties": {"name": {"type": "string"}},
                         "required": ["name"],
+                        "additionalProperties": False,
                     },
                 },
                 "writers": {
@@ -80,6 +81,7 @@ response_format = {
                         "type": "object",
                         "properties": {"name": {"type": "string"}},
                         "required": ["name"],
+                        "additionalProperties": False,
                     },
                 },
                 "stars": {
@@ -91,6 +93,7 @@ response_format = {
                             "character": {"type": "string"},
                         },
                         "required": ["name", "character"],
+                        "additionalProperties": False,
                     },
                 },
                 "imdbRating": {
@@ -100,6 +103,7 @@ response_format = {
                         "votes": {"type": "integer"},
                     },
                     "required": ["rating", "votes"],
+                    "additionalProperties": False,
                 },
                 "popularity": {
                     "type": "object",
@@ -108,6 +112,7 @@ response_format = {
                         "change": {"type": "integer"},
                     },
                     "required": ["rank", "change"],
+                    "additionalProperties": False,
                 },
                 "releaseDate": {"type": "string"},
                 "countryOfOrigin": {"type": "array", "items": {"type": "string"}},
@@ -123,6 +128,7 @@ response_format = {
                         }
                     },
                     "required": ["soundMix"],
+                    "additionalProperties": False,
                 },
             },
             "required": [
