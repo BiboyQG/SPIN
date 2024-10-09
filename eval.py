@@ -40,7 +40,6 @@ def compare_json_objects(ground_truth, test_object):
         ignore_type_in_groups=[(int, float)],
         ignore_numeric_type_changes=True,
     )
-    print(diff)
     results["value_exactness"] = 1 - len(diff) / (len(ground_truth) + len(test_object))
 
     # Numeric value similarity
@@ -91,7 +90,7 @@ def compare_json_objects(ground_truth, test_object):
     return results
 
 
-def evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir):
+def evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir, entity):
     results = []
     json_files = [f for f in os.listdir(ground_truth_dir) if f.endswith(".json")]
     json_files.sort(key=lambda x: int(x.split(".")[0]))
@@ -110,7 +109,7 @@ def evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir):
         # Evaluate open-source models
         print(f"Checking open-source models for {filename}")
         for model_dir in os.listdir(open_source_dir):
-            model_path = os.path.join(open_source_dir, model_dir, 'instructor', filename)
+            model_path = os.path.join(open_source_dir, model_dir, entity, 'instructor', filename)
             print(f"Checking path: {model_path}")
             if os.path.exists(model_path):
                 print(f"Processing open-source model: {model_path}")
@@ -129,7 +128,7 @@ def evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir):
         # Evaluate proprietary models
         print(f"Checking proprietary models for {filename}")
         for model_dir in os.listdir(proprietary_dir):
-            model_path = os.path.join(proprietary_dir, model_dir, filename)
+            model_path = os.path.join(proprietary_dir, model_dir, entity, filename)
             print(f"Checking path: {model_path}")
             if os.path.exists(model_path):
                 print(f"Processing proprietary model: {model_path}")
@@ -214,9 +213,11 @@ def save_results_to_csv(results, filename="evaluation_results.csv"):
     print(f"Results saved to {filename}")
 
 
+entity = "prof"
+
 # Specify the directories
 ground_truth_dir = 'dataset/results/gt'
-open_source_dir = 'dataset/results/open-source/Qwen'
+open_source_dir = 'dataset/results/open-source/Qwen/Qwen2.5-72B-Instruct-AWQ'
 proprietary_dir = 'dataset/results/proprietary'
 
 print(f"Ground truth directory: {ground_truth_dir}")
@@ -227,12 +228,12 @@ print(f"Open-source directory exists: {os.path.exists(open_source_dir)}")
 print(f"Proprietary directory exists: {os.path.exists(proprietary_dir)}")
 
 if os.path.exists(open_source_dir):
-    print("Open-source models:", os.listdir(open_source_dir))
+    print("Open-source folders that contain JSON files:", os.listdir(open_source_dir))
 if os.path.exists(proprietary_dir):
-    print("Proprietary models:", os.listdir(proprietary_dir))
+    print("Proprietary folders that contain JSON files:", os.listdir(proprietary_dir))
 
-results = evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir)
-save_results_to_csv(results)
+results = evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir, entity)
+save_results_to_csv(results, f"{entity}_results.csv")
 
 # Print results to console as well
 for result in results:
