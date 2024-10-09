@@ -17,10 +17,16 @@
     ],
     "publications": [],
     "teachingHonors": [],
-    "researchHonors": [],
+    "researchHonors": [
+        {
+            "honor": "2024 Dean\u2019s Award for Excellence in Research for Assistant Professor",
+            "organization": "The Grainger College of Engineering",
+            "year": 2024
+        }
+    ],
     "coursesTaught": [
         {
-            "code": "CS 423",
+            "code": "CS 423 (CSE 423)",
             "title": "Operating Systems Design"
         },
         {
@@ -28,7 +34,7 @@
             "title": "Advanced Operating Systems"
         },
         {
-            "code": "CS 591 DS",
+            "code": "CS 591 DS (CS 591 IG)",
             "title": "Distributed Systems Seminar"
         },
         {
@@ -44,7 +50,7 @@
             "title": "Software Engineering Seminar"
         },
         {
-            "code": "CS 591 SE",
+            "code": "CS 591 SE (CS 591 SN)",
             "title": "Advanced Seminar"
         },
         {

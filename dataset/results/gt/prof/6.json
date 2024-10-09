@@ -10,7 +10,7 @@
         {
             "degree": "Ph.D.",
             "field": "Computer Science and Engineering",
-            "institution": "Ohio State University, USA",
+            "institution": "Ohio State University",
             "year": 2016
         }
     ],
@@ -19,7 +19,7 @@
         {
             "position": "Tenure-Track Assistant Professor",
             "organization": "Computer Science Department, Univ. of Illinois",
-            "yearStart": 2022
+            "yearStart": 0
         }
     ],
     "researchStatement": "",

@@ -1,1 +1,59 @@
-{"name": "Minjia Zhang", "title": "Assistant Professor", "contact": {"phone": "", "email": "minjiaz@illinois.edu"}, "office": "", "education": [{"degree": "Ph.D.", "field": "Computer Science and Engineering", "institution": "Ohio State University", "year": 2016}], "biography": "", "professionalHighlights": [{"position": "Tenure-Track Assistant Professor", "organization": "Computer Science Department, Univ. of Illinois", "yearStart": 2023, "yearEnd": null}], "researchStatement": "", "researchInterests": [{"area": "Machine Learning Systems", "description": ""}, {"area": "Parallel Computing", "description": ""}, {"area": "AI Efficiency", "description": ""}, {"area": "Model Compression", "description": ""}, {"area": "Natural Language Processing", "description": ""}], "researchAreas": [], "publications": [], "teachingHonors": [], "researchHonors": [], "coursesTaught": [{"code": "CS 598 AIE", "title": "AI Efficiency: Sys. & Algor."}]}
+{
+    "name": "Minjia Zhang",
+    "title": "Assistant Professor",
+    "contact": {
+        "phone": "",
+        "email": "minjiaz@illinois.edu"
+    },
+    "office": "",
+    "education": [
+        {
+            "degree": "Ph.D.",
+            "field": "Computer Science and Engineering",
+            "institution": "Ohio State University",
+            "year": 2016
+        }
+    ],
+    "biography": "",
+    "professionalHighlights": [
+        {
+            "position": "Tenure-Track Assistant Professor",
+            "organization": "Computer Science Department, Univ. of Illinois",
+            "yearStart": 2023,
+            "yearEnd": null
+        }
+    ],
+    "researchStatement": "",
+    "researchInterests": [
+        {
+            "area": "Machine Learning Systems",
+            "description": ""
+        },
+        {
+            "area": "Parallel Computing",
+            "description": ""
+        },
+        {
+            "area": "AI Efficiency",
+            "description": ""
+        },
+        {
+            "area": "Model Compression",
+            "description": ""
+        },
+        {
+            "area": "Natural Language Processing",
+            "description": ""
+        }
+    ],
+    "researchAreas": [],
+    "publications": [],
+    "teachingHonors": [],
+    "researchHonors": [],
+    "coursesTaught": [
+        {
+            "code": "CS 598 AIE",
+            "title": "AI Efficiency: Sys. & Algor."
+        }
+    ]
+}

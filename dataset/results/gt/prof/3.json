@@ -6,26 +6,7 @@
         "email": "angrave@illinois.edu"
     },
     "office": "2217 Siebel Center for Comp Sci",
-    "education": [
-        {
-            "degree": "PhD",
-            "field": "Computer Science",
-            "institution": "University of Illinois at Urbana-Champaign",
-            "year": 2000
-        },
-        {
-            "degree": "MS",
-            "field": "Computer Science",
-            "institution": "University of Illinois at Urbana-Champaign",
-            "year": 1996
-        },
-        {
-            "degree": "BS",
-            "field": "Computer Science",
-            "institution": "University of Illinois at Urbana-Champaign",
-            "year": 1994
-        }
-    ],
+    "education": [],
     "biography": "Lawrence Angrave is a Teaching Professor, Gies RC Evans Innovation Fellow, and CITL Fellow at the University of Illinois at Urbana-Champaign. His research focuses on accessible education and effective computer science instruction at scale. He is involved in various projects, including the Universal Design for Learning (UDL) and Accessibility Research Group, ScribeAR, and ClassTranscribe. Angrave has received numerous teaching and research honors and is actively involved in university and departmental committees.",
     "professionalHighlights": [
         {
