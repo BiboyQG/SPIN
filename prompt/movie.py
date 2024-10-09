@@ -5,7 +5,10 @@ import json
 
 class Person(BaseModel):
     name: str
-    role: str
+
+
+class Star(Person):
+    character: str
 
 
 class Rating(BaseModel):
@@ -31,7 +34,7 @@ class Movie(BaseModel):
     plot: str
     directors: List[Person]
     writers: List[Person]
-    stars: List[Person]
+    stars: List[Star]
     imdb_rating: Rating = Field(..., alias="imdbRating")
     popularity: Popularity
     release_date: str

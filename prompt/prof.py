@@ -49,8 +49,8 @@ class Contact(BaseModel):
     phone: str
     email: str
 class Prof(BaseModel):
-    name: str
-    title: str
+    name: str = Field(description="The name of the professor")
+    title: str = Field(description="The title of the professor, e.g. Assistant Professor, Teaching Professor, Gies RC Evans Innovation Fellow, etc.")
     contact: Contact
     office: str
     education: List[Education]
