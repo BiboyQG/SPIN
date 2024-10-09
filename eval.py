@@ -108,50 +108,48 @@ def evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir, entity):
 
         # Evaluate open-source models
         print(f"Checking open-source models for {filename}")
-        for model_dir in os.listdir(open_source_dir):
-            model_path = os.path.join(open_source_dir, model_dir, entity, 'instructor', filename)
-            print(f"Checking path: {model_path}")
-            if os.path.exists(model_path):
-                print(f"Processing open-source model: {model_path}")
-                try:
-                    with open(model_path, 'r') as f:
-                        test_object = json.load(f)
-                    result = compare_json_objects(ground_truth, test_object)
-                    result['sample no.'] = filename.split('.')[0]
-                    result['model_name'] = "Qwen2.5-72B"
-                    results.append(result)
-                except Exception as e:
-                    print(f"Error processing {model_path}: {str(e)}")
-            else:
-                print(f"File not found: {model_path}")
+        model_path = os.path.join(open_source_dir, entity, 'instructor', filename)
+        print(f"Checking path: {model_path}")
+        if os.path.exists(model_path):
+            print(f"Processing open-source model: {model_path}")
+            try:
+                with open(model_path, 'r') as f:
+                    test_object = json.load(f)
+                result = compare_json_objects(ground_truth, test_object)
+                result['sample no.'] = filename.split('.')[0]
+                result['model_name'] = "Qwen2.5-72B-Instruct-AWQ"
+                results.append(result)
+            except Exception as e:
+                print(f"Error processing {model_path}: {str(e)}")
+        else:
+            print(f"File not found: {model_path}")
 
         # Evaluate proprietary models
         print(f"Checking proprietary models for {filename}")
-        for model_dir in os.listdir(proprietary_dir):
-            model_path = os.path.join(proprietary_dir, model_dir, entity, filename)
-            print(f"Checking path: {model_path}")
-            if os.path.exists(model_path):
-                print(f"Processing proprietary model: {model_path}")
-                try:
-                    with open(model_path, 'r') as f:
-                        test_object = json.load(f)
-                    result = compare_json_objects(ground_truth, test_object)
-                    result['sample no.'] = filename.split('.')[0]
-                    result["model_name"] = model_dir
-                    results.append(result)
-                except Exception as e:
-                    print(f"Error processing {model_path}: {str(e)}")
-            else:
-                print(f"File not found: {model_path}")
+        model_path = os.path.join(proprietary_dir, 'gpt-4o-mini', entity, filename)
+        print(f"Checking path: {model_path}")
+        if os.path.exists(model_path):
+            print(f"Processing proprietary model: {model_path}")
+            try:
+                with open(model_path, 'r') as f:
+                    test_object = json.load(f)
+                result = compare_json_objects(ground_truth, test_object)
+                result['sample no.'] = filename.split('.')[0]
+                result["model_name"] = "gpt-4o-mini"
+                results.append(result)
+            except Exception as e:
+                print(f"Error processing {model_path}: {str(e)}")
+        else:
+            print(f"File not found: {model_path}")
 
     # Separate results for open-source and proprietary models
-    open_source_results = [r for r in results if r["model_name"] == "Qwen2.5-72B"]
+    open_source_results = [r for r in results if r["model_name"] == "Qwen2.5-72B-Instruct-AWQ"]
     proprietary_results = [r for r in results if r["model_name"] == "gpt-4o-mini"]
 
     # Calculate average for open-source model
     open_source_result = {
         "sample no.": "avg",
-        "model_name": "Qwen2.5-72B",
+        "model_name": "Qwen2.5-72B-Instruct-AWQ",
         "json_validity": sum([r["json_validity"] for r in open_source_results])
         / len(open_source_results),
         "key_similarity": sum([r["key_similarity"] for r in open_source_results])
@@ -196,7 +194,13 @@ def save_results_to_csv(results, filename="evaluation_results.csv"):
         return
 
     # Get all unique keys from all result dictionaries
-    all_keys = ["json_validity", "key_similarity", "value_exactness", "numeric_similarity", "string_similarity"]
+    all_keys = [
+        "json_validity",
+        "key_similarity",
+        "value_exactness",
+        "numeric_similarity",
+        "string_similarity",
+    ]
 
     # Define the order of columns, ensuring all keys are included
     fieldnames = ["sample no.", "model_name"] + [
@@ -213,28 +217,24 @@ def save_results_to_csv(results, filename="evaluation_results.csv"):
     print(f"Results saved to {filename}")
 
 
-entity = "prof"
+# Update the main execution part
+for entity in ["car", "prof", "movie"]:
+    # Specify the directories
+    ground_truth_dir = f'dataset/results/gt/{entity}'
+    open_source_dir = 'dataset/results/open-source/Qwen/Qwen2.5-72B-Instruct-AWQ'
+    proprietary_dir = 'dataset/results/proprietary'
 
-# Specify the directories
-ground_truth_dir = 'dataset/results/gt'
-open_source_dir = 'dataset/results/open-source/Qwen/Qwen2.5-72B-Instruct-AWQ'
-proprietary_dir = 'dataset/results/proprietary'
+    print(f"Evaluating {entity} entity")
+    print(f"Ground truth directory: {ground_truth_dir}")
+    print(f"Open-source directory: {open_source_dir}")
+    print(f"Proprietary directory: {proprietary_dir}")
 
-print(f"Ground truth directory: {ground_truth_dir}")
-print(f"Open-source directory: {open_source_dir}")
-print(f"Proprietary directory: {proprietary_dir}")
+    print(f"Open-source directory exists: {os.path.exists(open_source_dir)}")
+    print(f"Proprietary directory exists: {os.path.exists(proprietary_dir)}")
 
-print(f"Open-source directory exists: {os.path.exists(open_source_dir)}")
-print(f"Proprietary directory exists: {os.path.exists(proprietary_dir)}")
+    results = evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir, entity)
+    save_results_to_csv(results, f"{entity}_results.csv")
 
-if os.path.exists(open_source_dir):
-    print("Open-source folders that contain JSON files:", os.listdir(open_source_dir))
-if os.path.exists(proprietary_dir):
-    print("Proprietary folders that contain JSON files:", os.listdir(proprietary_dir))
-
-results = evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir, entity)
-save_results_to_csv(results, f"{entity}_results.csv")
-
-# Print results to console as well
-for result in results:
-    print(json.dumps(result, indent=2))
+    # Print results to console as well
+    for result in results:
+        print(json.dumps(result, indent=2))
