@@ -48,14 +48,20 @@ class Course(BaseModel):
 class Contact(BaseModel):
     phone: str
     email: str
+
+
 class Prof(BaseModel):
-    name: str = Field(description="The name of the professor")
-    title: str = Field(description="The title of the professor, e.g. Assistant Professor, Teaching Professor, Gies RC Evans Innovation Fellow, etc.")
+    fullname: str
+    title: str = Field(
+        description="The title of the professor, e.g. Assistant Professor, Teaching Professor, Gies RC Evans Innovation Fellow, etc."
+    )
     contact: Contact
     office: str
     education: List[Education]
     biography: str
-    professional_highlights: List[ProfessionalHighlight] = Field(..., alias="professionalHighlights")
+    professional_highlights: List[ProfessionalHighlight] = Field(
+        ..., alias="professionalHighlights"
+    )
     research_statement: str = Field(..., alias="researchStatement")
     research_interests: List[ResearchInterest] = Field(..., alias="researchInterests")
     research_areas: List[str] = Field(..., alias="researchAreas")
@@ -73,6 +79,7 @@ class Prof(BaseModel):
 
     def json(self, **kwargs):
         return json.loads(super().json(by_alias=True, exclude_none=True, **kwargs))
+
 
 response_format = {
     "type": "json_schema",
@@ -119,7 +126,12 @@ response_format = {
                             "yearStart": {"type": "integer"},
                             "yearEnd": {"type": ["integer", "null"]},
                         },
-                        "required": ["position", "organization", "yearStart", "yearEnd"],
+                        "required": [
+                            "position",
+                            "organization",
+                            "yearStart",
+                            "yearEnd",
+                        ],
                         "additionalProperties": False,
                     },
                 },
