@@ -1,1 +1,82 @@
-{"title": "Inside Out 2", "year": 2024, "mpaaRating": "PG", "runtime": "1h 36m", "genres": ["Coming-of-Age", "Computer Animation", "Quest", "Teen Comedy", "Teen Drama", "Adventure", "Animation", "Comedy", "Drama", "Family"], "plot": "A sequel that features Riley entering puberty and experiencing brand new, more complex emotions as a result. As Riley tries to adapt to her teenage years, her old emotions try to adapt to the possibility of being replaced.", "directors": [{"name": "Kelsey Mann"}], "writers": [{"name": "Meg LeFauve"}, {"name": "Dave Holstein"}, {"name": "Kelsey Mann"}], "stars": [{"name": "Amy Poehler", "character": "Joy (voice)"}, {"name": "Maya Hawke", "character": "Anxiety (voice)"}, {"name": "Kensington Tallman", "character": "Riley (voice)"}], "imdbRating": {"value": 7.6, "count": 153000}, "popularity": {"rank": 11, "change": 1}, "releaseDate": "June 14, 2024 (United States)", "countryOfOrigin": ["United States"], "languages": ["English"], "filmingLocations": ["Walt Disney Feature Animation - 500 S. Buena Vista Street, Burbank, California, USA"], "productionCompanies": ["Walt Disney Pictures", "Pixar Animation Studios"], "technicalSpecs": {"soundMix": ["Dolby Digital", "Dolby Atmos", "Sonics-DDP", "Auro 11.1", "12-Track Digital Sound", "D-Cinema 96kHz Dolby Surround 7.1", "D-Cinema 96kHz 7.1"]}}
+{
+    "title": "Inside Out 2",
+    "year": 2024,
+    "mpaaRating": "PG",
+    "runtime": "1h 36m",
+    "genres": [
+        "Coming-of-Age",
+        "Computer Animation",
+        "Quest",
+        "Teen Comedy",
+        "Teen Drama",
+        "Adventure",
+        "Animation",
+        "Comedy",
+        "Drama",
+        "Family"
+    ],
+    "plot": "A sequel that features Riley entering puberty and experiencing brand new, more complex emotions as a result. As Riley tries to adapt to her teenage years, her old emotions try to adapt to the possibility of being replaced.",
+    "directors": [
+        {
+            "name": "Kelsey Mann"
+        }
+    ],
+    "writers": [
+        {
+            "name": "Meg LeFauve"
+        },
+        {
+            "name": "Dave Holstein"
+        },
+        {
+            "name": "Kelsey Mann"
+        }
+    ],
+    "stars": [
+        {
+            "name": "Amy Poehler",
+            "character": "Joy (voice)"
+        },
+        {
+            "name": "Maya Hawke",
+            "character": "Anxiety (voice)"
+        },
+        {
+            "name": "Kensington Tallman",
+            "character": "Riley (voice)"
+        }
+    ],
+    "imdbRating": {
+        "value": 7.6,
+        "count": 153000
+    },
+    "popularity": {
+        "rank": 11,
+        "change": 1
+    },
+    "releaseDate": "June 14, 2024 (United States)",
+    "countryOfOrigin": [
+        "United States"
+    ],
+    "languages": [
+        "English"
+    ],
+    "filmingLocations": [
+        "Walt Disney Feature Animation - 500 S. Buena Vista Street, Burbank, California, USA"
+    ],
+    "productionCompanies": [
+        "Walt Disney Pictures",
+        "Pixar Animation Studios"
+    ],
+    "technicalSpecs": {
+        "soundMix": [
+            "Dolby Digital",
+            "Dolby Atmos",
+            "Sonics-DDP",
+            "Auro 11.1",
+            "12-Track Digital Sound",
+            "D-Cinema 96kHz Dolby Surround 7.1",
+            "D-Cinema 96kHz 7.1"
+        ]
+    }
+}

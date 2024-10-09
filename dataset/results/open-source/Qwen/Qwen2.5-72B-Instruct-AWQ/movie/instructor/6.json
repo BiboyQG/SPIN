@@ -1,1 +1,72 @@
-{"title": "The Matrix", "year": 1999, "mpaaRating": "R", "runtime": "2h 16m", "genres": ["Action", "Sci-Fi"], "plot": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.", "directors": [{"name": "Lana Wachowski"}, {"name": "Lilly Wachowski"}], "writers": [{"name": "Lana Wachowski"}, {"name": "Lilly Wachowski"}], "stars": [{"name": "Keanu Reeves", "character": "Neo"}, {"name": "Laurence Fishburne", "character": "Morpheus"}, {"name": "Carrie-Anne Moss", "character": "Trinity"}], "imdbRating": {"value": 8.7, "count": 2100000}, "popularity": {"rank": 209, "change": 68}, "releaseDate": "March 31, 1999 (United States)", "countryOfOrigin": ["United States", "Australia"], "languages": ["English"], "filmingLocations": ["Nashville, Tennessee, USA"], "productionCompanies": ["Warner Bros.", "Village Roadshow Pictures", "Groucho Film Partnership"], "technicalSpecs": {"soundMix": ["Dolby Digital", "SDDS", "Dolby Atmos"]}}
+{
+    "title": "The Matrix",
+    "year": 1999,
+    "mpaaRating": "R",
+    "runtime": "2h 16m",
+    "genres": [
+        "Action",
+        "Sci-Fi"
+    ],
+    "plot": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
+    "directors": [
+        {
+            "name": "Lana Wachowski"
+        },
+        {
+            "name": "Lilly Wachowski"
+        }
+    ],
+    "writers": [
+        {
+            "name": "Lana Wachowski"
+        },
+        {
+            "name": "Lilly Wachowski"
+        }
+    ],
+    "stars": [
+        {
+            "name": "Keanu Reeves",
+            "character": "Neo"
+        },
+        {
+            "name": "Laurence Fishburne",
+            "character": "Morpheus"
+        },
+        {
+            "name": "Carrie-Anne Moss",
+            "character": "Trinity"
+        }
+    ],
+    "imdbRating": {
+        "value": 8.7,
+        "count": 2100000
+    },
+    "popularity": {
+        "rank": 209,
+        "change": 68
+    },
+    "releaseDate": "March 31, 1999 (United States)",
+    "countryOfOrigin": [
+        "United States",
+        "Australia"
+    ],
+    "languages": [
+        "English"
+    ],
+    "filmingLocations": [
+        "Nashville, Tennessee, USA"
+    ],
+    "productionCompanies": [
+        "Warner Bros.",
+        "Village Roadshow Pictures",
+        "Groucho Film Partnership"
+    ],
+    "technicalSpecs": {
+        "soundMix": [
+            "Dolby Digital",
+            "SDDS",
+            "Dolby Atmos"
+        ]
+    }
+}

@@ -50,14 +50,14 @@
         }
     ],
     "imdbRating": {
-        "rating": 8.8,
-        "votes": 2300000
+        "value": 8.8,
+        "count": 2300000
     },
     "popularity": {
         "rank": 225,
         "change": 19
     },
-    "releaseDate": "July 6, 1994",
+    "releaseDate": "July 6, 1994 (United States)",
     "countryOfOrigin": [
         "United States"
     ],
@@ -68,7 +68,7 @@
         "Chippewa Square, Savannah, Georgia, USA"
     ],
     "productionCompanies": [
-        "Paramount Pictures",
+        "Parametric Pictures",
         "The Steve Tisch Company",
         "Wendy Finerman Productions"
     ],

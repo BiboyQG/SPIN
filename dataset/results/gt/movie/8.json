@@ -41,93 +41,95 @@
     "stars": [
         {
             "name": "Shameik Moore",
-            "character": "Miles Morales"
+            "character": "Miles Morales (voice)"
         },
         {
             "name": "Hailee Steinfeld",
-            "character": "Gwen Stacy"
+            "character": "Gwen Stacy (voice)"
         },
         {
             "name": "Brian Tyree Henry",
-            "character": "Jeff Morales"
+            "character": "Jeff Morales (voice)"
         },
         {
             "name": "Luna Lauren Velez",
-            "character": "Rio Morales"
+            "character": "Rio Morales (voice)"
         },
         {
             "name": "Jake Johnson",
-            "character": "Peter B. Parker"
+            "character": "Peter B. Parker (voice)"
         },
         {
             "name": "Oscar Isaac",
-            "character": "Miguel O'Hara"
+            "character": "Miguel O'Hara (voice)"
         },
         {
             "name": "Jason Schwartzman",
-            "character": "Spot"
+            "character": "Spot (voice)"
         },
         {
             "name": "Issa Rae",
-            "character": "Jessica Drew"
+            "character": "Jessica Drew (voice)"
         },
         {
             "name": "Daniel Kaluuya",
-            "character": "Hobie Brown"
+            "character": "Hobie Brown (voice)"
         },
         {
             "name": "Karan Soni",
-            "character": "Pavitr Prabhakar"
+            "character": "Pavitr Prabhakar (voice)"
         },
         {
             "name": "Shea Whigham",
-            "character": "George Stacy"
+            "character": "George Stacy (voice)"
         },
         {
             "name": "Greta Lee",
-            "character": "LYLA"
+            "character": "LYLA (voice)"
         },
         {
             "name": "Mahershala Ali",
-            "character": "Uncle Aaron"
+            "character": "Uncle Aaron (voice)"
         },
         {
             "name": "Amandla Stenberg",
-            "character": "Margo Kess: Spider-Byte"
+            "character": "Margo Kess: Spider-Byte (voice)"
         },
         {
             "name": "Jharrel Jerome",
-            "character": "Miles G. Morales"
+            "character": "Miles G. Morales (voice)"
         },
         {
             "name": "Andy Samberg",
-            "character": "Ben Reilly"
+            "character": "Ben Reilly (voice)"
         },
         {
             "name": "Jack Quaid",
-            "character": "Peter Parker"
+            "character": "Peter Parker (voice)"
         },
         {
             "name": "Rachel Dratch",
-            "character": "Ms. Weber"
+            "character": "Ms. Weber (voice)"
         }
     ],
     "imdbRating": {
-        "rating": 8.6,
-        "votes": 406000
+        "value": 8.6,
+        "count": 406000
     },
     "popularity": {
         "rank": 329,
         "change": 34
     },
-    "releaseDate": "June 2, 2023",
+    "releaseDate": "June 2, 2023 (United States)",
     "countryOfOrigin": [
         "United States"
     ],
     "languages": [
         "English"
     ],
-    "filmingLocations": [],
+    "filmingLocations": [
+        "United States"
+    ],
     "productionCompanies": [
         "Columbia Pictures",
         "Marvel Entertainment",

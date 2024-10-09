@@ -1,1 +1,71 @@
-{"title": "Spirited Away", "year": 2001, "mpaaRating": "PG", "runtime": "2h 4m", "genres": ["Anime", "Coming-of-Age", "Fairy Tale", "Hand-Drawn Animation", "Supernatural Fantasy", "Adventure", "Animation", "Family", "Fantasy", "Mystery"], "plot": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches and spirits, and where humans are changed into beasts.", "directors": [{"name": "Hayao Miyazaki"}], "writers": [{"name": "Hayao Miyazaki"}], "stars": [{"name": "Daveigh Chase", "character": "Chihiro (voice)"}, {"name": "Suzanne Pleshette", "character": "Yubaba (voice)"}, {"name": "Miyu Irino", "character": "Haku (voice)"}], "imdbRating": {"rating": 8.6, "votes": 873000}, "popularity": {"rank": 473, "change": 48}, "releaseDate": "March 28, 2003 (United States)", "countryOfOrigin": ["Japan", "United States"], "languages": ["Japanese"], "filmingLocations": [], "productionCompanies": ["Tokuma Shoten", "Studio Ghibli", "Nippon Television Network (NTV)"], "technicalSpecs": {"soundMix": ["DTS-ES", "Dolby Digital EX"]}}
+{
+    "title": "Spirited Away",
+    "year": 2001,
+    "mpaaRating": "PG",
+    "runtime": "2h 4m",
+    "genres": [
+        "Anime",
+        "Coming-of-Age",
+        "Fairy Tale",
+        "Hand-Drawn Animation",
+        "Supernatural Fantasy",
+        "Adventure",
+        "Animation",
+        "Family",
+        "Fantasy",
+        "Mystery"
+    ],
+    "plot": "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches and spirits, and where humans are changed into beasts.",
+    "directors": [
+        {
+            "name": "Hayao Miyazaki"
+        }
+    ],
+    "writers": [
+        {
+            "name": "Hayao Miyazaki"
+        }
+    ],
+    "stars": [
+        {
+            "name": "Daveigh Chase",
+            "character": "Chihiro (voice)"
+        },
+        {
+            "name": "Suzanne Pleshette",
+            "character": "Yubaba (voice)"
+        },
+        {
+            "name": "Miyu Irino",
+            "character": "Haku (voice)"
+        }
+    ],
+    "imdbRating": {
+        "rating": 8.6,
+        "votes": 873000
+    },
+    "popularity": {
+        "rank": 473,
+        "change": 48
+    },
+    "releaseDate": "March 28, 2003 (United States)",
+    "countryOfOrigin": [
+        "Japan",
+        "United States"
+    ],
+    "languages": [
+        "Japanese"
+    ],
+    "filmingLocations": [],
+    "productionCompanies": [
+        "Tokuma Shoten",
+        "Studio Ghibli",
+        "Nippon Television Network (NTV)"
+    ],
+    "technicalSpecs": {
+        "soundMix": [
+            "DTS-ES",
+            "Dolby Digital EX"
+        ]
+    }
+}

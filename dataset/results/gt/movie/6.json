@@ -18,10 +18,10 @@
     ],
     "writers": [
         {
-            "name": "Lilly Wachowski"
+            "name": "Lana Wachowski"
         },
         {
-            "name": "Lana Wachowski"
+            "name": "Lilly Wachowski"
         }
     ],
     "stars": [
@@ -51,14 +51,14 @@
         }
     ],
     "imdbRating": {
-        "rating": 8.7,
-        "votes": 2100000
+        "value": 8.7,
+        "count": 2100000
     },
     "popularity": {
         "rank": 209,
         "change": 68
     },
-    "releaseDate": "March 31, 1999",
+    "releaseDate": "March 31, 1999 (United States)",
     "countryOfOrigin": [
         "United States",
         "Australia"
