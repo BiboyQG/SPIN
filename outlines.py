@@ -120,6 +120,7 @@ class JSONLogitsProcessor(RegexLogitsProcessor):
                 f"the JSON Schema specification"
             )
         regex_string = build_regex_from_schema(schema_str, whitespace_pattern)
+        print(regex_string)
         super().__init__(regex_string, tokenizer)
 
 
@@ -191,3 +192,11 @@ def _adapt_tokenizer(tokenizer: PreTrainedTokenizerBase):
     setattr(tokenizer, "_outlines_adapted", True)  # noqa: B010
 
     return tokenizer
+
+
+class User(BaseModel):
+    name: str
+    age: int
+
+if __name__ == "__main__":
+    json_processor = JSONLogitsProcessor(User, tokenizer=None)
