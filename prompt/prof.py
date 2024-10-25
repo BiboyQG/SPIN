@@ -89,7 +89,7 @@ response_format = {
         "schema": {
             "type": "object",
             "properties": {
-                "name": {"type": "string"},
+                "fullname": {"type": "string"},
                 "title": {"type": "string"},
                 "contact": {
                     "type": "object",
