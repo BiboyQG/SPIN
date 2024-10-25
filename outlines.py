@@ -120,7 +120,6 @@ class JSONLogitsProcessor(RegexLogitsProcessor):
                 f"the JSON Schema specification"
             )
         regex_string = build_regex_from_schema(schema_str, whitespace_pattern)
-        print(regex_string)
         super().__init__(regex_string, tokenizer)
 
 
@@ -200,3 +199,7 @@ class User(BaseModel):
 
 if __name__ == "__main__":
     json_processor = JSONLogitsProcessor(User, tokenizer=None)
+    schema_str = json.dumps(User.model_json_schema())
+    whitespace_pattern = r"[\n ]?"
+    regex_string = build_regex_from_schema(schema_str, whitespace_pattern)
+    print(regex_string)
