@@ -10,4 +10,4 @@ test*.ipynb
 
 .ipynb_checkpoints/**
 
-test.json
+test*.json
