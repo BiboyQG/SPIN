@@ -1,11 +1,13 @@
 from typing import Annotated, List
+import json
 import os
 
-# from firecrawl import FirecrawlApp
 from pydantic import BaseModel, BeforeValidator, HttpUrl, TypeAdapter
+from firecrawl import FirecrawlApp
+from prompt.prof import Prof
 from openai import OpenAI
 
-# fire_app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
+fire_app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
 
 with open("./dataset/article/prof/0.txt", "r") as file:
     scrape_result = file.read()
@@ -37,23 +39,62 @@ def get_links_from_init_page(scrape_result):
             },
             {
                 "role": "user",
-                "content": f"The initial page of the {prompt_type} is: " + scrape_result,
+                "content": f"The initial page of the {prompt_type} is: "
+                + scrape_result,
             },
         ],
         max_tokens=16384,
         temperature=0.0,
-        extra_body={
-            "guided_json": RelatedLinks.model_json_schema()
-        }
+        extra_body={"guided_json": RelatedLinks.model_json_schema()},
     )
     return response.choices[0].message.content
 
 
+def get_response_from_open_source_with_extra_body(scrape_result):
+    # client = OpenAI(base_url="http://localhost:8888/v1")
+    # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
+    client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
+    response = client.chat.completions.create(
+        model=open_source_model,
+        messages=[
+            {
+                "role": "system",
+                "content": f"You are an expert at summarizing {prompt_type} articles in JSON format.",
+            },
+            {
+                "role": "user",
+                "content": f"The article of the {prompt_type} is: " + scrape_result,
+            },
+        ],
+        max_tokens=16384,
+        temperature=0.0,
+        extra_body={"guided_json": Prof.model_json_schema()},
+    )
+    response_text = response.choices[0].message.content
+    json_data = json.loads(response_text)
+    return json_data
+
+
 links = get_links_from_init_page(scrape_result)
-print(links)
 
-# for i, link in enumerate(links):
-#     scrape_result = scrape_result + fire_app.scrape_url(link, params={"formats": ["markdown"], "excludeTags": ["img", "video"]})["markdown"]
+# Two ways to get final information
 
-# with open(f"./dataset/article/{prompt_type}/0.txt", "w") as f:
-#     f.write(scrape_result)
+# 1. Append the content of the links to the original page, and then extract the information based on the appended page
+# 2. Extract the information from the original page, and update the information based on the extra links one by one
+
+# The first way:
+
+def get_final_information_from_all_links(scrape_result, links):
+    for i, link in enumerate(links):
+        scrape_result = (
+            scrape_result
+            + fire_app.scrape_url(
+                link, params={"formats": ["markdown"], "excludeTags": ["img", "video"]}
+            )["markdown"]
+        )
+    
+    with open("test_all_links.json", "w") as f:
+        json.dump(get_response_from_open_source_with_extra_body(scrape_result), f)
+
+
+
