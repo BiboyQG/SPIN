@@ -11,12 +11,6 @@ import psycopg2
 
 fire_app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
 
-with open("./dataset/article/prof/0.txt", "r") as file:
-    scrape_result = file.read()
-
-open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
-prompt_type = "prof"
-
 http_url_adapter = TypeAdapter(HttpUrl)
 
 Url = Annotated[
@@ -75,7 +69,9 @@ def get_response_from_open_source_with_extra_body(scrape_result):
     return response.choices[0].message.content
 
 
-def get_response_from_open_source_with_extra_body_update(scrape_result, original_response):
+def get_response_from_open_source_with_extra_body_update(
+    scrape_result, original_response
+):
     # client = OpenAI(base_url="http://localhost:8888/v1")
     # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
     client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
@@ -88,7 +84,11 @@ def get_response_from_open_source_with_extra_body_update(scrape_result, original
             },
             {
                 "role": "user",
-                "content": f"The new {prompt_type} article is: " + scrape_result + "\n" + f"The initial {prompt_type} JSON structure is: " + original_response,
+                "content": f"The new {prompt_type} article is: "
+                + scrape_result
+                + "\n"
+                + f"The initial {prompt_type} JSON structure is: "
+                + original_response,
             },
         ],
         max_tokens=16384,
@@ -97,48 +97,24 @@ def get_response_from_open_source_with_extra_body_update(scrape_result, original
     )
     return response.choices[0].message.content
 
-links_obj = RelatedLinks.model_validate_json(get_links_from_init_page(scrape_result))
-links = links_obj.related_links
 
-print(links)
-
-# Two ways to get final information
-
-# 1. Append the content of the links to the original page, and then extract the information based on the appended page
-# 2. Extract the information from the original page, and update the information based on the extra links one by one
-
-# The first way:
-
-def get_final_information_from_all_links_in_one_time(scrape_result, links):
-    for i, link in enumerate(links):
-        scrape_result = (
-            scrape_result
-            + fire_app.scrape_url(
-                link, params={"formats": ["markdown"], "excludeTags": ["img", "video"]}
-            )["markdown"]
-        )
-        print(f"Finished updating context with link {i+1}")
-    
-    with open("test_all_links.json", "w") as f:
-        json.dump(json.loads(get_response_from_open_source_with_extra_body(scrape_result)), f)
-        print("Finished extracting information from all links in one time, saved to test_all_links.json")
-
-
-## The second way:
-
+# Append the content of the links to the original page, and then extract the information based on the appended page
 def get_final_information_from_all_links_one_by_one(scrape_result, links):
-   original_response = get_response_from_open_source_with_extra_body(scrape_result)
-   for i, link in enumerate(links):
-        original_response = get_response_from_open_source_with_extra_body_update(fire_app.scrape_url(link, params={"formats": ["markdown"], "excludeTags": ["img", "video"]})["markdown"], original_response)
+    original_response = get_response_from_open_source_with_extra_body(scrape_result)
+    for i, link in enumerate(links):
+        original_response = get_response_from_open_source_with_extra_body_update(
+            fire_app.scrape_url(
+                link, params={"formats": ["markdown"], "excludeTags": ["img", "video"]}
+            )["markdown"],
+            original_response,
+        )
         print(f"Finished updating JSON structure with link {i+1}")
-   with open("test_one_by_one.json", "w") as f:
+    with open("test_one_by_one.json", "w") as f:
         json.dump(json.loads(original_response), f)
-        print("Finished extracting information from all links one by one, saved to test_one_by_one.json")
+        print(
+            "Finished extracting information from all links one by one, saved to test_one_by_one.json"
+        )
 
-# Compare the two ways
-
-# get_final_information_from_all_links_in_one_time(scrape_result, links)
-get_final_information_from_all_links_one_by_one(scrape_result, links)
 
 # Connect to the Postgres database and save the information to the database
 def save_prof_to_database(prof_data):
@@ -201,6 +177,21 @@ def save_prof_to_database(prof_data):
         if conn:
             conn.close()
 
-with open("one_by_one.json", "r") as f:
-    prof_data = json.load(f)
-    save_prof_to_database(prof_data)
+
+if __name__ == "__main__":
+    with open("./dataset/article/prof/0.txt", "r") as file:
+        scrape_result = file.read()
+
+    open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
+    prompt_type = "prof"
+
+    links_obj = RelatedLinks.model_validate_json(
+        get_links_from_init_page(scrape_result)
+    )
+    links = links_obj.related_links
+
+    get_final_information_from_all_links_one_by_one(scrape_result, links)
+
+    with open("test_one_by_one.json", "r") as f:
+        prof_data = json.load(f)
+        save_prof_to_database(prof_data)
