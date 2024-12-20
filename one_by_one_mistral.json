@@ -1,0 +1,202 @@
+{
+    "fullname": "Matthew Caesar",
+    "title": "Professor",
+    "contact": {
+        "phone": "(847) 323-2968",
+        "email": "caesar@illinois.edu"
+    },
+    "office": "3118 Siebel Center for Comp Sci",
+    "education": [
+        {
+            "degree": "Ph.D.",
+            "field": "Computer Science",
+            "institution": "University of California, Berkeley",
+            "year": 2007
+        }
+    ],
+    "biography": "Matthew Caesar, a professor of computer science, was elevated \u201cfor contributions to computer network verification and routing.\u201d He performed foundational work in network verification, or determining whether a computer network has technical flaws or security holes. His work on mathematically modelling networks and developing tools for fast verification is being adopted by Cisco, Google, Microsoft and VMware. He has now turned his attention to \u201cnetwork synthesis,\u201d which aims to construct computer networks that are fundamentally immune to certain kinds of errors. He earned a doctorate in computer science from the University of California, Berkeley in 2007. He co-founded Veriflow, which was sold to VMware in 2019. At AT&T, he co-developed the Routing Control Platform, a route management technology which remains in daily use in their North American IP backbone. He is a member of the DARPA Computer Science Study Group, and he has received the \u201cTest of Time Award\u201d from the USENIX Symposium on Networked Systems Design and Implementation. He is also affiliated with the department of electrical & computer engineering, the Coordinated Science Laboratory and the Information Trust Institute at the U. of I. I serve as the Chair of ACM SIGCOMM, and the co-chair of The Networking Channel. I co-founded and previously served as the Chief Science Officer and President of Veriflow (sold to VMware in 2019).",
+    "professionalHighlights": [
+        {
+            "position": "Chair",
+            "organization": "ACM SIGCOMM",
+            "yearStart": 2023,
+            "yearEnd": 2023
+        },
+        {
+            "position": "co-chair",
+            "organization": "The Networking Channel",
+            "yearStart": 2023,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Chief Science Officer and President",
+            "organization": "Veriflow",
+            "yearStart": 2023,
+            "yearEnd": 2019
+        },
+        {
+            "position": "Professor",
+            "organization": "University of Illinois at Urbana-Champaign",
+            "yearStart": 2007,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Faculty",
+            "organization": "Coordinated Science Lab (CSL)",
+            "yearStart": 2007,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Faculty",
+            "organization": "Information Trust Institute (ITI) in the Coordinated Science Lab",
+            "yearStart": 2007,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Faculty",
+            "organization": "Security and Privacy Research at Illinois (SPR@I Group)",
+            "yearStart": 2007,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Faculty",
+            "organization": "Systems Networking Research Group (SyNRG)",
+            "yearStart": 2007,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Faculty",
+            "organization": "Wireless, Sensing, & Embedded Networked Systems (iSENS) Lab",
+            "yearStart": 2007,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Faculty",
+            "organization": "Assured Cloud Computing-University Center of Excellence (ACC-UCoE) in the Information Trust Institute",
+            "yearStart": 2007,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Faculty",
+            "organization": "Center for Just Infrastructures",
+            "yearStart": 2007,
+            "yearEnd": 2023
+        },
+        {
+            "position": "IEEE Fellow",
+            "organization": "IEEE",
+            "yearStart": 2024,
+            "yearEnd": 2024
+        },
+        {
+            "position": "Coursera Specialization Instructor",
+            "organization": "Coursera",
+            "yearStart": 2021,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Director of Online Programs",
+            "organization": "Illinois CS",
+            "yearStart": 2021,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Associate Professor",
+            "organization": "University of Illinois at Urbana-Champaign",
+            "yearStart": 2020,
+            "yearEnd": 2023
+        }
+    ],
+    "researchStatement": "My research focuses on improving the robustness of computer systems and networks through principles of softwarization and programmability, enabling the use of techniques from the field of software engineering and AI to build highly functional and reliable systems. I like developing novel data structures and algorithms to represent complicated system functions in ways that enable highly scalable formal reasoning about the behaviors of those systems, enabling verification of safety properties, checking of possible future behaviors, and deriving system configurations with desirable safety properties.",
+    "researchInterests": [
+        {
+            "area": "Simplifying management and improving reliability of distributed systems and networks through principles of self-organization and self-diagnosis, with an emphasis on wide-area networks and networked systems.",
+            "description": ""
+        }
+    ],
+    "researchAreas": [
+        "Security and Privacy",
+        "Systems and Networking"
+    ],
+    "publications": [
+        {
+            "title": "Publications",
+            "authors": [
+                "Matthew Caesar"
+            ],
+            "conference": "See full list at http://caesar.cs.illinois.edu/pubs.html",
+            "year": 2023
+        }
+    ],
+    "teachingHonors": [],
+    "researchHonors": [
+        {
+            "honor": "IEEE Fellow",
+            "organization": "IEEE",
+            "year": 2024
+        },
+        {
+            "honor": "Test of Time Award",
+            "organization": "USENIX Symposium on Networked Systems Design and Implementation",
+            "year": 2023
+        }
+    ],
+    "coursesTaught": [
+        {
+            "code": "CS 437 CHI",
+            "title": "Topics in Internet of Things"
+        },
+        {
+            "code": "CS 437 CSP",
+            "title": "Networked IoT Systems"
+        },
+        {
+            "code": "CS 497",
+            "title": "CS Team Project"
+        },
+        {
+            "code": "CS 498 ISE",
+            "title": "IOT for Software Engineering"
+        },
+        {
+            "code": "CS 498 ISE",
+            "title": "IOT Software Engineering"
+        },
+        {
+            "code": "CS 498 IT3",
+            "title": "Internet of Things"
+        },
+        {
+            "code": "ECE 435",
+            "title": "Computer Networking Laboratory"
+        },
+        {
+            "code": "CS 498IT",
+            "title": "Internet of Things"
+        },
+        {
+            "code": "CS 436",
+            "title": "Systems and Networking Laboratory"
+        },
+        {
+            "code": "CS 598",
+            "title": "Network Security"
+        },
+        {
+            "code": "CS 598",
+            "title": "Advanced Internetworking"
+        },
+        {
+            "code": "CS 591AoS",
+            "title": "Acting Out Algorithms"
+        },
+        {
+            "code": "CS 438",
+            "title": "Communication Networks"
+        },
+        {
+            "code": "CS 241",
+            "title": "System Programming"
+        }
+    ]
+}
