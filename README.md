@@ -1,4 +1,4 @@
-# Knowledge LLM Agent: Hierarchical Assessment Framework for Language Models
+# Knowledge LLM Agent
 
 ## Overview
 
