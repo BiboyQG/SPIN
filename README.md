@@ -159,7 +159,7 @@ def compare_json_objects(ground_truth: dict, test_object: dict):
 
 ## Demo Video
 
-[To be added.]
+[Google Drive](https://drive.google.com/file/d/1Fhn3xOkEkrD5brdmNYp2SDXCdtOYqBBG/view?usp=drive_link)
 
 ## Issues and Future Work
 
@@ -186,7 +186,7 @@ Fall 2024 (Student 1)
 * Week of 10/22/2024: Added explanation for the FSM and example.
 * Week of 11/5/2024: Removed `Instructor-based` extraction and added pure `FSM-based` extraction.
 * Week of 11/20/2024: Added the database setup, connection, and migration.
-* Week of 12/11/2024: Added knowledge extraction and database operations.
+* Week of 12/11/2024: Implemented multi-phase knowledge extraction and database operations.
 * Week of 12/20/2024: Finalized first version of the project.
 
 ## License
