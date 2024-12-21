@@ -121,7 +121,7 @@ def get_final_information_from_all_links_one_by_one(scrape_result, relevance_dic
             none_keys,
         )
         print(f"Finished updating JSON structure with link {i+1}")
-    with open("test_one_by_one.json", "w") as f:
+    with open("./results/test.json", "w") as f:
         json.dump(json.loads(original_response), f)
         print(
             "Finished extracting information from all links one by one, saved to test_one_by_one.json"
