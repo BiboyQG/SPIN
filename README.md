@@ -82,6 +82,7 @@ CUDA_VISIBLE_DEVICES=... NCCL_P2P_DISABLE=1 vllm serve YOUR_MODEL_NAME --gpu-mem
 
 ## Codebase Structure
 
+```
 banghao-chi-knowledge-agent/
 ├── requirements.txt      # Project dependencies
 ├── .gitignore            # Git ignore file
@@ -108,6 +109,7 @@ banghao-chi-knowledge-agent/
 ├── raw.py                # Raw data processing
 ├── database.py           # Database operations
 └── outlines.ipynb        # FSM explanation and example
+```
 
 ## Functional Design (Usage)
 
@@ -174,9 +176,18 @@ Currently, we only have a pipeline for professor data extraction. We will add mo
 * [Banghao Chi](https://biboyqg.github.io/)
 * Advisor: [Kevin Chang](https://siebelschool.illinois.edu/about/people/faculty/kcchang)
 
-## Research Environment
+## Change Log
 
-This research was conducted at the National Center for Supercomputing Applications (NCSA) at the University of Illinois Urbana-Champaign.
+Fall 2024 (Student 1)
+
+* Week of 8/28/2024: Started the project and built interface demo.
+* Week of 9/18/2024: Added the car schema, started to extract car data and evaluate the results.
+* Week of 10/8/2024: Added the movie, professor schema, started to extract movie, professor data and evaluate the results.
+* Week of 10/22/2024: Added explanation for the FSM and example.
+* Week of 11/5/2024: Removed `Instructor-based` extraction and added pure `FSM-based` extraction.
+* Week of 11/20/2024: Added the database setup, connection, and migration.
+* Week of 12/11/2024: Added knowledge extraction and database operations.
+* Week of 12/20/2024: Finalized first version of the project.
 
 ## License
 
@@ -184,4 +195,4 @@ This research was conducted at the National Center for Supercomputing Applicatio
 
 ## Acknowledgments
 
-Special thanks to [Kevin Chang](https://siebelschool.illinois.edu/about/people/faculty/kcchang) and [NCSA](https://ncsa.illinois.edu/) for providing the research infrastructure and support for this project.
+Special thanks to [Kevin Chang](https://siebelschool.illinois.edu/about/people/faculty/kcchang) and National Center for Supercomputing Applications([NCSA](https://ncsa.illinois.edu/)) for providing the research infrastructure and support for this project.
