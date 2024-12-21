@@ -1,0 +1,77 @@
+{
+    "fullname": "Minjia Zhang",
+    "title": "Assistant Professor",
+    "contact": {
+        "phone": "",
+        "email": "minjiaz@illinois.edu"
+    },
+    "office": "Thomas M. Siebel Center for Computer Science 4106, 201 North Goodwin Avenue MC 258 Urbana, IL 61801",
+    "education": [
+        {
+            "degree": "Ph.D.",
+            "field": "Computer Science and Engineering",
+            "institution": "Ohio State University, USA",
+            "year": 2016
+        }
+    ],
+    "biography": "Minjia Zhang joins the faculty in Spring 2024. He comes to Illinois from Microsoft, where he is a Principal Engineer. His research interests lie in programmability, performance, and scalability in parallel runtime and machine learning systems, particularly emphasizing the intersection of novel machine learning algorithms and AI systems. He joined Microsoft Research at Redmond as a Senior Research Software Development Engineer in 2016. Before joining Microsoft, he received his PhD from the Computer Science and Engineering Department at Ohio State University.",
+    "professionalHighlights": [
+        {
+            "position": "Tenure-Track Assistant Professor",
+            "organization": "Computer Science Department, Univ. of Illinois",
+            "yearStart": 2023,
+            "yearEnd": null
+        },
+        {
+            "position": "Affiliate Professor",
+            "organization": "Department of Electrical and Computer Engineering, Univ. of Illinois",
+            "yearStart": 2023,
+            "yearEnd": null
+        },
+        {
+            "position": "Affiliate Professor",
+            "organization": "Center for Artificial Intelligence Innovation (CAII) at National Center for Supercomputing Applications (NCSA), Univ. of Illinois",
+            "yearStart": 2023,
+            "yearEnd": null
+        },
+        {
+            "position": "Principal Researcher and Technical Lead",
+            "organization": "Microsoft Research Redmond and WebXT division",
+            "yearStart": 2016,
+            "yearEnd": 2023
+        }
+    ],
+    "researchStatement": "My research interests lie in the intersection of machine learning systems, parallel computing, and AI efficiency. I am particularly interested in developing efficient and scalable systems and algorithms for large-scale deep learning training and inference on parallel, distributed, and heterogeneous hardware. I have also worked on model compression, natural language processing, and high-performance vector database systems.",
+    "researchInterests": [
+        {
+            "area": "Machine Learning Systems",
+            "description": "Efficient machine learning systems (training/inference on parallel/distributed/heterogeneous hardware), Effective efficiency algorithms (model compression, data efficiency, parameter-efficient tuning, etc.), Large-scale DL/AI applications (RAG, Image/Video Generation, VLM, DLRM, etc.)"
+        },
+        {
+            "area": "Parallel Computing",
+            "description": "AI Training at Scale and Speed: Breaking the Memory Wall and Beyond, Ultra-Fast Inference: Meet the Need for Speed in Production, Model Compression: Smaller, Faster, and Cheaper DNN, Generative AI and its Applications: LLM Alignment, Vision-Language Model, Diffusion Model, AI4Science: Towards Efficiently Intelligent AI for Scientific Discovery, AI Vector Database: High-Performance Vector Database Systems Built for Scale, Parallel Programming and Scalable Runtime"
+        },
+        {
+            "area": "AI Efficiency",
+            "description": "AI Training at Scale and Speed: Breaking the Memory Wall and Beyond, Ultra-Fast Inference: Meet the Need for Speed in Production, Model Compression: Smaller, Faster, and Cheaper DNN"
+        },
+        {
+            "area": "Model Compression",
+            "description": "Model Compression: Smaller, Faster, and Cheaper DNN"
+        },
+        {
+            "area": "Natural Language Processing",
+            "description": "Generative AI and its Applications: LLM Alignment, Vision-Language Model, Diffusion Model"
+        }
+    ],
+    "researchAreas": [],
+    "publications": [],
+    "teachingHonors": [],
+    "researchHonors": [],
+    "coursesTaught": [
+        {
+            "code": "CS 598 AIE",
+            "title": "AI Efficiency: Sys. & Algor."
+        }
+    ]
+}

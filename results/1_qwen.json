@@ -1,0 +1,152 @@
+{
+    "fullname": "Matthew Caesar",
+    "title": "Professor",
+    "contact": {
+        "phone": "(847) 323-2968",
+        "email": "caesar@illinois.edu"
+    },
+    "office": "3118 Siebel Center for Comp Sci",
+    "education": [
+        {
+            "degree": "Ph.D.",
+            "field": "Computer Science",
+            "institution": "University of California, Berkeley",
+            "year": 2007
+        }
+    ],
+    "biography": "Matthew Caesar is a Professor in the Department of Computer Science at the University of Illinois at Urbana-Champaign. He is also an Affiliated Professor in the Department of Electrical and Computer Engineering, Coordinated Science Laboratory, School of Information Sciences, and Information Trust Institute. His research focuses on improving the robustness of computer systems and networks through principles of softwarization and programmability, enabling the use of techniques from the field of software engineering and AI to build highly functional and reliable systems. He is the Chair of ACM SIGCOMM and the co-chair of The Networking Channel, an online community talk series for the computer systems and networking community. He co-founded and previously served as the Chief Science Officer and President of Veriflow (sold to VMware in 2019).",
+    "professionalHighlights": [
+        {
+            "position": "Chair",
+            "organization": "ACM SIGCOMM",
+            "yearStart": 2023,
+            "yearEnd": null
+        },
+        {
+            "position": "Co-chair",
+            "organization": "The Networking Channel",
+            "yearStart": 2023,
+            "yearEnd": null
+        },
+        {
+            "position": "Chief Science Officer and President",
+            "organization": "Veriflow (sold to VMware in 2019)",
+            "yearStart": 2013,
+            "yearEnd": 2019
+        },
+        {
+            "position": "Elevated to IEEE Fellow",
+            "organization": "IEEE",
+            "yearStart": 2024,
+            "yearEnd": null
+        },
+        {
+            "position": "Professor",
+            "organization": "University of Illinois at Urbana-Champaign",
+            "yearStart": 2007,
+            "yearEnd": null
+        },
+        {
+            "position": "Developed and Launched IoT Graduate Courses and Online Specialization",
+            "organization": "University of Illinois at Urbana-Champaign",
+            "yearStart": 2019,
+            "yearEnd": null
+        },
+        {
+            "position": "Research on Mobile Network Infrastructure for Disaster Response",
+            "organization": "University of Illinois at Urbana-Champaign",
+            "yearStart": 2020,
+            "yearEnd": null
+        }
+    ],
+    "researchStatement": "Simplifying management and improving reliability of distributed systems and networks through principles of self-organization and self-diagnosis, with an emphasis on wide-area networks and networked systems. My research focuses on the design, analysis, and implementation of distributed systems and networks on the extremely large scale, with an emphasis on network operations, measurement, and availability. I am particularly interested in improving availability and performance of the Internet infrastructure, including routing, DNS, and data centers.",
+    "researchInterests": [
+        {
+            "area": "Simplifying management and improving reliability of distributed systems and networks",
+            "description": "Through principles of self-organization and self-diagnosis, with an emphasis on wide-area networks and networked systems."
+        },
+        {
+            "area": "Design, analysis, and implementation of distributed systems and networks",
+            "description": "On the extremely large scale, with an emphasis on network operations, measurement, and availability."
+        },
+        {
+            "area": "Improving availability and performance of the Internet infrastructure",
+            "description": "Including routing, DNS, and data centers."
+        },
+        {
+            "area": "Mobile Network Infrastructure for Disaster Response",
+            "description": "Using drones to provide vital Internet connectivity in disaster-stricken areas."
+        }
+    ],
+    "researchAreas": [
+        "Security and Privacy",
+        "Systems and Networking"
+    ],
+    "publications": [],
+    "teachingHonors": [],
+    "researchHonors": [
+        {
+            "honor": "Elevated to IEEE Fellow",
+            "organization": "IEEE",
+            "year": 2024
+        }
+    ],
+    "coursesTaught": [
+        {
+            "code": "CS 437 CHI",
+            "title": "Topics in Internet of Things"
+        },
+        {
+            "code": "CS 437 CSP",
+            "title": "Networked IoT Systems"
+        },
+        {
+            "code": "CS 497",
+            "title": "CS Team Project"
+        },
+        {
+            "code": "CS 498 ISE",
+            "title": "IOT for Software Engineering"
+        },
+        {
+            "code": "CS 498 ISE",
+            "title": "IOT Software Engineering"
+        },
+        {
+            "code": "CS 498 IT3",
+            "title": "Internet of Things"
+        },
+        {
+            "code": "ECE 435 (CS 436)",
+            "title": "Computer Networking Laboratory"
+        },
+        {
+            "code": "CS 498IT",
+            "title": "Internet of Things"
+        },
+        {
+            "code": "CS 436",
+            "title": "Systems and Networking Laboratory"
+        },
+        {
+            "code": "CS 598",
+            "title": "Network Security"
+        },
+        {
+            "code": "CS 598",
+            "title": "Advanced Internetworking"
+        },
+        {
+            "code": "CS 591AoS",
+            "title": "Acting Out Algorithms"
+        },
+        {
+            "code": "CS 438",
+            "title": "Communication Networks"
+        },
+        {
+            "code": "CS 241",
+            "title": "System Programming"
+        }
+    ]
+}
