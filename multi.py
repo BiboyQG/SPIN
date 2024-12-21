@@ -124,7 +124,7 @@ def get_final_information_from_all_links_one_by_one(scrape_result, relevance_dic
     with open("./results/test.json", "w") as f:
         json.dump(json.loads(original_response), f)
         print(
-            "Finished extracting information from all links one by one, saved to test_one_by_one.json"
+            "Finished extracting information from all links one by one, saved to ./results/test.json"
         )
 
 
@@ -231,10 +231,10 @@ def check_link_relevance(url: str, display_text: str, none_key: str, json_data: 
 
 
 if __name__ == "__main__":
-    with open("./dataset/article/prof/0.txt", "r") as file:
+    with open("./dataset/article/prof/6.txt", "r") as file:
         scrape_result = file.read()
 
-    open_source_model = "TechxGenus/Mistral-Large-Instruct-2411-AWQ"
+    open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
     prompt_type = "prof"
 
     prof_data_json = get_response_from_open_source_with_extra_body(scrape_result)
