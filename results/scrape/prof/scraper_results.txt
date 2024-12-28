@@ -11,31 +11,31 @@ Matthew Caesar he/him/his
 
 ## For More Information
 
-* [Matthew Caesar's home page](http://www.cs.illinois.edu/~caesar)
+- [Matthew Caesar's home page](http://www.cs.illinois.edu/~caesar)
 
 ## Education
 
-* Ph.D., Computer Science, University of California, Berkeley, 2007
+- Ph.D., Computer Science, University of California, Berkeley, 2007
 
 ## Research Interests
 
-* Simplifying management and improving reliability of distributed systems and networks through principles of self-organization and self-diagnosis, with an emphasis on wide-area networks and networked systems.
-* My research focuses on the design, analysis, and implementation of distributed systems and networks on the extremely large scale, with an emphasis on network operations, measurement, and availability. I am particularly interested in improving availability and performance of the Internet infrastructure, including routing, DNS, and data centers.
+- Simplifying management and improving reliability of distributed systems and networks through principles of self-organization and self-diagnosis, with an emphasis on wide-area networks and networked systems.
+- My research focuses on the design, analysis, and implementation of distributed systems and networks on the extremely large scale, with an emphasis on network operations, measurement, and availability. I am particularly interested in improving availability and performance of the Internet infrastructure, including routing, DNS, and data centers.
 
 ## Research Areas
 
-* [Security and Privacy](https://cs.illinois.edu/research/areas/security-and-privacy)
-* [Systems and Networking](http://cs.illinois.edu/research/areas/systems-and-networking)
+- [Security and Privacy](https://cs.illinois.edu/research/areas/security-and-privacy)
+- [Systems and Networking](http://cs.illinois.edu/research/areas/systems-and-networking)
 
 ## Recent Courses Taught
 
-* CS 437 CHI (CS 437 CSP, CS 437 DSO, CS 437 IOT, CS 437 IT3, CS 437 IT4, CS 437 ITG, CS 437 MC3, CS 437 MC4, CS 437 MCS) - Topics in Internet of Things
-* CS 437 CSP (CS 437 DSO, CS 437 ITG, CS 437 ITU, CS 437 MCS) - Networked IoT Systems
-* CS 497 - CS Team Project
-* CS 498 ISE - IOT for Software Engineering
-* CS 498 ISE - IOT Software Engineering
-* CS 498 IT3 (CS 498 IT4, CS 498 ITC, CS 498 ITF, CS 498 ITO) - Internet of Things
-* ECE 435 (CS 436) - Computer Networking Laboratory
+- CS 437 CHI (CS 437 CSP, CS 437 DSO, CS 437 IOT, CS 437 IT3, CS 437 IT4, CS 437 ITG, CS 437 MC3, CS 437 MC4, CS 437 MCS) - Topics in Internet of Things
+- CS 437 CSP (CS 437 DSO, CS 437 ITG, CS 437 ITU, CS 437 MCS) - Networked IoT Systems
+- CS 497 - CS Team Project
+- CS 498 ISE - IOT for Software Engineering
+- CS 498 ISE - IOT Software Engineering
+- CS 498 IT3 (CS 498 IT4, CS 498 ITC, CS 498 ITF, CS 498 ITO) - Internet of Things
+- ECE 435 (CS 436) - Computer Networking Laboratory
 
 ## Related News
 
