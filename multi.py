@@ -32,7 +32,7 @@ class ResponseOfRelevance(BaseModel):
     reason: str
 
 
-def get_links_from_init_page(scrape_result):
+def get_links_from_page(scrape_result, json_data):
     # client = OpenAI(base_url="http://localhost:8888/v1")
     # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
     client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
@@ -41,12 +41,14 @@ def get_links_from_init_page(scrape_result):
         messages=[
             {
                 "role": "system",
-                "content": f"You are an expert at summarizing {prompt_type} articles in JSON format. Now you are given the initial page of the {prompt_type} article, please extract related hyperlinks that may include information about the {prompt_type} from the page according to the context of the page and the naming of the hyperlinks. For each link, provide both the URL and its display text. You should only return the JSON structure as follows: {RelatedLinks.model_json_schema()}, without any other text or comments.",
+                "content": f"You are an expert at summarizing {prompt_type} entity information in JSON format according to the content of the webpage. Now you are given the content of the {prompt_type} webpage, please extract related hyperlinks that may include information about the {prompt_type} entity from the page according to the entity's existing JSON structure and the naming(including URL and display text) of the hyperlinks. For each link that you think is relevant, provide both the URL and its display text. You should only return the JSON structure as follows: {RelatedLinks.model_json_schema()}, without any other text or comments.",
             },
             {
                 "role": "user",
-                "content": f"The initial page of the {prompt_type} is: "
-                + scrape_result,
+                "content": f"The content of the {prompt_type} webpage is:\n"
+                + scrape_result
+                + "\nThe entity's existing JSON structure is:\n"
+                + json_data,
             },
         ],
         max_tokens=16384,
@@ -244,7 +246,7 @@ if __name__ == "__main__":
     none_keys = get_none_value_keys(prof_data)
 
     links_obj = RelatedLinks.model_validate_json(
-        get_links_from_init_page(scrape_result)
+        get_links_from_page(scrape_result, json.dumps(prof_data))
     )
 
     relevance_dict = {}
