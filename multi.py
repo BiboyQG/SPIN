@@ -67,11 +67,11 @@ def get_response_from_open_source_with_extra_body(scrape_result):
         messages=[
             {
                 "role": "system",
-                "content": f"You are an expert at summarizing {prompt_type} articles in JSON format. You should only return the JSON structure as follows: {Prof.model_json_schema()}, without any other text or comments.",
+                "content": f"You are an expert at summarizing {prompt_type} entity information in JSON format according to the content of the webpage. You should only return the JSON structure as follows: {Prof.model_json_schema()}, without any other text or comments.",
             },
             {
                 "role": "user",
-                "content": f"The article of the {prompt_type} is: " + scrape_result,
+                "content": f"The content of the {prompt_type} webpage is:\n{scrape_result}",
             },
         ],
         max_tokens=16384,
@@ -92,15 +92,12 @@ def get_response_from_open_source_with_extra_body_update(
         messages=[
             {
                 "role": "system",
-                "content": f"You are an expert at summarizing {prompt_type} articles in JSON format. Now you are given an inital {prompt_type} JSON structure, please update the JSON structure with the new information from the {prompt_type} article if necessary, targeting the fields that are None or empty list or empty dict or empty string specified by the user.",
+                "content": f"You are an expert at summarizing {prompt_type} entity information in JSON format according to the content of the webpage. Now you are given an inital {prompt_type} JSON structure, please update the JSON structure with the new information from the {prompt_type} webpage if necessary, targeting the fields that are None or empty list or empty dict or empty string specified by the user.",
             },
             {
                 "role": "user",
-                "content": f"The new {prompt_type} article is: "
-                + scrape_result
-                + "\n"
-                + f"The initial {prompt_type} JSON structure is: "
-                + original_response
+                "content": f"The new {prompt_type} webpage is:\n{scrape_result}\n"
+                + f"The entity's existing JSON structure is:\n{original_response}\n"
                 + f"The fields that are None or empty list or empty dict or empty string are: {none_keys}",
             },
         ],
@@ -222,7 +219,7 @@ def check_link_relevance(url: str, display_text: str, none_key: str, json_data: 
             },
             {
                 "role": "user",
-                "content": f"Given a hyperlink with:\nURL: {url}\nDisplay text: {display_text}\n\nDo you think this link might contain information about the {prompt_type} {json_data['fullname']}'s {none_key}?",
+                "content": f"Given a hyperlink with:\nURL: {url}\nDisplay text: {display_text}\n\nDo you think this link might contain information about the {prompt_type} {json_data['fullname'] if json_data else 'entity'}'s {none_key}?",
             },
         ],
         max_tokens=16384,
