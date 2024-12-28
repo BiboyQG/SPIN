@@ -80,11 +80,18 @@ class WebScraper:
         # Ensure proper spacing around headers
         content = re.sub(r"(^|\n)(#+ .*?)(\n|$)", r"\n\n\2\n\n", content)
 
-        # Add spacing around bullet points
-        content = re.sub(r"(^|\n)(\* .*?)(\n|$)", r"\n\n\2\n\n", content)
+        # Add spacing before and after bullet point lists as a whole, but not between items
+        # Match bullet point lists and ensure they have proper spacing
+        content = re.sub(
+            r"(^|\n)([*-] .*(?:\n[*-] .*)*)",
+            lambda m: f"\n\n{m.group(2).replace('* ', '- ')}\n\n",
+            content,
+        )
 
-        # Add spacing around standalone links
-        content = re.sub(r"(^|\n)(\[.*?\]\(.*?\))(\n|$)", r"\n\n\2\n\n", content)
+        # Add spacing around standalone links (that are not part of a list)
+        content = re.sub(
+            r"(^|\n)(?![*-] )(\[.*?\]\(.*?\))(\n|$)", r"\n\n\2\n\n", content
+        )
 
         # Handle contact information (phone, email) with single line breaks
         content = re.sub(r"(\(\d{3}\) \d{3}-\d{4})\n\n", r"\1\n", content)
@@ -95,7 +102,7 @@ class WebScraper:
 
         # Remove blank lines at start and end
         content = re.sub(r"^\n+", "", content)
-        content = re.sub(r"\n+$", "", content)
+        content = re.sub(r"\n+$", "\n", content)
 
         # Special handling for title/header at the start
         if content.startswith("# "):
