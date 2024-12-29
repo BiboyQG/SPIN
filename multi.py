@@ -8,8 +8,8 @@ import argparse
 from pydantic import BaseModel, BeforeValidator, HttpUrl, TypeAdapter
 from prompt.prof import Prof
 from openai import OpenAI
-from psycopg2.extras import Json
-import psycopg2
+# from psycopg2.extras import Json
+# import psycopg2
 from scraper import WebScraper
 
 # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
