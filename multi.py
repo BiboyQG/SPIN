@@ -3,6 +3,7 @@ import json
 import os
 from tqdm import tqdm
 import logging
+import argparse
 
 from pydantic import BaseModel, BeforeValidator, HttpUrl, TypeAdapter
 from prompt.prof import Prof
@@ -382,9 +383,21 @@ def gather_links_recursively(
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Process entity information with configurable depth."
+    )
+    parser.add_argument(
+        "-d",
+        "--depth",
+        type=int,
+        default=2,
+        help="Maximum depth for recursive link gathering (default: 2)",
+    )
+    args = parser.parse_args()
+
     open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
     prompt_type = "prof"
-    max_depth = 2
+    max_depth = args.depth
 
     # Set up logging
     setup_logging(open_source_model, prompt_type, max_depth)
