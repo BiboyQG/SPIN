@@ -2,6 +2,7 @@ from typing import Annotated, List, Literal
 import json
 import os
 from tqdm import tqdm
+import logging
 
 from pydantic import BaseModel, BeforeValidator, HttpUrl, TypeAdapter
 from prompt.prof import Prof
@@ -43,13 +44,52 @@ class ResponseOfRelevance(BaseModel):
     reason: str
 
 
+def setup_logging(open_source_model, prompt_type, max_depth):
+    # Create logs directory structure
+    os.makedirs("./logs", exist_ok=True)
+    os.makedirs(f"./logs/{open_source_model}", exist_ok=True)
+    os.makedirs(f"./logs/{open_source_model}/{prompt_type}", exist_ok=True)
+    os.makedirs(f"./logs/{open_source_model}/{prompt_type}/{max_depth}", exist_ok=True)
+
+    log_path = f"./logs/{open_source_model}/{prompt_type}/{max_depth}/log.txt"
+
+    # Disable httpx logger to prevent OpenAI HTTP request logs
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+
+    # Configure logging with a more detailed format
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s\n",
+        datefmt="%Y-%m-%d %H:%M:%S",
+        handlers=[
+            logging.FileHandler(log_path),
+            logging.StreamHandler(),
+        ],
+    )
+
+    # Add custom log formatting functions
+    def log_section(message):
+        logging.info(f"\n{'='*80}\n{message}\n{'='*80}")
+
+    def log_subsection(message):
+        logging.info(f"\n{'-'*40}\n{message}\n{'-'*40}")
+
+    def log_url_processing(url, index, total):
+        logging.info(f"\n{'#'*80}\nProcessing URL [{index}/{total}]: {url}\n{'#'*80}")
+
+    # Add these functions to the logging module for easy access
+    logging.section = log_section
+    logging.subsection = log_subsection
+    logging.url_processing = log_url_processing
+
+
 def get_links_from_page(scrape_result, json_data):
     response = client.chat.completions.create(
         model=open_source_model,
         messages=[
             {
                 "role": "system",
-                "content": f"You are an expert at summarizing {prompt_type} entity information in JSON format according to the content of the webpage. Now you are given the content of the {prompt_type} webpage, please extract related hyperlinks that may include information about the {prompt_type} entity from the page according to the entity's existing JSON structure and the naming(including URL and display text) of the hyperlinks. For each link that you think is relevant, provide both the URL and its display text. You should only return the JSON structure as follows: {RelatedLinks.model_json_schema()}, without any other text or comments.",
+                "content": f"You are an expert at summarizing {prompt_type} entity information in JSON format according to the content of the webpage. Now you are given the content of the {prompt_type} webpage, please extract related hyperlinks that may include information about the {prompt_type} entity from the page according to the entity's existing JSON structure and the naming(including URL and display text) of the hyperlinks. For each link that you think may contain the information of the entity's field, provide both the URL and its display text. You should return them only in the JSON structure as follows: {RelatedLinks.model_json_schema()}, without any other text or comments.",
             },
             {
                 "role": "user",
@@ -111,18 +151,20 @@ def get_response_from_open_source_with_extra_body_update(
 
 
 # Append the content of the links to the original page, and then extract the information based on the appended page
-def get_final_information_from_all_links_one_by_one(scrape_result, relevance_dict):
-    print("Getting initial response from webpage...")
+def get_final_information_from_all_links_one_by_one(
+    scrape_result, relevance_dict, output_path
+):
+    logging.info("Getting initial response from webpage...")
     original_response = get_response_from_open_source_with_extra_body(scrape_result)
 
-    print("\nUpdating information with relevant links...")
+    logging.info("\nUpdating information with relevant links...")
     for i, (link, none_keys) in enumerate(
         tqdm(relevance_dict.items(), desc="Processing links")
     ):
-        print(f"\nProcessing link {i+1}/{len(relevance_dict)}: {link}")
+        logging.info(f"\nProcessing link {i+1}/{len(relevance_dict)}: {link}")
         scrape_result = scraper.scrape_url(link)["markdown"]
         if scrape_result is None:
-            print(f"Skipping link {link} because it is not accessible")
+            logging.warning(f"Skipping link {link} because it is not accessible")
             continue
         original_response = get_response_from_open_source_with_extra_body_update(
             scrape_result,
@@ -130,10 +172,10 @@ def get_final_information_from_all_links_one_by_one(scrape_result, relevance_dic
             none_keys,
         )
 
-    print("\nSaving final results...")
-    with open("./results/test.json", "w") as f:
+    logging.info("\nSaving final results...")
+    with open(output_path, "w") as f:
         json.dump(json.loads(original_response), f)
-        print("Results saved to ./results/test.json")
+        logging.info(f"Results saved to {output_path}")
 
 
 # Connect to the Postgres database and save the information to the database
@@ -185,10 +227,12 @@ def save_prof_to_database(prof_data):
         # Execute the query
         cur.execute(insert_query, values)
         conn.commit()
-        print(f"Successfully saved professor {prof_data['fullname']} to database")
+        logging.info(
+            f"Successfully saved professor {prof_data['fullname']} to database"
+        )
 
     except Exception as e:
-        print(f"Error saving to database: {str(e)}")
+        logging.error(f"Error saving to database: {str(e)}")
         if conn:
             conn.rollback()
     finally:
@@ -238,112 +282,167 @@ def check_link_relevance(
 
 
 def gather_links_recursively(
-    initial_scrape_result, json_data, max_depth=3, visited_urls=None
+    initial_scrape_result,
+    json_data,
+    none_keys,
+    max_depth=3,
+    visited_urls=None,
+    relevance_dict=None,
 ):
-    """
-    Recursively gather links from pages up to a maximum depth.
-
-    Args:
-        initial_scrape_result (str): The initial page content
-        json_data (dict): The entity's data
-        max_depth (int): Maximum recursion depth to prevent infinite loops
-        visited_urls (set): Set of already visited URLs to prevent cycles
-
-    Returns:
-        set: Set of LinkInfo objects containing all discovered relevant links
-    """
     if visited_urls is None:
         visited_urls = set()
+    if relevance_dict is None:
+        relevance_dict = {}
 
     if max_depth <= 0:
-        return set()
+        return set(), relevance_dict
 
-    print(f"\nGathering links at depth {max_depth}...")
-    all_links = set()
+    logging.section(f"Gathering links at depth {max_depth}")
+    relevant_links = set()
 
     # Get links from current page
-    print("Extracting links from current page...")
+    logging.subsection("Extracting links from current page")
     links_obj = RelatedLinks.model_validate_json(
         get_links_from_page(initial_scrape_result, json.dumps(json_data))
     )
 
     # Process each link
-    for link in tqdm(links_obj.related_links, desc="Processing discovered links"):
+    total_links = len(links_obj.related_links)
+    logging.info(f"Found {total_links} links to process")
+
+    for idx, link in enumerate(
+        tqdm(links_obj.related_links, desc="Processing discovered links")
+    ):
+        logging.subsection(f"Processing link {idx + 1}/{total_links}")
+        logging.info(f"URL: {link.url}")
+        logging.info(f"Display text: {link.display_text}")
+
         if link.url in visited_urls:
+            logging.info("⏩ Skipping - URL already visited")
+            continue
+
+        if link.url.lower().endswith(".pdf"):
+            logging.info("⏩ Skipping - PDF URL")
             continue
 
         visited_urls.add(link.url)
-        all_links.add(link)
 
-        try:
-            print(f"\nScraping URL: {link.url}")
-            new_scrape_result = scraper.scrape_url(link.url)["markdown"]
+        # Check relevance of the link
+        relevant_fields = []
+        logging.info("Checking relevance for empty fields:")
 
-            nested_links = gather_links_recursively(
-                new_scrape_result, json_data, max_depth - 1, visited_urls
+        for none_key in none_keys:
+            relevance = check_link_relevance(
+                link.url, link.display_text, none_key, json_data
             )
-            all_links.update(nested_links)
-        except Exception as e:
-            print(f"Error processing URL {link.url}: {str(e)}")
-            continue
+            if relevance.answer == "Yes":
+                relevant_fields.append(none_key)
+                logging.info(f"✅ Relevant to '{none_key}': {relevance.reason}")
+            else:
+                logging.info(f"❌ Not relevant to '{none_key}': {relevance.reason}")
 
-    return all_links
+        # Only process and recurse on relevant links
+        if relevant_fields:
+            relevant_links.add(link)
+            relevance_dict[link.url] = relevant_fields
+            logging.info(
+                f"📍 Link is relevant for fields: {', '.join(relevant_fields)}"
+            )
+
+            try:
+                logging.subsection(f"Scraping relevant URL: {link.url}")
+                new_scrape_result = scraper.scrape_url(link.url)["markdown"]
+
+                if new_scrape_result is None:
+                    logging.warning("⚠️  URL not accessible - skipping")
+                    continue
+
+                logging.info("🔄 Starting recursive link gathering...")
+                nested_links, nested_relevance = gather_links_recursively(
+                    new_scrape_result,
+                    json_data,
+                    none_keys,
+                    max_depth - 1,
+                    visited_urls,
+                    relevance_dict,
+                )
+                relevant_links.update(nested_links)
+                logging.info(f"Found {len(nested_links)} additional relevant links")
+
+            except Exception as e:
+                logging.error(f"❌ Error processing URL: {str(e)}")
+                continue
+        else:
+            logging.info("⏩ Skipping - No relevant fields found")
+
+    logging.section(f"Completed depth {max_depth}")
+    logging.info(f"Total relevant links found at this depth: {len(relevant_links)}")
+
+    return relevant_links, relevance_dict
 
 
 if __name__ == "__main__":
-    print("Starting professor information extraction process...")
-
-    print("Reading input file...")
-    with open("./dataset/article/prof/6.txt", "r") as file:
-        scrape_result = file.read()
-
     open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
     prompt_type = "prof"
+    max_depth = 2
 
-    print("\nExtracting initial professor data...")
-    prof_data_json = get_response_from_open_source_with_extra_body(scrape_result)
-    prof_data = json.loads(prof_data_json)
+    # Set up logging
+    setup_logging(open_source_model, prompt_type, max_depth)
 
-    print("Identifying empty fields...")
-    none_keys = get_none_value_keys(prof_data)
-    print(f"Found {len(none_keys)} empty fields: {none_keys}")
+    logging.section("Starting professor information extraction process")
 
-    print("\nGathering initial links from page...")
-    links_obj = RelatedLinks.model_validate_json(
-        get_links_from_page(scrape_result, json.dumps(prof_data))
-    )
+    logging.info("Reading URLs from prof.txt...")
+    with open("./dataset/source/prof.txt", "r") as file:
+        urls = [url.strip() for url in file.readlines()]
 
-    print("\nStarting recursive link discovery...")
-    all_discovered_links = gather_links_recursively(
-        scrape_result, prof_data, max_depth=2
-    )
-    links_obj.related_links = list(all_discovered_links)
+    # Process each URL
+    for idx, url in enumerate(urls):
+        logging.url_processing(url, idx + 1, len(urls))
 
-    print(f"\nDiscovered {len(links_obj.related_links)} total links:")
-    for link in links_obj.related_links:
-        print(f"- {link.url} ({link.display_text})")
+        logging.subsection("Scraping webpage content")
+        try:
+            scrape_result = scraper.scrape_url(url)["markdown"]
+            if scrape_result is None:
+                logging.warning(f"⚠️  Skipping URL {url} - unable to scrape content")
+                continue
+        except Exception as e:
+            logging.error(f"❌ Error scraping URL {url}: {str(e)}")
+            continue
 
-    print("\nAnalyzing link relevance...")
-    relevance_dict = {}
+        logging.subsection("Extracting initial professor data")
+        prof_data_json = get_response_from_open_source_with_extra_body(scrape_result)
+        prof_data = json.loads(prof_data_json)
 
-    for link in tqdm(links_obj.related_links, desc="Checking link relevance"):
-        relevance_dict[link.url] = []
-        for none_key in none_keys:
-            relevance = check_link_relevance(
-                link.url, link.display_text, none_key, prof_data
-            )
-            if relevance.answer == "Yes":
-                relevance_dict[link.url].append(none_key)
-                print(f"\nLink {link.url} is relevant to {none_key}")
-                print(f"Reason: {relevance.reason}")
+        logging.subsection("Identifying empty fields")
+        none_keys = get_none_value_keys(prof_data)
+        logging.info(f"Found {len(none_keys)} empty fields:")
+        for key in none_keys:
+            logging.info(f"  • {key}")
 
-    relevance_dict = {k: v for k, v in relevance_dict.items() if len(v) > 0}
+        logging.subsection("Gathering relevant links recursively")
+        all_discovered_links, relevance_dict = gather_links_recursively(
+            scrape_result, prof_data, none_keys, max_depth=2
+        )
 
-    print(
-        f"\nFound {len(relevance_dict)} relevant links: {list(relevance_dict.keys())}"
-    )
+        logging.info(f"\nDiscovered {len(all_discovered_links)} relevant links:")
+        for link in all_discovered_links:
+            logging.info(f"  • {link.url}")
+            logging.info(f"    ├─ Display: {link.display_text}")
+            logging.info(f"    └─ Relevant to: {', '.join(relevance_dict[link.url])}")
 
-    print("\nExtracting information from relevant links...")
-    get_final_information_from_all_links_one_by_one(scrape_result, relevance_dict)
+        logging.subsection("Extracting information from relevant links")
+        # Create results directory if it doesn't exist
+        os.makedirs(
+            f"./results/{open_source_model}/{prompt_type}/{max_depth}", exist_ok=True
+        )
+        output_path = (
+            f"./results/{open_source_model}/{prompt_type}/{max_depth}/{idx}.json"
+        )
 
-    print("\nProcess completed successfully!")
+        get_final_information_from_all_links_one_by_one(
+            scrape_result, relevance_dict, output_path
+        )
+
+        logging.info(f"✅ Results saved to {output_path}")
+
+    logging.section("Process completed successfully!")
