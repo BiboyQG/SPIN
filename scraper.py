@@ -110,9 +110,34 @@ class WebScraper:
 
         return content
 
+    def is_publication_page(self, url: str) -> bool:
+        """
+        Check if the URL is likely a publication page.
+
+        Args:
+            url (str): The URL to check
+
+        Returns:
+            bool: True if it's a publication page, False otherwise
+        """
+        # Check if URL ends with pub.html
+        if url.lower().endswith("pub.html"):
+            return True
+
+        # Add more publication-related patterns here if needed
+        pub_patterns = [
+            r"/publication[s]?/",
+            r"/pub[s]?/",
+            r"/paper[s]?/",
+            r"/article[s]?/",
+        ]
+
+        return any(re.search(pattern, url.lower()) for pattern in pub_patterns)
+
     def scrape_url(self, url: str, params: Optional[Dict] = None) -> Dict[str, str]:
         """
         Scrape a URL and return its content in markdown format.
+        For publication pages, only return the first half of the content.
 
         Args:
             url (str): The URL to scrape
@@ -148,6 +173,12 @@ class WebScraper:
 
             # Clean up the markdown content
             markdown_content = self.clean_markdown(markdown_content)
+
+            # If it's a publication page, only return the first half
+            if self.is_publication_page(url):
+                lines = markdown_content.splitlines()
+                half_length = len(lines) // 2
+                markdown_content = "\n".join(lines[:half_length])
 
             return {"markdown": markdown_content}
 
