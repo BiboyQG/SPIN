@@ -12,7 +12,8 @@ from psycopg2.extras import Json
 import psycopg2
 from scraper import WebScraper
 
-client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
+# client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
+client = OpenAI(base_url="http://localhost:8000/v1")
 
 scraper = WebScraper()
 
