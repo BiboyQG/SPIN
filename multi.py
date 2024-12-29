@@ -1,15 +1,18 @@
 from typing import Annotated, List, Literal
 import json
 import os
+from tqdm import tqdm
 
 from pydantic import BaseModel, BeforeValidator, HttpUrl, TypeAdapter
-from firecrawl import FirecrawlApp
 from prompt.prof import Prof
 from openai import OpenAI
 from psycopg2.extras import Json
 import psycopg2
+from scraper import WebScraper
 
-fire_app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
+client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
+
+scraper = WebScraper()
 
 http_url_adapter = TypeAdapter(HttpUrl)
 
@@ -22,6 +25,14 @@ class LinkInfo(BaseModel):
     url: Url
     display_text: str
 
+    def __hash__(self):
+        return hash((self.url, self.display_text))
+
+    def __eq__(self, other):
+        if not isinstance(other, LinkInfo):
+            return False
+        return self.url == other.url and self.display_text == other.display_text
+
 
 class RelatedLinks(BaseModel):
     related_links: List[LinkInfo]
@@ -33,9 +44,6 @@ class ResponseOfRelevance(BaseModel):
 
 
 def get_links_from_page(scrape_result, json_data):
-    # client = OpenAI(base_url="http://localhost:8888/v1")
-    # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
-    client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
     response = client.chat.completions.create(
         model=open_source_model,
         messages=[
@@ -59,9 +67,6 @@ def get_links_from_page(scrape_result, json_data):
 
 
 def get_response_from_open_source_with_extra_body(scrape_result):
-    # client = OpenAI(base_url="http://localhost:8888/v1")
-    # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
-    client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
     response = client.chat.completions.create(
         model=open_source_model,
         messages=[
@@ -84,9 +89,6 @@ def get_response_from_open_source_with_extra_body(scrape_result):
 def get_response_from_open_source_with_extra_body_update(
     scrape_result, original_response, none_keys
 ):
-    # client = OpenAI(base_url="http://localhost:8888/v1")
-    # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
-    client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
     response = client.chat.completions.create(
         model=open_source_model,
         messages=[
@@ -110,21 +112,28 @@ def get_response_from_open_source_with_extra_body_update(
 
 # Append the content of the links to the original page, and then extract the information based on the appended page
 def get_final_information_from_all_links_one_by_one(scrape_result, relevance_dict):
+    print("Getting initial response from webpage...")
     original_response = get_response_from_open_source_with_extra_body(scrape_result)
-    for i, (link, none_keys) in enumerate(relevance_dict.items()):
+
+    print("\nUpdating information with relevant links...")
+    for i, (link, none_keys) in enumerate(
+        tqdm(relevance_dict.items(), desc="Processing links")
+    ):
+        print(f"\nProcessing link {i+1}/{len(relevance_dict)}: {link}")
+        scrape_result = scraper.scrape_url(link)["markdown"]
+        if scrape_result is None:
+            print(f"Skipping link {link} because it is not accessible")
+            continue
         original_response = get_response_from_open_source_with_extra_body_update(
-            fire_app.scrape_url(
-                link, params={"formats": ["markdown"], "excludeTags": ["img", "video"]}
-            )["markdown"],
+            scrape_result,
             original_response,
             none_keys,
         )
-        print(f"Finished updating JSON structure with link {i+1}")
+
+    print("\nSaving final results...")
     with open("./results/test.json", "w") as f:
         json.dump(json.loads(original_response), f)
-        print(
-            "Finished extracting information from all links one by one, saved to ./results/test.json"
-        )
+        print("Results saved to ./results/test.json")
 
 
 # Connect to the Postgres database and save the information to the database
@@ -206,10 +215,9 @@ def get_none_value_keys(json_obj: dict) -> List[str]:
     ]
 
 
-def check_link_relevance(url: str, display_text: str, none_key: str, json_data: dict) -> ResponseOfRelevance:
-    # client = OpenAI(base_url="http://localhost:8888/v1")
-    # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
-    client = OpenAI(base_url="http://Osprey2.csl.illinois.edu:8000/v1")
+def check_link_relevance(
+    url: str, display_text: str, none_key: str, json_data: dict
+) -> ResponseOfRelevance:
     response = client.chat.completions.create(
         model=open_source_model,
         messages=[
@@ -229,46 +237,113 @@ def check_link_relevance(url: str, display_text: str, none_key: str, json_data: 
     return ResponseOfRelevance.model_validate_json(response.choices[0].message.content)
 
 
+def gather_links_recursively(
+    initial_scrape_result, json_data, max_depth=3, visited_urls=None
+):
+    """
+    Recursively gather links from pages up to a maximum depth.
+
+    Args:
+        initial_scrape_result (str): The initial page content
+        json_data (dict): The entity's data
+        max_depth (int): Maximum recursion depth to prevent infinite loops
+        visited_urls (set): Set of already visited URLs to prevent cycles
+
+    Returns:
+        set: Set of LinkInfo objects containing all discovered relevant links
+    """
+    if visited_urls is None:
+        visited_urls = set()
+
+    if max_depth <= 0:
+        return set()
+
+    print(f"\nGathering links at depth {max_depth}...")
+    all_links = set()
+
+    # Get links from current page
+    print("Extracting links from current page...")
+    links_obj = RelatedLinks.model_validate_json(
+        get_links_from_page(initial_scrape_result, json.dumps(json_data))
+    )
+
+    # Process each link
+    for link in tqdm(links_obj.related_links, desc="Processing discovered links"):
+        if link.url in visited_urls:
+            continue
+
+        visited_urls.add(link.url)
+        all_links.add(link)
+
+        try:
+            print(f"\nScraping URL: {link.url}")
+            new_scrape_result = scraper.scrape_url(link.url)["markdown"]
+
+            nested_links = gather_links_recursively(
+                new_scrape_result, json_data, max_depth - 1, visited_urls
+            )
+            all_links.update(nested_links)
+        except Exception as e:
+            print(f"Error processing URL {link.url}: {str(e)}")
+            continue
+
+    return all_links
+
+
 if __name__ == "__main__":
+    print("Starting professor information extraction process...")
+
+    print("Reading input file...")
     with open("./dataset/article/prof/6.txt", "r") as file:
         scrape_result = file.read()
 
     open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
     prompt_type = "prof"
 
+    print("\nExtracting initial professor data...")
     prof_data_json = get_response_from_open_source_with_extra_body(scrape_result)
-
     prof_data = json.loads(prof_data_json)
 
+    print("Identifying empty fields...")
     none_keys = get_none_value_keys(prof_data)
+    print(f"Found {len(none_keys)} empty fields: {none_keys}")
 
+    print("\nGathering initial links from page...")
     links_obj = RelatedLinks.model_validate_json(
         get_links_from_page(scrape_result, json.dumps(prof_data))
     )
 
+    print("\nStarting recursive link discovery...")
+    all_discovered_links = gather_links_recursively(
+        scrape_result, prof_data, max_depth=2
+    )
+    links_obj.related_links = list(all_discovered_links)
+
+    print(f"\nDiscovered {len(links_obj.related_links)} total links:")
+    for link in links_obj.related_links:
+        print(f"- {link.url} ({link.display_text})")
+
+    print("\nAnalyzing link relevance...")
     relevance_dict = {}
 
-    for link in links_obj.related_links:
+    for link in tqdm(links_obj.related_links, desc="Checking link relevance"):
         relevance_dict[link.url] = []
         for none_key in none_keys:
-            relevance = check_link_relevance(link.url, link.display_text, none_key, prof_data)
-            print('--------------------------------')
+            relevance = check_link_relevance(
+                link.url, link.display_text, none_key, prof_data
+            )
             if relevance.answer == "Yes":
                 relevance_dict[link.url].append(none_key)
-                print(f"Relevance: {relevance.answer}")
-                print(f"Link {link.url} is relevant to {none_key}")
-                print(f"Reason: {relevance.reason}")
-            else:
-                print(f"Relevance: {relevance.answer}")
-                print(f"Link {link.url} is not relevant to {none_key}")
+                print(f"\nLink {link.url} is relevant to {none_key}")
                 print(f"Reason: {relevance.reason}")
 
     relevance_dict = {k: v for k, v in relevance_dict.items() if len(v) > 0}
 
-    print(f"Relevance links : {relevance_dict.keys()}")
+    print(
+        f"\nFound {len(relevance_dict)} relevant links: {list(relevance_dict.keys())}"
+    )
 
+    print("\nExtracting information from relevant links...")
     get_final_information_from_all_links_one_by_one(scrape_result, relevance_dict)
 
-    # # with open("test_one_by_one.json", "r") as f:
-    # #     prof_data = json.load(f)
-    # #     save_prof_to_database(prof_data)
+    print("\nProcess completed successfully!")
