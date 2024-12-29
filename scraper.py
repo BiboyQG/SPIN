@@ -152,4 +152,5 @@ class WebScraper:
             return {"markdown": markdown_content}
 
         except requests.RequestException as e:
-            raise Exception(f"Error scraping URL {url}: {str(e)}")
+            print(f"Error scraping URL {url}: {str(e)}")
+            return {"markdown": None}
