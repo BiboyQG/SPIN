@@ -5,6 +5,8 @@ from tqdm import tqdm
 import logging
 import argparse
 import time
+import csv
+from datetime import datetime
 
 from pydantic import BaseModel, HttpUrl, TypeAdapter, ValidationError
 from prompt.prof import Prof
@@ -393,6 +395,76 @@ def format_relevant_link_info(link_url, info, update_times=None, indent="   "):
     return formatted_lines
 
 
+def write_process_stats_to_csv(
+    open_source_model: str,
+    prompt_type: str,
+    max_depth: int,
+    url_processing_times: dict,
+    url_relevant_links: dict,
+    all_update_times: dict,
+):
+    """
+    Write processing statistics to a CSV file.
+
+    Args:
+        open_source_model: Name of the model used
+        prompt_type: Type of prompt used
+        max_depth: Maximum depth of link traversal
+        url_processing_times: Dictionary of processing times for each initial URL
+        url_relevant_links: Dictionary of relevant links and their details for each initial URL
+        all_update_times: Dictionary of update times for relevant links
+    """
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    csv_path = f"./results/{open_source_model}/{prompt_type}/{max_depth}/process_stats_{timestamp}.csv"
+
+    with open(csv_path, "w", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        # Write header
+        writer.writerow(
+            [
+                "Initial URL",
+                "Processing Time (s)",
+                "Relevant Link",
+                "Relevant Fields",
+                "Relevance Reasons",
+                "Update Time (s)",
+            ]
+        )
+
+        # Write data for each initial URL
+        for initial_url, processing_time in url_processing_times.items():
+            relevant_links = url_relevant_links.get(initial_url, {})
+            update_times = all_update_times.get(initial_url, {})
+
+            if not relevant_links:
+                # Write row for URLs with no relevant links
+                writer.writerow([initial_url, f"{processing_time:.2f}", "", "", "", ""])
+            else:
+                # Write rows for each relevant link
+                for rel_url, info in relevant_links.items():
+                    fields = ", ".join(info["fields"])
+                    reasons = "; ".join(
+                        [
+                            f"{field}: {reason}"
+                            for field, reason in info["reasons"].items()
+                        ]
+                    )
+                    update_time = update_times.get(rel_url, 0)
+
+                    writer.writerow(
+                        [
+                            initial_url,
+                            f"{processing_time:.2f}",
+                            rel_url,
+                            fields,
+                            reasons,
+                            f"{update_time:.2f}",
+                        ]
+                    )
+
+    logging.info(f"📊 Process statistics written to: {csv_path}")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Process entity information with configurable depth."
@@ -540,5 +612,15 @@ if __name__ == "__main__":
             logging.info("\n❌ No relevant links found for this URL")
 
         logging.info(f"{'─'*80}")
+
+    logging.section("Writing process statistics to CSV")
+    write_process_stats_to_csv(
+        open_source_model,
+        prompt_type,
+        max_depth,
+        url_processing_times,
+        url_relevant_links,
+        all_update_times,
+    )
 
     logging.section("✅ Process completed successfully!")
