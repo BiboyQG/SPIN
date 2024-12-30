@@ -94,13 +94,13 @@ def setup_logging(open_source_model, prompt_type, max_depth):
     def log_url_processing(url, index, total):
         logging.info(f"\n{'#'*80}\nProcessing URL [{index}/{total}]: {url}\n{'#'*80}")
 
-    def log_summary(url, duration, relevant_links_info):
+    def log_summary(url, duration, relevant_links_info, update_times=None):
         summary = f"\n📊 Summary for {url}\n"
         summary += f"{'─'*80}\n"
-        summary += f"⏱️  Processing Duration: {duration:.2f} seconds\n"
+        summary += f"⏱️  Total Processing Duration: {duration:.2f} seconds\n"
 
         if relevant_links_info:
-            summary += "\n📎 Relevant Links Found:\n"
+            summary += "\n📎 Relevant Links Analysis:\n"
             for link_url, info in relevant_links_info.items():
                 summary += f"\n🔗 {link_url}\n"
                 summary += f"   Fields: {', '.join(info['fields'])}\n"
@@ -108,6 +108,10 @@ def setup_logging(open_source_model, prompt_type, max_depth):
                     summary += "   Reasons:\n"
                     for field, reason in info["reasons"].items():
                         summary += f"   • {field}: {reason}\n"
+                if update_times and link_url in update_times:
+                    summary += (
+                        f"   ⏱️  Update Time: {update_times[link_url]:.2f} seconds\n"
+                    )
         else:
             summary += "\n❌ No relevant links found\n"
 
@@ -196,6 +200,8 @@ def get_final_information_from_all_links_one_by_one(
     original_response = get_response_from_open_source_with_extra_body(scrape_result)
 
     logging.info("\nUpdating information with relevant links...")
+    update_times = {}  # Track update times for each link
+
     for i, (link, none_keys) in enumerate(
         tqdm(relevance_dict.items(), desc="Processing links")
     ):
@@ -204,16 +210,22 @@ def get_final_information_from_all_links_one_by_one(
         if scrape_result is None:
             logging.warning(f"Skipping link {link} because it is not accessible")
             continue
+
+        # Track time for JSON update
+        start_time = time.time()
         original_response = get_response_from_open_source_with_extra_body_update(
             scrape_result,
             original_response,
             none_keys,
         )
+        update_times[link] = time.time() - start_time
 
     logging.info("\nSaving final results...")
     with open(output_path, "w") as f:
         json.dump(json.loads(original_response), f)
         logging.info(f"Results saved to {output_path}")
+
+    return update_times
 
 
 def get_none_value_keys(json_obj: dict) -> List[str]:
@@ -457,16 +469,22 @@ if __name__ == "__main__":
 
             logging.subsection("Extracting information from relevant links")
 
-            get_final_information_from_all_links_one_by_one(
+            update_times = get_final_information_from_all_links_one_by_one(
                 scrape_result, relevance_dict, output_path
             )
         else:
             logging.subsection("No empty fields found, saving initial data")
             with open(output_path, "w") as f:
                 json.dump(prof_data, f)
+            update_times = {}
 
         url_processing_times[url] = time.time() - url_start_time
-        logging.summary(url, url_processing_times[url], url_relevant_links.get(url, {}))
+        logging.summary(
+            url,
+            url_processing_times[url],
+            url_relevant_links.get(url, {}),
+            update_times,
+        )
         logging.info(f"✅ Results saved to {output_path}")
 
     total_duration = time.time() - start_time
@@ -474,8 +492,28 @@ if __name__ == "__main__":
     logging.section("Final Process Summary")
     logging.info(f"Total Processing Time: {total_duration:.2f} seconds")
     logging.info(f"Number of URLs Processed: {len(urls)}")
-    logging.info("\nProcessing Time per URL:")
-    for url, duration in url_processing_times.items():
-        logging.info(f"• {url}: {duration:.2f} seconds")
 
-    logging.section("Process completed successfully!")
+    logging.info("\n📊 Detailed Analysis by URL:")
+    for url in urls:
+        logging.info(f"\n{'─'*80}")
+        logging.info(f"🌐 {url}")
+        logging.info(
+            f"⏱️  Processing Time: {url_processing_times.get(url, 0):.2f} seconds"
+        )
+
+        relevant_links = url_relevant_links.get(url, {})
+        if relevant_links:
+            logging.info("\n📎 Relevant Links Found:")
+            for link_url, info in relevant_links.items():
+                logging.info(f"\n  🔗 {link_url}")
+                logging.info(f"     Fields: {', '.join(info['fields'])}")
+                if "reasons" in info:
+                    logging.info("     Reasons:")
+                    for field, reason in info["reasons"].items():
+                        logging.info(f"     • {field}: {reason}")
+        else:
+            logging.info("\n❌ No relevant links found for this URL")
+
+        logging.info(f"{'─'*80}")
+
+    logging.section("✅ Process completed successfully!")
