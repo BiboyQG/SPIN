@@ -1,6 +1,5 @@
-vllm==0.6.4.post1
+vllm
 openai
-psycopg2
 tqdm
 pydantic
 markdownify
