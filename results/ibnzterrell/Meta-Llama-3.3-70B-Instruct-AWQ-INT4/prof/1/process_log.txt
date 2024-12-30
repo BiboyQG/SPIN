@@ -2915,3 +2915,2938 @@ Final Process Summary
 ✅ Process completed successfully!
 ================================================================================
 
+2024-12-30 08:17:49 [INFO] 
+================================================================================
+Starting professor information extraction process
+================================================================================
+
+2024-12-30 08:17:49 [INFO] Reading URLs from prof.txt...
+
+2024-12-30 08:17:49 [INFO] 
+################################################################################
+Processing URL [1/10]: https://siebelschool.illinois.edu/about/people/all-faculty/caesar
+################################################################################
+
+2024-12-30 08:17:49 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:17:49 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:18:02 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:18:02 [INFO] Found 2 empty fields:
+
+2024-12-30 08:18:02 [INFO]   • biography
+
+2024-12-30 08:18:02 [INFO]   • researchStatement
+
+2024-12-30 08:18:02 [INFO] 
+----------------------------------------
+Gathering relevant links recursively
+----------------------------------------
+
+2024-12-30 08:18:02 [INFO] 
+================================================================================
+Gathering links at depth 1
+================================================================================
+
+2024-12-30 08:18:02 [INFO] 
+----------------------------------------
+Extracting links from current page
+----------------------------------------
+
+2024-12-30 08:18:15 [INFO] Found 9 links to process
+
+2024-12-30 08:18:15 [INFO] 
+----------------------------------------
+Processing link 1/9
+----------------------------------------
+
+2024-12-30 08:18:15 [INFO] URL: http://www.cs.illinois.edu/~caesar
+
+2024-12-30 08:18:15 [INFO] Display text: Matthew Caesar's home page
+
+2024-12-30 08:18:15 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:18:16 [INFO] ✅ Relevant to 'biography': The display text explicitly mentions 'home page' which typically contains biographical information about the person.
+
+2024-12-30 08:18:17 [INFO] ✅ Relevant to 'researchStatement': The display text explicitly mentions the professor's name and the URL appears to be a personal homepage, which often contains research information.
+
+2024-12-30 08:18:17 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:18:17 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://www.cs.illinois.edu/~caesar
+----------------------------------------
+
+2024-12-30 08:18:17 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:18:17 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:18:17 [INFO] 
+----------------------------------------
+Processing link 2/9
+----------------------------------------
+
+2024-12-30 08:18:17 [INFO] URL: https://cs.illinois.edu/research/areas/security-and-privacy
+
+2024-12-30 08:18:17 [INFO] Display text: Security and Privacy
+
+2024-12-30 08:18:17 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:18:19 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about a research area, not a specific professor's biography.
+
+2024-12-30 08:18:20 [INFO] ✅ Relevant to 'researchStatement': The URL and display text suggest a focus on security and privacy, which could be related to a professor's research statement, especially if Matthew Caesar's research aligns with these areas.
+
+2024-12-30 08:18:20 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:18:20 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://cs.illinois.edu/research/areas/security-and-privacy
+----------------------------------------
+
+2024-12-30 08:18:20 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:18:20 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:18:20 [INFO] 
+----------------------------------------
+Processing link 3/9
+----------------------------------------
+
+2024-12-30 08:18:20 [INFO] URL: http://cs.illinois.edu/research/areas/systems-and-networking
+
+2024-12-30 08:18:20 [INFO] Display text: Systems and Networking
+
+2024-12-30 08:18:20 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:18:22 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about a research area, not a professor's biography.
+
+2024-12-30 08:18:23 [INFO] ✅ Relevant to 'researchStatement': The URL and display text suggest a research area, which may be relevant to a professor's research statement, especially considering Matthew Caesar is a professor in the CS department at Illinois, specializing in systems and networking.
+
+2024-12-30 08:18:23 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:18:23 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://cs.illinois.edu/research/areas/systems-and-networking
+----------------------------------------
+
+2024-12-30 08:18:25 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:18:25 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:18:25 [INFO] 
+----------------------------------------
+Processing link 4/9
+----------------------------------------
+
+2024-12-30 08:18:25 [INFO] URL: https://grainger.illinois.edu/news/stories/60906
+
+2024-12-30 08:18:25 [INFO] Display text: Mark Anastasio and Matthew Caesar elevated to IEEE Fellows
+
+2024-12-30 08:18:25 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:18:26 [INFO] ✅ Relevant to 'biography': The display text mentions Matthew Caesar, indicating the link may contain information about him, including his biography.
+
+2024-12-30 08:18:27 [INFO] ❌ Not relevant to 'researchStatement': The display text and URL suggest an award or recognition, not a research statement.
+
+2024-12-30 08:18:27 [INFO] 📍 Link is relevant for fields: biography
+
+2024-12-30 08:18:27 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://grainger.illinois.edu/news/stories/60906
+----------------------------------------
+
+2024-12-30 08:18:27 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:18:27 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:18:27 [INFO] 
+----------------------------------------
+Processing link 5/9
+----------------------------------------
+
+2024-12-30 08:18:27 [INFO] URL: https://siebelschool.illinois.edu/news/caesars-passion-for-iot-helps-transition-his-graduate-course-into-an-online-hands-on-coursera-specialization
+
+2024-12-30 08:18:27 [INFO] Display text: Caesar's Passion for IoT Helps Transition his Graduate Course into an Online, Hands-on Coursera Specialization
+
+2024-12-30 08:18:27 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:18:29 [INFO] ✅ Relevant to 'biography': The display text mentions 'Caesar's Passion', indicating the link is about a person named Caesar, likely a professor, and the URL contains 'caesars', suggesting it may contain biographical information about him.
+
+2024-12-30 08:18:31 [INFO] ✅ Relevant to 'researchStatement': The URL and display text mention a professor's name, Caesar, and his work on IoT, indicating potential relevance to his research statement.
+
+2024-12-30 08:18:31 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:18:31 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/caesars-passion-for-iot-helps-transition-his-graduate-course-into-an-online-hands-on-coursera-specialization
+----------------------------------------
+
+2024-12-30 08:18:31 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:18:31 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:18:31 [INFO] 
+----------------------------------------
+Processing link 6/9
+----------------------------------------
+
+2024-12-30 08:18:31 [INFO] URL: https://siebelschool.illinois.edu/news/cs-csl-alum-shares-advice-from-unique-student-experience
+
+2024-12-30 08:18:31 [INFO] Display text: CS, CSL Alum Shares Advice From Unique Student Experience
+
+2024-12-30 08:18:31 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:18:32 [INFO] ❌ Not relevant to 'biography': The URL and display text do not mention Matthew Caesar or any professor's biography, but rather an alum's advice and experience.
+
+2024-12-30 08:18:34 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text mention a student experience and alumni advice, with no indication of a professor's research statement.
+
+2024-12-30 08:18:34 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:18:34 [INFO] 
+----------------------------------------
+Processing link 7/9
+----------------------------------------
+
+2024-12-30 08:18:34 [INFO] URL: https://siebelschool.illinois.edu/news/caesar-works-improve-internet-connectivity-during-disaster-response
+
+2024-12-30 08:18:34 [INFO] Display text: Caesar Works to Improve Internet Connectivity During Disaster Response
+
+2024-12-30 08:18:34 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:18:35 [INFO] ✅ Relevant to 'biography': The display text mentions 'Caesar', which could refer to the professor Matthew Caesar, and the URL contains 'caesar', suggesting a potential connection to the professor's work or biography.
+
+2024-12-30 08:18:37 [INFO] ✅ Relevant to 'researchStatement': The URL and display text mention 'Caesar Works', which likely refers to a project or initiative led by Matthew Caesar, suggesting the link may contain information about his research.
+
+2024-12-30 08:18:37 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:18:37 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/caesar-works-improve-internet-connectivity-during-disaster-response
+----------------------------------------
+
+2024-12-30 08:18:37 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:18:37 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:18:37 [INFO] 
+----------------------------------------
+Processing link 8/9
+----------------------------------------
+
+2024-12-30 08:18:37 [INFO] URL: https://siebelschool.illinois.edu/news/media-mentions/amazons-move-oracle-caused-prime-day-outage-one-major-warehouse
+
+2024-12-30 08:18:37 [INFO] Display text: Amazon's Move Off Oracle Caused Prime Day Outage In One Major Warehouse
+
+2024-12-30 08:18:37 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:18:39 [INFO] ❌ Not relevant to 'biography': The URL and display text do not mention Matthew Caesar or any related keywords that would indicate information about his biography.
+
+2024-12-30 08:18:40 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text do not mention Matthew Caesar or his research statement, but rather discuss Amazon and Oracle.
+
+2024-12-30 08:18:40 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:18:40 [INFO] 
+----------------------------------------
+Processing link 9/9
+----------------------------------------
+
+2024-12-30 08:18:40 [INFO] URL: https://siebelschool.illinois.edu/news/media-mentions/internal-documents-show-how-amazon-scrambled-fix-prime-day-glitches
+
+2024-12-30 08:18:40 [INFO] Display text: Internal Documents Show How Amazon Scrambled To Fix Prime Day Glitches
+
+2024-12-30 08:18:40 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:18:41 [INFO] ❌ Not relevant to 'biography': The URL and display text do not mention Matthew Caesar or any relevant keywords related to a professor's biography.
+
+2024-12-30 08:18:43 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text do not mention Matthew Caesar or his research statement, instead focusing on Amazon and Prime Day glitches.
+
+2024-12-30 08:18:43 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:18:43 [INFO] 
+================================================================================
+Completed depth 1
+================================================================================
+
+2024-12-30 08:18:43 [INFO] Total relevant links found at this depth: 6
+
+2024-12-30 08:18:56 [INFO] 
+Discovered 6 relevant links:
+
+2024-12-30 08:18:56 [INFO]   • http://www.cs.illinois.edu/~caesar
+
+2024-12-30 08:18:56 [INFO]     ├─ Display: Matthew Caesar's home page
+
+2024-12-30 08:18:56 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:18:56 [INFO]   • http://cs.illinois.edu/research/areas/systems-and-networking
+
+2024-12-30 08:18:56 [INFO]     ├─ Display: Systems and Networking
+
+2024-12-30 08:18:56 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:18:56 [INFO]   • https://siebelschool.illinois.edu/news/caesar-works-improve-internet-connectivity-during-disaster-response
+
+2024-12-30 08:18:56 [INFO]     ├─ Display: Caesar Works to Improve Internet Connectivity During Disaster Response
+
+2024-12-30 08:18:56 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:18:56 [INFO]   • https://grainger.illinois.edu/news/stories/60906
+
+2024-12-30 08:18:56 [INFO]     ├─ Display: Mark Anastasio and Matthew Caesar elevated to IEEE Fellows
+
+2024-12-30 08:18:56 [INFO]     └─ Relevant to: biography
+
+2024-12-30 08:18:56 [INFO]   • https://siebelschool.illinois.edu/news/caesars-passion-for-iot-helps-transition-his-graduate-course-into-an-online-hands-on-coursera-specialization
+
+2024-12-30 08:18:56 [INFO]     ├─ Display: Caesar's Passion for IoT Helps Transition his Graduate Course into an Online, Hands-on Coursera Specialization
+
+2024-12-30 08:18:56 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:18:56 [INFO]   • https://cs.illinois.edu/research/areas/security-and-privacy
+
+2024-12-30 08:18:56 [INFO]     ├─ Display: Security and Privacy
+
+2024-12-30 08:18:56 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:18:56 [INFO] 
+----------------------------------------
+Extracting information from relevant links
+----------------------------------------
+
+2024-12-30 08:18:56 [INFO] Getting initial response from webpage...
+
+2024-12-30 08:19:09 [INFO] 
+Updating information with relevant links...
+
+2024-12-30 08:19:09 [INFO] 
+Processing link 1/6: http://www.cs.illinois.edu/~caesar
+
+2024-12-30 08:19:32 [INFO] 
+Processing link 2/6: https://cs.illinois.edu/research/areas/security-and-privacy
+
+2024-12-30 08:19:58 [INFO] 
+Processing link 3/6: http://cs.illinois.edu/research/areas/systems-and-networking
+
+2024-12-30 08:20:27 [INFO] 
+Processing link 4/6: https://grainger.illinois.edu/news/stories/60906
+
+2024-12-30 08:20:53 [INFO] 
+Processing link 5/6: https://siebelschool.illinois.edu/news/caesars-passion-for-iot-helps-transition-his-graduate-course-into-an-online-hands-on-coursera-specialization
+
+2024-12-30 08:21:24 [INFO] 
+Processing link 6/6: https://siebelschool.illinois.edu/news/caesar-works-improve-internet-connectivity-during-disaster-response
+
+2024-12-30 08:21:50 [INFO] 
+Saving final results...
+
+2024-12-30 08:21:50 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/0.json
+
+2024-12-30 08:21:50 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/all-faculty/caesar
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 241.17 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 http://www.cs.illinois.edu/~caesar
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The display text explicitly mentions 'home page' which typically contains biographical information about the person.
+   • researchStatement: The display text explicitly mentions the professor's name and the URL appears to be a personal homepage, which often contains research information.
+   ⏱️  Update Time: 23.30 seconds
+
+🔗 https://cs.illinois.edu/research/areas/security-and-privacy
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text suggest a focus on security and privacy, which could be related to a professor's research statement, especially if Matthew Caesar's research aligns with these areas.
+   ⏱️  Update Time: 24.95 seconds
+
+🔗 http://cs.illinois.edu/research/areas/systems-and-networking
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text suggest a research area, which may be relevant to a professor's research statement, especially considering Matthew Caesar is a professor in the CS department at Illinois, specializing in systems and networking.
+   ⏱️  Update Time: 28.65 seconds
+
+🔗 https://grainger.illinois.edu/news/stories/60906
+   Fields: biography
+   Reasons:
+   • biography: The display text mentions Matthew Caesar, indicating the link may contain information about him, including his biography.
+   ⏱️  Update Time: 25.98 seconds
+
+🔗 https://siebelschool.illinois.edu/news/caesars-passion-for-iot-helps-transition-his-graduate-course-into-an-online-hands-on-coursera-specialization
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The display text mentions 'Caesar's Passion', indicating the link is about a person named Caesar, likely a professor, and the URL contains 'caesars', suggesting it may contain biographical information about him.
+   • researchStatement: The URL and display text mention a professor's name, Caesar, and his work on IoT, indicating potential relevance to his research statement.
+   ⏱️  Update Time: 31.00 seconds
+
+🔗 https://siebelschool.illinois.edu/news/caesar-works-improve-internet-connectivity-during-disaster-response
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The display text mentions 'Caesar', which could refer to the professor Matthew Caesar, and the URL contains 'caesar', suggesting a potential connection to the professor's work or biography.
+   • researchStatement: The URL and display text mention 'Caesar Works', which likely refers to a project or initiative led by Matthew Caesar, suggesting the link may contain information about his research.
+   ⏱️  Update Time: 25.56 seconds
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:21:50 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/0.json
+
+2024-12-30 08:21:50 [INFO] 
+################################################################################
+Processing URL [2/10]: https://siebelschool.illinois.edu/about/people/all-faculty/kcchang
+################################################################################
+
+2024-12-30 08:21:50 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:21:51 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:23:39 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:23:39 [INFO] Found 0 empty fields:
+
+2024-12-30 08:23:39 [INFO] 
+----------------------------------------
+No empty fields found, saving initial data
+----------------------------------------
+
+2024-12-30 08:23:39 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/all-faculty/kcchang
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 108.89 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:23:39 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/1.json
+
+2024-12-30 08:23:39 [INFO] 
+################################################################################
+Processing URL [3/10]: https://siebelschool.illinois.edu/about/people/faculty/hl314
+################################################################################
+
+2024-12-30 08:23:39 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:23:39 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:24:20 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:24:20 [INFO] Found 1 empty fields:
+
+2024-12-30 08:24:20 [INFO]   • researchStatement
+
+2024-12-30 08:24:20 [INFO] 
+----------------------------------------
+Gathering relevant links recursively
+----------------------------------------
+
+2024-12-30 08:24:20 [INFO] 
+================================================================================
+Gathering links at depth 1
+================================================================================
+
+2024-12-30 08:24:20 [INFO] 
+----------------------------------------
+Extracting links from current page
+----------------------------------------
+
+2024-12-30 08:24:38 [INFO] Found 10 links to process
+
+2024-12-30 08:24:38 [INFO] 
+----------------------------------------
+Processing link 1/10
+----------------------------------------
+
+2024-12-30 08:24:38 [INFO] URL: https://publish.illinois.edu/siipcompendium/2021/10/11/faculty-spotlight-hongye-liu/
+
+2024-12-30 08:24:38 [INFO] Display text: Faculty Spotlight
+
+2024-12-30 08:24:38 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:40 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text suggest a faculty spotlight, which may contain biographical or general information about the professor, but does not specifically indicate the presence of a research statement.
+
+2024-12-30 08:24:40 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:24:40 [INFO] 
+----------------------------------------
+Processing link 2/10
+----------------------------------------
+
+2024-12-30 08:24:40 [INFO] URL: http://cs.illinois.edu/research/areas/bioinformatics-and-computational-biology
+
+2024-12-30 08:24:40 [INFO] Display text: Bioinformatics and Computational Biology
+
+2024-12-30 08:24:40 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:41 [INFO] ✅ Relevant to 'researchStatement': The URL and display text suggest a research area, which could be related to a professor's research statement.
+
+2024-12-30 08:24:41 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:24:41 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://cs.illinois.edu/research/areas/bioinformatics-and-computational-biology
+----------------------------------------
+
+2024-12-30 08:24:42 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:24:42 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:24:42 [INFO] 
+----------------------------------------
+Processing link 3/10
+----------------------------------------
+
+2024-12-30 08:24:42 [INFO] URL: https://cs.illinois.edu/research/areas/computers-and-education
+
+2024-12-30 08:24:42 [INFO] Display text: Computers and Education
+
+2024-12-30 08:24:42 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:43 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text are about a general research area, not a specific professor's research statement
+
+2024-12-30 08:24:43 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:24:43 [INFO] 
+----------------------------------------
+Processing link 4/10
+----------------------------------------
+
+2024-12-30 08:24:43 [INFO] URL: https://accessinghigherground.org/opportunities-and-barriers-in-implementing-udl-for-accessibility-data-from-both-students-and-facultys-perspectives/
+
+2024-12-30 08:24:43 [INFO] Display text: Opportunities and barriers in implementing UDL for accessibility
+
+2024-12-30 08:24:43 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:44 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text do not mention the professor's name or research statement, but rather focus on Universal Design for Learning (UDL) and accessibility.
+
+2024-12-30 08:24:44 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:24:44 [INFO] 
+----------------------------------------
+Processing link 5/10
+----------------------------------------
+
+2024-12-30 08:24:44 [INFO] URL: https://accessinghigherground.org/understanding-the-needs-of-students-with-disabilities-based-on-universal-design-of-learning-and-some-implementations/
+
+2024-12-30 08:24:44 [INFO] Display text: Understanding the needs of students with disabilities based on Universal Design of Learning
+
+2024-12-30 08:24:44 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:46 [INFO] ❌ Not relevant to 'researchStatement': The hyperlink's URL and display text do not mention Hongye Liu or his research statement, instead focusing on Universal Design of Learning for students with disabilities.
+
+2024-12-30 08:24:46 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:24:46 [INFO] 
+----------------------------------------
+Processing link 6/10
+----------------------------------------
+
+2024-12-30 08:24:46 [INFO] URL: https://drive.google.com/file/d/1KJSB90ffd0DrELV9-IoiVfnTNv-i8u2D/view
+
+2024-12-30 08:24:46 [INFO] Display text: Illinois Computer Science Summer Teaching Workshop
+
+2024-12-30 08:24:46 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:47 [INFO] ❌ Not relevant to 'researchStatement': The display text mentions a teaching workshop, which is unrelated to a research statement.
+
+2024-12-30 08:24:47 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:24:47 [INFO] 
+----------------------------------------
+Processing link 7/10
+----------------------------------------
+
+2024-12-30 08:24:47 [INFO] URL: https://siebelschool.illinois.edu/news/three-illinois-cs-projects-earn-grainger-engineering-support-for-diversity-equity-and-inclusion-efforts
+
+2024-12-30 08:24:47 [INFO] Display text: Three Illinois CS Projects Earn Grainger Engineering Support for Diversity, Equity and Inclusion Efforts
+
+2024-12-30 08:24:47 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:48 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text do not mention the professor's name or research statement, but rather focus on diversity, equity, and inclusion efforts.
+
+2024-12-30 08:24:48 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:24:48 [INFO] 
+----------------------------------------
+Processing link 8/10
+----------------------------------------
+
+2024-12-30 08:24:48 [INFO] URL: https://siebelschool.illinois.edu/news/cs-professors-prepare-to-enhance-engineering-teaching-through-siip-grants
+
+2024-12-30 08:24:48 [INFO] Display text: CS Professors Prepare to Enhance Engineering Teaching Through SIIP Grants
+
+2024-12-30 08:24:48 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:50 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text mention CS professors and teaching grants, but do not specifically mention Hongye Liu or research statements.
+
+2024-12-30 08:24:50 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:24:50 [INFO] 
+----------------------------------------
+Processing link 9/10
+----------------------------------------
+
+2024-12-30 08:24:50 [INFO] URL: https://siebelschool.illinois.edu/news/illinois-cs-adds-eight-new-faculty-broadening-expertise-nlp-security-robotics-and-more
+
+2024-12-30 08:24:50 [INFO] Display text: Illinois CS Adds Eight New Faculty, Broadening Expertise in NLP, Security, Robotics, and More
+
+2024-12-30 08:24:50 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:51 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text indicate the link is about new faculty additions and broadening expertise in general areas, not a specific professor's research statement.
+
+2024-12-30 08:24:51 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:24:51 [INFO] 
+----------------------------------------
+Processing link 10/10
+----------------------------------------
+
+2024-12-30 08:24:51 [INFO] URL: https://publish.illinois.edu/udl-accessibility-group/
+
+2024-12-30 08:24:51 [INFO] Display text: UDL and Accessbility Research Lab
+
+2024-12-30 08:24:51 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:24:52 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text mention a research group and lab, but do not specifically mention Hongye Liu or his research statement.
+
+2024-12-30 08:24:52 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:24:52 [INFO] 
+================================================================================
+Completed depth 1
+================================================================================
+
+2024-12-30 08:24:52 [INFO] Total relevant links found at this depth: 1
+
+2024-12-30 08:24:53 [INFO] 
+Discovered 1 relevant links:
+
+2024-12-30 08:24:53 [INFO]   • http://cs.illinois.edu/research/areas/bioinformatics-and-computational-biology
+
+2024-12-30 08:24:53 [INFO]     ├─ Display: Bioinformatics and Computational Biology
+
+2024-12-30 08:24:53 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:24:53 [INFO] 
+----------------------------------------
+Extracting information from relevant links
+----------------------------------------
+
+2024-12-30 08:24:53 [INFO] Getting initial response from webpage...
+
+2024-12-30 08:25:35 [INFO] 
+Updating information with relevant links...
+
+2024-12-30 08:25:35 [INFO] 
+Processing link 1/1: http://cs.illinois.edu/research/areas/bioinformatics-and-computational-biology
+
+2024-12-30 08:26:18 [INFO] 
+Saving final results...
+
+2024-12-30 08:26:18 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/2.json
+
+2024-12-30 08:26:18 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/faculty/hl314
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 159.12 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 http://cs.illinois.edu/research/areas/bioinformatics-and-computational-biology
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text suggest a research area, which could be related to a professor's research statement.
+   ⏱️  Update Time: 42.77 seconds
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:26:18 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/2.json
+
+2024-12-30 08:26:18 [INFO] 
+################################################################################
+Processing URL [4/10]: https://siebelschool.illinois.edu/about/people/faculty/angrave
+################################################################################
+
+2024-12-30 08:26:18 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:26:19 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:26:55 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:26:55 [INFO] Found 0 empty fields:
+
+2024-12-30 08:26:55 [INFO] 
+----------------------------------------
+No empty fields found, saving initial data
+----------------------------------------
+
+2024-12-30 08:26:55 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/faculty/angrave
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 36.76 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:26:55 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/3.json
+
+2024-12-30 08:26:55 [INFO] 
+################################################################################
+Processing URL [5/10]: https://siebelschool.illinois.edu/about/people/all-faculty/nanjiang
+################################################################################
+
+2024-12-30 08:26:55 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:26:56 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:27:16 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:27:16 [INFO] Found 2 empty fields:
+
+2024-12-30 08:27:16 [INFO]   • biography
+
+2024-12-30 08:27:16 [INFO]   • researchStatement
+
+2024-12-30 08:27:16 [INFO] 
+----------------------------------------
+Gathering relevant links recursively
+----------------------------------------
+
+2024-12-30 08:27:16 [INFO] 
+================================================================================
+Gathering links at depth 1
+================================================================================
+
+2024-12-30 08:27:16 [INFO] 
+----------------------------------------
+Extracting links from current page
+----------------------------------------
+
+2024-12-30 08:27:28 [INFO] Found 9 links to process
+
+2024-12-30 08:27:28 [INFO] 
+----------------------------------------
+Processing link 1/9
+----------------------------------------
+
+2024-12-30 08:27:28 [INFO] URL: http://nanjiang.cs.illinois.edu/
+
+2024-12-30 08:27:28 [INFO] Display text: Personal website
+
+2024-12-30 08:27:28 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:27:30 [INFO] ✅ Relevant to 'biography': The URL contains the professor's name and the display text indicates it is their personal website, which often includes biographical information.
+
+2024-12-30 08:27:31 [INFO] ✅ Relevant to 'researchStatement': The URL is a personal website of a professor, which often contains information about their research, including their research statement.
+
+2024-12-30 08:27:31 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:27:31 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://nanjiang.cs.illinois.edu/
+----------------------------------------
+
+2024-12-30 08:27:31 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:27:31 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:27:31 [INFO] 
+----------------------------------------
+Processing link 2/9
+----------------------------------------
+
+2024-12-30 08:27:31 [INFO] URL: http://cs.illinois.edu/research/areas/artificial-intelligence
+
+2024-12-30 08:27:31 [INFO] Display text: Artificial Intelligence
+
+2024-12-30 08:27:31 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:27:32 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about artificial intelligence research, not a professor's biography.
+
+2024-12-30 08:27:34 [INFO] ✅ Relevant to 'researchStatement': The URL and display text both mention 'artificial-intelligence', which could be related to a professor's research statement, especially if the professor works in that field like Nan Jiang.
+
+2024-12-30 08:27:34 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:27:34 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://cs.illinois.edu/research/areas/artificial-intelligence
+----------------------------------------
+
+2024-12-30 08:27:35 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:27:35 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:27:35 [INFO] 
+----------------------------------------
+Processing link 3/9
+----------------------------------------
+
+2024-12-30 08:27:35 [INFO] URL: https://rltheorybook.github.io/
+
+2024-12-30 08:27:35 [INFO] Display text: Reinforcement Learning: Theory and Algorithms (working draft)
+
+2024-12-30 08:27:35 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:27:36 [INFO] ❌ Not relevant to 'biography': The URL and display text suggest a focus on reinforcement learning, with no indication of containing biographical information about a specific professor, including Nan Jiang.
+
+2024-12-30 08:27:38 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text suggest a general resource on reinforcement learning, with no indication of being specific to Nan Jiang's research statement.
+
+2024-12-30 08:27:38 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:27:38 [INFO] 
+----------------------------------------
+Processing link 4/9
+----------------------------------------
+
+2024-12-30 08:27:38 [INFO] URL: https://siebelschool.illinois.edu/news/cs-google-research-scholars-2024
+
+2024-12-30 08:27:38 [INFO] Display text: Four CS professors named 2024 Google Research Scholars
+
+2024-12-30 08:27:38 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:27:39 [INFO] ❌ Not relevant to 'biography': The URL and display text mention Google Research Scholars and CS professors, but do not specifically mention Nan Jiang's biography.
+
+2024-12-30 08:27:40 [INFO] ❌ Not relevant to 'researchStatement': The display text mentions four CS professors, but does not specify Nan Jiang or his research statement.
+
+2024-12-30 08:27:40 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:27:40 [INFO] 
+----------------------------------------
+Processing link 5/9
+----------------------------------------
+
+2024-12-30 08:27:40 [INFO] URL: https://siebelschool.illinois.edu/news/nan-jiang-2024-sloan-fellow
+
+2024-12-30 08:27:40 [INFO] Display text: Nan Jiang selected as a 2024 Sloan Research Fellow
+
+2024-12-30 08:27:40 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:27:41 [INFO] ✅ Relevant to 'biography': The URL and display text specifically mention a professor's name and a notable achievement, suggesting the link may contain biographical information about Nan Jiang.
+
+2024-12-30 08:27:42 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text indicate the link is about an award or fellowship, not a research statement.
+
+2024-12-30 08:27:42 [INFO] 📍 Link is relevant for fields: biography
+
+2024-12-30 08:27:42 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/nan-jiang-2024-sloan-fellow
+----------------------------------------
+
+2024-12-30 08:27:43 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:27:43 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:27:43 [INFO] 
+----------------------------------------
+Processing link 6/9
+----------------------------------------
+
+2024-12-30 08:27:43 [INFO] URL: https://sloan.org/fellowships/2024-Fellows
+
+2024-12-30 08:27:43 [INFO] Display text: Nan Jiang named 2024 Sloan Research Fellow
+
+2024-12-30 08:27:43 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:27:45 [INFO] ✅ Relevant to 'biography': The display text mentions a specific person, Nan Jiang, and the URL contains the word 'Fellows', indicating an award or recognition, which is often included in a person's biography.
+
+2024-12-30 08:27:46 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text indicate the link is about a fellowship award, not a research statement.
+
+2024-12-30 08:27:46 [INFO] 📍 Link is relevant for fields: biography
+
+2024-12-30 08:27:46 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://sloan.org/fellowships/2024-Fellows
+----------------------------------------
+
+2024-12-30 08:27:46 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:27:46 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:27:46 [INFO] 
+----------------------------------------
+Processing link 7/9
+----------------------------------------
+
+2024-12-30 08:27:46 [INFO] URL: https://siebelschool.illinois.edu/news/illinois-cs-places-28-faculty-on-citl-list-of-teachers-ranked-as-excellent-by-their-students
+
+2024-12-30 08:27:46 [INFO] Display text: Illinois CS Places 28 Faculty on CITL List of Teachers Ranked as Excellent By Their Students
+
+2024-12-30 08:27:46 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:27:48 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about a list of excellent teachers, not a specific professor's biography.
+
+2024-12-30 08:27:49 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text indicate the link is about faculty rankings and teaching excellence, not a specific professor's research statement.
+
+2024-12-30 08:27:49 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:27:49 [INFO] 
+----------------------------------------
+Processing link 8/9
+----------------------------------------
+
+2024-12-30 08:27:49 [INFO] URL: https://siebelschool.illinois.edu/news/nan-jiang-furthers-development-in-reinforcement-learning-with-nsf-career-award
+
+2024-12-30 08:27:49 [INFO] Display text: Nan Jiang Furthers Development in Reinforcement Learning with NSF CAREER Award
+
+2024-12-30 08:27:49 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:27:50 [INFO] ✅ Relevant to 'biography': The display text mentions a specific professor, Nan Jiang, and the URL contains the professor's name, indicating the link may contain biographical information about the professor.
+
+2024-12-30 08:27:52 [INFO] ✅ Relevant to 'researchStatement': The URL and display text specifically mention the professor's name and an award related to reinforcement learning, indicating potential relevance to their research statement.
+
+2024-12-30 08:27:52 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:27:52 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/nan-jiang-furthers-development-in-reinforcement-learning-with-nsf-career-award
+----------------------------------------
+
+2024-12-30 08:27:52 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:27:52 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:27:52 [INFO] 
+----------------------------------------
+Processing link 9/9
+----------------------------------------
+
+2024-12-30 08:27:52 [INFO] URL: https://siebelschool.illinois.edu/news/jiang-national-institute-exploring-synergies-between-networking-AI
+
+2024-12-30 08:27:52 [INFO] Display text: Jiang Part of National Institute Exploring the Synergies Between Networking and AI
+
+2024-12-30 08:27:52 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:27:53 [INFO] ✅ Relevant to 'biography': The display text mentions a specific person's name, 'Jiang', indicating potential biographical information about the professor.
+
+2024-12-30 08:27:55 [INFO] ✅ Relevant to 'researchStatement': The URL and display text mention a specific professor, Jiang, and their involvement in a research-related project, indicating potential relevance to their research statement.
+
+2024-12-30 08:27:55 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:27:55 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/jiang-national-institute-exploring-synergies-between-networking-AI
+----------------------------------------
+
+2024-12-30 08:27:56 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:27:56 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:27:56 [INFO] 
+================================================================================
+Completed depth 1
+================================================================================
+
+2024-12-30 08:27:56 [INFO] Total relevant links found at this depth: 6
+
+2024-12-30 08:28:09 [INFO] 
+Discovered 6 relevant links:
+
+2024-12-30 08:28:09 [INFO]   • https://siebelschool.illinois.edu/news/jiang-national-institute-exploring-synergies-between-networking-AI
+
+2024-12-30 08:28:09 [INFO]     ├─ Display: Jiang Part of National Institute Exploring the Synergies Between Networking and AI
+
+2024-12-30 08:28:09 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:28:09 [INFO]   • https://siebelschool.illinois.edu/news/nan-jiang-furthers-development-in-reinforcement-learning-with-nsf-career-award
+
+2024-12-30 08:28:09 [INFO]     ├─ Display: Nan Jiang Furthers Development in Reinforcement Learning with NSF CAREER Award
+
+2024-12-30 08:28:09 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:28:09 [INFO]   • https://sloan.org/fellowships/2024-Fellows
+
+2024-12-30 08:28:09 [INFO]     ├─ Display: Nan Jiang named 2024 Sloan Research Fellow
+
+2024-12-30 08:28:09 [INFO]     └─ Relevant to: biography
+
+2024-12-30 08:28:09 [INFO]   • https://siebelschool.illinois.edu/news/nan-jiang-2024-sloan-fellow
+
+2024-12-30 08:28:09 [INFO]     ├─ Display: Nan Jiang selected as a 2024 Sloan Research Fellow
+
+2024-12-30 08:28:09 [INFO]     └─ Relevant to: biography
+
+2024-12-30 08:28:09 [INFO]   • http://cs.illinois.edu/research/areas/artificial-intelligence
+
+2024-12-30 08:28:09 [INFO]     ├─ Display: Artificial Intelligence
+
+2024-12-30 08:28:09 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:28:09 [INFO]   • http://nanjiang.cs.illinois.edu/
+
+2024-12-30 08:28:09 [INFO]     ├─ Display: Personal website
+
+2024-12-30 08:28:09 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:28:09 [INFO] 
+----------------------------------------
+Extracting information from relevant links
+----------------------------------------
+
+2024-12-30 08:28:09 [INFO] Getting initial response from webpage...
+
+2024-12-30 08:28:29 [INFO] 
+Updating information with relevant links...
+
+2024-12-30 08:28:29 [INFO] 
+Processing link 1/6: http://nanjiang.cs.illinois.edu/
+
+2024-12-30 08:28:58 [INFO] 
+Processing link 2/6: http://cs.illinois.edu/research/areas/artificial-intelligence
+
+2024-12-30 08:29:31 [INFO] 
+Processing link 3/6: https://siebelschool.illinois.edu/news/nan-jiang-2024-sloan-fellow
+
+2024-12-30 08:30:04 [INFO] 
+Processing link 4/6: https://sloan.org/fellowships/2024-Fellows
+
+2024-12-30 08:30:38 [INFO] 
+Processing link 5/6: https://siebelschool.illinois.edu/news/nan-jiang-furthers-development-in-reinforcement-learning-with-nsf-career-award
+
+2024-12-30 08:31:15 [INFO] 
+Processing link 6/6: https://siebelschool.illinois.edu/news/jiang-national-institute-exploring-synergies-between-networking-AI
+
+2024-12-30 08:31:54 [INFO] 
+Saving final results...
+
+2024-12-30 08:31:54 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/4.json
+
+2024-12-30 08:31:54 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/all-faculty/nanjiang
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 299.06 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 http://nanjiang.cs.illinois.edu/
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The URL contains the professor's name and the display text indicates it is their personal website, which often includes biographical information.
+   • researchStatement: The URL is a personal website of a professor, which often contains information about their research, including their research statement.
+   ⏱️  Update Time: 28.83 seconds
+
+🔗 http://cs.illinois.edu/research/areas/artificial-intelligence
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text both mention 'artificial-intelligence', which could be related to a professor's research statement, especially if the professor works in that field like Nan Jiang.
+   ⏱️  Update Time: 32.44 seconds
+
+🔗 https://siebelschool.illinois.edu/news/nan-jiang-2024-sloan-fellow
+   Fields: biography
+   Reasons:
+   • biography: The URL and display text specifically mention a professor's name and a notable achievement, suggesting the link may contain biographical information about Nan Jiang.
+   ⏱️  Update Time: 32.66 seconds
+
+🔗 https://sloan.org/fellowships/2024-Fellows
+   Fields: biography
+   Reasons:
+   • biography: The display text mentions a specific person, Nan Jiang, and the URL contains the word 'Fellows', indicating an award or recognition, which is often included in a person's biography.
+   ⏱️  Update Time: 33.51 seconds
+
+🔗 https://siebelschool.illinois.edu/news/nan-jiang-furthers-development-in-reinforcement-learning-with-nsf-career-award
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The display text mentions a specific professor, Nan Jiang, and the URL contains the professor's name, indicating the link may contain biographical information about the professor.
+   • researchStatement: The URL and display text specifically mention the professor's name and an award related to reinforcement learning, indicating potential relevance to their research statement.
+   ⏱️  Update Time: 36.20 seconds
+
+🔗 https://siebelschool.illinois.edu/news/jiang-national-institute-exploring-synergies-between-networking-AI
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The display text mentions a specific person's name, 'Jiang', indicating potential biographical information about the professor.
+   • researchStatement: The URL and display text mention a specific professor, Jiang, and their involvement in a research-related project, indicating potential relevance to their research statement.
+   ⏱️  Update Time: 38.87 seconds
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:31:54 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/4.json
+
+2024-12-30 08:31:54 [INFO] 
+################################################################################
+Processing URL [6/10]: https://siebelschool.illinois.edu/about/people/all-faculty/mfsilva
+################################################################################
+
+2024-12-30 08:31:54 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:31:55 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:32:36 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:32:36 [INFO] Found 2 empty fields:
+
+2024-12-30 08:32:36 [INFO]   • biography
+
+2024-12-30 08:32:36 [INFO]   • researchStatement
+
+2024-12-30 08:32:36 [INFO] 
+----------------------------------------
+Gathering relevant links recursively
+----------------------------------------
+
+2024-12-30 08:32:36 [INFO] 
+================================================================================
+Gathering links at depth 1
+================================================================================
+
+2024-12-30 08:32:36 [INFO] 
+----------------------------------------
+Extracting links from current page
+----------------------------------------
+
+2024-12-30 08:32:50 [INFO] Found 8 links to process
+
+2024-12-30 08:32:50 [INFO] 
+----------------------------------------
+Processing link 1/8
+----------------------------------------
+
+2024-12-30 08:32:50 [INFO] URL: http://mfsilva.web.illinois.edu/
+
+2024-12-30 08:32:50 [INFO] Display text: Personal Website
+
+2024-12-30 08:32:50 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:32:52 [INFO] ✅ Relevant to 'biography': The URL contains the name 'mfsilva' which could be an abbreviation for Mariana Silva, and the display text 'Personal Website' suggests it may contain biographical information.
+
+2024-12-30 08:32:53 [INFO] ✅ Relevant to 'researchStatement': The URL contains the name 'mfsilva' which could be an abbreviation for Mariana Silva, and a personal website often contains information about a person's research.
+
+2024-12-30 08:32:53 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:32:53 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://mfsilva.web.illinois.edu/
+----------------------------------------
+
+2024-12-30 08:32:53 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:32:53 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:32:53 [INFO] 
+----------------------------------------
+Processing link 2/8
+----------------------------------------
+
+2024-12-30 08:32:53 [INFO] URL: https://cs.illinois.edu/research/areas/computers-and-education
+
+2024-12-30 08:32:53 [INFO] Display text: Computers and Education Research Area
+
+2024-12-30 08:32:53 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:32:55 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about a research area, not a personal biography.
+
+2024-12-30 08:32:56 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text are about a general research area, not a specific professor's research statement.
+
+2024-12-30 08:32:56 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:32:56 [INFO] 
+----------------------------------------
+Processing link 3/8
+----------------------------------------
+
+2024-12-30 08:32:56 [INFO] URL: https://siebelschool.illinois.edu/news/game-time-shaffer-silva-build-a-new-bridge-with-campus-middle-school-for-girls
+
+2024-12-30 08:32:56 [INFO] Display text: Game Time: Shaffer, Silva Build a New Bridge with Campus Middle School for Girls
+
+2024-12-30 08:32:56 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:32:57 [INFO] ✅ Relevant to 'biography': The display text mentions 'Silva', which could refer to the professor's last name, indicating potential biographical information.
+
+2024-12-30 08:32:58 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text suggest a news article about a collaborative project or outreach activity, rather than a research statement.
+
+2024-12-30 08:32:58 [INFO] 📍 Link is relevant for fields: biography
+
+2024-12-30 08:32:58 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/game-time-shaffer-silva-build-a-new-bridge-with-campus-middle-school-for-girls
+----------------------------------------
+
+2024-12-30 08:32:59 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:32:59 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:32:59 [INFO] 
+----------------------------------------
+Processing link 4/8
+----------------------------------------
+
+2024-12-30 08:32:59 [INFO] URL: https://siebelschool.illinois.edu/news/silva-leads-team-studying-interconnections-between-online-learning-equity-access
+
+2024-12-30 08:32:59 [INFO] Display text: Silva Leads Team Studying Interconnections Between Online Learning, Equity, and Access
+
+2024-12-30 08:32:59 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:33:00 [INFO] ✅ Relevant to 'biography': The display text mentions a specific professor, Mariana Silva, indicating the link may contain information about her biography or work.
+
+2024-12-30 08:33:02 [INFO] ✅ Relevant to 'researchStatement': The URL and display text specifically mention 'Silva' leading a team on a research project, suggesting the link contains information about her research.
+
+2024-12-30 08:33:02 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:33:02 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/silva-leads-team-studying-interconnections-between-online-learning-equity-access
+----------------------------------------
+
+2024-12-30 08:33:02 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:33:02 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:33:02 [INFO] 
+----------------------------------------
+Processing link 5/8
+----------------------------------------
+
+2024-12-30 08:33:02 [INFO] URL: https://siebelschool.illinois.edu/news/cs-professors-prepare-to-enhance-engineering-teaching-through-siip-grants
+
+2024-12-30 08:33:02 [INFO] Display text: CS Professors Prepare to Enhance Engineering Teaching Through SIIP Grants
+
+2024-12-30 08:33:02 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:33:03 [INFO] ❌ Not relevant to 'biography': The URL and display text mention CS professors in general, but do not specifically mention Mariana Silva or her biography.
+
+2024-12-30 08:33:05 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text mention CS professors and teaching grants, but do not specifically mention Mariana Silva or her research statement.
+
+2024-12-30 08:33:05 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:33:05 [INFO] 
+----------------------------------------
+Processing link 6/8
+----------------------------------------
+
+2024-12-30 08:33:05 [INFO] URL: https://siebelschool.illinois.edu/news/undergraduates-present-research-results-asee-2020
+
+2024-12-30 08:33:05 [INFO] Display text: Undergraduates Present Research Results at ASEE 2020
+
+2024-12-30 08:33:05 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:33:06 [INFO] ❌ Not relevant to 'biography': The URL and display text mention undergraduates and a conference, with no indication of a professor's biography, specifically Mariana Silva's.
+
+2024-12-30 08:33:08 [INFO] ❌ Not relevant to 'researchStatement': The hyperlink's URL and display text mention undergraduates and ASEE 2020, but do not specifically reference Mariana Silva or her research statement.
+
+2024-12-30 08:33:08 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:33:08 [INFO] 
+----------------------------------------
+Processing link 7/8
+----------------------------------------
+
+2024-12-30 08:33:08 [INFO] URL: https://siebelschool.illinois.edu/news/student-course-assistant-brings-new-power-prairielearn
+
+2024-12-30 08:33:08 [INFO] Display text: Student Course Assistant Brings New Power to PrairieLearn
+
+2024-12-30 08:33:08 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:33:09 [INFO] ❌ Not relevant to 'biography': The URL and display text do not mention Mariana Silva or her biography, instead focusing on a course assistant and PrairieLearn.
+
+2024-12-30 08:33:10 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text do not mention Mariana Silva or her research statement, instead focusing on a student course assistant and PrairieLearn.
+
+2024-12-30 08:33:10 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:33:10 [INFO] 
+----------------------------------------
+Processing link 8/8
+----------------------------------------
+
+2024-12-30 08:33:10 [INFO] URL: https://siebelschool.illinois.edu/news/nine-cs-faculty-and-staff-receive-engineering-campus-awards-excellence
+
+2024-12-30 08:33:10 [INFO] Display text: Nine CS Faculty and Staff Receive Engineering, Campus Awards for Excellence
+
+2024-12-30 08:33:10 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:33:12 [INFO] ❌ Not relevant to 'biography': The URL and display text mention awards for multiple CS faculty and staff, but do not specifically mention Mariana Silva's biography.
+
+2024-12-30 08:33:13 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text indicate the link is about awards received by CS faculty and staff, with no mention of a specific professor's research statement.
+
+2024-12-30 08:33:13 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:33:13 [INFO] 
+================================================================================
+Completed depth 1
+================================================================================
+
+2024-12-30 08:33:13 [INFO] Total relevant links found at this depth: 3
+
+2024-12-30 08:33:20 [INFO] 
+Discovered 3 relevant links:
+
+2024-12-30 08:33:20 [INFO]   • https://siebelschool.illinois.edu/news/silva-leads-team-studying-interconnections-between-online-learning-equity-access
+
+2024-12-30 08:33:20 [INFO]     ├─ Display: Silva Leads Team Studying Interconnections Between Online Learning, Equity, and Access
+
+2024-12-30 08:33:20 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:33:20 [INFO]   • https://siebelschool.illinois.edu/news/game-time-shaffer-silva-build-a-new-bridge-with-campus-middle-school-for-girls
+
+2024-12-30 08:33:20 [INFO]     ├─ Display: Game Time: Shaffer, Silva Build a New Bridge with Campus Middle School for Girls
+
+2024-12-30 08:33:20 [INFO]     └─ Relevant to: biography
+
+2024-12-30 08:33:20 [INFO]   • http://mfsilva.web.illinois.edu/
+
+2024-12-30 08:33:20 [INFO]     ├─ Display: Personal Website
+
+2024-12-30 08:33:20 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:33:20 [INFO] 
+----------------------------------------
+Extracting information from relevant links
+----------------------------------------
+
+2024-12-30 08:33:20 [INFO] Getting initial response from webpage...
+
+2024-12-30 08:34:01 [INFO] 
+Updating information with relevant links...
+
+2024-12-30 08:34:01 [INFO] 
+Processing link 1/3: http://mfsilva.web.illinois.edu/
+
+2024-12-30 08:34:50 [INFO] 
+Processing link 2/3: https://siebelschool.illinois.edu/news/game-time-shaffer-silva-build-a-new-bridge-with-campus-middle-school-for-girls
+
+2024-12-30 08:35:40 [INFO] 
+Processing link 3/3: https://siebelschool.illinois.edu/news/silva-leads-team-studying-interconnections-between-online-learning-equity-access
+
+2024-12-30 08:36:32 [INFO] 
+Saving final results...
+
+2024-12-30 08:36:32 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/5.json
+
+2024-12-30 08:36:32 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/all-faculty/mfsilva
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 278.10 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 http://mfsilva.web.illinois.edu/
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The URL contains the name 'mfsilva' which could be an abbreviation for Mariana Silva, and the display text 'Personal Website' suggests it may contain biographical information.
+   • researchStatement: The URL contains the name 'mfsilva' which could be an abbreviation for Mariana Silva, and a personal website often contains information about a person's research.
+   ⏱️  Update Time: 48.14 seconds
+
+🔗 https://siebelschool.illinois.edu/news/game-time-shaffer-silva-build-a-new-bridge-with-campus-middle-school-for-girls
+   Fields: biography
+   Reasons:
+   • biography: The display text mentions 'Silva', which could refer to the professor's last name, indicating potential biographical information.
+   ⏱️  Update Time: 50.79 seconds
+
+🔗 https://siebelschool.illinois.edu/news/silva-leads-team-studying-interconnections-between-online-learning-equity-access
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The display text mentions a specific professor, Mariana Silva, indicating the link may contain information about her biography or work.
+   • researchStatement: The URL and display text specifically mention 'Silva' leading a team on a research project, suggesting the link contains information about her research.
+   ⏱️  Update Time: 51.30 seconds
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:36:32 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/5.json
+
+2024-12-30 08:36:32 [INFO] 
+################################################################################
+Processing URL [7/10]: https://siebelschool.illinois.edu/about/people/all-faculty/minjiaz
+################################################################################
+
+2024-12-30 08:36:32 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:36:33 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:36:43 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:36:43 [INFO] Found 2 empty fields:
+
+2024-12-30 08:36:43 [INFO]   • biography
+
+2024-12-30 08:36:43 [INFO]   • researchStatement
+
+2024-12-30 08:36:43 [INFO] 
+----------------------------------------
+Gathering relevant links recursively
+----------------------------------------
+
+2024-12-30 08:36:43 [INFO] 
+================================================================================
+Gathering links at depth 1
+================================================================================
+
+2024-12-30 08:36:43 [INFO] 
+----------------------------------------
+Extracting links from current page
+----------------------------------------
+
+2024-12-30 08:36:48 [INFO] Found 3 links to process
+
+2024-12-30 08:36:48 [INFO] 
+----------------------------------------
+Processing link 1/3
+----------------------------------------
+
+2024-12-30 08:36:48 [INFO] URL: https://minjiazhang.github.io/
+
+2024-12-30 08:36:48 [INFO] Display text: Prof. Zhang's home page
+
+2024-12-30 08:36:48 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:36:49 [INFO] ✅ Relevant to 'biography': The display text mentions a professor and the URL appears to be a personal website, which often contains biographical information.
+
+2024-12-30 08:36:50 [INFO] ✅ Relevant to 'researchStatement': The URL is a personal website and the display text mentions a professor, increasing the likelihood of containing information about their research statement.
+
+2024-12-30 08:36:50 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:36:50 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://minjiazhang.github.io/
+----------------------------------------
+
+2024-12-30 08:36:51 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:36:51 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:36:51 [INFO] 
+----------------------------------------
+Processing link 2/3
+----------------------------------------
+
+2024-12-30 08:36:51 [INFO] URL: https://siebelschool.illinois.edu/news/new-faculty
+
+2024-12-30 08:36:51 [INFO] Display text: Computer Science welcomes 17 new faculty members
+
+2024-12-30 08:36:51 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:36:52 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate a general news article about new faculty members, not a specific professor's biography.
+
+2024-12-30 08:36:53 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text indicate a general news article about new faculty members, not a specific professor's research statement.
+
+2024-12-30 08:36:53 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:36:53 [INFO] 
+----------------------------------------
+Processing link 3/3
+----------------------------------------
+
+2024-12-30 08:36:53 [INFO] URL: https://grainger.illinois.edu/news/stories/59031
+
+2024-12-30 08:36:53 [INFO] Display text: Record Number of Nearly 60 Faculty Join Grainger Engineering
+
+2024-12-30 08:36:53 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:36:55 [INFO] ❌ Not relevant to 'biography': The display text mentions a record number of faculty joining Grainger Engineering, but does not specifically mention Minjia Zhang or any individual's biography.
+
+2024-12-30 08:36:56 [INFO] ❌ Not relevant to 'researchStatement': The display text mentions faculty joining Grainger Engineering, but does not specifically mention Minjia Zhang or research statements.
+
+2024-12-30 08:36:56 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:36:56 [INFO] 
+================================================================================
+Completed depth 1
+================================================================================
+
+2024-12-30 08:36:56 [INFO] Total relevant links found at this depth: 1
+
+2024-12-30 08:36:59 [INFO] 
+Discovered 1 relevant links:
+
+2024-12-30 08:36:59 [INFO]   • https://minjiazhang.github.io/
+
+2024-12-30 08:36:59 [INFO]     ├─ Display: Prof. Zhang's home page
+
+2024-12-30 08:36:59 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:36:59 [INFO] 
+----------------------------------------
+Extracting information from relevant links
+----------------------------------------
+
+2024-12-30 08:36:59 [INFO] Getting initial response from webpage...
+
+2024-12-30 08:37:09 [INFO] 
+Updating information with relevant links...
+
+2024-12-30 08:37:09 [INFO] 
+Processing link 1/1: https://minjiazhang.github.io/
+
+2024-12-30 08:38:26 [INFO] 
+Saving final results...
+
+2024-12-30 08:38:26 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/6.json
+
+2024-12-30 08:38:26 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/all-faculty/minjiaz
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 113.78 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 https://minjiazhang.github.io/
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The display text mentions a professor and the URL appears to be a personal website, which often contains biographical information.
+   • researchStatement: The URL is a personal website and the display text mentions a professor, increasing the likelihood of containing information about their research statement.
+   ⏱️  Update Time: 76.08 seconds
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:38:26 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/6.json
+
+2024-12-30 08:38:26 [INFO] 
+################################################################################
+Processing URL [8/10]: https://siebelschool.illinois.edu/about/people/all-faculty/tyxu
+################################################################################
+
+2024-12-30 08:38:26 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:38:26 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:38:42 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:38:42 [INFO] Found 2 empty fields:
+
+2024-12-30 08:38:42 [INFO]   • biography
+
+2024-12-30 08:38:42 [INFO]   • researchStatement
+
+2024-12-30 08:38:42 [INFO] 
+----------------------------------------
+Gathering relevant links recursively
+----------------------------------------
+
+2024-12-30 08:38:42 [INFO] 
+================================================================================
+Gathering links at depth 1
+================================================================================
+
+2024-12-30 08:38:42 [INFO] 
+----------------------------------------
+Extracting links from current page
+----------------------------------------
+
+2024-12-30 08:38:58 [INFO] Found 12 links to process
+
+2024-12-30 08:38:58 [INFO] 
+----------------------------------------
+Processing link 1/12
+----------------------------------------
+
+2024-12-30 08:38:58 [INFO] URL: https://tianyin.github.io/
+
+2024-12-30 08:38:58 [INFO] Display text: Tianyin Xu's homepage
+
+2024-12-30 08:38:58 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:38:59 [INFO] ✅ Relevant to 'biography': The display text explicitly mentions the person's name and the URL appears to be a personal homepage, which often contains biographical information.
+
+2024-12-30 08:39:00 [INFO] ✅ Relevant to 'researchStatement': The display text indicates it's the professor's homepage, which often includes research information.
+
+2024-12-30 08:39:00 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:39:00 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://tianyin.github.io/
+----------------------------------------
+
+2024-12-30 08:39:00 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:39:00 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:39:00 [INFO] 
+----------------------------------------
+Processing link 2/12
+----------------------------------------
+
+2024-12-30 08:39:00 [INFO] URL: http://cs.illinois.edu/research/areas/programming-languages-formal-methods-and-software-engineering
+
+2024-12-30 08:39:00 [INFO] Display text: Programming Languages / Formal Methods / Software Engineering
+
+2024-12-30 08:39:00 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:02 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about research areas, not a specific professor's biography.
+
+2024-12-30 08:39:03 [INFO] ✅ Relevant to 'researchStatement': The URL and display text suggest a research area, which may be relevant to a professor's research statement, especially if Tianyin Xu is affiliated with the University of Illinois and works in these areas.
+
+2024-12-30 08:39:03 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:39:03 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://cs.illinois.edu/research/areas/programming-languages-formal-methods-and-software-engineering
+----------------------------------------
+
+2024-12-30 08:39:04 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:39:04 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:39:04 [INFO] 
+----------------------------------------
+Processing link 3/12
+----------------------------------------
+
+2024-12-30 08:39:04 [INFO] URL: http://cs.illinois.edu/research/areas/systems-and-networking
+
+2024-12-30 08:39:04 [INFO] Display text: Systems and Networking
+
+2024-12-30 08:39:04 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:05 [INFO] ❌ Not relevant to 'biography': The URL and display text suggest the link is about a research area, not a professor's biography.
+
+2024-12-30 08:39:07 [INFO] ✅ Relevant to 'researchStatement': The URL and display text suggest a research area, which may be relevant to a professor's research statement, especially if Tianyin Xu is affiliated with the University of Illinois and works in systems and networking.
+
+2024-12-30 08:39:07 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:39:07 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://cs.illinois.edu/research/areas/systems-and-networking
+----------------------------------------
+
+2024-12-30 08:39:07 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:39:07 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:39:07 [INFO] 
+----------------------------------------
+Processing link 4/12
+----------------------------------------
+
+2024-12-30 08:39:07 [INFO] URL: https://siebelschool.illinois.edu/news/2025-siebel-scholars
+
+2024-12-30 08:39:07 [INFO] Display text: Five CS students named 2025 Siebel Scholars
+
+2024-12-30 08:39:07 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:09 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about Siebel Scholars, with no apparent connection to Tianyin Xu's biography.
+
+2024-12-30 08:39:10 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text indicate the link is about students being named Siebel Scholars, with no apparent connection to a professor's research statement.
+
+2024-12-30 08:39:10 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:39:10 [INFO] 
+----------------------------------------
+Processing link 5/12
+----------------------------------------
+
+2024-12-30 08:39:10 [INFO] URL: https://siebelschool.illinois.edu/news/jay-lepreau-best-paper
+
+2024-12-30 08:39:10 [INFO] Display text: CS students received the Jay Lepreau Best Paper Award
+
+2024-12-30 08:39:10 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:12 [INFO] ❌ Not relevant to 'biography': The URL and display text mention a specific award and CS students, but do not reference Tianyin Xu.
+
+2024-12-30 08:39:13 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text mention a specific award and CS students, but do not reference Tianyin Xu or his research statement.
+
+2024-12-30 08:39:13 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:39:13 [INFO] 
+----------------------------------------
+Processing link 6/12
+----------------------------------------
+
+2024-12-30 08:39:13 [INFO] URL: https://siebelschool.illinois.edu/news/-acto-IBM
+
+2024-12-30 08:39:13 [INFO] Display text: CS professor Tianyin Xu and team develop a "push button" for testing cloud systems
+
+2024-12-30 08:39:13 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:14 [INFO] ❌ Not relevant to 'biography': The display text and URL suggest the link is about a project or achievement, not a biography.
+
+2024-12-30 08:39:15 [INFO] ✅ Relevant to 'researchStatement': The display text mentions a specific research-related achievement by the professor, indicating potential relevance to their research statement.
+
+2024-12-30 08:39:15 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:39:15 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/-acto-IBM
+----------------------------------------
+
+2024-12-30 08:39:16 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:39:16 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:39:16 [INFO] 
+----------------------------------------
+Processing link 7/12
+----------------------------------------
+
+2024-12-30 08:39:16 [INFO] URL: https://siebelschool.illinois.edu/news/gcoe-illinois-2024-cs-awards
+
+2024-12-30 08:39:16 [INFO] Display text: Computer science professors and a grad student earn 13 Grainger Engineering college and Illinois campus 2024 teaching, research, and public engagement awards
+
+2024-12-30 08:39:16 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:17 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about awards, not a specific professor's biography.
+
+2024-12-30 08:39:18 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text indicate the link is about awards, not a specific professor's research statement.
+
+2024-12-30 08:39:18 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:39:18 [INFO] 
+----------------------------------------
+Processing link 8/12
+----------------------------------------
+
+2024-12-30 08:39:18 [INFO] URL: https://siebelschool.illinois.edu/news/media-mentions/60496
+
+2024-12-30 08:39:18 [INFO] Display text: CS professor Guan named to 2023 Clarivate Analytics Highly Cited Researchers list
+
+2024-12-30 08:39:18 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:19 [INFO] ❌ Not relevant to 'biography': The display text mentions a different professor, Guan, and not Tianyin Xu.
+
+2024-12-30 08:39:20 [INFO] ❌ Not relevant to 'researchStatement': The display text mentions a different professor, Guan, and does not reference Tianyin Xu or their research statement.
+
+2024-12-30 08:39:20 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:39:20 [INFO] 
+----------------------------------------
+Processing link 9/12
+----------------------------------------
+
+2024-12-30 08:39:20 [INFO] URL: https://siebelschool.illinois.edu/news/media-mentions/60450
+
+2024-12-30 08:39:20 [INFO] Display text: CS professors contribute to evaluation of new Intel server chips
+
+2024-12-30 08:39:20 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:22 [INFO] ❌ Not relevant to 'biography': The URL and display text suggest the link is about CS professors contributing to an evaluation, not a specific professor's biography.
+
+2024-12-30 08:39:23 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text suggest a news article about CS professors, but do not specifically mention Tianyin Xu or his research statement.
+
+2024-12-30 08:39:23 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:39:23 [INFO] 
+----------------------------------------
+Processing link 10/12
+----------------------------------------
+
+2024-12-30 08:39:23 [INFO] URL: https://siebelschool.illinois.edu/about/people/faculty/tyxu
+
+2024-12-30 08:39:23 [INFO] Display text: Tianyin Xu
+
+2024-12-30 08:39:23 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:25 [INFO] ✅ Relevant to 'biography': The URL contains the faculty directory path and the display text matches the prof's name, indicating the link likely contains information about Tianyin Xu's biography.
+
+2024-12-30 08:39:26 [INFO] ✅ Relevant to 'researchStatement': The URL contains a faculty directory path and the display text matches the prof's name, suggesting the link may lead to a faculty profile page that could include a research statement.
+
+2024-12-30 08:39:26 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:39:26 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/about/people/faculty/tyxu
+----------------------------------------
+
+2024-12-30 08:39:27 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:39:27 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:39:27 [INFO] 
+----------------------------------------
+Processing link 11/12
+----------------------------------------
+
+2024-12-30 08:39:27 [INFO] URL: https://grainger.illinois.edu/research/faculty-awards
+
+2024-12-30 08:39:27 [INFO] Display text: 2024 Dean’s Award for Excellence in Research for Assistant Professor
+
+2024-12-30 08:39:27 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:28 [INFO] ❌ Not relevant to 'biography': The URL and display text suggest the link is about faculty awards, not a specific professor's biography.
+
+2024-12-30 08:39:29 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text indicate the link is about faculty awards, not a specific professor's research statement.
+
+2024-12-30 08:39:29 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:39:29 [INFO] 
+----------------------------------------
+Processing link 12/12
+----------------------------------------
+
+2024-12-30 08:39:29 [INFO] URL: https://sigmobile.org/mobicom/2023/
+
+2024-12-30 08:39:29 [INFO] Display text: Mobicom 2023
+
+2024-12-30 08:39:29 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:39:30 [INFO] ❌ Not relevant to 'biography': The URL and display text suggest a conference website, not a personal biography page
+
+2024-12-30 08:39:31 [INFO] ❌ Not relevant to 'researchStatement': The URL and display text suggest a conference website, not a personal research statement.
+
+2024-12-30 08:39:31 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:39:31 [INFO] 
+================================================================================
+Completed depth 1
+================================================================================
+
+2024-12-30 08:39:31 [INFO] Total relevant links found at this depth: 5
+
+2024-12-30 08:39:42 [INFO] 
+Discovered 5 relevant links:
+
+2024-12-30 08:39:42 [INFO]   • http://cs.illinois.edu/research/areas/programming-languages-formal-methods-and-software-engineering
+
+2024-12-30 08:39:42 [INFO]     ├─ Display: Programming Languages / Formal Methods / Software Engineering
+
+2024-12-30 08:39:42 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:39:42 [INFO]   • https://siebelschool.illinois.edu/about/people/faculty/tyxu
+
+2024-12-30 08:39:42 [INFO]     ├─ Display: Tianyin Xu
+
+2024-12-30 08:39:42 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:39:42 [INFO]   • http://cs.illinois.edu/research/areas/systems-and-networking
+
+2024-12-30 08:39:42 [INFO]     ├─ Display: Systems and Networking
+
+2024-12-30 08:39:42 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:39:42 [INFO]   • https://tianyin.github.io/
+
+2024-12-30 08:39:42 [INFO]     ├─ Display: Tianyin Xu's homepage
+
+2024-12-30 08:39:42 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:39:42 [INFO]   • https://siebelschool.illinois.edu/news/-acto-IBM
+
+2024-12-30 08:39:42 [INFO]     ├─ Display: CS professor Tianyin Xu and team develop a "push button" for testing cloud systems
+
+2024-12-30 08:39:42 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:39:42 [INFO] 
+----------------------------------------
+Extracting information from relevant links
+----------------------------------------
+
+2024-12-30 08:39:42 [INFO] Getting initial response from webpage...
+
+2024-12-30 08:39:58 [INFO] 
+Updating information with relevant links...
+
+2024-12-30 08:39:58 [INFO] 
+Processing link 1/5: https://tianyin.github.io/
+
+2024-12-30 08:40:49 [INFO] 
+Processing link 2/5: http://cs.illinois.edu/research/areas/programming-languages-formal-methods-and-software-engineering
+
+2024-12-30 08:41:08 [INFO] 
+Processing link 3/5: http://cs.illinois.edu/research/areas/systems-and-networking
+
+2024-12-30 08:41:28 [INFO] 
+Processing link 4/5: https://siebelschool.illinois.edu/news/-acto-IBM
+
+2024-12-30 08:41:51 [INFO] 
+Processing link 5/5: https://siebelschool.illinois.edu/about/people/faculty/tyxu
+
+2024-12-30 08:42:13 [INFO] 
+Saving final results...
+
+2024-12-30 08:42:13 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/7.json
+
+2024-12-30 08:42:13 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/all-faculty/tyxu
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 227.84 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 https://tianyin.github.io/
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The display text explicitly mentions the person's name and the URL appears to be a personal homepage, which often contains biographical information.
+   • researchStatement: The display text indicates it's the professor's homepage, which often includes research information.
+   ⏱️  Update Time: 51.19 seconds
+
+🔗 http://cs.illinois.edu/research/areas/programming-languages-formal-methods-and-software-engineering
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text suggest a research area, which may be relevant to a professor's research statement, especially if Tianyin Xu is affiliated with the University of Illinois and works in these areas.
+   ⏱️  Update Time: 18.56 seconds
+
+🔗 http://cs.illinois.edu/research/areas/systems-and-networking
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text suggest a research area, which may be relevant to a professor's research statement, especially if Tianyin Xu is affiliated with the University of Illinois and works in systems and networking.
+   ⏱️  Update Time: 19.57 seconds
+
+🔗 https://siebelschool.illinois.edu/news/-acto-IBM
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The display text mentions a specific research-related achievement by the professor, indicating potential relevance to their research statement.
+   ⏱️  Update Time: 22.59 seconds
+
+🔗 https://siebelschool.illinois.edu/about/people/faculty/tyxu
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The URL contains the faculty directory path and the display text matches the prof's name, indicating the link likely contains information about Tianyin Xu's biography.
+   • researchStatement: The URL contains a faculty directory path and the display text matches the prof's name, suggesting the link may lead to a faculty profile page that could include a research statement.
+   ⏱️  Update Time: 22.68 seconds
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:42:13 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/7.json
+
+2024-12-30 08:42:13 [INFO] 
+################################################################################
+Processing URL [9/10]: https://siebelschool.illinois.edu/about/people/all-faculty/maxim
+################################################################################
+
+2024-12-30 08:42:13 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:42:14 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:42:35 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:42:35 [INFO] Found 0 empty fields:
+
+2024-12-30 08:42:35 [INFO] 
+----------------------------------------
+No empty fields found, saving initial data
+----------------------------------------
+
+2024-12-30 08:42:35 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/all-faculty/maxim
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 21.69 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:42:35 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/8.json
+
+2024-12-30 08:42:35 [INFO] 
+################################################################################
+Processing URL [10/10]: https://siebelschool.illinois.edu/about/people/all-faculty/lbo
+################################################################################
+
+2024-12-30 08:42:35 [INFO] 
+----------------------------------------
+Scraping webpage content
+----------------------------------------
+
+2024-12-30 08:42:36 [INFO] 
+----------------------------------------
+Extracting initial professor data
+----------------------------------------
+
+2024-12-30 08:42:59 [INFO] 
+----------------------------------------
+Identifying empty fields
+----------------------------------------
+
+2024-12-30 08:42:59 [INFO] Found 2 empty fields:
+
+2024-12-30 08:42:59 [INFO]   • biography
+
+2024-12-30 08:42:59 [INFO]   • researchStatement
+
+2024-12-30 08:42:59 [INFO] 
+----------------------------------------
+Gathering relevant links recursively
+----------------------------------------
+
+2024-12-30 08:42:59 [INFO] 
+================================================================================
+Gathering links at depth 1
+================================================================================
+
+2024-12-30 08:42:59 [INFO] 
+----------------------------------------
+Extracting links from current page
+----------------------------------------
+
+2024-12-30 08:43:17 [INFO] Found 12 links to process
+
+2024-12-30 08:43:17 [INFO] 
+----------------------------------------
+Processing link 1/12
+----------------------------------------
+
+2024-12-30 08:43:17 [INFO] URL: http://boli.cs.illinois.edu
+
+2024-12-30 08:43:17 [INFO] Display text: Bo Li's Homepage
+
+2024-12-30 08:43:17 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:18 [INFO] ✅ Relevant to 'biography': The display text explicitly mentions 'Homepage' which typically contains biographical information about the person.
+
+2024-12-30 08:43:19 [INFO] ✅ Relevant to 'researchStatement': The display text indicates it's the professor's homepage, which often includes research information.
+
+2024-12-30 08:43:19 [INFO] 📍 Link is relevant for fields: biography, researchStatement
+
+2024-12-30 08:43:19 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://boli.cs.illinois.edu
+----------------------------------------
+
+2024-12-30 08:43:19 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:43:19 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:43:19 [INFO] 
+----------------------------------------
+Processing link 2/12
+----------------------------------------
+
+2024-12-30 08:43:19 [INFO] URL: https://scholar.google.com/citations?user=K8vJkTcAAAAJ&hl=en
+
+2024-12-30 08:43:19 [INFO] Display text: Bo Li's Google Scholar
+
+2024-12-30 08:43:19 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:20 [INFO] ❌ Not relevant to 'biography': Google Scholar primarily contains publication and citation information, not biographical data
+
+2024-12-30 08:43:21 [INFO] ✅ Relevant to 'researchStatement': Google Scholar profiles typically contain information about a researcher's publications and research interests, which can be related to their research statement.
+
+2024-12-30 08:43:21 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:43:21 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://scholar.google.com/citations?user=K8vJkTcAAAAJ&hl=en
+----------------------------------------
+
+2024-12-30 08:43:22 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:43:22 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:43:22 [INFO] 
+----------------------------------------
+Processing link 3/12
+----------------------------------------
+
+2024-12-30 08:43:22 [INFO] URL: https://cs.illinois.edu/research/systems-and-networking
+
+2024-12-30 08:43:22 [INFO] Display text: Security
+
+2024-12-30 08:43:22 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:23 [INFO] ❌ Not relevant to 'biography': The URL and display text suggest a focus on research areas, not a personal biography.
+
+2024-12-30 08:43:24 [INFO] ✅ Relevant to 'researchStatement': The URL contains 'research' and the display text is 'Security', which could be related to a professor's research statement, especially if Bo Li is a professor in the CS department at Illinois.
+
+2024-12-30 08:43:24 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:43:24 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://cs.illinois.edu/research/systems-and-networking
+----------------------------------------
+
+2024-12-30 08:43:24 [WARNING] ⚠️  URL not accessible - skipping
+
+2024-12-30 08:43:24 [INFO] 
+----------------------------------------
+Processing link 4/12
+----------------------------------------
+
+2024-12-30 08:43:24 [INFO] URL: http://cs.illinois.edu/research/artificial-intelligence
+
+2024-12-30 08:43:24 [INFO] Display text: Artificial Intelligence
+
+2024-12-30 08:43:24 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:26 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about artificial intelligence research, not a professor's biography.
+
+2024-12-30 08:43:27 [INFO] ✅ Relevant to 'researchStatement': The URL and display text both mention artificial intelligence, which could be related to a professor's research statement, especially if the professor is involved in AI research like Bo Li.
+
+2024-12-30 08:43:27 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:43:27 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://cs.illinois.edu/research/artificial-intelligence
+----------------------------------------
+
+2024-12-30 08:43:27 [WARNING] ⚠️  URL not accessible - skipping
+
+2024-12-30 08:43:27 [INFO] 
+----------------------------------------
+Processing link 5/12
+----------------------------------------
+
+2024-12-30 08:43:27 [INFO] URL: http://cs.illinois.edu/research/areas/artificial-intelligence
+
+2024-12-30 08:43:27 [INFO] Display text: Artificial Intelligence
+
+2024-12-30 08:43:27 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:28 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about artificial intelligence research, not a specific professor's biography.
+
+2024-12-30 08:43:30 [INFO] ✅ Relevant to 'researchStatement': The URL and display text both mention artificial intelligence, which could be related to a professor's research statement, especially if the professor is involved in AI research like Bo Li.
+
+2024-12-30 08:43:30 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:43:30 [INFO] 
+----------------------------------------
+Scraping relevant URL: http://cs.illinois.edu/research/areas/artificial-intelligence
+----------------------------------------
+
+2024-12-30 08:43:30 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:43:30 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:43:30 [INFO] 
+----------------------------------------
+Processing link 6/12
+----------------------------------------
+
+2024-12-30 08:43:30 [INFO] URL: https://cs.illinois.edu/research/areas/security-and-privacy
+
+2024-12-30 08:43:30 [INFO] Display text: Security and Privacy
+
+2024-12-30 08:43:30 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:32 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate the link is about a research area, not a professor's biography.
+
+2024-12-30 08:43:33 [INFO] ✅ Relevant to 'researchStatement': The URL and display text suggest a research area, which could be related to a professor's research statement, especially if Bo Li is affiliated with the University of Illinois and works in security and privacy.
+
+2024-12-30 08:43:33 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:43:33 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://cs.illinois.edu/research/areas/security-and-privacy
+----------------------------------------
+
+2024-12-30 08:43:33 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:43:33 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:43:33 [INFO] 
+----------------------------------------
+Processing link 7/12
+----------------------------------------
+
+2024-12-30 08:43:33 [INFO] URL: https://siebelschool.illinois.edu/news/taking-the-time-to-implement-trust-in-ai
+
+2024-12-30 08:43:33 [INFO] Display text: Taking the Time to Implement Trust in AI
+
+2024-12-30 08:43:33 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:35 [INFO] ❌ Not relevant to 'biography': The URL and display text mention AI, but do not indicate a connection to a personal biography, such as that of prof Bo Li.
+
+2024-12-30 08:43:36 [INFO] ✅ Relevant to 'researchStatement': The URL and display text mention 'AI', which could be related to a professor's research statement, especially if the professor works with AI, such as Bo Li.
+
+2024-12-30 08:43:36 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:43:36 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/taking-the-time-to-implement-trust-in-ai
+----------------------------------------
+
+2024-12-30 08:43:37 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:43:37 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:43:37 [INFO] 
+----------------------------------------
+Processing link 8/12
+----------------------------------------
+
+2024-12-30 08:43:37 [INFO] URL: https://siebelschool.illinois.edu/news/nsf-supports-new-ai-institute-for-agent-based-cyber-threat-intelligence-and-operation
+
+2024-12-30 08:43:37 [INFO] Display text: NSF supports new AI Institute for Agent-based Cyber Threat Intelligence and OperatioN
+
+2024-12-30 08:43:37 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:39 [INFO] ❌ Not relevant to 'biography': The URL and display text mention a specific research project and institution, but do not indicate a connection to a personal biography, such as that of Prof. Bo Li.
+
+2024-12-30 08:43:40 [INFO] ✅ Relevant to 'researchStatement': The URL and display text mention AI and cyber threat intelligence, which could be related to a professor's research statement, especially if the professor is involved in AI or cybersecurity research, such as Bo Li.
+
+2024-12-30 08:43:40 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:43:40 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/nsf-supports-new-ai-institute-for-agent-based-cyber-threat-intelligence-and-operation
+----------------------------------------
+
+2024-12-30 08:43:40 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:43:40 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:43:40 [INFO] 
+----------------------------------------
+Processing link 9/12
+----------------------------------------
+
+2024-12-30 08:43:40 [INFO] URL: https://siebelschool.illinois.edu/news/media-mentions/vinuniversity-university-of-illinois-open-biotech-data-science-research-centre-in-vietnam
+
+2024-12-30 08:43:40 [INFO] Display text: VinUniversity, University of Illinois Open Biotech, Data Science Research Centre in Vietnam
+
+2024-12-30 08:43:40 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:42 [INFO] ❌ Not relevant to 'biography': The URL and display text do not mention the professor's name, Bo Li, and appear to be about a research center opening.
+
+2024-12-30 08:43:43 [INFO] ❌ Not relevant to 'researchStatement': The hyperlink does not mention the professor's name, Bo Li, and appears to be about a research center opening, not an individual's research statement.
+
+2024-12-30 08:43:43 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:43:43 [INFO] 
+----------------------------------------
+Processing link 10/12
+----------------------------------------
+
+2024-12-30 08:43:43 [INFO] URL: https://siebelschool.illinois.edu/news/cs-faculty-earn-2022-distinctions-awarded-by-research-associations-the-university-system-and-tech-media
+
+2024-12-30 08:43:43 [INFO] Display text: CS Faculty Earn 2022 Distinctions Awarded by Research Associations, the University System, and Tech Media
+
+2024-12-30 08:43:43 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:45 [INFO] ❌ Not relevant to 'biography': The URL and display text indicate a general news article about CS faculty earning distinctions, without mentioning a specific professor like Bo Li.
+
+2024-12-30 08:43:46 [INFO] ❌ Not relevant to 'researchStatement': The link appears to be about general faculty achievements and distinctions, not specifically about an individual professor's research statement.
+
+2024-12-30 08:43:46 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:43:46 [INFO] 
+----------------------------------------
+Processing link 11/12
+----------------------------------------
+
+2024-12-30 08:43:46 [INFO] URL: https://siebelschool.illinois.edu/news/12-illinois-cs-or-affiliated-faculty-earn-c3ai-dti-funded-projects-focused-on-ai-to-transform-cybersecurity-and-secure-critical-infrastructure
+
+2024-12-30 08:43:46 [INFO] Display text: 14 Illinois CS or Affiliated Faculty Earn C3.ai DTI Projects Focused on AI to Transform Cybersecurity and Secure Critical Infrastructure
+
+2024-12-30 08:43:46 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:47 [INFO] ❌ Not relevant to 'biography': The URL and display text mention multiple faculty members and their projects, but do not specifically mention Prof. Bo Li's biography.
+
+2024-12-30 08:43:49 [INFO] ❌ Not relevant to 'researchStatement': The display text and URL mention multiple faculty members earning projects, but do not specifically mention Prof. Bo Li or their research statement.
+
+2024-12-30 08:43:49 [INFO] ⏩ Skipping - No relevant fields found
+
+2024-12-30 08:43:49 [INFO] 
+----------------------------------------
+Processing link 12/12
+----------------------------------------
+
+2024-12-30 08:43:49 [INFO] URL: https://siebelschool.illinois.edu/news/media-mentions/is-technology-spying-on-you-new-ai-could-prevent-eavesdropping
+
+2024-12-30 08:43:49 [INFO] Display text: Is Technology Spying On You? New AI Could Prevent Eavesdropping
+
+2024-12-30 08:43:49 [INFO] Checking relevance for empty fields:
+
+2024-12-30 08:43:50 [INFO] ❌ Not relevant to 'biography': The URL and display text do not mention the professor's name or biography, but rather a topic related to technology and AI.
+
+2024-12-30 08:43:52 [INFO] ✅ Relevant to 'researchStatement': The URL and display text mention AI and preventing eavesdropping, which could be related to a professor's research statement, especially if the professor's name is associated with the institution in the URL (siebelschool.illinois.edu) and their research involves AI and security.
+
+2024-12-30 08:43:52 [INFO] 📍 Link is relevant for fields: researchStatement
+
+2024-12-30 08:43:52 [INFO] 
+----------------------------------------
+Scraping relevant URL: https://siebelschool.illinois.edu/news/media-mentions/is-technology-spying-on-you-new-ai-could-prevent-eavesdropping
+----------------------------------------
+
+2024-12-30 08:43:53 [INFO] 🔄 Starting recursive link gathering...
+
+2024-12-30 08:43:53 [INFO] Found 0 additional relevant links
+
+2024-12-30 08:43:53 [INFO] 
+================================================================================
+Completed depth 1
+================================================================================
+
+2024-12-30 08:43:53 [INFO] Total relevant links found at this depth: 9
+
+2024-12-30 08:44:09 [INFO] 
+Discovered 9 relevant links:
+
+2024-12-30 08:44:09 [INFO]   • https://scholar.google.com/citations?user=K8vJkTcAAAAJ&hl=en
+
+2024-12-30 08:44:09 [INFO]     ├─ Display: Bo Li's Google Scholar
+
+2024-12-30 08:44:09 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:44:09 [INFO]   • http://cs.illinois.edu/research/artificial-intelligence
+
+2024-12-30 08:44:09 [INFO]     ├─ Display: Artificial Intelligence
+
+2024-12-30 08:44:09 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:44:09 [INFO]   • https://cs.illinois.edu/research/systems-and-networking
+
+2024-12-30 08:44:09 [INFO]     ├─ Display: Security
+
+2024-12-30 08:44:09 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:44:09 [INFO]   • http://boli.cs.illinois.edu
+
+2024-12-30 08:44:09 [INFO]     ├─ Display: Bo Li's Homepage
+
+2024-12-30 08:44:09 [INFO]     └─ Relevant to: biography, researchStatement
+
+2024-12-30 08:44:09 [INFO]   • https://siebelschool.illinois.edu/news/media-mentions/is-technology-spying-on-you-new-ai-could-prevent-eavesdropping
+
+2024-12-30 08:44:09 [INFO]     ├─ Display: Is Technology Spying On You? New AI Could Prevent Eavesdropping
+
+2024-12-30 08:44:09 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:44:09 [INFO]   • https://siebelschool.illinois.edu/news/nsf-supports-new-ai-institute-for-agent-based-cyber-threat-intelligence-and-operation
+
+2024-12-30 08:44:09 [INFO]     ├─ Display: NSF supports new AI Institute for Agent-based Cyber Threat Intelligence and OperatioN
+
+2024-12-30 08:44:09 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:44:09 [INFO]   • https://cs.illinois.edu/research/areas/security-and-privacy
+
+2024-12-30 08:44:09 [INFO]     ├─ Display: Security and Privacy
+
+2024-12-30 08:44:09 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:44:09 [INFO]   • https://siebelschool.illinois.edu/news/taking-the-time-to-implement-trust-in-ai
+
+2024-12-30 08:44:09 [INFO]     ├─ Display: Taking the Time to Implement Trust in AI
+
+2024-12-30 08:44:09 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:44:09 [INFO]   • http://cs.illinois.edu/research/areas/artificial-intelligence
+
+2024-12-30 08:44:09 [INFO]     ├─ Display: Artificial Intelligence
+
+2024-12-30 08:44:09 [INFO]     └─ Relevant to: researchStatement
+
+2024-12-30 08:44:09 [INFO] 
+----------------------------------------
+Extracting information from relevant links
+----------------------------------------
+
+2024-12-30 08:44:09 [INFO] Getting initial response from webpage...
+
+2024-12-30 08:44:32 [INFO] 
+Updating information with relevant links...
+
+2024-12-30 08:44:32 [INFO] 
+Processing link 1/9: http://boli.cs.illinois.edu
+
+2024-12-30 08:45:02 [INFO] 
+Processing link 2/9: https://scholar.google.com/citations?user=K8vJkTcAAAAJ&hl=en
+
+2024-12-30 08:45:36 [INFO] 
+Processing link 3/9: https://cs.illinois.edu/research/systems-and-networking
+
+2024-12-30 08:45:36 [WARNING] Skipping link https://cs.illinois.edu/research/systems-and-networking because it is not accessible
+
+2024-12-30 08:45:36 [INFO] 
+Processing link 4/9: http://cs.illinois.edu/research/artificial-intelligence
+
+2024-12-30 08:45:36 [WARNING] Skipping link http://cs.illinois.edu/research/artificial-intelligence because it is not accessible
+
+2024-12-30 08:45:36 [INFO] 
+Processing link 5/9: http://cs.illinois.edu/research/areas/artificial-intelligence
+
+2024-12-30 08:46:13 [INFO] 
+Processing link 6/9: https://cs.illinois.edu/research/areas/security-and-privacy
+
+2024-12-30 08:46:48 [INFO] 
+Processing link 7/9: https://siebelschool.illinois.edu/news/taking-the-time-to-implement-trust-in-ai
+
+2024-12-30 08:47:26 [INFO] 
+Processing link 8/9: https://siebelschool.illinois.edu/news/nsf-supports-new-ai-institute-for-agent-based-cyber-threat-intelligence-and-operation
+
+2024-12-30 08:48:08 [INFO] 
+Processing link 9/9: https://siebelschool.illinois.edu/news/media-mentions/is-technology-spying-on-you-new-ai-could-prevent-eavesdropping
+
+2024-12-30 08:48:50 [INFO] 
+Saving final results...
+
+2024-12-30 08:48:50 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/9.json
+
+2024-12-30 08:48:50 [INFO] 
+📊 Summary for https://siebelschool.illinois.edu/about/people/all-faculty/lbo
+────────────────────────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 374.45 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 http://boli.cs.illinois.edu
+   Fields: biography, researchStatement
+   Reasons:
+   • biography: The display text explicitly mentions 'Homepage' which typically contains biographical information about the person.
+   • researchStatement: The display text indicates it's the professor's homepage, which often includes research information.
+   ⏱️  Update Time: 29.66 seconds
+
+🔗 https://scholar.google.com/citations?user=K8vJkTcAAAAJ&hl=en
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: Google Scholar profiles typically contain information about a researcher's publications and research interests, which can be related to their research statement.
+   ⏱️  Update Time: 34.56 seconds
+
+🔗 https://cs.illinois.edu/research/systems-and-networking
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL contains 'research' and the display text is 'Security', which could be related to a professor's research statement, especially if Bo Li is a professor in the CS department at Illinois.
+
+🔗 http://cs.illinois.edu/research/artificial-intelligence
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text both mention artificial intelligence, which could be related to a professor's research statement, especially if the professor is involved in AI research like Bo Li.
+
+🔗 http://cs.illinois.edu/research/areas/artificial-intelligence
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text both mention artificial intelligence, which could be related to a professor's research statement, especially if the professor is involved in AI research like Bo Li.
+   ⏱️  Update Time: 36.08 seconds
+
+🔗 https://cs.illinois.edu/research/areas/security-and-privacy
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text suggest a research area, which could be related to a professor's research statement, especially if Bo Li is affiliated with the University of Illinois and works in security and privacy.
+   ⏱️  Update Time: 35.26 seconds
+
+🔗 https://siebelschool.illinois.edu/news/taking-the-time-to-implement-trust-in-ai
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text mention 'AI', which could be related to a professor's research statement, especially if the professor works with AI, such as Bo Li.
+   ⏱️  Update Time: 38.05 seconds
+
+🔗 https://siebelschool.illinois.edu/news/nsf-supports-new-ai-institute-for-agent-based-cyber-threat-intelligence-and-operation
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text mention AI and cyber threat intelligence, which could be related to a professor's research statement, especially if the professor is involved in AI or cybersecurity research, such as Bo Li.
+   ⏱️  Update Time: 41.29 seconds
+
+🔗 https://siebelschool.illinois.edu/news/media-mentions/is-technology-spying-on-you-new-ai-could-prevent-eavesdropping
+   Fields: researchStatement
+   Reasons:
+   • researchStatement: The URL and display text mention AI and preventing eavesdropping, which could be related to a professor's research statement, especially if the professor's name is associated with the institution in the URL (siebelschool.illinois.edu) and their research involves AI and security.
+   ⏱️  Update Time: 41.70 seconds
+────────────────────────────────────────────────────────────────────────────────
+
+
+2024-12-30 08:48:50 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/prof/1/9.json
+
+2024-12-30 08:48:50 [INFO] 
+================================================================================
+Final Process Summary
+================================================================================
+
+2024-12-30 08:48:50 [INFO] Total Processing Time: 1860.86 seconds
+
+2024-12-30 08:48:50 [INFO] Number of URLs Processed: 10
+
+2024-12-30 08:48:50 [INFO] 
+📊 Detailed Analysis by URL:
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/all-faculty/caesar
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 241.17 seconds
+
+2024-12-30 08:48:50 [INFO] 
+📎 Relevant Links Found:
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://www.cs.illinois.edu/~caesar
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text explicitly mentions 'home page' which typically contains biographical information about the person.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The display text explicitly mentions the professor's name and the URL appears to be a personal homepage, which often contains research information.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://cs.illinois.edu/research/areas/security-and-privacy
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text suggest a focus on security and privacy, which could be related to a professor's research statement, especially if Matthew Caesar's research aligns with these areas.
+
+2024-12-30 08:48:50 [INFO]      ⏱️  Update Time: 35.26 seconds
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://cs.illinois.edu/research/areas/systems-and-networking
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text suggest a research area, which may be relevant to a professor's research statement, especially considering Matthew Caesar is a professor in the CS department at Illinois, specializing in systems and networking.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://grainger.illinois.edu/news/stories/60906
+
+2024-12-30 08:48:50 [INFO]      Fields: biography
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text mentions Matthew Caesar, indicating the link may contain information about him, including his biography.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/caesars-passion-for-iot-helps-transition-his-graduate-course-into-an-online-hands-on-coursera-specialization
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text mentions 'Caesar's Passion', indicating the link is about a person named Caesar, likely a professor, and the URL contains 'caesars', suggesting it may contain biographical information about him.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text mention a professor's name, Caesar, and his work on IoT, indicating potential relevance to his research statement.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/caesar-works-improve-internet-connectivity-during-disaster-response
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text mentions 'Caesar', which could refer to the professor Matthew Caesar, and the URL contains 'caesar', suggesting a potential connection to the professor's work or biography.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text mention 'Caesar Works', which likely refers to a project or initiative led by Matthew Caesar, suggesting the link may contain information about his research.
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/all-faculty/kcchang
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 108.89 seconds
+
+2024-12-30 08:48:50 [INFO] 
+❌ No relevant links found for this URL
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/faculty/hl314
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 159.12 seconds
+
+2024-12-30 08:48:50 [INFO] 
+📎 Relevant Links Found:
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://cs.illinois.edu/research/areas/bioinformatics-and-computational-biology
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text suggest a research area, which could be related to a professor's research statement.
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/faculty/angrave
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 36.76 seconds
+
+2024-12-30 08:48:50 [INFO] 
+❌ No relevant links found for this URL
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/all-faculty/nanjiang
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 299.06 seconds
+
+2024-12-30 08:48:50 [INFO] 
+📎 Relevant Links Found:
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://nanjiang.cs.illinois.edu/
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The URL contains the professor's name and the display text indicates it is their personal website, which often includes biographical information.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL is a personal website of a professor, which often contains information about their research, including their research statement.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://cs.illinois.edu/research/areas/artificial-intelligence
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text both mention 'artificial-intelligence', which could be related to a professor's research statement, especially if the professor works in that field like Nan Jiang.
+
+2024-12-30 08:48:50 [INFO]      ⏱️  Update Time: 36.08 seconds
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/nan-jiang-2024-sloan-fellow
+
+2024-12-30 08:48:50 [INFO]      Fields: biography
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The URL and display text specifically mention a professor's name and a notable achievement, suggesting the link may contain biographical information about Nan Jiang.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://sloan.org/fellowships/2024-Fellows
+
+2024-12-30 08:48:50 [INFO]      Fields: biography
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text mentions a specific person, Nan Jiang, and the URL contains the word 'Fellows', indicating an award or recognition, which is often included in a person's biography.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/nan-jiang-furthers-development-in-reinforcement-learning-with-nsf-career-award
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text mentions a specific professor, Nan Jiang, and the URL contains the professor's name, indicating the link may contain biographical information about the professor.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text specifically mention the professor's name and an award related to reinforcement learning, indicating potential relevance to their research statement.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/jiang-national-institute-exploring-synergies-between-networking-AI
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text mentions a specific person's name, 'Jiang', indicating potential biographical information about the professor.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text mention a specific professor, Jiang, and their involvement in a research-related project, indicating potential relevance to their research statement.
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/all-faculty/mfsilva
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 278.10 seconds
+
+2024-12-30 08:48:50 [INFO] 
+📎 Relevant Links Found:
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://mfsilva.web.illinois.edu/
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The URL contains the name 'mfsilva' which could be an abbreviation for Mariana Silva, and the display text 'Personal Website' suggests it may contain biographical information.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL contains the name 'mfsilva' which could be an abbreviation for Mariana Silva, and a personal website often contains information about a person's research.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/game-time-shaffer-silva-build-a-new-bridge-with-campus-middle-school-for-girls
+
+2024-12-30 08:48:50 [INFO]      Fields: biography
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text mentions 'Silva', which could refer to the professor's last name, indicating potential biographical information.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/silva-leads-team-studying-interconnections-between-online-learning-equity-access
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text mentions a specific professor, Mariana Silva, indicating the link may contain information about her biography or work.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text specifically mention 'Silva' leading a team on a research project, suggesting the link contains information about her research.
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/all-faculty/minjiaz
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 113.78 seconds
+
+2024-12-30 08:48:50 [INFO] 
+📎 Relevant Links Found:
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://minjiazhang.github.io/
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text mentions a professor and the URL appears to be a personal website, which often contains biographical information.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL is a personal website and the display text mentions a professor, increasing the likelihood of containing information about their research statement.
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/all-faculty/tyxu
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 227.84 seconds
+
+2024-12-30 08:48:50 [INFO] 
+📎 Relevant Links Found:
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://tianyin.github.io/
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text explicitly mentions the person's name and the URL appears to be a personal homepage, which often contains biographical information.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The display text indicates it's the professor's homepage, which often includes research information.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://cs.illinois.edu/research/areas/programming-languages-formal-methods-and-software-engineering
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text suggest a research area, which may be relevant to a professor's research statement, especially if Tianyin Xu is affiliated with the University of Illinois and works in these areas.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://cs.illinois.edu/research/areas/systems-and-networking
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text suggest a research area, which may be relevant to a professor's research statement, especially if Tianyin Xu is affiliated with the University of Illinois and works in systems and networking.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/-acto-IBM
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The display text mentions a specific research-related achievement by the professor, indicating potential relevance to their research statement.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/about/people/faculty/tyxu
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The URL contains the faculty directory path and the display text matches the prof's name, indicating the link likely contains information about Tianyin Xu's biography.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL contains a faculty directory path and the display text matches the prof's name, suggesting the link may lead to a faculty profile page that could include a research statement.
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/all-faculty/maxim
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 21.69 seconds
+
+2024-12-30 08:48:50 [INFO] 
+❌ No relevant links found for this URL
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 🌐 https://siebelschool.illinois.edu/about/people/all-faculty/lbo
+
+2024-12-30 08:48:50 [INFO] ⏱️  Processing Time: 374.45 seconds
+
+2024-12-30 08:48:50 [INFO] 
+📎 Relevant Links Found:
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://boli.cs.illinois.edu
+
+2024-12-30 08:48:50 [INFO]      Fields: biography, researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • biography: The display text explicitly mentions 'Homepage' which typically contains biographical information about the person.
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The display text indicates it's the professor's homepage, which often includes research information.
+
+2024-12-30 08:48:50 [INFO]      ⏱️  Update Time: 29.66 seconds
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://scholar.google.com/citations?user=K8vJkTcAAAAJ&hl=en
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: Google Scholar profiles typically contain information about a researcher's publications and research interests, which can be related to their research statement.
+
+2024-12-30 08:48:50 [INFO]      ⏱️  Update Time: 34.56 seconds
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://cs.illinois.edu/research/systems-and-networking
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL contains 'research' and the display text is 'Security', which could be related to a professor's research statement, especially if Bo Li is a professor in the CS department at Illinois.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://cs.illinois.edu/research/artificial-intelligence
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text both mention artificial intelligence, which could be related to a professor's research statement, especially if the professor is involved in AI research like Bo Li.
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 http://cs.illinois.edu/research/areas/artificial-intelligence
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text both mention artificial intelligence, which could be related to a professor's research statement, especially if the professor is involved in AI research like Bo Li.
+
+2024-12-30 08:48:50 [INFO]      ⏱️  Update Time: 36.08 seconds
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://cs.illinois.edu/research/areas/security-and-privacy
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text suggest a research area, which could be related to a professor's research statement, especially if Bo Li is affiliated with the University of Illinois and works in security and privacy.
+
+2024-12-30 08:48:50 [INFO]      ⏱️  Update Time: 35.26 seconds
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/taking-the-time-to-implement-trust-in-ai
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text mention 'AI', which could be related to a professor's research statement, especially if the professor works with AI, such as Bo Li.
+
+2024-12-30 08:48:50 [INFO]      ⏱️  Update Time: 38.05 seconds
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/nsf-supports-new-ai-institute-for-agent-based-cyber-threat-intelligence-and-operation
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text mention AI and cyber threat intelligence, which could be related to a professor's research statement, especially if the professor is involved in AI or cybersecurity research, such as Bo Li.
+
+2024-12-30 08:48:50 [INFO]      ⏱️  Update Time: 41.29 seconds
+
+2024-12-30 08:48:50 [INFO] 
+  🔗 https://siebelschool.illinois.edu/news/media-mentions/is-technology-spying-on-you-new-ai-could-prevent-eavesdropping
+
+2024-12-30 08:48:50 [INFO]      Fields: researchStatement
+
+2024-12-30 08:48:50 [INFO]      Reasons:
+
+2024-12-30 08:48:50 [INFO]      • researchStatement: The URL and display text mention AI and preventing eavesdropping, which could be related to a professor's research statement, especially if the professor's name is associated with the institution in the URL (siebelschool.illinois.edu) and their research involves AI and security.
+
+2024-12-30 08:48:50 [INFO]      ⏱️  Update Time: 41.70 seconds
+
+2024-12-30 08:48:50 [INFO] ────────────────────────────────────────────────────────────────────────────────
+
+2024-12-30 08:48:50 [INFO] 
+================================================================================
+✅ Process completed successfully!
+================================================================================
+
