@@ -103,15 +103,8 @@ def setup_logging(open_source_model, prompt_type, max_depth):
             summary += "\n📎 Relevant Links Analysis:\n"
             for link_url, info in relevant_links_info.items():
                 summary += f"\n🔗 {link_url}\n"
-                summary += f"   Fields: {', '.join(info['fields'])}\n"
-                if "reasons" in info:
-                    summary += "   Reasons:\n"
-                    for field, reason in info["reasons"].items():
-                        summary += f"   • {field}: {reason}\n"
-                if update_times and link_url in update_times:
-                    summary += (
-                        f"   ⏱️  Update Time: {update_times[link_url]:.2f} seconds\n"
-                    )
+                formatted_lines = format_relevant_link_info(link_url, info, update_times)
+                summary += "\n".join(formatted_lines) + "\n"
         else:
             summary += "\n❌ No relevant links found\n"
 
@@ -370,6 +363,34 @@ def gather_links_recursively(
     return relevant_links, relevance_dict
 
 
+def format_relevant_link_info(link_url, info, update_times=None, indent="   "):
+    """Format relevant link information including fields, reasons, and update time.
+    
+    Args:
+        link_url: URL of the relevant link
+        info: Dictionary containing fields and reasons
+        update_times: Dictionary of update times for links (optional)
+        indent: String for indentation (default: "   ")
+    
+    Returns:
+        list: List of formatted strings for the link information
+    """
+    formatted_lines = []
+    formatted_lines.append(f"{indent}Fields: {', '.join(info['fields'])}")
+    
+    if "reasons" in info:
+        formatted_lines.append(f"{indent}Reasons:")
+        for field, reason in info["reasons"].items():
+            formatted_lines.append(f"{indent}• {field}: {reason}")
+    
+    if update_times and link_url in update_times:
+        formatted_lines.append(
+            f"{indent}⏱️  Update Time: {update_times.get(link_url, 0):.2f} seconds"
+        )
+    
+    return formatted_lines
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Process entity information with configurable depth."
@@ -506,16 +527,9 @@ if __name__ == "__main__":
             logging.info("\n📎 Relevant Links Found:")
             for link_url, info in relevant_links.items():
                 logging.info(f"\n  🔗 {link_url}")
-                logging.info(f"     Fields: {', '.join(info['fields'])}")
-                if "reasons" in info:
-                    logging.info("     Reasons:")
-                    for field, reason in info["reasons"].items():
-                        logging.info(f"     • {field}: {reason}")
-                # Add update time for each relevant link
-                if update_times and link_url in update_times:
-                    logging.info(
-                        f"     ⏱️  Update Time: {update_times.get(link_url, 0):.2f} seconds"
-                    )
+                formatted_lines = format_relevant_link_info(link_url, info, update_times, indent="     ")
+                for line in formatted_lines:
+                    logging.info(line)
         else:
             logging.info("\n❌ No relevant links found for this URL")
 
