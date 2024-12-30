@@ -4,10 +4,12 @@ import os
 from tqdm import tqdm
 import logging
 import argparse
+import time
 
 from pydantic import BaseModel, BeforeValidator, HttpUrl, TypeAdapter
 from prompt.prof import Prof
 from openai import OpenAI
+
 # from psycopg2.extras import Json
 # import psycopg2
 from scraper import WebScraper
@@ -47,13 +49,11 @@ class ResponseOfRelevance(BaseModel):
 
 
 def setup_logging(open_source_model, prompt_type, max_depth):
-    # Create logs directory structure
-    os.makedirs("./logs", exist_ok=True)
-    os.makedirs(f"./logs/{open_source_model}", exist_ok=True)
-    os.makedirs(f"./logs/{open_source_model}/{prompt_type}", exist_ok=True)
-    os.makedirs(f"./logs/{open_source_model}/{prompt_type}/{max_depth}", exist_ok=True)
+    # Create results directory structure instead of logs
+    base_path = f"./results/{open_source_model}/{prompt_type}/{max_depth}"
+    os.makedirs(base_path, exist_ok=True)
 
-    log_path = f"./logs/{open_source_model}/{prompt_type}/{max_depth}/log.txt"
+    log_path = f"{base_path}/process_log.txt"
 
     # Disable httpx logger to prevent OpenAI HTTP request logs
     logging.getLogger("httpx").setLevel(logging.WARNING)
@@ -79,10 +79,31 @@ def setup_logging(open_source_model, prompt_type, max_depth):
     def log_url_processing(url, index, total):
         logging.info(f"\n{'#'*80}\nProcessing URL [{index}/{total}]: {url}\n{'#'*80}")
 
-    # Add these functions to the logging module for easy access
+    def log_summary(url, duration, relevant_links_info):
+        summary = f"\n📊 Summary for {url}\n"
+        summary += f"{'─'*80}\n"
+        summary += f"⏱️  Processing Duration: {duration:.2f} seconds\n"
+
+        if relevant_links_info:
+            summary += "\n📎 Relevant Links Found:\n"
+            for link_url, info in relevant_links_info.items():
+                summary += f"\n🔗 {link_url}\n"
+                summary += f"   Fields: {', '.join(info['fields'])}\n"
+                if "reasons" in info:
+                    summary += "   Reasons:\n"
+                    for field, reason in info["reasons"].items():
+                        summary += f"   • {field}: {reason}\n"
+        else:
+            summary += "\n❌ No relevant links found\n"
+
+        summary += f"{'─'*80}\n"
+        logging.info(summary)
+
+    # Add these functions to the logging module
     logging.section = log_section
     logging.subsection = log_subsection
     logging.url_processing = log_url_processing
+    logging.summary = log_summary
 
 
 def get_links_from_page(scrape_result, json_data):
@@ -409,8 +430,13 @@ if __name__ == "__main__":
     with open("./dataset/source/prof.txt", "r") as file:
         urls = [url.strip() for url in file.readlines()]
 
+    start_time = time.time()
+    url_processing_times = {}
+    url_relevant_links = {}
+
     # Process each URL
     for idx, url in enumerate(urls):
+        url_start_time = time.time()
         logging.url_processing(url, idx + 1, len(urls))
 
         logging.subsection("Scraping webpage content")
@@ -432,7 +458,7 @@ if __name__ == "__main__":
         logging.info(f"Found {len(none_keys)} empty fields:")
         for key in none_keys:
             logging.info(f"  • {key}")
-        
+
         os.makedirs(
             f"./results/{open_source_model}/{prompt_type}/{max_depth}", exist_ok=True
         )
@@ -446,11 +472,34 @@ if __name__ == "__main__":
                 scrape_result, prof_data, none_keys, max_depth=max_depth
             )
 
+            # Store relevant links info for summary
+            url_relevant_links[url] = {
+                link_url: {
+                    "fields": fields,
+                    "reasons": {
+                        field: check_link_relevance(
+                            link_url,
+                            next(
+                                l.display_text
+                                for l in all_discovered_links
+                                if l.url == link_url
+                            ),
+                            field,
+                            prof_data,
+                        ).reason
+                        for field in fields
+                    },
+                }
+                for link_url, fields in relevance_dict.items()
+            }
+
             logging.info(f"\nDiscovered {len(all_discovered_links)} relevant links:")
             for link in all_discovered_links:
                 logging.info(f"  • {link.url}")
                 logging.info(f"    ├─ Display: {link.display_text}")
-                logging.info(f"    └─ Relevant to: {', '.join(relevance_dict[link.url])}")
+                logging.info(
+                    f"    └─ Relevant to: {', '.join(relevance_dict[link.url])}"
+                )
 
             logging.subsection("Extracting information from relevant links")
 
@@ -462,6 +511,17 @@ if __name__ == "__main__":
             with open(output_path, "w") as f:
                 json.dump(prof_data, f)
 
+        url_processing_times[url] = time.time() - url_start_time
+        logging.summary(url, url_processing_times[url], url_relevant_links.get(url, {}))
         logging.info(f"✅ Results saved to {output_path}")
+
+    total_duration = time.time() - start_time
+
+    logging.section("Final Process Summary")
+    logging.info(f"Total Processing Time: {total_duration:.2f} seconds")
+    logging.info(f"Number of URLs Processed: {len(urls)}")
+    logging.info("\nProcessing Time per URL:")
+    for url, duration in url_processing_times.items():
+        logging.info(f"• {url}: {duration:.2f} seconds")
 
     logging.section("Process completed successfully!")
