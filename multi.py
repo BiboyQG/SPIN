@@ -443,7 +443,7 @@ if __name__ == "__main__":
         if len(none_keys) != 0:
             logging.subsection("Gathering relevant links recursively")
             all_discovered_links, relevance_dict = gather_links_recursively(
-                scrape_result, prof_data, none_keys, max_depth=2
+                scrape_result, prof_data, none_keys, max_depth=max_depth
             )
 
             logging.info(f"\nDiscovered {len(all_discovered_links)} relevant links:")
