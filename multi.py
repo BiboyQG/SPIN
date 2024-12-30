@@ -422,6 +422,7 @@ if __name__ == "__main__":
     start_time = time.time()
     url_processing_times = {}
     url_relevant_links = {}
+    all_update_times = {}  # New dictionary to store update times for all URLs
 
     # Process each URL
     for idx, url in enumerate(urls):
@@ -495,18 +496,19 @@ if __name__ == "__main__":
             update_times = get_final_information_from_all_links_one_by_one(
                 scrape_result, relevance_dict, output_path
             )
+            all_update_times[url] = update_times  # Store update times for this URL
         else:
             logging.subsection("No empty fields found, saving initial data")
             with open(output_path, "w") as f:
                 json.dump(prof_data, f)
-            update_times = {}
+            all_update_times[url] = {}  # Empty dict for URLs with no updates
 
         url_processing_times[url] = time.time() - url_start_time
         logging.summary(
             url,
             url_processing_times[url],
             url_relevant_links.get(url, {}),
-            update_times,
+            all_update_times.get(url, {}),
         )
         logging.info(f"✅ Results saved to {output_path}")
 
@@ -530,7 +532,7 @@ if __name__ == "__main__":
             for link_url, info in relevant_links.items():
                 logging.info(f"\n  🔗 {link_url}")
                 formatted_lines = format_relevant_link_info(
-                    link_url, info, update_times, indent="     "
+                    link_url, info, all_update_times.get(url, {}), indent="     "
                 )
                 for line in formatted_lines:
                     logging.info(line)
