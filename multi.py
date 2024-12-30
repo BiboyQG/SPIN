@@ -511,6 +511,11 @@ if __name__ == "__main__":
                     logging.info("     Reasons:")
                     for field, reason in info["reasons"].items():
                         logging.info(f"     • {field}: {reason}")
+                # Add update time for each relevant link
+                if update_times and link_url in update_times:
+                    logging.info(
+                        f"     ⏱️  Update Time: {update_times.get(link_url, 0):.2f} seconds"
+                    )
         else:
             logging.info("\n❌ No relevant links found for this URL")
 
