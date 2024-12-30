@@ -432,20 +432,7 @@ if __name__ == "__main__":
         logging.info(f"Found {len(none_keys)} empty fields:")
         for key in none_keys:
             logging.info(f"  • {key}")
-
-        logging.subsection("Gathering relevant links recursively")
-        all_discovered_links, relevance_dict = gather_links_recursively(
-            scrape_result, prof_data, none_keys, max_depth=2
-        )
-
-        logging.info(f"\nDiscovered {len(all_discovered_links)} relevant links:")
-        for link in all_discovered_links:
-            logging.info(f"  • {link.url}")
-            logging.info(f"    ├─ Display: {link.display_text}")
-            logging.info(f"    └─ Relevant to: {', '.join(relevance_dict[link.url])}")
-
-        logging.subsection("Extracting information from relevant links")
-        # Create results directory if it doesn't exist
+        
         os.makedirs(
             f"./results/{open_source_model}/{prompt_type}/{max_depth}", exist_ok=True
         )
@@ -453,9 +440,27 @@ if __name__ == "__main__":
             f"./results/{open_source_model}/{prompt_type}/{max_depth}/{idx}.json"
         )
 
-        get_final_information_from_all_links_one_by_one(
-            scrape_result, relevance_dict, output_path
-        )
+        if len(none_keys) != 0:
+            logging.subsection("Gathering relevant links recursively")
+            all_discovered_links, relevance_dict = gather_links_recursively(
+                scrape_result, prof_data, none_keys, max_depth=2
+            )
+
+            logging.info(f"\nDiscovered {len(all_discovered_links)} relevant links:")
+            for link in all_discovered_links:
+                logging.info(f"  • {link.url}")
+                logging.info(f"    ├─ Display: {link.display_text}")
+                logging.info(f"    └─ Relevant to: {', '.join(relevance_dict[link.url])}")
+
+            logging.subsection("Extracting information from relevant links")
+
+            get_final_information_from_all_links_one_by_one(
+                scrape_result, relevance_dict, output_path
+            )
+        else:
+            logging.subsection("No empty fields found, saving initial data")
+            with open(output_path, "w") as f:
+                json.dump(prof_data, f)
 
         logging.info(f"✅ Results saved to {output_path}")
 
