@@ -1,4 +1,4 @@
-from typing import Annotated, List, Literal
+from typing import List, Literal
 import json
 import os
 from tqdm import tqdm
@@ -6,12 +6,10 @@ import logging
 import argparse
 import time
 
-from pydantic import BaseModel, BeforeValidator, HttpUrl, TypeAdapter, ValidationError
+from pydantic import BaseModel, HttpUrl, TypeAdapter, ValidationError
 from prompt.prof import Prof
 from openai import OpenAI
 from scraper import WebScraper
-# from psycopg2.extras import Json
-# import psycopg2
 
 # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
 client = OpenAI(base_url="http://localhost:8000/v1")
@@ -20,20 +18,18 @@ scraper = WebScraper()
 
 http_url_adapter = TypeAdapter(HttpUrl)
 
-Url = Annotated[str, BeforeValidator(lambda value: try_validate_url(value))]
 
-
-def try_validate_url(value: str) -> str | None:
-    """Validates a URL string, returning None if validation fails."""
+def try_validate_url(value: str) -> str:
+    """Validates a URL string, returning the original string if validation fails."""
     try:
         return str(http_url_adapter.validate_python(value))
     except ValidationError as e:
         logging.warning(f"Invalid URL format: {value}")
-        return None  # Return None if validation fails
+        return value  # Return the original value instead of None
 
 
 class LinkInfo(BaseModel):
-    url: Url
+    url: str  # Change from Url to str to accept any string initially
     display_text: str
 
     def __hash__(self):
@@ -44,6 +40,14 @@ class LinkInfo(BaseModel):
             return False
         return self.url == other.url and self.display_text == other.display_text
 
+    def is_valid_url(self) -> bool:
+        """Check if the URL is valid."""
+        try:
+            http_url_adapter.validate_python(self.url)
+            return True
+        except ValidationError:
+            return False
+
 
 class RelatedLinks(BaseModel):
     related_links: List[LinkInfo]
@@ -51,7 +55,7 @@ class RelatedLinks(BaseModel):
     @property
     def valid_links(self) -> List[LinkInfo]:
         """Returns only the links with valid URLs."""
-        return [link for link in self.related_links if link.url is not None]
+        return [link for link in self.related_links if link.is_valid_url()]
 
 
 class ResponseOfRelevance(BaseModel):
