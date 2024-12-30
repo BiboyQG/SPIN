@@ -23,7 +23,7 @@ http_url_adapter = TypeAdapter(HttpUrl)
 Url = Annotated[str, BeforeValidator(lambda value: try_validate_url(value))]
 
 
-def try_validate_url(value: str) -> str:
+def try_validate_url(value: str) -> str | None:
     """Validates a URL string, returning the original string if validation fails."""
     try:
         return str(http_url_adapter.validate_python(value))
@@ -288,6 +288,10 @@ def gather_links_recursively(
 
         if link.url.lower().endswith(".pdf"):
             logging.info("⏩ Skipping - PDF URL")
+            continue
+
+        if "arxiv" in link.url:
+            logging.info("⏩ Skipping - arxiv URL")
             continue
 
         visited_urls.add(link.url)
