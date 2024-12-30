@@ -24,7 +24,7 @@ Url = Annotated[str, BeforeValidator(lambda value: try_validate_url(value))]
 
 
 def try_validate_url(value: str) -> str | None:
-    """Validates a URL string, returning the original string if validation fails."""
+    """Validates a URL string, returning None if validation fails."""
     try:
         return str(http_url_adapter.validate_python(value))
     except ValidationError as e:
@@ -47,6 +47,11 @@ class LinkInfo(BaseModel):
 
 class RelatedLinks(BaseModel):
     related_links: List[LinkInfo]
+
+    @property
+    def valid_links(self) -> List[LinkInfo]:
+        """Returns only the links with valid URLs."""
+        return [link for link in self.related_links if link.url is not None]
 
 
 class ResponseOfRelevance(BaseModel):
@@ -270,14 +275,13 @@ def gather_links_recursively(
     links_obj = RelatedLinks.model_validate_json(
         get_links_from_page(initial_scrape_result, json.dumps(json_data))
     )
+    valid_links = links_obj.valid_links
 
     # Process each link
-    total_links = len(links_obj.related_links)
+    total_links = len(valid_links)
     logging.info(f"Found {total_links} links to process")
 
-    for idx, link in enumerate(
-        tqdm(links_obj.related_links, desc="Processing discovered links")
-    ):
+    for idx, link in enumerate(tqdm(valid_links, desc="Processing discovered links")):
         logging.subsection(f"Processing link {idx + 1}/{total_links}")
         logging.info(f"URL: {link.url}")
         logging.info(f"Display text: {link.display_text}")
