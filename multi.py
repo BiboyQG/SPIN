@@ -6,13 +6,12 @@ import logging
 import argparse
 import time
 
-from pydantic import BaseModel, BeforeValidator, HttpUrl, TypeAdapter
+from pydantic import BaseModel, BeforeValidator, HttpUrl, TypeAdapter, ValidationError
 from prompt.prof import Prof
 from openai import OpenAI
-
+from scraper import WebScraper
 # from psycopg2.extras import Json
 # import psycopg2
-from scraper import WebScraper
 
 # client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
 client = OpenAI(base_url="http://localhost:8000/v1")
@@ -21,9 +20,16 @@ scraper = WebScraper()
 
 http_url_adapter = TypeAdapter(HttpUrl)
 
-Url = Annotated[
-    str, BeforeValidator(lambda value: str(http_url_adapter.validate_python(value)))
-]
+Url = Annotated[str, BeforeValidator(lambda value: try_validate_url(value))]
+
+
+def try_validate_url(value: str) -> str:
+    """Validates a URL string, returning the original string if validation fails."""
+    try:
+        return str(http_url_adapter.validate_python(value))
+    except ValidationError as e:
+        logging.warning(f"Invalid URL format: {value}")
+        return None  # Return None if validation fails
 
 
 class LinkInfo(BaseModel):
@@ -199,70 +205,6 @@ def get_final_information_from_all_links_one_by_one(
     with open(output_path, "w") as f:
         json.dump(json.loads(original_response), f)
         logging.info(f"Results saved to {output_path}")
-
-
-# Connect to the Postgres database and save the information to the database
-def save_prof_to_database(prof_data):
-    # Database connection parameters
-    db_params = {
-        "dbname": os.getenv("DB_NAME", "spin"),
-        "user": os.getenv("DB_USER", "admin"),
-        "password": os.getenv("DB_PASSWORD", "adminpassword"),
-        "host": os.getenv("DB_HOST", "localhost"),
-        "port": os.getenv("DB_PORT", "5432"),
-    }
-
-    try:
-        # Connect to the database
-        conn = psycopg2.connect(**db_params)
-        cur = conn.cursor()
-
-        # Insert query with all fields from the prof table
-        insert_query = """
-        INSERT INTO prof (
-            fullname, title, contact, office, education, biography,
-            professional_highlights, research_statement, research_interests,
-            research_areas, publications, teaching_honors, research_honors,
-            courses_taught
-        ) VALUES (
-            %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
-        )
-        """
-
-        # Prepare the values tuple
-        values = (
-            prof_data["fullname"],
-            prof_data["title"],
-            Json(prof_data["contact"]),
-            prof_data["office"],
-            Json(prof_data["education"]),
-            prof_data["biography"],
-            Json(prof_data["professionalHighlights"]),
-            prof_data["researchStatement"],
-            Json(prof_data["researchInterests"]),
-            Json(prof_data["researchAreas"]),
-            Json(prof_data["publications"]),
-            Json(prof_data["teachingHonors"]),
-            Json(prof_data["researchHonors"]),
-            Json(prof_data["coursesTaught"]),
-        )
-
-        # Execute the query
-        cur.execute(insert_query, values)
-        conn.commit()
-        logging.info(
-            f"Successfully saved professor {prof_data['fullname']} to database"
-        )
-
-    except Exception as e:
-        logging.error(f"Error saving to database: {str(e)}")
-        if conn:
-            conn.rollback()
-    finally:
-        if cur:
-            cur.close()
-        if conn:
-            conn.close()
 
 
 def get_none_value_keys(json_obj: dict) -> List[str]:
@@ -480,9 +422,9 @@ if __name__ == "__main__":
                         field: check_link_relevance(
                             link_url,
                             next(
-                                l.display_text
-                                for l in all_discovered_links
-                                if l.url == link_url
+                                link.display_text
+                                for link in all_discovered_links
+                                if link.url == link_url
                             ),
                             field,
                             prof_data,
