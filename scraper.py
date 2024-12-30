@@ -137,15 +137,21 @@ class WebScraper:
     def scrape_url(self, url: str, params: Optional[Dict] = None) -> Dict[str, str]:
         """
         Scrape a URL and return its content in markdown format.
-        For publication pages, only return the first half of the content.
+        Skips arxiv.org websites and returns None.
+        For publication pages, only returns the first half of the content.
 
         Args:
             url (str): The URL to scrape
             params (Optional[Dict]): Additional parameters (kept for compatibility with firecrawl)
 
         Returns:
-            Dict[str, str]: Dictionary containing the markdown content
+            Dict[str, str]: Dictionary containing the markdown content, or None for arxiv URLs
         """
+        # Skip arxiv.org websites
+        if "arxiv.org" in url.lower():
+            print(f"Skipping arxiv URL: {url}")
+            return {"markdown": None}
+
         try:
             # Fetch the webpage
             response = self.session.get(url, timeout=30)
