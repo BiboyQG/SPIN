@@ -13,8 +13,7 @@ from prompt.prof import Prof
 from openai import OpenAI
 from scraper import WebScraper
 
-# client = OpenAI(base_url="http://Osprey1.csl.illinois.edu:8000/v1")
-client = OpenAI(base_url="http://localhost:8000/v1")
+client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "http://localhost:8000/v1"))
 
 scraper = WebScraper()
 
