@@ -3,7 +3,6 @@ from pathlib import Path
 import importlib.util
 import logging
 from pydantic import BaseModel, create_model
-import inspect
 
 
 class SchemaManager:
@@ -26,16 +25,13 @@ class SchemaManager:
                 module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(module)
 
-                # Find the main schema class (inherits from BaseModel)
-                for name, obj in inspect.getmembers(module):
-                    if (
-                        inspect.isclass(obj)
-                        and issubclass(obj, BaseModel)
-                        and obj != BaseModel
-                    ):
-                        self.schemas[name.lower()] = obj
-                        logging.info(f"Loaded schema: {name}")
-                        break
+                # Get the schema class directly using the capitalized filename
+                schema_class_name = schema_file.stem.capitalize()
+                schema_class = getattr(module, schema_class_name)
+
+                if issubclass(schema_class, BaseModel) and schema_class != BaseModel:
+                    self.schemas[schema_file.stem.lower()] = schema_class
+                    logging.info(f"Loaded schema: {schema_class_name}")
 
             except Exception as e:
                 logging.error(f"Error loading schema {schema_file}: {e}")
