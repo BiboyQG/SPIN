@@ -1,18 +1,19 @@
 from typing import List, Literal
-import json
-import os
+from datetime import datetime
 from tqdm import tqdm
-import logging
 import argparse
+import requests
+import json
+import logging
 import time
 import csv
-from datetime import datetime
-import requests
 import sys
+import os
+
 from pydantic import BaseModel, HttpUrl, TypeAdapter, ValidationError
+from scraper import WebScraper
 from prompt.prof import Prof
 from openai import OpenAI
-from scraper import WebScraper
 
 client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "http://localhost:8000/v1"))
 
@@ -70,7 +71,7 @@ def setup_logging(open_source_model, prompt_type, max_depth):
     base_path = f"./results/{open_source_model}/{prompt_type}/{max_depth}"
     os.makedirs(base_path, exist_ok=True)
 
-    log_path = f"{base_path}/process_log.txt"
+    log_path = f"{base_path}/process_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
 
     # Disable httpx logger to prevent OpenAI HTTP request logs
     logging.getLogger("httpx").setLevel(logging.WARNING)
@@ -582,7 +583,7 @@ if __name__ == "__main__":
             f"./results/{open_source_model}/{prompt_type}/{max_depth}", exist_ok=True
         )
         output_path = (
-            f"./results/{open_source_model}/{prompt_type}/{max_depth}/{idx}.json"
+            f"./results/{open_source_model}/{prompt_type}/{max_depth}/{prof_data['fullname'].replace(' ', '_').lower()}.json"
         )
 
         if len(none_keys) != 0:
