@@ -1,0 +1,70 @@
+{
+    "name": "GeForce RTX 4090",
+    "description": "The NVIDIA\u00ae GeForce RTX\u2122 4090 is the ultimate GeForce GPU, delivering an enormous leap in performance, efficiency, and AI-powered graphics. It is powered by the NVIDIA Ada Lovelace architecture and comes with 24 GB of G6X memory.",
+    "GPUEngineSpecs": {
+        "NVIDIACUDACores": 16384,
+        "ShaderCores": "Ada Lovelace 83 TFLOPS",
+        "RayTracingCores": "3rd Generation 191 TFLOPS",
+        "TensorCores": "4th Generation 1321 AI TOPS",
+        "BoostClock": 2.52,
+        "BaseClock": 2.23
+    },
+    "MemorySpecs": {
+        "StandardMemoryConfig": "24 GB GDDR6X",
+        "MemoryInterfaceWidth": 384
+    },
+    "TechnologySupport": {
+        "NVIDIAArchitecture": "Ada Lovelace",
+        "RayTracing": true,
+        "NVIDIADLSS": [
+            "DLSS 3.5",
+            "Super Resolution",
+            "DLAA",
+            "Ray Reconstruction",
+            "Frame Generation"
+        ],
+        "NVIDIAReflex": true,
+        "NVIDIABroadcast": true,
+        "PCIExpressGen4": true,
+        "ResizableBAR": true,
+        "NVIDIAGeForceExperience": true,
+        "NVIDIAAnsel": true,
+        "NVIDIAFreeStyle": true,
+        "NVIDIAShadowPlay": true,
+        "NVIDIAHighlights": true,
+        "NVIDIAGSYNC": true,
+        "GameReadyDrivers": true,
+        "NVIDIAStudioDrivers": true,
+        "NVIDIAOmniverse": true,
+        "MicrosoftDirectX12Ultimate": true,
+        "NVIDIAGPUBOOST": true,
+        "NVIDIANVLink": false,
+        "VulkanRTAPI": true,
+        "NVIDIAEncoder": "2x 8th Generation",
+        "NVIDIADecoder": "5th Generation",
+        "AV1Encode": true,
+        "AV1Decode": true,
+        "CUDACapability": 8.9,
+        "VRReady": true
+    },
+    "DisplaySupport": {
+        "MaximumResolution": "4K at 240Hz or 8K at 60Hz with DSC, HDR",
+        "StandardDisplayConnectors": "HDMI(2), 3x DisplayPort(3)",
+        "MultiMonitor": "up to 4",
+        "HDCP": "2.3"
+    },
+    "CardDimensions": {
+        "Length": 304,
+        "Width": 137,
+        "Slots": "3-Slot (61mm)"
+    },
+    "ThermalAndPowerSpecs": {
+        "MaximumGPUTemperature": 90,
+        "IdlePower": 19,
+        "VideoPlaybackPower": 25,
+        "AverageGamingPower": 315,
+        "TotalGraphicsPower": 450,
+        "RequiredSystemPower": 850,
+        "SupplementaryPowerConnectors": "3x PCIe 8-pin cables (adapter in box) OR 450 W or greater PCIe Gen 5 cable"
+    }
+}
