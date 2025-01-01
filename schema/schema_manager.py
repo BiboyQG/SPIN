@@ -31,7 +31,8 @@ class SchemaManager:
 
                 if issubclass(schema_class, BaseModel) and schema_class != BaseModel:
                     self.schemas[schema_file.stem.lower()] = schema_class
-                    logging.info(f"Loaded schema: {schema_class_name}")
+                
+                logging.info(f"Loaded updated schema: {schema_class_name}")
 
             except Exception as e:
                 logging.error(f"Error loading schema {schema_file}: {e}")
