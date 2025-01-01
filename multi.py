@@ -12,7 +12,7 @@ import os
 
 from pydantic import BaseModel, HttpUrl, TypeAdapter, ValidationError
 from scraper import WebScraper
-from prompt.prof import Prof
+from schema.professor import Professor
 from openai import OpenAI
 
 client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL", "http://localhost:8000/v1"))
@@ -152,7 +152,7 @@ def get_response_from_open_source_with_extra_body(scrape_result):
         messages=[
             {
                 "role": "system",
-                "content": f"You are an expert at summarizing {prompt_type} entity information in JSON format according to the content of the webpage. You should only return the JSON structure as follows: {Prof.model_json_schema()}, without any other text or comments.",
+                "content": f"You are an expert at summarizing {prompt_type} entity information in JSON format according to the content of the webpage. You should only return the JSON structure as follows: {Professor.model_json_schema()}, without any other text or comments.",
             },
             {
                 "role": "user",
@@ -161,7 +161,7 @@ def get_response_from_open_source_with_extra_body(scrape_result):
         ],
         max_tokens=16384,
         temperature=0.0,
-        extra_body={"guided_json": Prof.model_json_schema()},
+        extra_body={"guided_json": Professor.model_json_schema()},
     )
     return response.choices[0].message.content
 
@@ -174,7 +174,7 @@ def get_response_from_open_source_with_extra_body_update(
         messages=[
             {
                 "role": "system",
-                "content": f"You are an expert at summarizing {prompt_type} entity information in JSON format according to the content of the webpage. Now you are given an inital {prompt_type} JSON structure, please update the JSON structure with the new information from the {prompt_type} webpage if necessary, targeting the fields that are None or empty list or empty dict or empty string specified by the user. If there are too much information that can be updated to one field(value of this field is a list), you should only update the field with at most 25 numbers of information. You should only return the JSON structure as follows: {Prof.model_json_schema()}, without any other text or comments.",
+                "content": f"You are an expert at summarizing {prompt_type} entity information in JSON format according to the content of the webpage. Now you are given an inital {prompt_type} JSON structure, please update the JSON structure with the new information from the {prompt_type} webpage if necessary, targeting the fields that are None or empty list or empty dict or empty string specified by the user. If there are too much information that can be updated to one field(value of this field is a list), you should only update the field with at most 25 numbers of information. You should only return the JSON structure as follows: {Professor.model_json_schema()}, without any other text or comments.",
             },
             {
                 "role": "user",
@@ -185,7 +185,7 @@ def get_response_from_open_source_with_extra_body_update(
         ],
         max_tokens=16384,
         temperature=0.0,
-        extra_body={"guided_json": Prof.model_json_schema()},
+        extra_body={"guided_json": Professor.model_json_schema()},
     )
     return response.choices[0].message.content
 
@@ -534,7 +534,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
-    prompt_type = "prof"
+    prompt_type = "professor"
     max_depth = args.depth
 
     # Set up logging

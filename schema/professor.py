@@ -50,7 +50,7 @@ class Contact(BaseModel):
     email: str
 
 
-class Prof(BaseModel):
+class Professor(BaseModel):
     fullname: str
     title: str = Field(
         description="The title of the professor, e.g. Assistant Professor, Teaching Professor, Gies RC Evans Innovation Fellow, etc."

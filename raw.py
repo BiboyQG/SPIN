@@ -1,5 +1,5 @@
 from openai import OpenAI
-from prompt.prof import Prof
+from prompt.professor import Prof
 import json
 prompt_type = "prof"
 
