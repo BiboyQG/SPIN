@@ -7,7 +7,8 @@ import argparse
 import time
 import csv
 from datetime import datetime
-
+import requests
+import sys
 from pydantic import BaseModel, HttpUrl, TypeAdapter, ValidationError
 from prompt.prof import Prof
 from openai import OpenAI
@@ -464,9 +465,63 @@ def write_process_stats_to_csv(
     logging.info(f"📊 Process statistics written to: {csv_path}")
 
 
+def brave_search(query: str) -> str:
+    """
+    Perform a Brave search and return the top result URL.
+    """
+    api_key = os.getenv("BRAVE_SEARCH_API_KEY")
+    base_url = os.getenv("BRAVE_SEARCH_URL")
+
+    if not api_key or not base_url:
+        raise ValueError(
+            "Brave Search API key or URL not found in environment variables"
+        )
+
+    headers = {"X-Subscription-Token": api_key}
+    params = {"q": query}
+
+    try:
+        response = requests.get(base_url, headers=headers, params=params)
+        response.raise_for_status()
+        results = response.json()
+
+        if results.get("web") and results["web"].get("results"):
+            return results["web"]["results"][0]["url"]
+        else:
+            raise ValueError("No search results found")
+    except Exception as e:
+        logging.error(f"Error performing Brave search: {str(e)}")
+        raise
+
+
+def process_input_urls(input_str: str) -> List[str]:
+    """
+    Process the input string to return a list of URLs.
+    If input is a query, performs a Brave search and returns the top result.
+    If input is a comma-separated list of URLs, splits and returns them.
+    If input is a single URL, returns it as a single-element list.
+    """
+    # Check if input contains any URLs
+    if "http://" in input_str or "https://" in input_str:
+        # Split by comma if multiple URLs
+        urls = [url.strip() for url in input_str.split(",")]
+        return urls
+    else:
+        # Treat as search query
+        logging.info(f"Performing Brave search for query: {input_str}")
+        top_url = brave_search(input_str)
+        logging.info(f"Found top result URL: {top_url}")
+        return [top_url]
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Process entity information with configurable depth."
+    )
+    parser.add_argument(
+        "input",
+        type=str,
+        help="Input query or URL(s). Can be a search query, single URL, or comma-separated URLs",
     )
     parser.add_argument(
         "-d",
@@ -486,9 +541,12 @@ if __name__ == "__main__":
 
     logging.section("Starting professor information extraction process")
 
-    logging.info("Reading URLs from prof.txt...")
-    with open("./dataset/source/prof.txt", "r") as file:
-        urls = [url.strip() for url in file.readlines()]
+    try:
+        urls = process_input_urls(args.input)
+        logging.info(f"Processing URLs: {urls}")
+    except Exception as e:
+        logging.error(f"Failed to process input: {str(e)}")
+        sys.exit(1)
 
     start_time = time.time()
     url_processing_times = {}
