@@ -157,7 +157,9 @@ def get_links_from_page(scrape_result, json_data, schema_type: str):
 
 def get_response_from_open_source_with_extra_body(scrape_result: str, schema_type: str):
     """Get entity information using the appropriate schema."""
+    logger.info(f"Getting response from open source with extra body for {schema_type}")
     entity_schema = schema_manager.get_schema(schema_type)
+    logger.info(f"Entity schema: {entity_schema}")
 
     response = client.chat.completions.create(
         model=open_source_model,
@@ -616,15 +618,16 @@ def process_entity_with_schema(scrape_result: str) -> tuple:
         schema_manager.save_new_schema(schema_name, new_schema_code)
         entity_schema = schema_manager.get_schema(schema_name)
     else:
-        logger.info(f"Detected schema: {schema_result.schema}")
+        schema_name = schema_result.schema
+        logger.info(f"Detected schema: {schema_name}")
         logger.info(f"Reason: {schema_result.reason}")
-        entity_schema = schema_manager.get_schema(schema_result.schema)
+        entity_schema = schema_manager.get_schema(schema_name)
 
     logger.subsection("Extracting initial entity data")
-    entity_data_json = get_response_from_open_source_with_extra_body(scrape_result, schema_result.schema)
+    entity_data_json = get_response_from_open_source_with_extra_body(scrape_result, schema_name)
     entity_data = json.loads(entity_data_json)
 
-    return entity_schema, entity_data, schema_result.schema
+    return entity_schema, entity_data, schema_name
 
 
 if __name__ == "__main__":
