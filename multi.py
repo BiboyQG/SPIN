@@ -571,6 +571,8 @@ def detect_schema(webpage_content: str):
 
 def generate_new_schema(webpage_content: str, schema_type: str) -> str:
     """Generate a new Pydantic schema based on webpage content using LLM."""
+    with open("./schema/professor.py", "r") as f:
+        example_schema = f.read()
     response = client.chat.completions.create(
         model=open_source_model,
         messages=[
@@ -578,20 +580,10 @@ def generate_new_schema(webpage_content: str, schema_type: str) -> str:
                 "role": "system",
                 "content": """You are an expert at creating Pydantic schemas for different types of entities. Given webpage content and the desired schema type by the user, generate a complete Pydantic schema that captures all relevant information about the entity being described. The schema should:
 - Use appropriate field types and nested models
-- Include field descriptions using Field(description="...")
+- Include field descriptions using Field(description="...") when necessary
 - Follow similar structure to this example:
 
-class Contact(BaseModel):
-    email: str = Field(description="Email address")
-    phone: str = Field(description="Phone number")
-
-class MainEntity(BaseModel):
-    name: str = Field(description="Full name")
-    title: str = Field(description="Professional title")
-    contact: Contact = Field(description="Contact information")
-    
-    class Config:
-        allow_population_by_field_name = True
+{example_schema}
 
 Return only the Python code for the schema, without any other text(```python and ``` are forbidden, just return pure Python code).""",
             },
