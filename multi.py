@@ -27,6 +27,7 @@ def try_validate_url(value: str) -> str:
     try:
         return str(http_url_adapter.validate_python(value))
     except ValidationError as e:
+        logging.error(e)
         logging.warning(f"Invalid URL format: {value}")
         return value  # Return the original value instead of None
 
