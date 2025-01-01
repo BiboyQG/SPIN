@@ -96,17 +96,17 @@ def setup_logging(open_source_model, max_depth):
 
     # Add custom logging methods to logger
     def section(message):
-        logger.info(f"\n{'='*80}\n{message}\n{'='*80}")
+        logger.info(f"\n{'='*60}\n{message}\n{'='*60}")
 
     def subsection(message):
-        logger.info(f"\n{'-'*40}\n{message}\n{'-'*40}")
+        logger.info(f"\n{'-'*60}\n{message}\n{'-'*60}")
 
     def url_processing(url, index, total):
-        logger.info(f"\n{'#'*80}\nProcessing URL [{index}/{total}]: {url}\n{'#'*80}")
+        logger.info(f"\n{'#'*60}\nProcessing URL [{index}/{total}]: {url}\n{'#'*60}")
 
     def summary(url, duration, relevant_links_info, update_times=None):
         summary_text = f"\n📊 Summary for {url}\n"
-        summary_text += f"{'─'*80}\n"
+        summary_text += f"{'─'*60}\n"
         summary_text += f"⏱️  Total Processing Duration: {duration:.2f} seconds\n"
 
         if relevant_links_info:
@@ -120,7 +120,7 @@ def setup_logging(open_source_model, max_depth):
         else:
             summary_text += "\n❌ No relevant links found\n"
 
-        summary_text += f"{'─'*80}\n"
+        summary_text += f"{'─'*60}\n"
         logger.info(summary_text)
 
     # Attach custom methods to logger
@@ -774,7 +774,7 @@ if __name__ == "__main__":
 
     logger.info("📊 Detailed Analysis by URL:")
     for url in urls:
-        logger.info(f"\n{'─'*80}")
+        logger.info(f"\n{'─'*60}")
         logger.info(f"🌐 {url}")
         logger.info(
             f"⏱️  Processing Time: {url_processing_times.get(url, 0):.2f} seconds"
@@ -793,7 +793,7 @@ if __name__ == "__main__":
         else:
             logger.info("\n❌ No relevant links found for this URL")
 
-        logger.info(f"{'─'*80}")
+        logger.info(f"\n{'─'*60}")
 
     logger.section("Writing process statistics to CSV")
     write_process_stats_to_csv(
