@@ -1,110 +1,110 @@
-2025-01-01 22:30:47 [INFO] Testing logger setup
+2025-01-01 22:44:19 [INFO] Testing logger setup
 
-2025-01-01 22:30:47 [INFO] 
+2025-01-01 22:44:19 [INFO] 
 ============================================================
 Testing section logging
 ============================================================
 
-2025-01-01 22:30:47 [INFO] 
+2025-01-01 22:44:19 [INFO] 
 ------------------------------------------------------------
 Testing subsection logging
 ------------------------------------------------------------
 
-2025-01-01 22:30:47 [INFO] 
+2025-01-01 22:44:19 [INFO] 
 ============================================================
 Starting entity information extraction process
 ============================================================
 
-2025-01-01 22:30:47 [INFO] Processing URLs: ['https://illinois.edu/about/index.html']
+2025-01-01 22:44:19 [INFO] Processing URLs: ['https://illinois.edu/about/index.html']
 
-2025-01-01 22:30:47 [INFO] 
+2025-01-01 22:44:19 [INFO] 
 ############################################################
 Processing URL [1/1]: https://illinois.edu/about/index.html
 ############################################################
 
-2025-01-01 22:30:47 [INFO] 
+2025-01-01 22:44:19 [INFO] 
 ------------------------------------------------------------
 Scraping webpage content
 ------------------------------------------------------------
 
-2025-01-01 22:30:49 [INFO] 
+2025-01-01 22:44:21 [INFO] 
 ------------------------------------------------------------
 Detecting schema for webpage content
 ------------------------------------------------------------
 
-2025-01-01 22:30:53 [INFO] No matching schema found. Please input the schema name you want to use.
+2025-01-01 22:44:25 [INFO] No matching schema found. Please input the schema name you want to use.
 
-2025-01-01 22:31:51 [INFO] Saving new schema: university
+2025-01-01 22:45:01 [INFO] Saving new schema: university
 
-2025-01-01 22:31:51 [INFO] Saved new schema: /Users/biboyqg/spin/schema/university.py
+2025-01-01 22:45:01 [INFO] Saved new schema: /Users/biboyqg/spin/schema/university.py
 
-2025-01-01 22:31:51 [INFO] Loaded schema: University
+2025-01-01 22:45:01 [INFO] Loaded schema: University
 
-2025-01-01 22:31:51 [INFO] Loaded schema: Car
+2025-01-01 22:45:01 [INFO] Loaded schema: Car
 
-2025-01-01 22:31:51 [INFO] Loaded schema: Professor
+2025-01-01 22:45:01 [INFO] Loaded schema: Professor
 
-2025-01-01 22:31:51 [INFO] Loaded schema: Movie
+2025-01-01 22:45:01 [INFO] Loaded schema: Movie
 
-2025-01-01 22:31:51 [INFO] Loaded schema: Student
+2025-01-01 22:45:01 [INFO] Loaded schema: Student
 
-2025-01-01 22:31:51 [INFO] 
+2025-01-01 22:45:01 [INFO] 
 ------------------------------------------------------------
 Extracting initial entity data
 ------------------------------------------------------------
 
-2025-01-01 22:31:51 [INFO] Getting response from open source with extra body for university
+2025-01-01 22:45:01 [INFO] Getting response from open source with extra body for university
 
-2025-01-01 22:31:51 [INFO] Entity schema: <class 'university.University'>
+2025-01-01 22:45:01 [INFO] Entity schema: <class 'university.University'>
 
-2025-01-01 22:32:51 [INFO] 
+2025-01-01 22:46:24 [INFO] 
 ------------------------------------------------------------
 No empty fields found, saving initial data
 ------------------------------------------------------------
 
-2025-01-01 22:32:51 [INFO] 
+2025-01-01 22:46:24 [INFO] 
 📊 Summary for https://illinois.edu/about/index.html
 ────────────────────────────────────────────────────────────
-⏱️  Total Processing Duration: 123.71 seconds
+⏱️  Total Processing Duration: 124.73 seconds
 
 ❌ No relevant links found
 ────────────────────────────────────────────────────────────
 
 
-2025-01-01 22:32:51 [INFO] ✅ Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/university/1/university_of_illinois_urbana-champaign.json
+2025-01-01 22:46:24 [INFO] ✅ Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/university/1/university_of_illinois_urbana-champaign.json
 
-2025-01-01 22:32:51 [INFO] 
+2025-01-01 22:46:24 [INFO] 
 ============================================================
 Final Process Summary
 ============================================================
 
-2025-01-01 22:32:51 [INFO] Total Processing Time: 123.71 seconds
+2025-01-01 22:46:24 [INFO] Total Processing Time: 124.73 seconds
 
-2025-01-01 22:32:51 [INFO] Number of URLs Processed: 1
+2025-01-01 22:46:24 [INFO] Number of URLs Processed: 1
 
-2025-01-01 22:32:51 [INFO] 📊 Detailed Analysis by URL:
+2025-01-01 22:46:24 [INFO] 📊 Detailed Analysis by URL:
 
-2025-01-01 22:32:51 [INFO] 
+2025-01-01 22:46:24 [INFO] 
 ────────────────────────────────────────────────────────────
 
-2025-01-01 22:32:51 [INFO] 🌐 https://illinois.edu/about/index.html
+2025-01-01 22:46:24 [INFO] 🌐 https://illinois.edu/about/index.html
 
-2025-01-01 22:32:51 [INFO] ⏱️  Processing Time: 123.71 seconds
+2025-01-01 22:46:24 [INFO] ⏱️  Processing Time: 124.73 seconds
 
-2025-01-01 22:32:51 [INFO] 
+2025-01-01 22:46:24 [INFO] 
 ❌ No relevant links found for this URL
 
-2025-01-01 22:32:51 [INFO] 
+2025-01-01 22:46:24 [INFO] 
 ────────────────────────────────────────────────────────────
 
-2025-01-01 22:32:51 [INFO] 
+2025-01-01 22:46:24 [INFO] 
 ============================================================
 Writing process statistics to CSV
 ============================================================
 
-2025-01-01 22:32:51 [INFO] 📊 Process statistics written to: ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/1/process_stats_20250101_223251.csv
+2025-01-01 22:46:24 [INFO] 📊 Process statistics written to: ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/1/process_stats_20250101_224624.csv
 
-2025-01-01 22:32:51 [INFO] 
+2025-01-01 22:46:24 [INFO] 
 ============================================================
 ✅ Process completed successfully!
 ============================================================
