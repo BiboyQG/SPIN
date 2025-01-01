@@ -580,7 +580,7 @@ def generate_new_schema(webpage_content: str, schema_type: str) -> str:
         messages=[
             {
                 "role": "system",
-                "content": """You are an expert at creating Pydantic schemas for different types of entities. Given webpage content and the desired schema type by the user, generate a complete Pydantic schema that captures all relevant information about the entity being described. The schema should:
+                "content": f"""You are an expert at creating Pydantic schemas for different types of entities. Given webpage content and the desired schema type by the user, generate a complete Pydantic schema that captures all relevant information about the entity being described. The schema should:
 - Use appropriate field types and nested models
 - Include field descriptions using Field(description="...") when necessary
 - Follow similar structure to this example:
