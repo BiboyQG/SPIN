@@ -16,7 +16,7 @@ This repository presents a novel hierarchical framework for Language Model (LLM)
 | CUDA          | 12.2        |
 | torch         | 2.5.1       |
 | transformers  | 4.45.1      |
-| vLLM          | 0.6.4.post1 |
+| vLLM          | 0.6.6.post1 |
 
 > [!TIP]
 >
@@ -106,7 +106,6 @@ banghao-chi-knowledge-agent/
 ├── generate_results.py   # Result generation
 ├── interface.py          # Web interface
 ├── multi.py              # Knowledge extraction and database operations
-├── raw.py                # Raw data processing
 ├── database.py           # Database operations
 └── outlines.ipynb        # FSM explanation and example
 ```
