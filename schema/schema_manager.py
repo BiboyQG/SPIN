@@ -38,7 +38,7 @@ class SchemaManager:
 
     def get_schema_names(self) -> List[str]:
         """Get list of available schema names."""
-        return list(self.schemas.keys())
+        return list(self.schemas.keys()) + ["No match"]
 
     def get_schema(self, name: str) -> Type[BaseModel]:
         """Get schema class by name."""
@@ -54,12 +54,14 @@ class SchemaManager:
         # Reload schemas to include the new one
         self._load_schemas()
 
+    def get_response_of_schema(self):
+        schema_names = self.get_schema_names()
+        return create_model(
+            "ResponseOfSchema",
+            schema=(Literal[tuple(schema_names)], ...),
+            reason=(str, ...),
+        )
+
 
 # Create global schema manager instance
 schema_manager = SchemaManager()
-
-# Create ResponseOfSchema model dynamically with available schemas
-schema_names = schema_manager.get_schema_names() + ["No match"]
-ResponseOfSchema = create_model(
-    "ResponseOfSchema", schema=(Literal[tuple(schema_names)], ...), reason=(str, ...)
-)
