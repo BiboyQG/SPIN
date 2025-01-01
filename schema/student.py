@@ -12,7 +12,7 @@ class Education(BaseModel):
         description="The period of the education, e.g., 'Fall 2023 - Fall 2025'"
     )
     location: str
-    core_modules: List[str]
+    core_modules: List[str] = Field(..., alias="coreModules")
 
 
 class Publication(BaseModel):
@@ -32,8 +32,8 @@ class ResearchExperience(BaseModel):
     period: str = Field(
         description="The period of the research experience, e.g., 'Fall 2023 - Fall 2025'"
     )
-    code_link: Optional[str]
-    project_link: Optional[str]
+    code_link: Optional[str] = Field(..., alias="codeLink")
+    project_link: Optional[str] = Field(..., alias="projectLink")
     achievements: List[str]
 
 
