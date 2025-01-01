@@ -26,16 +26,21 @@ class SchemaManager:
                 spec.loader.exec_module(module)
 
                 # Get the schema class directly using the capitalized filename
-                schema_class_name = schema_file.stem.capitalize()
+                if '_' not in schema_file.stem:
+                    schema_class_name = schema_file.stem.capitalize()
+                else:
+                    # Convert camelCase to snake_case for filenames with underscores
+                    words = schema_file.stem.split('_')
+                    schema_class_name = ''.join(word.capitalize() for word in words)
                 schema_class = getattr(module, schema_class_name)
 
                 if issubclass(schema_class, BaseModel) and schema_class != BaseModel:
                     self.schemas[schema_file.stem.lower()] = schema_class
-                
-                logging.info(f"Loaded updated schema: {schema_class_name}")
 
             except Exception as e:
                 logging.error(f"Error loading schema {schema_file}: {e}")
+        
+        logging.info("Loaded updated schemas")
 
     def get_schema_names(self) -> List[str]:
         """Get list of available schema names."""
