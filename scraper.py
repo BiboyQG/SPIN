@@ -1,9 +1,10 @@
-import requests
-from bs4 import BeautifulSoup
-from markdownify import markdownify as md
 from typing import Dict, Optional, List
 from urllib.parse import urljoin
+import requests
 import re
+
+from bs4 import BeautifulSoup
+from markdownify import markdownify as md
 
 
 class WebScraper:
