@@ -81,13 +81,13 @@ python multi.py "Banghao Chi UIUC" -d NUM_OF_DEPTH
 or:
 
 ```bach
-python multi.py "https://illinois.edu/" -d NUM_OF_DEPTH
+python multi.py "https://illinois.edu/about/index.html" -d NUM_OF_DEPTH
 ```
 
 or:
 
 ```bach
-python multi.py "https://illinois.edu/,https://www.gatech.edu/about" -d NUM_OF_DEPTH
+python multi.py "https://illinois.edu/about/index.html,https://www.gatech.edu/about" -d NUM_OF_DEPTH
 ```
 
 ## Codebase Structure
@@ -180,9 +180,9 @@ def compare_json_objects(ground_truth: dict, test_object: dict):
 Currently, we only have a pipeline for professor data extraction. We will add more pipelines for other data types in the future, so that the entire framework can handle:
 
 - [x] Dynamic schema creation
-* Multi-source data extraction
-* Database operations
-* Information effectiveness evaluation
+- [] Multi-source data extraction
+- [] Database operations
+- [] Information effectiveness evaluation
 
 ## Contributors
 
