@@ -180,9 +180,9 @@ def compare_json_objects(ground_truth: dict, test_object: dict):
 Currently, we only have a pipeline for professor data extraction. We will add more pipelines for other data types in the future, so that the entire framework can handle:
 
 - [x] Dynamic schema creation
-- [] Multi-source data extraction
-- [] Database operations
-- [] Information effectiveness evaluation
+- [ ] Multi-source data extraction
+- [ ] Database operations
+- [ ] Information effectiveness evaluation
 
 ## Contributors
 
