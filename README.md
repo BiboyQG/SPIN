@@ -107,15 +107,16 @@ banghao-chi-knowledge-agent/
 │   │   ├── open-source/  # Open-source model results
 │   │   └── proprietary/  # Proprietary model results
 │   └── source/           # Source URLs
-├── prompt/               # Prompt templates
-│   ├── prof.py           # Professor data schema
-│   ├── car.py            # Car review schema
-│   └── movie.py          # Movie review schema
 ├── results/              # Results of completed pipeline of knowledge extraction
 │   ├── YOUR_MODEL_NAME/  # Final results with different depth of search
 │   │   ├── NUM_OF_DEPTH/ # Number of depth, which contains the final JSON files
 │   ├── scrape/           # Scraping results, which are used to compare with Firecrawl
 ├── schema/               # Dynamically generated or predefined schemas that are used to extract info 
+│   ├── schema_manager.py # Schema manager that can generate schemas
+│   ├── professor.py      # Professor data schema
+│   ├── car.py            # Car review schema
+│   ├── movie.py          # Movie review schema
+│   └── ...               # Other dynamically generated schemas
 ├── create_dataset.py     # Dataset creation utilities
 ├── eval.py               # Evaluation metrics and scripts
 ├── generate_results.py   # Result generation
@@ -180,6 +181,7 @@ def compare_json_objects(ground_truth: dict, test_object: dict):
 Currently, we only have a pipeline for professor data extraction. We will add more pipelines for other data types in the future, so that the entire framework can handle:
 
 - [x] Dynamic schema creation
+- [ ] Better scraper by rendering through local browser
 - [ ] Multi-source data extraction
 - [ ] Database operations
 - [ ] Information effectiveness evaluation
