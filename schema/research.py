@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Literal
+from pydantic import BaseModel, Field
 from datetime import date
 import json
 
@@ -22,9 +22,8 @@ class Citation(BaseModel):
     doi: Optional[str] = None
     citations_count: Optional[int] = Field(None, alias="citationsCount")
 
-class ResearchImpact(BaseModel):
-    industry_applications: List[str] = Field(..., alias="industryApplications")
-    derived_works: List[str] = Field(..., alias="derivedWorks")
+class ResearchOutput(BaseModel):
+    conference: str
     metrics: Dict[str, float] = Field(description="e.g., {'accuracy': 0.95, 'f1_score': 0.92}")
 
 class Dataset(BaseModel):
@@ -47,8 +46,7 @@ class Research(BaseModel):
     dataset: Optional[Dataset]  # Dataset details if applicable
     
     # Results and impact
-    results: Dict[str, any]  # Experimental results
-    impact: ResearchImpact
+    research_output: ResearchOutput
     
     # Publication and recognition
     primary_citation: Citation = Field(..., alias="primaryCitation")
