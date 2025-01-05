@@ -17,6 +17,7 @@ This repository presents a novel hierarchical framework for Language Model (LLM)
 | torch         | 2.5.1       |
 | transformers  | 4.45.1      |
 | vLLM          | 0.6.6.post1 |
+| DrissionPage  | 4.1.0.17    |
 
 > [!TIP]
 >
