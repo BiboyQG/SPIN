@@ -110,8 +110,11 @@ banghao-chi-knowledge-agent/
 ├── results/                    # Results of completed pipeline of knowledge extraction
 │   ├── YOUR_MODEL_NAME/        # Final results with different depth of search
 │   │   └── SCHEMA/             # Schema of the extracted entity
-│   │       └── NUM_OF_DEPTH/   # Number of depth, which contains the final JSON files
-│   │           └── {name}.json # Number of depth, which contains the final JSON files
+│   │       └── NUM_OF_DEPTH/   # Number of depth, which contains the final JSON file(s)
+│   │           └── {name}.json # The extracted final JSON file(s)
+│   ├── gt/                     # Groud truth data
+│   │   └── SCHEMA/             # Schema of different groud truth data
+│   │       └── {name}.json     # Groud truth JSON file(s)
 │   ├── scrape/                 # Scraping results, which are used to compare with Firecrawl
 │   └── fsm/                    # FSM integrated one-time results
 ├── schema/                     # Dynamically generated that are used to extract info 
