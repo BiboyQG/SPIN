@@ -215,12 +215,9 @@ def get_final_information_from_all_links_one_by_one(
     relevance_dict,
     output_path,
     schema_type: str,
+    original_response: str,
 ):
     global logger
-    logger.info("Getting initial response from webpage...")
-    original_response = get_response_from_open_source_with_extra_body(
-        scrape_result, schema_type
-    )
 
     logger.info("Updating information with relevant links...")
     update_times = {}  # Track update times for each link
@@ -276,6 +273,12 @@ def check_link_relevance(
     json_data: dict,
     schema_type: str,
 ) -> ResponseOfRelevance:
+    entity_name = (
+        json_data.get("name")
+        or json_data.get("fullname")
+        or json_data.get("code")
+        or json_data.get("title")
+    )
     response = client.chat.completions.create(
         model=open_source_model,
         messages=[
@@ -285,7 +288,7 @@ def check_link_relevance(
             },
             {
                 "role": "user",
-                "content": f"Given a hyperlink with:\nURL: {url}\nDisplay text: {display_text}\n\nDo you think this link might contain information about the {schema_type} {json_data.get('name') if json_data.get('name') else json_data.get('fullname')}'s {none_key}?",
+                "content": f"Given a hyperlink with:\nURL: {url}\nDisplay text: {display_text}\n\nDo you think this link might contain information about the {schema_type} {entity_name}'s {none_key}?",
             },
         ],
         max_tokens=16384,
@@ -342,6 +345,10 @@ def gather_links_recursively(
 
         if "arxiv" in link.url:
             logger.info("⏩ Skipping - arxiv URL")
+            continue
+
+        if link.url.lower().endswith(".txt"):
+            logger.info("⏩ Skipping - txt URL")
             continue
 
         visited_urls.add(link.url)
@@ -624,10 +631,12 @@ def process_entity_with_schema(scrape_result: str) -> tuple:
         entity_schema = schema_manager.get_schema(schema_name)
 
     logger.subsection("Extracting initial entity data")
-    entity_data_json = get_response_from_open_source_with_extra_body(scrape_result, schema_name)
+    entity_data_json = get_response_from_open_source_with_extra_body(
+        scrape_result, schema_name
+    )
     entity_data = json.loads(entity_data_json)
 
-    return entity_schema, entity_data, schema_name
+    return entity_schema, entity_data, schema_name, entity_data_json
 
 
 if __name__ == "__main__":
@@ -648,7 +657,7 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    open_source_model = "Qwen/Qwen2.5-72B-Instruct-AWQ"
+    open_source_model = os.getenv("OPEN_SOURCE_MODEL")
     max_depth = args.depth
 
     # Set up logging
@@ -660,9 +669,7 @@ if __name__ == "__main__":
     logger.section("Testing section logging")
     logger.subsection("Testing subsection logging")
 
-    logger.section(
-        "Starting entity information extraction process"
-    )
+    logger.section("Starting entity information extraction process")
 
     try:
         urls = process_input_urls(args.input)
@@ -692,7 +699,7 @@ if __name__ == "__main__":
             continue
 
         # Process entity with appropriate schema
-        entity_schema, entity_data, schema_type = process_entity_with_schema(
+        entity_schema, entity_data, schema_type, original_response = process_entity_with_schema(
             scrape_result
         )
 
@@ -700,8 +707,15 @@ if __name__ == "__main__":
         results_dir = f"./results/{open_source_model}/{schema_type}/{max_depth}"
         os.makedirs(results_dir, exist_ok=True)
 
+        entity_name = (
+            entity_data.get("name")
+            or entity_data.get("fullname")
+            or entity_data.get("code")
+            or entity_data.get("title")
+        )
+
         # Update output path based on schema type
-        output_path = f"{results_dir}/{entity_data.get('name', '').replace(' ', '_').lower() if entity_data.get('name') else entity_data.get('fullname', '').replace(' ', '_').lower()}.json"
+        output_path = f"{results_dir}/{entity_name.replace(' ', '_').lower()}.json"
 
         none_keys = get_none_value_keys(entity_data)
         if none_keys:
@@ -743,7 +757,11 @@ if __name__ == "__main__":
             logger.subsection("Extracting information from relevant links")
 
             update_times = get_final_information_from_all_links_one_by_one(
-                scrape_result, relevance_dict, output_path, schema_type
+                scrape_result,
+                relevance_dict,
+                output_path,
+                schema_type,
+                original_response
             )
             all_update_times[url] = update_times  # Store update times for this URL
         else:
