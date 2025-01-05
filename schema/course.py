@@ -38,6 +38,13 @@ class PreRequisite(BaseModel):
     can_be_concurrent: bool = Field(False, alias="canBeConcurrent")
 
 
+class TeachingAssistant(BaseModel):
+    name: str
+    email: str
+    office_hours: Optional[List[str]] = Field(None, alias="officeHours")
+    office_location: Optional[str] = Field(None, alias="officeLocation")
+
+
 class Course(BaseModel):
     code: str
     title: str
@@ -46,6 +53,7 @@ class Course(BaseModel):
     semester: str
     year: int
     instructors: List[Instructor]
+    teaching_assistants: Optional[List[TeachingAssistant]]
     schedule: List[Schedule]
     prerequisites: Optional[List[PreRequisite]] = None
     textbooks: Optional[List[TextBook]] = None
