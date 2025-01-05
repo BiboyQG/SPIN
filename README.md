@@ -97,32 +97,33 @@ python multi.py "https://illinois.edu/about/index.html,https://www.gatech.edu/ab
 
 ```
 banghao-chi-knowledge-agent/
-├── requirements.txt           # Project dependencies
-├── .gitignore                 # Git ignore file
-├── README.md                  # Project documentation
-├── dataset/                   # Data storage and results
-│   ├── article/               # Raw article data
-│   ├── results/               # One-time FSM data
-│   │   ├── gt/                # Ground truth data
-│   │   ├── open-source/       # Open-source model results
-│   │   └── proprietary/       # Proprietary model results
-│   └── source/                # Source URLs
-├── results/                   # Results of completed pipeline of knowledge extraction
-│   ├── YOUR_MODEL_NAME/       # Final results with different depth of search
-│   │   └── SCHEMA/            # Schema of the extracted entity
-│   │       └── NUM_OF_DEPTH/  # Number of depth, which contains the final JSON files
-│   ├── scrape/                # Scraping results, which are used to compare with Firecrawl
-│   └── fsm/                   # FSM integrated one-time results
-├── schema/                    # Dynamically generated or predefined schemas that are used to extract info 
-│   ├── schema_manager.py      # Schema manager that can generate schemas
-│   └── ...                    # Dynamically generated schemas
-├── create_dataset.py          # Dataset creation utilities
-├── eval.py                    # Evaluation metrics and scripts
-├── generate_results.py        # Result generation
-├── interface.py               # Web interface
-├── multi.py                   # Complete pipeline of intelligent knowledge extraction
-├── database.py                # Database operations
-└── outlines.ipynb             # FSM explanation and example
+├── requirements.txt            # Project dependencies
+├── .gitignore                  # Git ignore file
+├── README.md                   # Project documentation
+├── dataset/                    # Data storage and results
+│   ├── article/                # Raw article data
+│   ├── results/                # One-time FSM data
+│   │   ├── gt/                 # Ground truth data
+│   │   ├── open-source/        # Open-source model results
+│   │   └── proprietary/        # Proprietary model results
+│   └── source/                 # Source URLs
+├── results/                    # Results of completed pipeline of knowledge extraction
+│   ├── YOUR_MODEL_NAME/        # Final results with different depth of search
+│   │   └── SCHEMA/             # Schema of the extracted entity
+│   │       └── NUM_OF_DEPTH/   # Number of depth, which contains the final JSON files
+│   │           └── {name}.json # Number of depth, which contains the final JSON files
+│   ├── scrape/                 # Scraping results, which are used to compare with Firecrawl
+│   └── fsm/                    # FSM integrated one-time results
+├── schema/                     # Dynamically generated or predefined schemas that are used to extract info 
+│   ├── schema_manager.py       # Schema manager that can generate schemas
+│   └── ...                     # Dynamically generated schemas
+├── create_dataset.py           # Dataset creation utilities
+├── eval.py                     # Evaluation metrics and scripts
+├── generate_results.py         # Result generation
+├── interface.py                # Web interface
+├── multi.py                    # Complete pipeline of intelligent knowledge extraction
+├── database.py                 # Database operations
+└── outlines.ipynb              # FSM explanation and example
 ```
 
 ## Functional Design (Usage)
