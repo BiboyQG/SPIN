@@ -114,7 +114,7 @@ banghao-chi-knowledge-agent/
 │   │           └── {name}.json # Number of depth, which contains the final JSON files
 │   ├── scrape/                 # Scraping results, which are used to compare with Firecrawl
 │   └── fsm/                    # FSM integrated one-time results
-├── schema/                     # Dynamically generated or predefined schemas that are used to extract info 
+├── schema/                     # Dynamically generated that are used to extract info 
 │   ├── schema_manager.py       # Schema manager that can generate schemas
 │   └── ...                     # Dynamically generated schemas
 ├── create_dataset.py           # Dataset creation utilities
