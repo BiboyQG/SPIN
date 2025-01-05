@@ -3,8 +3,9 @@ from urllib.parse import urljoin
 import requests
 import re
 
-from bs4 import BeautifulSoup
 from markdownify import markdownify as md
+from DrissionPage import ChromiumPage
+from bs4 import BeautifulSoup
 
 
 class WebScraper:
@@ -15,6 +16,8 @@ class WebScraper:
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
             }
         )
+        # Initialize ChromiumPage for fallback
+        self.chrome_page = ChromiumPage()
 
         # Common class and ID names for navigation elements
         self.nav_selectors = [
@@ -135,31 +138,49 @@ class WebScraper:
 
         return any(re.search(pattern, url.lower()) for pattern in pub_patterns)
 
+    def is_txt_page(self, url: str) -> bool:
+        """
+        Check if the URL is likely a txt page.
+        """
+        return url.lower().endswith(".txt")
+
     def scrape_url(self, url: str, params: Optional[Dict] = None) -> Dict[str, str]:
         """
         Scrape a URL and return its content in markdown format.
+        First tries with requests, falls back to ChromiumPage if that fails.
         Skips arxiv.org websites and returns None.
         For publication pages, only returns the first half of the content.
-
-        Args:
-            url (str): The URL to scrape
-            params (Optional[Dict]): Additional parameters (kept for compatibility with firecrawl)
-
-        Returns:
-            Dict[str, str]: Dictionary containing the markdown content, or None for arxiv URLs
         """
         # Skip arxiv.org websites
         if "arxiv.org" in url.lower():
             print(f"Skipping arxiv URL: {url}")
             return {"markdown": None}
 
-        try:
-            # Fetch the webpage
-            response = self.session.get(url, timeout=30)
-            response.raise_for_status()
+        # Skip txt pages
+        if self.is_txt_page(url):
+            print(f"Skipping txt URL: {url}")
+            return {"markdown": None}
 
+        try:
+            # First attempt with requests
+            response = self.session.get(url, timeout=10)
+            response.raise_for_status()
+            html_content = response.text
+            if "You need to enable JavaScript to run this app." in html_content:
+                raise requests.RequestException("JavaScript is required")
+        except requests.RequestException as e:
+            print(f"Regular request failed, trying with ChromiumPage: {str(e)}")
+            try:
+                # Fallback to ChromiumPage
+                self.chrome_page.get(url)
+                html_content = self.chrome_page.html
+            except Exception as e:
+                print(f"Both request methods failed for URL {url}: {str(e)}")
+                return {"markdown": None}
+
+        try:
             # Parse HTML
-            soup = BeautifulSoup(response.text, "html.parser")
+            soup = BeautifulSoup(html_content, "html.parser")
 
             # Remove navigation elements
             self.remove_elements(soup, self.nav_selectors)
@@ -189,6 +210,6 @@ class WebScraper:
 
             return {"markdown": markdown_content}
 
-        except requests.RequestException as e:
-            print(f"Error scraping URL {url}: {str(e)}")
+        except Exception as e:
+            print(f"Error processing content from URL {url}: {str(e)}")
             return {"markdown": None}
