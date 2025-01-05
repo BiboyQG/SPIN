@@ -18,6 +18,8 @@ This repository presents a novel hierarchical framework for Language Model (LLM)
 | transformers  | 4.45.1      |
 | vLLM          | 0.6.6.post1 |
 | DrissionPage  | 4.1.0.17    |
+| DeepDiff      |             |
+| FuzzyWuzzy    |             |
 
 > [!TIP]
 >
