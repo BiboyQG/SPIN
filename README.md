@@ -102,7 +102,7 @@ banghao-chi-knowledge-agent/
 ├── README.md                  # Project documentation
 ├── dataset/                   # Data storage and results
 │   ├── article/               # Raw article data
-│   ├── results/               # One-time FSM evaluation results
+│   ├── results/               # One-time FSM data
 │   │   ├── gt/                # Ground truth data
 │   │   ├── open-source/       # Open-source model results
 │   │   └── proprietary/       # Proprietary model results
@@ -115,10 +115,7 @@ banghao-chi-knowledge-agent/
 │   └── fsm/                   # FSM integrated one-time results
 ├── schema/                    # Dynamically generated or predefined schemas that are used to extract info 
 │   ├── schema_manager.py      # Schema manager that can generate schemas
-│   ├── professor.py           # Professor data schema
-│   ├── car.py                 # Car review schema
-│   ├── movie.py               # Movie review schema
-│   └── ...                    # Other dynamically generated schemas
+│   └── ...                    # Dynamically generated schemas
 ├── create_dataset.py          # Dataset creation utilities
 ├── eval.py                    # Evaluation metrics and scripts
 ├── generate_results.py        # Result generation
