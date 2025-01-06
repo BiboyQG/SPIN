@@ -1,9 +1,9 @@
 from collections import OrderedDict
 from deepdiff import DeepDiff
 from fuzzywuzzy import fuzz
+from pathlib import Path
 import json
 import csv
-import os
 
 
 def compare_json_objects(ground_truth, test_object):
@@ -90,111 +90,154 @@ def compare_json_objects(ground_truth, test_object):
     return results
 
 
-def evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir, entity):
+def get_schemas():
+    """Get all available schemas from the ground truth directory."""
+    gt_path = Path("results/gt")
+    return [schema.name for schema in gt_path.iterdir() if schema.is_dir()]
+
+
+def get_model_paths():
+    """Get paths of all available models."""
+    results_path = Path("results")
+    # Exclude special directories
+    excluded_dirs = {"gt", "scrape", "fsm"}
+    return [
+        model_path
+        for model_path in results_path.iterdir()
+        if model_path.is_dir() and model_path.name not in excluded_dirs
+    ]
+
+
+def get_depth_levels(model_path, schema):
+    """Get all available depth levels for a given model and schema."""
+    schema_path = model_path / schema
+    if not schema_path.exists():
+        return []
+    return [depth.name for depth in schema_path.iterdir() if depth.is_dir()]
+
+
+def evaluate_models_new():
     results = []
-    json_files = [f for f in os.listdir(ground_truth_dir) if f.endswith(".json")]
-    json_files.sort(key=lambda x: int(x.split(".")[0]))
+    schemas = get_schemas()
+    model_paths = get_model_paths()
 
-    for filename in json_files:
-        ground_truth_path = os.path.join(ground_truth_dir, filename)
-        print(f"Processing ground truth file: {ground_truth_path}")
-        
-        try:
-            with open(ground_truth_path, 'r') as f:
-                ground_truth = json.load(f)
-        except Exception as e:
-            print(f"Error reading ground truth file {filename}: {str(e)}")
-            continue
+    for schema in schemas:
+        print(f"Processing schema: {schema}")
+        gt_path = Path("results/gt") / schema
+        gt_files = list(gt_path.glob("*.json"))
+        gt_files.sort(key=lambda x: x.stem)
 
-        # Evaluate open-source models
-        print(f"Checking open-source models for {filename}")
-        model_path = os.path.join(open_source_dir, entity, 'instructor', filename)
-        print(f"Checking path: {model_path}")
-        if os.path.exists(model_path):
-            print(f"Processing open-source model: {model_path}")
-            try:
-                with open(model_path, 'r') as f:
-                    test_object = json.load(f)
-                result = compare_json_objects(ground_truth, test_object)
-                result['sample no.'] = filename.split('.')[0]
-                result['model_name'] = "Qwen2.5-72B-Instruct-AWQ"
-                results.append(result)
-            except Exception as e:
-                print(f"Error processing {model_path}: {str(e)}")
-        else:
-            print(f"File not found: {model_path}")
+        for model_path in model_paths:
+            model_name = model_path.name
+            print(f"Processing model: {model_name}")
 
-        # Evaluate proprietary models
-        print(f"Checking proprietary models for {filename}")
-        model_path = os.path.join(proprietary_dir, 'gpt-4o-mini', entity, filename)
-        print(f"Checking path: {model_path}")
-        if os.path.exists(model_path):
-            print(f"Processing proprietary model: {model_path}")
-            try:
-                with open(model_path, 'r') as f:
-                    test_object = json.load(f)
-                result = compare_json_objects(ground_truth, test_object)
-                result['sample no.'] = filename.split('.')[0]
-                result["model_name"] = "gpt-4o-mini"
-                results.append(result)
-            except Exception as e:
-                print(f"Error processing {model_path}: {str(e)}")
-        else:
-            print(f"File not found: {model_path}")
+            depth_levels = get_depth_levels(model_path, schema)
 
-    # Separate results for open-source and proprietary models
-    open_source_results = [r for r in results if r["model_name"] == "Qwen2.5-72B-Instruct-AWQ"]
-    proprietary_results = [r for r in results if r["model_name"] == "gpt-4o-mini"]
+            for depth in depth_levels:
+                depth_results = []
+                print(f"Processing depth: {depth}")
 
-    # Calculate average for open-source model
-    open_source_result = {
-        "sample no.": "avg",
-        "model_name": "Qwen2.5-72B-Instruct-AWQ",
-        "json_validity": sum([r["json_validity"] for r in open_source_results])
-        / len(open_source_results),
-        "key_similarity": sum([r["key_similarity"] for r in open_source_results])
-        / len(open_source_results),
-        "value_exactness": sum([r["value_exactness"] for r in open_source_results])
-        / len(open_source_results),
-        "numeric_similarity": sum(
-            [r["numeric_similarity"] for r in open_source_results]
-        )
-        / len(open_source_results),
-        "string_similarity": sum([r["string_similarity"] for r in open_source_results])
-        / len(open_source_results),
-    }
-    results.append(open_source_result)
+                for gt_file in gt_files:
+                    test_file = model_path / schema / depth / gt_file.name
 
-    # Calculate average for proprietary model
-    proprietary_result = {
-        "sample no.": "avg",
-        "model_name": "gpt-4o-mini",
-        "json_validity": sum([r["json_validity"] for r in proprietary_results])
-        / len(proprietary_results),
-        "key_similarity": sum([r["key_similarity"] for r in proprietary_results])
-        / len(proprietary_results),
-        "value_exactness": sum([r["value_exactness"] for r in proprietary_results])
-        / len(proprietary_results),
-        "numeric_similarity": sum(
-            [r["numeric_similarity"] for r in proprietary_results]
-        )
-        / len(proprietary_results),
-        "string_similarity": sum([r["string_similarity"] for r in proprietary_results])
-        / len(proprietary_results),
-    }
-    results.append(proprietary_result)
+                    try:
+                        with gt_file.open("r") as f:
+                            ground_truth = json.load(f)
 
-    print(f"Total results processed: {len(results)}")
+                        if test_file.exists():
+                            with test_file.open("r") as f:
+                                test_object = json.load(f)
+
+                            result = compare_json_objects(ground_truth, test_object)
+                            result.update(
+                                {
+                                    "sample_no": gt_file.stem,
+                                    "model_name": model_name,
+                                    "schema": schema,
+                                    "depth": depth,
+                                }
+                            )
+                            depth_results.append(result)
+                        else:
+                            print(f"Missing test file: {test_file}")
+
+                    except Exception as e:
+                        print(f"Error processing {gt_file}: {str(e)}")
+                        continue
+
+                # Calculate averages for this depth level
+                if depth_results:
+                    avg_result = {
+                        "sample_no": "avg",
+                        "model_name": model_name,
+                        "schema": schema,
+                        "depth": depth,
+                        "json_validity": sum(r["json_validity"] for r in depth_results)
+                        / len(depth_results),
+                        "key_similarity": sum(
+                            r["key_similarity"] for r in depth_results
+                        )
+                        / len(depth_results),
+                        "value_exactness": sum(
+                            r["value_exactness"] for r in depth_results
+                        )
+                        / len(depth_results),
+                        "numeric_similarity": sum(
+                            r["numeric_similarity"] for r in depth_results
+                        )
+                        / len(depth_results),
+                        "string_similarity": sum(
+                            r["string_similarity"] for r in depth_results
+                        )
+                        / len(depth_results),
+                    }
+                    results.extend(depth_results + [avg_result])
+
+    # Calculate overall model averages
+    model_averages = {}
+    for model_path in model_paths:
+        model_name = model_path.name
+        model_results = [
+            r
+            for r in results
+            if r["model_name"] == model_name and r["sample_no"] == "avg"
+        ]
+
+        if model_results:
+            model_averages[model_name] = {
+                "sample_no": "overall_avg",
+                "model_name": model_name,
+                "schema": "all",
+                "depth": "all",
+                "json_validity": sum(r["json_validity"] for r in model_results)
+                / len(model_results),
+                "key_similarity": sum(r["key_similarity"] for r in model_results)
+                / len(model_results),
+                "value_exactness": sum(r["value_exactness"] for r in model_results)
+                / len(model_results),
+                "numeric_similarity": sum(
+                    r["numeric_similarity"] for r in model_results
+                )
+                / len(model_results),
+                "string_similarity": sum(r["string_similarity"] for r in model_results)
+                / len(model_results),
+            }
+
+    results.extend(model_averages.values())
     return results
 
 
 def save_results_to_csv(results, filename="evaluation_results.csv"):
+    """Save results to CSV with the new structure."""
     if not results:
         print("No results to save. The results list is empty.")
         return
 
-    # Get all unique keys from all result dictionaries
-    all_keys = [
+    fieldnames = [
+        "sample_no",
+        "model_name",
+        "schema",
+        "depth",
         "json_validity",
         "key_similarity",
         "value_exactness",
@@ -202,14 +245,8 @@ def save_results_to_csv(results, filename="evaluation_results.csv"):
         "string_similarity",
     ]
 
-    # Define the order of columns, ensuring all keys are included
-    fieldnames = ["sample no.", "model_name"] + [
-        key for key in all_keys if key not in ["model_name", "sample no."]
-    ]
-
     with open(filename, "w", newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
         writer.writeheader()
         for result in results:
             writer.writerow(result)
@@ -217,24 +254,6 @@ def save_results_to_csv(results, filename="evaluation_results.csv"):
     print(f"Results saved to {filename}")
 
 
-# Update the main execution part
-for entity in ["car", "prof", "movie"]:
-    # Specify the directories
-    ground_truth_dir = f'dataset/results/gt/{entity}'
-    open_source_dir = 'dataset/results/open-source/Qwen/Qwen2.5-72B-Instruct-AWQ'
-    proprietary_dir = 'dataset/results/proprietary'
-
-    print(f"Evaluating {entity} entity")
-    print(f"Ground truth directory: {ground_truth_dir}")
-    print(f"Open-source directory: {open_source_dir}")
-    print(f"Proprietary directory: {proprietary_dir}")
-
-    print(f"Open-source directory exists: {os.path.exists(open_source_dir)}")
-    print(f"Proprietary directory exists: {os.path.exists(proprietary_dir)}")
-
-    results = evaluate_models(ground_truth_dir, open_source_dir, proprietary_dir, entity)
-    save_results_to_csv(results, f"{entity}_results.csv")
-
-    # Print results to console as well
-    for result in results:
-        print(json.dumps(result, indent=2))
+if __name__ == "__main__":
+    results = evaluate_models_new()
+    save_results_to_csv(results, "results/comprehensive_evaluation_results.csv")
