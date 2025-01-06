@@ -704,7 +704,7 @@ if __name__ == "__main__":
         )
 
         # Create results directory for schema type
-        results_dir = f"./results/{open_source_model}/{schema_type}/{max_depth}"
+        results_dir = f"./results/{open_source_model.split('/')[1]}/{schema_type}/{max_depth}"
         os.makedirs(results_dir, exist_ok=True)
 
         entity_name = (
