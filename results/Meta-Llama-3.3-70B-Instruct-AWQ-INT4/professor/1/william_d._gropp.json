@@ -1,0 +1,68 @@
+{
+    "fullname": "William D. Gropp",
+    "title": "Director, National Center for Supercomputing Applications, Grainger Distinguished Chair in Engineering",
+    "contact": {
+        "phone": "217 244 6720",
+        "email": "wgropp at illinois.edu"
+    },
+    "office": "Siebel School of Computing and Data Science, University of Illinois Urbana-Champaign, Urbana, Illinois",
+    "education": [
+        {
+            "degree": "Ph.D.",
+            "field": "Computer Science",
+            "institution": "Stanford University",
+            "year": 1982
+        }
+    ],
+    "biography": "William D. Gropp is a renowned computer scientist and engineer, currently serving as the Director of the National Center for Supercomputing Applications and Grainger Distinguished Chair in Engineering at the University of Illinois Urbana-Champaign.",
+    "professionalHighlights": [
+        {
+            "position": "Director",
+            "organization": "National Center for Supercomputing Applications",
+            "yearStart": 2007,
+            "yearEnd": null
+        },
+        {
+            "position": "Grainger Distinguished Chair in Engineering",
+            "organization": "University of Illinois Urbana-Champaign",
+            "yearStart": 2013,
+            "yearEnd": null
+        }
+    ],
+    "researchStatement": "My research focuses on high-performance computing, parallel programming models, and scalable numerical algorithms for solving complex problems in science and engineering.",
+    "researchInterests": [
+        {
+            "area": "High-Performance Computing",
+            "description": "Development of scalable numerical algorithms and parallel programming models for large-scale scientific simulations."
+        },
+        {
+            "area": "Parallel Programming Models",
+            "description": "Design and implementation of parallel programming systems for distributed memory architectures."
+        }
+    ],
+    "researchAreas": [
+        "High-Performance Computing",
+        "Parallel Programming Models",
+        "Scalable Numerical Algorithms"
+    ],
+    "publications": [],
+    "teachingHonors": [
+        {
+            "honor": "HPCWire Readers Choice Award for Outstanding Leadership in HPC",
+            "year": 2023
+        }
+    ],
+    "researchHonors": [
+        {
+            "honor": "35 HPC Legends",
+            "organization": "HPC Wire",
+            "year": 2024
+        }
+    ],
+    "coursesTaught": [
+        {
+            "code": "CS 598",
+            "title": "High-Performance Computing"
+        }
+    ]
+}

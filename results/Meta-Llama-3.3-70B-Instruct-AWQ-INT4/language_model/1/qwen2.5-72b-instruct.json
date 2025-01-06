@@ -1,0 +1,62 @@
+{
+    "name": "Qwen2.5-72B-Instruct",
+    "developer": "Qwen Team",
+    "supportedLanguages": [
+        "Chinese",
+        "English",
+        "French",
+        "Spanish",
+        "Portuguese",
+        "German",
+        "Italian",
+        "Russian",
+        "Japanese",
+        "Korean",
+        "Vietnamese",
+        "Thai",
+        "Arabic"
+    ],
+    "releaseDate": "2024-09-01T00:00:00",
+    "architecture": {
+        "parameters": 72,
+        "contextLength": 131072,
+        "attentionMechanism": "transformers with RoPE, SwiGLU, RMSNorm, and Attention QKV bias",
+        "trainingTokens": 157764
+    },
+    "trainingMetrics": {
+        "computeHours": 0,
+        "hardware_type": "NVIDIA A100"
+    },
+    "limitations": [
+        "May not perform well on shorter texts"
+    ],
+    "benchmarks": [
+        {
+            "name": "HumanEval",
+            "score": 0,
+            "shot_count": null
+        },
+        {
+            "name": "MMLU",
+            "score": 0,
+            "shot_count": null
+        },
+        {
+            "name": "MATH",
+            "score": 0,
+            "shot_count": null
+        }
+    ],
+    "publication": {
+        "title": "Qwen2.5: A Party of Foundation Models",
+        "authors": [
+            "Qwen Team"
+        ],
+        "venue": "arXiv",
+        "year": 2024,
+        "url": "https://qwenlm.github.io/blog/qwen2.5/"
+    },
+    "license": {
+        "name": "Apache 2.0"
+    }
+}

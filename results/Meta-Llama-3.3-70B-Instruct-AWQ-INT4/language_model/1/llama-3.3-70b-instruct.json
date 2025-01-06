@@ -1,0 +1,88 @@
+{
+    "name": "Llama-3.3-70B-Instruct",
+    "developer": "Meta",
+    "supportedLanguages": [
+        "English",
+        "German",
+        "French",
+        "Italian",
+        "Portuguese",
+        "Hindi",
+        "Spanish",
+        "Thai"
+    ],
+    "releaseDate": "2024-12-06T00:00:00Z",
+    "architecture": {
+        "parameters": 70,
+        "contextLength": 128000,
+        "attentionMechanism": "Grouped Query Attention",
+        "trainingTokens": 15000000000
+    },
+    "trainingMetrics": {
+        "computeHours": 39.3,
+        "hardware_type": "H100-80GB"
+    },
+    "limitations": [
+        "May produce inaccurate or biased responses",
+        "Requires safety testing and tuning before deployment"
+    ],
+    "benchmarks": [
+        {
+            "name": "MMLU (CoT)",
+            "score": 86.0,
+            "shot_count": 0
+        },
+        {
+            "name": "MMLU Pro (CoT)",
+            "score": 68.9,
+            "shot_count": 5
+        },
+        {
+            "name": "IFEval",
+            "score": 92.1,
+            "shot_count": null
+        },
+        {
+            "name": "GPQA Diamond (CoT)",
+            "score": 50.5,
+            "shot_count": 0
+        },
+        {
+            "name": "HumanEval",
+            "score": 88.4,
+            "shot_count": 0
+        },
+        {
+            "name": "MBPP EvalPlus (base)",
+            "score": 87.6,
+            "shot_count": 0
+        },
+        {
+            "name": "MATH (CoT)",
+            "score": 77.0,
+            "shot_count": 0
+        },
+        {
+            "name": "BFCL v2",
+            "score": 77.3,
+            "shot_count": 0
+        },
+        {
+            "name": "MGSM",
+            "score": 91.1,
+            "shot_count": 0
+        }
+    ],
+    "publication": {
+        "title": "Llama 3.3",
+        "authors": [
+            "Meta"
+        ],
+        "venue": "Meta AI",
+        "year": 2024,
+        "url": "https://www.llama.com/docs/overview"
+    },
+    "license": {
+        "name": "Llama 3.3 Community License Agreement"
+    }
+}

@@ -1,0 +1,240 @@
+{
+    "fullname": "Xiaohui Zhu",
+    "title": "Associate Professor",
+    "contact": {
+        "phone": "+86 (0)512 81888720",
+        "email": "Xiaohui.Zhu@xjtlu.edu.cn"
+    },
+    "office": "Department of Computer Science and Software Engineering, Xi'an Jiaotong-Liverpool University",
+    "education": [
+        {
+            "degree": "PhD",
+            "field": "Computer Science",
+            "institution": "University of Liverpool",
+            "year": 2019
+        },
+        {
+            "degree": "MSc",
+            "field": "Computer Science",
+            "institution": "Jiangxi Normal University",
+            "year": 2007
+        },
+        {
+            "degree": "BSc",
+            "field": "Computer Science",
+            "institution": "Soochow University",
+            "year": 1999
+        }
+    ],
+    "biography": "Xiaohui Zhu received his BSc from Soochow University in 1999, MSc from Jiangxi Normal University in 2007 and PhD from the University of Liverpool in 2019. He is currently an Associate Professor at the Department of Computer Science and Software Engineering, Xian Jiaotong-Liverpool University (XJTLU). Before joining XJTLU, he was an associate professor at Nantong University, China. He has taught a wide range of modules including Introduction to Databases, C++ Programming, Foundation of Java Programming, C# Programming and Data Structure. From 2011 to 2017, he visited several European universities for academic exchange such as the University of Bedfordshire in the UK, the University of Edinburgh in the UK, the Tampere University of Technology in Finland and the University of Oldenburg in Germany. Dr. Zhu\u2019s research interests include Artificial intelligence and its application, especially in multi-objective optimization, autonomous navigation and collision avoidance, fast path planning, and USV-related algorithms and applications. He has published 10+ SCI/EI papers and a book in the title of \u201cFoundation of C# Programming\u201d.",
+    "professionalHighlights": [
+        {
+            "position": "Associate Professor",
+            "organization": "Xi'an Jiaotong-Liverpool University",
+            "yearStart": 2024,
+            "yearEnd": null
+        },
+        {
+            "position": "Assistant Professor",
+            "organization": "Xi'an Jiaotong-Liverpool University",
+            "yearStart": 2020,
+            "yearEnd": 2023
+        },
+        {
+            "position": "Academic visitor",
+            "organization": "University of Oldenburg, Germany",
+            "yearStart": 2017,
+            "yearEnd": 2017
+        },
+        {
+            "position": "Academic visitor",
+            "organization": "Tampere University of Technology, Finland",
+            "yearStart": 2015,
+            "yearEnd": 2016
+        },
+        {
+            "position": "Academic visitor",
+            "organization": "University of Edinburgh, UK",
+            "yearStart": 2013,
+            "yearEnd": 2014
+        },
+        {
+            "position": "Academic visitor",
+            "organization": "University of Bedfordshire, UK",
+            "yearStart": 2011,
+            "yearEnd": 2011
+        },
+        {
+            "position": "Teaching Assistant, Lecturer and Associate Professor",
+            "organization": "Nantong University",
+            "yearStart": 1999,
+            "yearEnd": 2020
+        }
+    ],
+    "researchStatement": "Dr. Zhu\u2019s research interests include Artificial intelligence and its application, especially in multi-objective optimization, autonomous navigation and collision avoidance, fast path planning, and USV-related algorithms and applications. He has published 10+ SCI/EI papers and a book in the title of \u201cFoundation of C# Programming\u201d.",
+    "researchInterests": [
+        {
+            "area": "AI techniques related to unmanned surface vehicles and water environment monitoring",
+            "description": "Research on intelligent driving, path planning, and environmental monitoring using unmanned surface vehicles."
+        },
+        {
+            "area": "Autonomous navigation and collision avoidance",
+            "description": "Development of algorithms for safe and efficient navigation in dynamic environments."
+        },
+        {
+            "area": "Multi-objective optimization",
+            "description": "Optimization techniques for solving complex problems with multiple objectives."
+        },
+        {
+            "area": "Fast path planning",
+            "description": "Algorithms for efficient and real-time path planning in various applications."
+        }
+    ],
+    "researchAreas": [
+        "AI techniques related to unmanned surface vehicles and water environment monitoring",
+        "Autonomous navigation and collision avoidance",
+        "Multi-objective optimization",
+        "Fast path planning"
+    ],
+    "publications": [
+        {
+            "title": "A Distributed and Self-powered Soil Monitoring Network for Smart Agriculture",
+            "authors": [
+                "Yang, J.",
+                "Luo, Y.",
+                "Hou, Y.",
+                "Wu, Z.",
+                "Li, J.",
+                "Guo, Y.",
+                "Hu, Y.",
+                "You, H.",
+                "Zhu, X.",
+                "Yue, Y."
+            ],
+            "conference": "2024 16th International Conference on Computer and Automation Engineering, ICCAE 2024",
+            "year": 2024
+        },
+        {
+            "title": "CCTSDB dataset enhancement based on a cross-augmentation method for image datasets",
+            "authors": [
+                "Lin, X.",
+                "Wang, W.",
+                "Zhu, X.",
+                "Yue, Y."
+            ],
+            "conference": "Intelligent Data Analysis",
+            "year": 2024
+        },
+        {
+            "title": "CR-DINO: A Novel Camera-Radar Fusion 2D Object Detection Model Based On Transformer",
+            "authors": [
+                "Jin, Y.",
+                "Zhu, X.",
+                "Yue, Y.",
+                "Lim, E. G.",
+                "Wang, W."
+            ],
+            "conference": "IEEE Sensors Journal",
+            "year": 2024
+        },
+        {
+            "title": "Decentralized multi-agent cooperation via adaptive partner modeling",
+            "authors": [
+                "Xu, C.",
+                "Wang, J.",
+                "Zhu, X.",
+                "Yue, Y.",
+                "Zhou, W.",
+                "Liang, Z.",
+                "Wojtczak, D."
+            ],
+            "conference": "Complex and Intelligent Systems",
+            "year": 2024
+        },
+        {
+            "title": "Evolution of Unmanned Surface Vehicle Path Planning: A Comprehensive Review of Basic, Responsive, and Advanced Strategic Pathfinders",
+            "authors": [
+                "Chu, Y.",
+                "Gao, Q.",
+                "Yue, Y.",
+                "Lim, E. G.",
+                "Paoletti, P.",
+                "Ma, J.",
+                "Zhu, X."
+            ],
+            "conference": "Drones",
+            "year": 2024
+        }
+    ],
+    "teachingHonors": [
+        {
+            "honor": "1st prize, 6th China International College Students Internet + Innovation and Entrepreneurship Competition (XJTLU)",
+            "year": 2020
+        },
+        {
+            "honor": "2nd prize, 3.6th China College Students Internet + Innovation and Entrepreneurship Competition (Jiangsu Province)",
+            "year": 2020
+        },
+        {
+            "honor": "2nd prize, 5th China College Students Internet+ Innovation and Entrepreneurship Competition (Jiangsu Division)",
+            "year": 2020
+        },
+        {
+            "honor": "2nd prize, China College Computer Competition - 2020 Wechat Application Development Competition (Huadong Division)",
+            "year": 2020
+        },
+        {
+            "honor": "2nd prize, 12th China College Students Service Outsourcing Innovation and Entrepreneurship Competition (Eastern Regional Competition)",
+            "year": 2021
+        },
+        {
+            "honor": "3rd prize, 12th China College Students Service Outsourcing Innovation and Entrepreneurship Competition (National Competition)",
+            "year": 2021
+        },
+        {
+            "honor": "3rd prize, 16th China College Student Intelligent Car Competition- Smart Restaurant Group Competition (Region Qualifier)",
+            "year": 2021
+        },
+        {
+            "honor": "2nd prize, 7th Chinas Service Outsourcing Innovation and Entrepreneurship Competition for College Students",
+            "year": 2018
+        },
+        {
+            "honor": "3rd prize, 9th Chinas Service Outsourcing Innovation and Entrepreneurship Competition for College Students",
+            "year": 2018
+        },
+        {
+            "honor": "2nd prize, 9th China Computer Design Competition for College Students",
+            "year": 2017
+        },
+        {
+            "honor": "2nd prize, 1st Hacker Marathon Competition (sponsored by Unilever)",
+            "year": 2019
+        },
+        {
+            "honor": "2nd prize, 9th China Data Visualization and Analysis (ChinaVis 2022)",
+            "year": 2022
+        }
+    ],
+    "researchHonors": [
+        {
+            "honor": "Outstanding Competition Tutor of Nantong University",
+            "organization": "Nantong University",
+            "year": 2017
+        }
+    ],
+    "coursesTaught": [
+        {
+            "code": "CPT106",
+            "title": "C++ Programming and Software Engineering"
+        },
+        {
+            "code": "CPT109",
+            "title": "C Programming and Software Engineering I"
+        },
+        {
+            "code": "CPT105",
+            "title": "Introduction to Programming in Java"
+        }
+    ]
+}

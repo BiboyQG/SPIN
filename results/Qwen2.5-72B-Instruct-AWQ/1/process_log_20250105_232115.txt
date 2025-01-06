@@ -1,0 +1,902 @@
+2025-01-05 23:21:15 [INFO] Testing logger setup
+
+2025-01-05 23:21:15 [INFO] 
+============================================================
+Testing section logging
+============================================================
+
+2025-01-05 23:21:15 [INFO] 
+------------------------------------------------------------
+Testing subsection logging
+------------------------------------------------------------
+
+2025-01-05 23:21:15 [INFO] 
+============================================================
+Starting entity information extraction process
+============================================================
+
+2025-01-05 23:21:15 [INFO] Processing URLs: ['https://uiucwp.gitlab.io/fa-24/']
+
+2025-01-05 23:21:15 [INFO] 
+############################################################
+Processing URL [1/1]: https://uiucwp.gitlab.io/fa-24/
+############################################################
+
+2025-01-05 23:21:15 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-05 23:21:22 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-05 23:21:32 [INFO] Detected schema: course
+
+2025-01-05 23:21:32 [INFO] Reason: The content describes a university course, including the course name (CS 409: The Art of Web Programming), the semester (FALL 2024), the university (UIUC), lecture times, assignments, exams, and grading policies.
+
+2025-01-05 23:21:32 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-05 23:21:32 [INFO] Getting response from open source with extra body for course
+
+2025-01-05 23:21:32 [INFO] Entity schema: <class 'course.Course'>
+
+2025-01-05 23:22:17 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-05 23:22:17 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-05 23:22:17 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-05 23:24:22 [INFO] Found 51 links to process
+
+2025-01-05 23:24:22 [INFO] 
+------------------------------------------------------------
+Processing link 1/51
+------------------------------------------------------------
+
+2025-01-05 23:24:22 [INFO] URL: https://uiucwp.gitlab.io/fa-24/
+
+2025-01-05 23:24:22 [INFO] Display text: The Art of Web Programming
+
+2025-01-05 23:24:22 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:24 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest a general course or resource on web programming, but do not specifically indicate information about CS409's textbooks.
+
+2025-01-05 23:24:24 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:24 [INFO] 
+------------------------------------------------------------
+Processing link 2/51
+------------------------------------------------------------
+
+2025-01-05 23:24:24 [INFO] URL: https://illinois.zoom.us/j/87037272792?pwd=31uYz27U4aDnEcI3IGaig7anoRNbTu.1
+
+2025-01-05 23:24:24 [INFO] Display text: Zoom
+
+2025-01-05 23:24:24 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:28 [INFO] ❌ Not relevant to 'textbooks': The URL is a Zoom meeting link and the display text is 'Zoom'. This suggests that the link is for a virtual meeting or class session, not for information about textbooks.
+
+2025-01-05 23:24:28 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:28 [INFO] 
+------------------------------------------------------------
+Processing link 3/51
+------------------------------------------------------------
+
+2025-01-05 23:24:28 [INFO] URL: https://illinois.zoom.us/j/6804463113?pwd=c2RmRnpXeDIrL0JGcTd1TU1sL3V1Zz09&omn=87989449611
+
+2025-01-05 23:24:28 [INFO] Display text: Zoom
+
+2025-01-05 23:24:28 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:31 [INFO] ❌ Not relevant to 'textbooks': The URL is a Zoom meeting link and the display text is 'Zoom'. This suggests that the link is for a virtual meeting or class session, not for information about textbooks for CS409.
+
+2025-01-05 23:24:31 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:31 [INFO] 
+------------------------------------------------------------
+Processing link 4/51
+------------------------------------------------------------
+
+2025-01-05 23:24:31 [INFO] URL: https://illinois.zoom.us/j/83646066351?pwd=DrFQJVdbSl9Yu5ndtoCUuQHTfaGWV4.1
+
+2025-01-05 23:24:31 [INFO] Display text: Zoom
+
+2025-01-05 23:24:31 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:34 [INFO] ❌ Not relevant to 'textbooks': The URL is a Zoom meeting link and the display text is 'Zoom'. This suggests that the link is for a virtual meeting or class session, not for information about textbooks for CS409.
+
+2025-01-05 23:24:34 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:34 [INFO] 
+------------------------------------------------------------
+Processing link 5/51
+------------------------------------------------------------
+
+2025-01-05 23:24:34 [INFO] URL: https://illinois.zoom.us/j/84010323961?pwd=zmBSvbP3ZkAMoleeoNDm3vet7VbCub.1
+
+2025-01-05 23:24:34 [INFO] Display text: Zoom
+
+2025-01-05 23:24:34 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:37 [INFO] ❌ Not relevant to 'textbooks': The URL is a Zoom meeting link and the display text is 'Zoom'. This suggests that the link is for a virtual meeting or class session, not for information about textbooks for CS409.
+
+2025-01-05 23:24:37 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:37 [INFO] 
+------------------------------------------------------------
+Processing link 6/51
+------------------------------------------------------------
+
+2025-01-05 23:24:37 [INFO] URL: https://illinois.zoom.us/j/81944212927?pwd=uD5pnOIlZgiE4tt5yFunNL3tnasbeN.1
+
+2025-01-05 23:24:37 [INFO] Display text: Zoom
+
+2025-01-05 23:24:37 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:40 [INFO] ❌ Not relevant to 'textbooks': The URL is a Zoom meeting link and the display text is 'Zoom'. This suggests that the link is for a virtual meeting or class session, not for information about textbooks for CS409.
+
+2025-01-05 23:24:40 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:40 [INFO] 
+------------------------------------------------------------
+Processing link 7/51
+------------------------------------------------------------
+
+2025-01-05 23:24:40 [INFO] URL: https://illinois.zoom.us/j/3394966600?pwd=L2tSajE0a1BGSHVMclpNVmVMbG52QT09
+
+2025-01-05 23:24:40 [INFO] Display text: Zoom
+
+2025-01-05 23:24:40 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:43 [INFO] ❌ Not relevant to 'textbooks': The URL is a Zoom meeting link and the display text is 'Zoom'. This suggests that the link is for a virtual meeting or class session, not for information about textbooks.
+
+2025-01-05 23:24:43 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:43 [INFO] 
+------------------------------------------------------------
+Processing link 8/51
+------------------------------------------------------------
+
+2025-01-05 23:24:43 [INFO] URL: https://drive.google.com/file/d/1B5-NtatgEIvrQRHxckrA7NAG8CXc34LT/view?usp=sharing
+
+2025-01-05 23:24:43 [INFO] Display text: Slides
+
+2025-01-05 23:24:43 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:46 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Slides' suggests it likely contains presentation slides, not information about textbooks for CS409.
+
+2025-01-05 23:24:46 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:46 [INFO] 
+------------------------------------------------------------
+Processing link 9/51
+------------------------------------------------------------
+
+2025-01-05 23:24:46 [INFO] URL: https://drive.google.com/file/d/1T1lehAWsbGSljNkecFqn0_0lGbR9JCNT/view?usp=sharing
+
+2025-01-05 23:24:46 [INFO] Display text: Recording
+
+2025-01-05 23:24:46 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:48 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text is 'Recording', which suggests it is more likely a video or audio file rather than information about textbooks for CS409.
+
+2025-01-05 23:24:48 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:48 [INFO] 
+------------------------------------------------------------
+Processing link 10/51
+------------------------------------------------------------
+
+2025-01-05 23:24:48 [INFO] URL: https://drive.google.com/file/d/1aIgf84XtXR6RBh_g_-VAgwijMcN66va8/view?usp=sharing
+
+2025-01-05 23:24:48 [INFO] Display text: Slides
+
+2025-01-05 23:24:48 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:51 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Slides' suggests it likely contains presentation slides, not information about textbooks for CS409.
+
+2025-01-05 23:24:51 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:51 [INFO] 
+------------------------------------------------------------
+Processing link 11/51
+------------------------------------------------------------
+
+2025-01-05 23:24:51 [INFO] URL: https://drive.google.com/file/d/1FAa8eTHfdT0yL2nVnb5Zk3ZCPkXZ-hlo/view?usp=drive_link
+
+2025-01-05 23:24:51 [INFO] Display text: Recording
+
+2025-01-05 23:24:51 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:54 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:24:54 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:54 [INFO] 
+------------------------------------------------------------
+Processing link 12/51
+------------------------------------------------------------
+
+2025-01-05 23:24:54 [INFO] URL: https://drive.google.com/file/d/1ln8frbmc8MhaKiViYjpa4piIwd0vPesd/view?usp=drive_link
+
+2025-01-05 23:24:54 [INFO] Display text: Slides
+
+2025-01-05 23:24:54 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:24:57 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific information about CS409's textbooks.
+
+2025-01-05 23:24:57 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:24:57 [INFO] 
+------------------------------------------------------------
+Processing link 13/51
+------------------------------------------------------------
+
+2025-01-05 23:24:57 [INFO] URL: https://drive.google.com/file/d/1AslDOmxj5gWl4ylcnbvjcClipajlvpnH/view?usp=drive_link
+
+2025-01-05 23:24:57 [INFO] Display text: Recording
+
+2025-01-05 23:24:57 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:00 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:25:00 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:00 [INFO] 
+------------------------------------------------------------
+Processing link 14/51
+------------------------------------------------------------
+
+2025-01-05 23:25:00 [INFO] URL: https://drive.google.com/file/d/1KmcSb-D9YFtuLexVR4bwA8tzzGk86BEv/view?usp=drive_link
+
+2025-01-05 23:25:00 [INFO] Display text: Slides
+
+2025-01-05 23:25:00 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:03 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific information about CS409's textbooks.
+
+2025-01-05 23:25:03 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:03 [INFO] 
+------------------------------------------------------------
+Processing link 15/51
+------------------------------------------------------------
+
+2025-01-05 23:25:03 [INFO] URL: https://drive.google.com/file/d/1UOfjTwFoPa3InBKKcK1PrvFkOwDQCfSh/view?usp=sharing
+
+2025-01-05 23:25:03 [INFO] Display text: Recording
+
+2025-01-05 23:25:03 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:06 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text is 'Recording', which suggests it is more likely a video or audio file rather than information about textbooks for CS409.
+
+2025-01-05 23:25:06 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:06 [INFO] 
+------------------------------------------------------------
+Processing link 16/51
+------------------------------------------------------------
+
+2025-01-05 23:25:06 [INFO] URL: https://drive.google.com/file/d/1lZgsAGGLEqwYQ7vAmWXc_vc25qjVrXLn/view?usp=drive_link
+
+2025-01-05 23:25:06 [INFO] Display text: Slides
+
+2025-01-05 23:25:06 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:10 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific connection to CS409's textbooks.
+
+2025-01-05 23:25:10 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:10 [INFO] 
+------------------------------------------------------------
+Processing link 17/51
+------------------------------------------------------------
+
+2025-01-05 23:25:10 [INFO] URL: https://drive.google.com/file/d/1bjo1VdOxC5OzHLzED2G83INPN0Jx3nvl/view?usp=sharing
+
+2025-01-05 23:25:10 [INFO] Display text: Recording
+
+2025-01-05 23:25:10 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:13 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text is 'Recording', which suggests it is more likely a video or audio file rather than information about textbooks for CS409.
+
+2025-01-05 23:25:13 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:13 [INFO] 
+------------------------------------------------------------
+Processing link 18/51
+------------------------------------------------------------
+
+2025-01-05 23:25:13 [INFO] URL: https://drive.google.com/file/d/14AxCbFUqEXLvH7stpGPdOgWJqzEYb0sw/view?usp=drive_link
+
+2025-01-05 23:25:13 [INFO] Display text: Slides
+
+2025-01-05 23:25:13 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:16 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific connection to CS409's textbooks.
+
+2025-01-05 23:25:16 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:16 [INFO] 
+------------------------------------------------------------
+Processing link 19/51
+------------------------------------------------------------
+
+2025-01-05 23:25:16 [INFO] URL: https://drive.google.com/file/d/116OU2TsmXh39KEeNQUTE4BwNm1K6jVp3/view?usp=drive_link
+
+2025-01-05 23:25:16 [INFO] Display text: Recording
+
+2025-01-05 23:25:16 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:19 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:25:19 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:19 [INFO] 
+------------------------------------------------------------
+Processing link 20/51
+------------------------------------------------------------
+
+2025-01-05 23:25:19 [INFO] URL: https://drive.google.com/file/d/1Cv_qrONonySRJOcUBaVZa1-8c-QCwqX5/view?usp=sharing
+
+2025-01-05 23:25:19 [INFO] Display text: Slides
+
+2025-01-05 23:25:19 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:22 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text is 'Slides', which suggests the link is more likely to lead to presentation slides rather than information about textbooks for CS409.
+
+2025-01-05 23:25:22 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:22 [INFO] 
+------------------------------------------------------------
+Processing link 21/51
+------------------------------------------------------------
+
+2025-01-05 23:25:22 [INFO] URL: https://drive.google.com/file/d/1tqOdfTW-Ro6ZhosFpl-Ajmp2QxjMKYGB/view?usp=drive_link
+
+2025-01-05 23:25:22 [INFO] Display text: Recording
+
+2025-01-05 23:25:22 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:25 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:25:25 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:25 [INFO] 
+------------------------------------------------------------
+Processing link 22/51
+------------------------------------------------------------
+
+2025-01-05 23:25:25 [INFO] URL: https://drive.google.com/file/d/1kKw2r-JY8weVA9W_aRSR3ouiJTY8g8f9/view?usp=drive_link
+
+2025-01-05 23:25:25 [INFO] Display text: Slides
+
+2025-01-05 23:25:25 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:28 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific connection to CS409's textbooks.
+
+2025-01-05 23:25:28 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:28 [INFO] 
+------------------------------------------------------------
+Processing link 23/51
+------------------------------------------------------------
+
+2025-01-05 23:25:28 [INFO] URL: https://drive.google.com/file/d/1IACJRrhUO6hjh3yCn0-puK62MV-hufhi/view?usp=drive_link
+
+2025-01-05 23:25:28 [INFO] Display text: Recording
+
+2025-01-05 23:25:28 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:31 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:25:31 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:31 [INFO] 
+------------------------------------------------------------
+Processing link 24/51
+------------------------------------------------------------
+
+2025-01-05 23:25:31 [INFO] URL: https://drive.google.com/file/d/1Qc0SQ-Gn8WtReX0xfi7C-Poj_VRoDab_/view?usp=sharing
+
+2025-01-05 23:25:31 [INFO] Display text: Slides
+
+2025-01-05 23:25:31 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:33 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Slides' suggests it likely contains presentation slides, not information about textbooks for CS409.
+
+2025-01-05 23:25:33 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:33 [INFO] 
+------------------------------------------------------------
+Processing link 25/51
+------------------------------------------------------------
+
+2025-01-05 23:25:33 [INFO] URL: https://drive.google.com/file/d/1rHO1HQbf3PKGwte1_X4YdyACotTy8t1S/view?usp=sharing
+
+2025-01-05 23:25:33 [INFO] Display text: Recording
+
+2025-01-05 23:25:33 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:36 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text is 'Recording', which suggests it is more likely a video or audio file rather than information about textbooks for CS409.
+
+2025-01-05 23:25:36 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:36 [INFO] 
+------------------------------------------------------------
+Processing link 26/51
+------------------------------------------------------------
+
+2025-01-05 23:25:36 [INFO] URL: https://drive.google.com/file/d/1nDr6-7w6pHS3htL8xs_LK-l9GPCCeyJa/view?usp=sharing
+
+2025-01-05 23:25:36 [INFO] Display text: Slides
+
+2025-01-05 23:25:36 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:39 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Slides' suggests it is more likely to contain presentation materials rather than information about textbooks for CS409.
+
+2025-01-05 23:25:39 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:39 [INFO] 
+------------------------------------------------------------
+Processing link 27/51
+------------------------------------------------------------
+
+2025-01-05 23:25:39 [INFO] URL: https://drive.google.com/file/d/1S7XNsuh4SYeiWlfb9Wrl7Gx7DRhT246p/view?usp=sharing
+
+2025-01-05 23:25:39 [INFO] Display text: Recording
+
+2025-01-05 23:25:39 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:42 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text is 'Recording', which suggests it is more likely a video or audio file rather than information about textbooks for CS409.
+
+2025-01-05 23:25:42 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:42 [INFO] 
+------------------------------------------------------------
+Processing link 28/51
+------------------------------------------------------------
+
+2025-01-05 23:25:42 [INFO] URL: https://drive.google.com/file/d/1GV7qFOoVeFtkbdj1mHnRvFn5jg2cJRtf/view?usp=drive_link
+
+2025-01-05 23:25:42 [INFO] Display text: Slides
+
+2025-01-05 23:25:42 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:45 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific information about CS409's textbooks.
+
+2025-01-05 23:25:45 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:45 [INFO] 
+------------------------------------------------------------
+Processing link 29/51
+------------------------------------------------------------
+
+2025-01-05 23:25:45 [INFO] URL: https://drive.google.com/file/d/1e5QCxQCa93dNlBnX-a6_PAfiGrEzSOry/view?usp=drive_link
+
+2025-01-05 23:25:45 [INFO] Display text: Recording
+
+2025-01-05 23:25:45 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:48 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:25:48 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:48 [INFO] 
+------------------------------------------------------------
+Processing link 30/51
+------------------------------------------------------------
+
+2025-01-05 23:25:48 [INFO] URL: https://drive.google.com/file/d/1HpAK2JLPYVEAzytxPhzKrMaK83YvBVKF/view?usp=drive_link
+
+2025-01-05 23:25:48 [INFO] Display text: Slides
+
+2025-01-05 23:25:48 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:51 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific connection to CS409's textbooks.
+
+2025-01-05 23:25:51 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:51 [INFO] 
+------------------------------------------------------------
+Processing link 31/51
+------------------------------------------------------------
+
+2025-01-05 23:25:51 [INFO] URL: https://drive.google.com/file/d/1lh_pUE2nmO8jmIW3F84GNQnFafQvfLtR/view?usp=sharing
+
+2025-01-05 23:25:51 [INFO] Display text: Dev Lab Slides
+
+2025-01-05 23:25:51 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:55 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link, which typically hosts files or documents. The display text 'Dev Lab Slides' suggests that the content is related to slides for a development lab, which is unlikely to be directly about textbooks for CS409.
+
+2025-01-05 23:25:55 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:55 [INFO] 
+------------------------------------------------------------
+Processing link 32/51
+------------------------------------------------------------
+
+2025-01-05 23:25:55 [INFO] URL: https://drive.google.com/file/d/1mYOQ3a5__OY1z3onLlQqV_ui4e98yYe9/view?usp=sharing
+
+2025-01-05 23:25:55 [INFO] Display text: Recording
+
+2025-01-05 23:25:55 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:25:58 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text is 'Recording', which suggests it is more likely a video or audio file rather than information about textbooks for CS409.
+
+2025-01-05 23:25:58 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:25:58 [INFO] 
+------------------------------------------------------------
+Processing link 33/51
+------------------------------------------------------------
+
+2025-01-05 23:25:58 [INFO] URL: https://drive.google.com/file/d/1KCVzQamCB6FZixTdXpZm9mlPs7lGsdME/view?usp=drive_link
+
+2025-01-05 23:25:58 [INFO] Display text: Slides
+
+2025-01-05 23:25:58 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:01 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific connection to CS409's textbooks.
+
+2025-01-05 23:26:01 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:01 [INFO] 
+------------------------------------------------------------
+Processing link 34/51
+------------------------------------------------------------
+
+2025-01-05 23:26:01 [INFO] URL: https://drive.google.com/file/d/1YEpTtSC1FXlDPyqTdhL30rkvYvaULzdD/view?usp=sharing
+
+2025-01-05 23:26:01 [INFO] Display text: Recording
+
+2025-01-05 23:26:01 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:04 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text is 'Recording', which suggests it is more likely a video or audio file rather than information about textbooks for CS409.
+
+2025-01-05 23:26:04 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:04 [INFO] 
+------------------------------------------------------------
+Processing link 35/51
+------------------------------------------------------------
+
+2025-01-05 23:26:04 [INFO] URL: https://drive.google.com/file/d/1OaUMhFXE_3fmf0zsA4NDqyK1dm2si_SV/view?usp=drive_link
+
+2025-01-05 23:26:04 [INFO] Display text: Slides
+
+2025-01-05 23:26:04 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:06 [INFO] ❌ Not relevant to 'textbooks': The URL is a generic Google Drive link and the display text 'Slides' suggests it is more likely to contain presentation materials rather than information about textbooks for CS409.
+
+2025-01-05 23:26:06 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:06 [INFO] 
+------------------------------------------------------------
+Processing link 36/51
+------------------------------------------------------------
+
+2025-01-05 23:26:06 [INFO] URL: https://drive.google.com/file/d/1e6psRagxqPps7uHLnnlYbwHrS-Rc9x1l/view?usp=drive_link
+
+2025-01-05 23:26:06 [INFO] Display text: Recording
+
+2025-01-05 23:26:06 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:09 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:26:09 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:09 [INFO] 
+------------------------------------------------------------
+Processing link 37/51
+------------------------------------------------------------
+
+2025-01-05 23:26:09 [INFO] URL: https://drive.google.com/file/d/108Fkq9nlhsBzMO-TbufPv-aq7YrexKVE/view?usp=drive_link
+
+2025-01-05 23:26:09 [INFO] Display text: Slides
+
+2025-01-05 23:26:09 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:13 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific connection to CS409's textbooks.
+
+2025-01-05 23:26:13 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:13 [INFO] 
+------------------------------------------------------------
+Processing link 38/51
+------------------------------------------------------------
+
+2025-01-05 23:26:13 [INFO] URL: https://drive.google.com/file/d/1L-z45_ZSOr-MELq0eJQGichc_cY9_Q2U/view?usp=drive_link
+
+2025-01-05 23:26:13 [INFO] Display text: Recording
+
+2025-01-05 23:26:13 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:15 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:26:15 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:15 [INFO] 
+------------------------------------------------------------
+Processing link 39/51
+------------------------------------------------------------
+
+2025-01-05 23:26:15 [INFO] URL: https://drive.google.com/file/d/1HUNOE_Z1yX74kMuMgYZyGA5T74Y185i2/view?usp=drive_link
+
+2025-01-05 23:26:15 [INFO] Display text: Slides
+
+2025-01-05 23:26:15 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:19 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific connection to CS409's textbooks.
+
+2025-01-05 23:26:19 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:19 [INFO] 
+------------------------------------------------------------
+Processing link 40/51
+------------------------------------------------------------
+
+2025-01-05 23:26:19 [INFO] URL: https://drive.google.com/file/d/1aZuzFYwVlH6kagGbEhUqgEFRF8gRYAvC/view?usp=drive_link
+
+2025-01-05 23:26:19 [INFO] Display text: Recording
+
+2025-01-05 23:26:19 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:22 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:26:22 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:22 [INFO] 
+------------------------------------------------------------
+Processing link 41/51
+------------------------------------------------------------
+
+2025-01-05 23:26:22 [INFO] URL: https://drive.google.com/file/d/1OMRqnqPHFbG-ws4WrcSctZg_k82rPf0E/view?usp=sharing
+
+2025-01-05 23:26:22 [INFO] Display text: Slides
+
+2025-01-05 23:26:22 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:25 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Slides' suggests it likely contains presentation slides, not information about textbooks for CS409.
+
+2025-01-05 23:26:25 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:25 [INFO] 
+------------------------------------------------------------
+Processing link 42/51
+------------------------------------------------------------
+
+2025-01-05 23:26:25 [INFO] URL: https://drive.google.com/file/d/1v2rsWy-Ag50_ylkZ8zj3HePdI6IJ8rd0/view?usp=drive_link
+
+2025-01-05 23:26:25 [INFO] Display text: Dev Lab Slides
+
+2025-01-05 23:26:25 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:28 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Dev Lab Slides' suggests it is likely a presentation or document related to a development lab, not a textbook for CS409.
+
+2025-01-05 23:26:28 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:28 [INFO] 
+------------------------------------------------------------
+Processing link 43/51
+------------------------------------------------------------
+
+2025-01-05 23:26:28 [INFO] URL: https://mediaspace.illinois.edu/media/t/1_aagj4458
+
+2025-01-05 23:26:28 [INFO] Display text: Recording
+
+2025-01-05 23:26:28 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:31 [INFO] ❌ Not relevant to 'textbooks': The URL and display text do not provide specific information related to CS409's textbooks. The URL appears to be a media link, and the display text is generic, suggesting it could be any type of recording.
+
+2025-01-05 23:26:31 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:31 [INFO] 
+------------------------------------------------------------
+Processing link 44/51
+------------------------------------------------------------
+
+2025-01-05 23:26:31 [INFO] URL: https://drive.google.com/file/d/1v5dsLANrLQxl_HVeqXa85X4tLDlHemex/view?usp=drive_link
+
+2025-01-05 23:26:31 [INFO] Display text: Slides
+
+2025-01-05 23:26:31 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:35 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific connection to CS409's textbooks.
+
+2025-01-05 23:26:35 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:35 [INFO] 
+------------------------------------------------------------
+Processing link 45/51
+------------------------------------------------------------
+
+2025-01-05 23:26:35 [INFO] URL: https://drive.google.com/file/d/1ASEOzQ6_jkJFI7yscFMzNZgDYEqf2u5o/view?usp=drive_link
+
+2025-01-05 23:26:35 [INFO] Display text: Recording
+
+2025-01-05 23:26:35 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:38 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:26:38 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:38 [INFO] 
+------------------------------------------------------------
+Processing link 46/51
+------------------------------------------------------------
+
+2025-01-05 23:26:38 [INFO] URL: https://colab.research.google.com/github/ninetack/blog-public/blob/main/content/003_blog/003_rag_summaries.ipynb
+
+2025-01-05 23:26:38 [INFO] Display text: Slides
+
+2025-01-05 23:26:38 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:41 [INFO] ❌ Not relevant to 'textbooks': The URL points to a Google Colab notebook, which is more likely to contain code or a tutorial rather than information about textbooks for a specific course. The display text 'Slides' also suggests it might be related to a presentation rather than course textbooks.
+
+2025-01-05 23:26:41 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:41 [INFO] 
+------------------------------------------------------------
+Processing link 47/51
+------------------------------------------------------------
+
+2025-01-05 23:26:41 [INFO] URL: https://drive.google.com/file/d/183UVXqV9eljHsWEGabHV-2YE45vc5HbQ/view?usp=drive_link
+
+2025-01-05 23:26:41 [INFO] Display text: Recording
+
+2025-01-05 23:26:41 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:44 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text is 'Recording', which suggests it is more likely a video or audio file rather than information about textbooks for CS409.
+
+2025-01-05 23:26:44 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:44 [INFO] 
+------------------------------------------------------------
+Processing link 48/51
+------------------------------------------------------------
+
+2025-01-05 23:26:44 [INFO] URL: https://drive.google.com/file/d/17LzGDutPaB6-iU12ljzJ7oY36NvIZ3qk/view?usp=drive_link
+
+2025-01-05 23:26:44 [INFO] Display text: Slides
+
+2025-01-05 23:26:44 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:47 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Slides' suggests it is likely a presentation file. Neither the URL nor the display text indicates any specific connection to CS409's textbooks.
+
+2025-01-05 23:26:47 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:47 [INFO] 
+------------------------------------------------------------
+Processing link 49/51
+------------------------------------------------------------
+
+2025-01-05 23:26:47 [INFO] URL: https://drive.google.com/file/d/1DyFhxpsZWwrNzxen0yXN7gAvpgyPcuT2/view?usp=drive_link
+
+2025-01-05 23:26:47 [INFO] Display text: Recording
+
+2025-01-05 23:26:47 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:51 [INFO] ❌ Not relevant to 'textbooks': The URL is a direct link to a Google Drive file, and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:26:51 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:51 [INFO] 
+------------------------------------------------------------
+Processing link 50/51
+------------------------------------------------------------
+
+2025-01-05 23:26:51 [INFO] URL: https://docs.google.com/presentation/d/1wbF6y_l5K-uG-il7sCGbyK_bgxG0yvsO7_Y9uOtMCxw/edit?usp=sharing
+
+2025-01-05 23:26:51 [INFO] Display text: Slides
+
+2025-01-05 23:26:51 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:54 [INFO] ❌ Not relevant to 'textbooks': The URL is a generic Google Docs link and the display text 'Slides' does not provide enough context to suggest it contains information about CS409's textbooks.
+
+2025-01-05 23:26:54 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:54 [INFO] 
+------------------------------------------------------------
+Processing link 51/51
+------------------------------------------------------------
+
+2025-01-05 23:26:54 [INFO] URL: https://drive.google.com/file/d/1TJ4yZJ3iTW4QvFQEXjPJ_aGrXXPCfwLr/view?usp=drive_link
+
+2025-01-05 23:26:54 [INFO] Display text: Recording
+
+2025-01-05 23:26:54 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:26:57 [INFO] ❌ Not relevant to 'textbooks': The URL is a Google Drive link and the display text 'Recording' suggests it is likely a video or audio file, not information about textbooks for CS409.
+
+2025-01-05 23:26:57 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:26:57 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-05 23:26:57 [INFO] Total relevant links found at this depth: 0
+
+2025-01-05 23:26:57 [INFO] Discovered 0 relevant links:
+
+2025-01-05 23:26:57 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-05 23:26:57 [INFO] Getting initial response from webpage...
+
+2025-01-05 23:26:57 [INFO] Getting response from open source with extra body for course
+
+2025-01-05 23:26:57 [INFO] Entity schema: <class 'course.Course'>
+
+2025-01-05 23:27:41 [INFO] Updating information with relevant links...
+
+2025-01-05 23:27:41 [INFO] Saving final results...
+
+2025-01-05 23:27:41 [INFO] Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/course/1/cs409.json
+
+2025-01-05 23:27:41 [INFO] 
+📊 Summary for https://uiucwp.gitlab.io/fa-24/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 385.89 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-05 23:27:41 [INFO] ✅ Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/course/1/cs409.json
+
+2025-01-05 23:27:41 [INFO] 
+============================================================
+Final Process Summary
+============================================================
+
+2025-01-05 23:27:41 [INFO] Total Processing Time: 385.89 seconds
+
+2025-01-05 23:27:41 [INFO] Number of URLs Processed: 1
+
+2025-01-05 23:27:41 [INFO] 📊 Detailed Analysis by URL:
+
+2025-01-05 23:27:41 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-05 23:27:41 [INFO] 🌐 https://uiucwp.gitlab.io/fa-24/
+
+2025-01-05 23:27:41 [INFO] ⏱️  Processing Time: 385.89 seconds
+
+2025-01-05 23:27:41 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-05 23:27:41 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-05 23:27:41 [INFO] 
+============================================================
+Writing process statistics to CSV
+============================================================
+
+2025-01-05 23:27:41 [INFO] 📊 Process statistics written to: ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/1/process_stats_20250105_232741.csv
+
+2025-01-05 23:27:41 [INFO] 
+============================================================
+✅ Process completed successfully!
+============================================================
+

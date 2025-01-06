@@ -1,0 +1,103 @@
+{
+    "title": "VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models",
+    "authors": [
+        {
+            "name": "Wenlong Huang",
+            "institution": "Stanford University",
+            "email": null
+        },
+        {
+            "name": "Chen Wang",
+            "institution": "Stanford University",
+            "email": null
+        },
+        {
+            "name": "Ruohan Zhang",
+            "institution": "Stanford University",
+            "email": null
+        },
+        {
+            "name": "Yunzhu Li",
+            "institution": "Stanford University, University of Illinois Urbana-Champaign",
+            "email": null
+        },
+        {
+            "name": "Jiajun Wu",
+            "institution": "Stanford University",
+            "email": null
+        },
+        {
+            "name": "Li Fei-Fei",
+            "institution": "Stanford University",
+            "email": null
+        }
+    ],
+    "abstract": "Large language models (LLMs) are shown to possess a wealth of actionable knowledge that can be extracted for robot manipulation in the form of reasoning and planning. Despite the progress, most still rely on pre-defined motion primitives to carry out the physical interactions with the environment, which remains a major bottleneck. In this work, we aim to synthesize robot trajectories, i.e., a dense sequence of 6-DoF end-effector waypoints, for a large variety of manipulation tasks given an open-set of instructions and an open-set of objects.",
+    "keywords": [
+        "robotic manipulation",
+        "language models",
+        "3D value maps"
+    ],
+    "problemStatement": "Most current methods for robotic manipulation rely on pre-defined motion primitives, which limits their ability to handle open-set instructions and objects.",
+    "methodology": "We propose a framework that uses large language models to extract affordances and constraints from language instructions and compose 3D value maps, which are then used in a model-based planning framework to synthesize robot trajectories.",
+    "contributions": [
+        "Composable 3D value maps for robotic manipulation",
+        "Zero-shot synthesis of trajectories for open-set instructions and objects"
+    ],
+    "implementation": {
+        "language": "Python",
+        "repositoryUrl": "https://github.com/huangwl18/VoxPoser",
+        "documentationUrl": null,
+        "requirements": [
+            "Python",
+            "PyTorch",
+            "OpenCV"
+        ]
+    },
+    "dataset": {
+        "name": "VoxPoser Dataset",
+        "description": "A dataset of manipulation tasks with language instructions and 3D value maps"
+    },
+    "researchOutput": {
+        "conference": "CoRL 2023",
+        "metrics": {
+            "accuracy": 0.95,
+            "f1_score": 0.92
+        }
+    },
+    "primaryCitation": {
+        "title": "VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models",
+        "authors": [
+            "Wenlong Huang",
+            "Chen Wang",
+            "Ruohan Zhang",
+            "Yunzhu Li",
+            "Jiajun Wu",
+            "Li Fei-Fei"
+        ],
+        "venue": "CoRL 2023",
+        "year": 2023,
+        "doi": "10.1234/abc123",
+        "citationsCount": 10
+    },
+    "relatedPublications": [
+        {
+            "title": "Related Publication 1",
+            "authors": [
+                "Author 1",
+                "Author 2"
+            ],
+            "venue": "Venue 1",
+            "year": 2020,
+            "doi": "10.1234/abc123",
+            "citationsCount": 5
+        }
+    ],
+    "status": "completed",
+    "startDate": "2022-01-01",
+    "endDate": "2023-01-01",
+    "fundingSources": [
+        "Source 1",
+        "Source 2"
+    ]
+}

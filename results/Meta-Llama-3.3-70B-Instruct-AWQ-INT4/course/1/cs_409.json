@@ -1,0 +1,93 @@
+{
+    "code": "CS 409",
+    "title": "The Art of Web Programming",
+    "credits": 3,
+    "description": "Presents client- and server-side technologies that enable modern Web applications.",
+    "semester": "FALL 2024",
+    "year": 2024,
+    "instructors": [
+        {
+            "name": "Erik Ji",
+            "email": "erikji@illinois.edu"
+        }
+    ],
+    "teachingAssistants": [
+        {
+            "name": "Ranjitha Kumar",
+            "email": "ranjitha@illinois.edu"
+        },
+        {
+            "name": "Alex Badia",
+            "email": "abadia2@illinois.edu"
+        },
+        {
+            "name": "Carl Guo",
+            "email": "carlguo2@illinois.edu"
+        },
+        {
+            "name": "Rizky Wellyanto",
+            "email": "rwelly2@illinois.edu"
+        },
+        {
+            "name": "Matthew Weston",
+            "email": "mweston2@illinois.edu"
+        },
+        {
+            "name": "Banghao Chi",
+            "email": "bchi4@illinois.edu"
+        }
+    ],
+    "schedule": [
+        {
+            "day": "TUESDAY",
+            "timeStart": "2:00 PM",
+            "timeEnd": "3:15 PM",
+            "location": "Online"
+        },
+        {
+            "day": "THURSDAY",
+            "timeStart": "2:00 PM",
+            "timeEnd": "3:15 PM",
+            "location": "Chicago"
+        }
+    ],
+    "prerequisites": [
+        {
+            "courseCode": "CS 225"
+        }
+    ],
+    "textbooks": null,
+    "gradingComponents": [
+        {
+            "name": "MP0: The Basics",
+            "weight": 0.05
+        },
+        {
+            "name": "MP1: Single Page Website",
+            "weight": 0.15
+        },
+        {
+            "name": "MP2: Front-end App",
+            "weight": 0.15
+        },
+        {
+            "name": "MP3: Back-end App",
+            "weight": 0.15
+        },
+        {
+            "name": "Midterm",
+            "weight": 0.2
+        },
+        {
+            "name": "Final Project",
+            "weight": 0.3
+        }
+    ],
+    "syllabusLink": "https://uiucwp.gitlab.io/fa-24/",
+    "department": "Computer Science",
+    "learningObjectives": [
+        "Understand client- and server-side technologies",
+        "Apply modern Web applications development principles",
+        "Design and implement a full-featured web application"
+    ]
+}

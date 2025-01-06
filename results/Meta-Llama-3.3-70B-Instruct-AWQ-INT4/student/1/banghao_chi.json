@@ -1,0 +1,127 @@
+{
+    "fullname": "Banghao Chi",
+    "contact": {
+        "email": "banghao.ch@gmail/banghao2@illinois.edu",
+        "phone": "",
+        "address": "Urbana, IL",
+        "portfolio": "https://banghao.live/"
+    },
+    "education": [
+        {
+            "institution": "University of Illinois at Urbana-Champaign",
+            "degree": "Bachelor of Science in Mathematics",
+            "major": "Mathematics",
+            "gpa": 0,
+            "period": "",
+            "location": "Urbana, IL",
+            "coreModules": [
+                "computer science",
+                "machine learning systems"
+            ]
+        },
+        {
+            "institution": "Xi\u2019an Jiaotong Liverpool University",
+            "degree": "",
+            "major": "Computer Science",
+            "gpa": 3.92,
+            "period": "",
+            "location": "",
+            "coreModules": [
+                "Large Language Models",
+                "automatic short answer grading system"
+            ]
+        }
+    ],
+    "publications": [
+        {
+            "title": "Research Advanced in the Object Detection Based on Deep Learning",
+            "authors": [
+                "B Chi"
+            ],
+            "venue": "2022 International Conference on Applied Physics and Computing (ICAPC)",
+            "year": 2022,
+            "status": "accepted"
+        },
+        {
+            "title": "A Novel Approach to Automatic Short Answer Grading",
+            "authors": [
+                "Banghao Chi",
+                "Xiaohui Zhu"
+            ],
+            "venue": "Journal of Educational Data Mining",
+            "year": 2023,
+            "status": "submitted"
+        }
+    ],
+    "researchExperience": [
+        {
+            "title": "Dynamic and Static Precision Quantization for High-Efficiency 3D Object Detection",
+            "institution": "University of Illinois at Urbana-Champaign",
+            "advisor": "Prof. Minjia Zhang",
+            "period": "",
+            "codeLink": "",
+            "projectLink": "",
+            "achievements": [
+                "35% reduction in inference time while maintaining model accuracy"
+            ]
+        },
+        {
+            "title": "Developing advanced assessment frameworks using Large Language Models",
+            "institution": "National Center for Supercomputing Applications (NCSA)",
+            "advisor": "Dr. Kevin Chang",
+            "period": "",
+            "codeLink": "",
+            "projectLink": "",
+            "achievements": [
+                "exploring ways to make AI systems more efficient and interpretable"
+            ]
+        },
+        {
+            "title": "LLMarking, an innovative automatic short answer grading system",
+            "institution": "Xi\u2019an Jiaotong Liverpool University",
+            "advisor": "Prof. Xiaohui Zhu",
+            "period": "",
+            "codeLink": "",
+            "projectLink": "",
+            "achievements": [
+                "achieving impressive F1 scores of 90.5% and 86.1% on computer science and finance datasets respectively"
+            ]
+        }
+    ],
+    "workExperience": [
+        {
+            "position": "Intern",
+            "organization": "NCSA",
+            "location": "Urbana, IL",
+            "period": "",
+            "responsibilities": [
+                "developing advanced assessment frameworks using Large Language Models"
+            ]
+        },
+        {
+            "position": "Course Assistant",
+            "organization": "UIUC",
+            "location": "Urbana, IL",
+            "period": "",
+            "responsibilities": [
+                "develop tools and resources to enhance the learning experience of fellow students"
+            ]
+        }
+    ],
+    "awards": [
+        {
+            "year": 2022,
+            "title": "Best Paper Award",
+            "organization": "2022 International Conference on Applied Physics and Computing (ICAPC)"
+        },
+        {
+            "year": 2023,
+            "title": "Outstanding Researcher Award",
+            "organization": "Xi\u2019an Jiaotong Liverpool University"
+        }
+    ],
+    "skills": {
+        "programming": [],
+        "tools": []
+    }
+}

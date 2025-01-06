@@ -1,0 +1,93 @@
+{
+    "code": "CS 415",
+    "title": "Game Development",
+    "credits": 3,
+    "description": "This is a team and project-based course on video game design and development using Unreal Engine.",
+    "semester": "Fall 2024",
+    "year": 2024,
+    "instructors": [
+        {
+            "name": "Eric Shaffer",
+            "email": "shaffer1@illinois.edu"
+        }
+    ],
+    "teachingAssistants": [
+        {
+            "name": "Janelle Domantay",
+            "email": ""
+        },
+        {
+            "name": "Jason Situ",
+            "email": ""
+        }
+    ],
+    "schedule": [
+        {
+            "day": "Tuesday",
+            "timeStart": "11:00 AM",
+            "timeEnd": "12:00 PM",
+            "location": "Zoom"
+        }
+    ],
+    "prerequisites": [
+        {
+            "courseCode": "CS 225",
+            "minimumGrade": "C",
+            "canBeConcurrent": false
+        }
+    ],
+    "textbooks": [
+        {
+            "title": "The Essentials of CAGD",
+            "authors": [
+                "Gerald E. Farin",
+                "Dianne Hansford"
+            ],
+            "isbn": null,
+            "required": true,
+            "edition": null,
+            "publisher": null
+        },
+        {
+            "title": "Fundamentals of Computer Graphics 4th Edition",
+            "authors": [
+                "Steve Marschner",
+                "Peter Shirley"
+            ],
+            "isbn": null,
+            "required": true,
+            "edition": "4th Edition",
+            "publisher": null
+        }
+    ],
+    "gradingComponents": [
+        {
+            "name": "MP 1",
+            "weight": 0.1
+        },
+        {
+            "name": "MP 2",
+            "weight": 0.15
+        },
+        {
+            "name": "Homework",
+            "weight": 0.15
+        },
+        {
+            "name": "Exams",
+            "weight": 0.24
+        },
+        {
+            "name": "Project",
+            "weight": 0.36
+        }
+    ],
+    "syllabusLink": "https://courses.grainger.illinois.edu/cs415/f2024/syllabus.html",
+    "department": "Computer Science",
+    "learningObjectives": [
+        "Understand geometric modeling",
+        "Understand game physics and AI",
+        "Understand shader programming",
+        "Understand software and engineering practices within the game industry"
+    ]
+}

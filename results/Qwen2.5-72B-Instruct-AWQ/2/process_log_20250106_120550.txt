@@ -1,0 +1,1047 @@
+2025-01-06 12:05:50 [INFO] Testing logger setup
+
+2025-01-06 12:05:50 [INFO] 
+============================================================
+Testing section logging
+============================================================
+
+2025-01-06 12:05:50 [INFO] 
+------------------------------------------------------------
+Testing subsection logging
+------------------------------------------------------------
+
+2025-01-06 12:05:50 [INFO] 
+============================================================
+Starting entity information extraction process
+============================================================
+
+2025-01-06 12:05:50 [INFO] Processing URLs: ['https://illinois-cs415.github.io/', 'https://uiucwp.gitlab.io/fa-24/', 'https://cs357.cs.illinois.edu/']
+
+2025-01-06 12:05:50 [INFO] 
+############################################################
+Processing URL [1/3]: https://illinois-cs415.github.io/
+############################################################
+
+2025-01-06 12:05:50 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 12:05:51 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 12:06:21 [INFO] Detected schema: course
+
+2025-01-06 12:06:21 [INFO] Reason: The content describes a university course, including details about the course structure, assessments, and resources. It mentions specific elements such as lectures, homework, exams, and projects, which are typical components of a course.
+
+2025-01-06 12:06:21 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 12:06:21 [INFO] Getting response from open source with extra body for course
+
+2025-01-06 12:06:21 [INFO] Entity schema: <class 'course.Course'>
+
+2025-01-06 12:07:43 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-06 12:07:43 [INFO] 
+============================================================
+Gathering links at depth 2
+============================================================
+
+2025-01-06 12:07:43 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 12:08:03 [INFO] Found 7 links to process
+
+2025-01-06 12:08:03 [INFO] 
+------------------------------------------------------------
+Processing link 1/7
+------------------------------------------------------------
+
+2025-01-06 12:08:03 [INFO] URL: https://campuswire.com/p/GD8317729
+
+2025-01-06 12:08:03 [INFO] Display text: CampusWire
+
+2025-01-06 12:08:03 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:08:10 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text do not provide specific information related to CS 415 or its prerequisites. CampusWire is a general platform for course discussions and may not directly contain prerequisite information without further context.
+
+2025-01-06 12:08:12 [INFO] ❌ Not relevant to 'textbooks': The URL and display text do not provide specific information related to CS 415 or textbooks.
+
+2025-01-06 12:08:15 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text do not provide specific information indicating that the link is related to the CS 415 course syllabus.
+
+2025-01-06 12:08:15 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:08:15 [INFO] 
+------------------------------------------------------------
+Processing link 2/7
+------------------------------------------------------------
+
+2025-01-06 12:08:15 [INFO] URL: https://illinois-cs415.github.io/schedule
+
+2025-01-06 12:08:15 [INFO] Display text: Lectures page
+
+2025-01-06 12:08:15 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:08:17 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a schedule of lectures for CS 415, which is more likely to contain information about the course content and schedule rather than prerequisites.
+
+2025-01-06 12:08:20 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link leads to a schedule of lectures for CS 415, which is less likely to contain specific information about textbooks.
+
+2025-01-06 12:08:23 [INFO] ✅ Relevant to 'syllabusLink': The URL points to a GitHub page for CS 415, and the display text 'Lectures page' suggests that it contains course-related information, which likely includes the syllabus.
+
+2025-01-06 12:08:23 [INFO] 📍 Link is relevant for fields: syllabusLink
+
+2025-01-06 12:08:23 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://illinois-cs415.github.io/schedule
+------------------------------------------------------------
+
+2025-01-06 12:08:23 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 12:08:23 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-06 12:08:23 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 12:13:45 [INFO] Found 104 links to process
+
+2025-01-06 12:13:45 [INFO] 
+------------------------------------------------------------
+Processing link 1/104
+------------------------------------------------------------
+
+2025-01-06 12:13:45 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-GameGenres.pdf
+
+2025-01-06 12:13:45 [INFO] Display text: Course Overview and Game Genres [PDF]
+
+2025-01-06 12:13:45 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:13:45 [INFO] 
+------------------------------------------------------------
+Processing link 2/104
+------------------------------------------------------------
+
+2025-01-06 12:13:45 [INFO] URL: https://mediaspace.illinois.edu/media/t/1_4qx12q24
+
+2025-01-06 12:13:45 [INFO] Display text: Lecture [Video]
+
+2025-01-06 12:13:45 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:13:47 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a video lecture, which is unlikely to specifically contain information about course prerequisites without further context indicating such content.
+
+2025-01-06 12:13:50 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain specific information about textbooks for CS 415.
+
+2025-01-06 12:13:52 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain detailed information about a course syllabus.
+
+2025-01-06 12:13:52 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:13:52 [INFO] 
+------------------------------------------------------------
+Processing link 3/104
+------------------------------------------------------------
+
+2025-01-06 12:13:52 [INFO] URL: https://dev.epicgames.com/community/learning/courses/3ke/your-first-hour-in-unreal-engine-5-2/vvdk/your-first-hour-in-unreal-engine-5-2-overview
+
+2025-01-06 12:13:52 [INFO] Display text: Your First Hour in UE 5.2 [Epic Link]
+
+2025-01-06 12:13:52 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:13:55 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text are specific to a course on Unreal Engine 5.2 provided by Epic Games, which is unlikely to contain information about the prerequisites for a course named CS 415.
+
+2025-01-06 12:13:58 [INFO] ❌ Not relevant to 'textbooks': The URL and display text are specific to a course on Unreal Engine 5.2 provided by Epic Games, which is unlikely to contain information about the textbooks for CS 415.
+
+2025-01-06 12:14:01 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text are specific to a course on Unreal Engine 5.2 provided by Epic Games, which is unlikely to contain information about the syllabus of a course named CS 415.
+
+2025-01-06 12:14:01 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:14:01 [INFO] 
+------------------------------------------------------------
+Processing link 4/104
+------------------------------------------------------------
+
+2025-01-06 12:14:01 [INFO] URL: https://dev.epicgames.com/documentation/en-us/unreal-engine/understanding-the-basics-of-unreal-engine
+
+2025-01-06 12:14:01 [INFO] Display text: UE 5 Basics
+
+2025-01-06 12:14:01 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:14:05 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is about the basics of Unreal Engine 5, which is a game development software. This is not likely to be directly related to the prerequisites for a CS 415 course, which would typically cover more general computer science topics or specific prerequisites for that course.
+
+2025-01-06 12:14:09 [INFO] ❌ Not relevant to 'textbooks': The URL and display text indicate that the link is about the basics of Unreal Engine, which is a game development platform. This is not likely to be directly related to the textbooks for a CS 415 course, unless the course specifically covers Unreal Engine.
+
+2025-01-06 12:14:12 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text indicate that the link is about the basics of Unreal Engine, which is not related to the syllabus of CS 415.
+
+2025-01-06 12:14:12 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:14:12 [INFO] 
+------------------------------------------------------------
+Processing link 5/104
+------------------------------------------------------------
+
+2025-01-06 12:14:12 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-ArtOverview.pdf
+
+2025-01-06 12:14:12 [INFO] Display text: Art: Assets [PDF]
+
+2025-01-06 12:14:12 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:14:12 [INFO] 
+------------------------------------------------------------
+Processing link 6/104
+------------------------------------------------------------
+
+2025-01-06 12:14:12 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-UE5Overview.pdf
+
+2025-01-06 12:14:12 [INFO] Display text: UE5 Features [PDF]
+
+2025-01-06 12:14:12 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:14:12 [INFO] 
+------------------------------------------------------------
+Processing link 7/104
+------------------------------------------------------------
+
+2025-01-06 12:14:12 [INFO] URL: https://mediaspace.illinois.edu/media/t/1_gh7qtwf8
+
+2025-01-06 12:14:12 [INFO] Display text: Lecture [Video]
+
+2025-01-06 12:14:12 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:14:14 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a video lecture, which is unlikely to specifically contain information about course prerequisites without further context indicating such content.
+
+2025-01-06 12:14:17 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain specific information about textbooks for CS 415.
+
+2025-01-06 12:14:19 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain detailed information about a course syllabus.
+
+2025-01-06 12:14:19 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:14:19 [INFO] 
+------------------------------------------------------------
+Processing link 8/104
+------------------------------------------------------------
+
+2025-01-06 12:14:19 [INFO] URL: https://illinois-cs415.github.io/assignments/mp1.html
+
+2025-01-06 12:14:19 [INFO] Display text: MP1 Due Sep 12 [Link]
+
+2025-01-06 12:14:19 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:14:22 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is about an assignment (MP1) for CS 415, not about the course prerequisites.
+
+2025-01-06 12:14:24 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is about an assignment (MP1) for CS 415, not about textbooks.
+
+2025-01-06 12:14:27 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is about an assignment (MP1) for CS 415, not the course syllabus.
+
+2025-01-06 12:14:27 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:14:27 [INFO] 
+------------------------------------------------------------
+Processing link 9/104
+------------------------------------------------------------
+
+2025-01-06 12:14:27 [INFO] URL: https://i-share-uiu.primo.exlibrisgroup.com/permalink/01CARLI_UIU/gpjosq/alma99955292160105899
+
+2025-01-06 12:14:27 [INFO] Display text: Fundamentals of Computer Graphics Ch 12 [UIUC Library Link]
+
+2025-01-06 12:14:27 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:14:30 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a specific chapter of a book on computer graphics, which is unlikely to contain information about the prerequisites for a specific course like CS 415.
+
+2025-01-06 12:14:33 [INFO] ✅ Relevant to 'textbooks': The display text suggests that the link is to a chapter in a book about computer graphics, which is a topic that could be covered in CS 415. The fact that it is a UIUC Library Link also increases the likelihood that it is a resource for a course at the university.
+
+2025-01-06 12:14:36 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a specific chapter of a book on computer graphics, which is unlikely to contain the syllabus for a specific course like CS 415.
+
+2025-01-06 12:14:36 [INFO] 📍 Link is relevant for fields: textbooks
+
+2025-01-06 12:14:36 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://i-share-uiu.primo.exlibrisgroup.com/permalink/01CARLI_UIU/gpjosq/alma99955292160105899
+------------------------------------------------------------
+
+2025-01-06 12:14:38 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 12:14:38 [INFO] Found 0 additional relevant links
+
+2025-01-06 12:14:38 [INFO] 
+------------------------------------------------------------
+Processing link 10/104
+------------------------------------------------------------
+
+2025-01-06 12:14:38 [INFO] URL: https://drive.google.com/file/d/1EB97gdVEuQ8uoUJ4TS8Esng7bdtxCVWa/view?usp=sharing
+
+2025-01-06 12:14:38 [INFO] Display text: Fundamentals of Computer Graphics Ch 12 [PDF]
+
+2025-01-06 12:14:38 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:14:41 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a PDF document about 'Fundamentals of Computer Graphics', which is not directly related to the prerequisites of CS 415.
+
+2025-01-06 12:14:44 [INFO] ✅ Relevant to 'textbooks': The display text suggests that the link is to a PDF of a chapter from a textbook on computer graphics, which is likely relevant to a course on computer graphics such as CS 415.
+
+2025-01-06 12:14:48 [INFO] ❌ Not relevant to 'syllabusLink': The URL is a direct link to a Google Drive file, and the display text suggests it is a PDF of a chapter from a book on computer graphics. This does not indicate that it contains information about the syllabus for CS 415.
+
+2025-01-06 12:14:48 [INFO] 📍 Link is relevant for fields: textbooks
+
+2025-01-06 12:14:48 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://drive.google.com/file/d/1EB97gdVEuQ8uoUJ4TS8Esng7bdtxCVWa/view?usp=sharing
+------------------------------------------------------------
+
+2025-01-06 12:14:55 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 12:14:55 [INFO] Found 0 additional relevant links
+
+2025-01-06 12:14:55 [INFO] 
+------------------------------------------------------------
+Processing link 11/104
+------------------------------------------------------------
+
+2025-01-06 12:14:55 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-GeometryBezier1.pdf
+
+2025-01-06 12:14:55 [INFO] Display text: Art: Bezier Curves [PDF]
+
+2025-01-06 12:14:55 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:14:55 [INFO] 
+------------------------------------------------------------
+Processing link 12/104
+------------------------------------------------------------
+
+2025-01-06 12:14:55 [INFO] URL: https://classtranscribe.illinois.edu/video?id=0a1abdf3-e07f-4eb1-94f8-57fb05aefce8&from=sharedlink
+
+2025-01-06 12:14:55 [INFO] Display text: Art: Bezier Curves [Video]
+
+2025-01-06 12:14:55 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:14:59 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest the content is about Bezier Curves in the context of art, which is not directly related to the prerequisites of a CS 415 course, typically focused on computer science topics.
+
+2025-01-06 12:15:02 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest the link is to a video about Bezier Curves in the context of art, which is not directly related to CS 415's textbooks.
+
+2025-01-06 12:15:05 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a video about Bezier Curves in the context of art, which is not directly related to the syllabus of CS 415, a course likely focused on computer science topics.
+
+2025-01-06 12:15:05 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:15:05 [INFO] 
+------------------------------------------------------------
+Processing link 13/104
+------------------------------------------------------------
+
+2025-01-06 12:15:05 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-GeometryBezier2.pdf
+
+2025-01-06 12:15:05 [INFO] Display text: Art: Bezier Patches [PDF]
+
+2025-01-06 12:15:05 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:15:05 [INFO] 
+------------------------------------------------------------
+Processing link 14/104
+------------------------------------------------------------
+
+2025-01-06 12:15:05 [INFO] URL: https://classtranscribe.illinois.edu/video?id=1efc1c4b-1f5a-4934-a31e-55c9edaf9686&from=sharedlink
+
+2025-01-06 12:15:05 [INFO] Display text: Art: Bezier Patches [Video]
+
+2025-01-06 12:15:05 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:15:08 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest the content is a video about Bezier Patches in the context of art, which is not directly related to the prerequisites of a CS 415 course, typically a computer science course.
+
+2025-01-06 12:15:11 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest the link is to a video about Bezier Patches, which is more likely related to computer graphics or a similar topic, rather than information about textbooks for CS 415.
+
+2025-01-06 12:15:15 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a video about Bezier Patches in the context of art, which is not directly related to the syllabus of CS 415, a course likely focused on computer science topics.
+
+2025-01-06 12:15:15 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:15:15 [INFO] 
+------------------------------------------------------------
+Processing link 15/104
+------------------------------------------------------------
+
+2025-01-06 12:15:15 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-MeshAssets-2023.pdf
+
+2025-01-06 12:15:15 [INFO] Display text: Art: Static Meshes [PDF]
+
+2025-01-06 12:15:15 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:15:15 [INFO] 
+------------------------------------------------------------
+Processing link 16/104
+------------------------------------------------------------
+
+2025-01-06 12:15:15 [INFO] URL: https://classtranscribe.illinois.edu/video?id=4d38fc4f-e140-4d60-ae7b-77fd2811b5dc&from=sharedlink
+
+2025-01-06 12:15:15 [INFO] Display text: Art: Static Meshes [Video]
+
+2025-01-06 12:15:15 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:15:17 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest the content is related to a video about Art: Static Meshes, which is unlikely to contain information about the prerequisites for CS 415.
+
+2025-01-06 12:15:20 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest the content is related to a video about Art: Static Meshes, which is not likely to be directly related to CS 415's textbooks.
+
+2025-01-06 12:15:23 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest the link is to a video about Art: Static Meshes, which is not related to the syllabus of CS 415.
+
+2025-01-06 12:15:23 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:15:23 [INFO] 
+------------------------------------------------------------
+Processing link 17/104
+------------------------------------------------------------
+
+2025-01-06 12:15:23 [INFO] URL: https://drive.google.com/file/d/1EPESnk8Lh3j68csYFnNSwDOINlwTWdsJ/view?usp=sharing
+
+2025-01-06 12:15:23 [INFO] Display text: Real-Time Rendering Section 17.1.1-17.1.3, 17.2.1-17.2.3 [PDF]
+
+2025-01-06 12:15:23 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:15:26 [INFO] ❌ Not relevant to 'prerequisites': The display text and URL suggest that the link is to a PDF document covering specific sections of Real-Time Rendering, which is more likely related to course content rather than prerequisites for CS 415.
+
+2025-01-06 12:15:29 [INFO] ✅ Relevant to 'textbooks': The display text suggests that the link points to a PDF document covering specific sections of a textbook, which is likely related to the course CS 415.
+
+2025-01-06 12:15:31 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link points to a PDF document about Real-Time Rendering, which is not directly related to the syllabus of CS 415.
+
+2025-01-06 12:15:31 [INFO] 📍 Link is relevant for fields: textbooks
+
+2025-01-06 12:15:31 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://drive.google.com/file/d/1EPESnk8Lh3j68csYFnNSwDOINlwTWdsJ/view?usp=sharing
+------------------------------------------------------------
+
+2025-01-06 12:15:35 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 12:15:35 [INFO] Found 0 additional relevant links
+
+2025-01-06 12:15:35 [INFO] 
+------------------------------------------------------------
+Processing link 18/104
+------------------------------------------------------------
+
+2025-01-06 12:15:35 [INFO] URL: https://youtu.be/DKvA7NZRUcg
+
+2025-01-06 12:15:35 [INFO] Display text: UE5 Nanite Example [YouTube]
+
+2025-01-06 12:15:35 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:15:39 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest the link is to a YouTube video about UE5 Nanite, which is likely related to Unreal Engine 5's graphics technology. This does not seem to be related to the prerequisites for a CS 415 course.
+
+2025-01-06 12:15:42 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest the link is to a YouTube video about UE5 Nanite, which is likely related to Unreal Engine 5's graphics technology, not about textbooks for a CS 415 course.
+
+2025-01-06 12:15:44 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest the link is to a YouTube video about UE5 Nanite, which is unlikely to contain information about the syllabus of CS 415.
+
+2025-01-06 12:15:44 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:15:44 [INFO] 
+------------------------------------------------------------
+Processing link 19/104
+------------------------------------------------------------
+
+2025-01-06 12:15:44 [INFO] URL: https://www.youtube.com/watch?v=-50MJf7hyOw&t=19s
+
+2025-01-06 12:15:44 [INFO] Display text: UE5 Nanite Introduction [YouTube]
+
+2025-01-06 12:15:44 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:15:48 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest the link is about an introduction to UE5 Nanite, which is likely a topic in game development or 3D graphics, not about prerequisites for a CS 415 course.
+
+2025-01-06 12:15:50 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest the link is about a YouTube video introducing UE5 Nanite, which is unlikely to be directly related to the textbooks of CS 415.
+
+2025-01-06 12:15:53 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest the link is to a YouTube video introducing UE5 Nanite, which is unlikely to contain information about the syllabus of CS 415.
+
+2025-01-06 12:15:53 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:15:53 [INFO] 
+------------------------------------------------------------
+Processing link 20/104
+------------------------------------------------------------
+
+2025-01-06 12:15:53 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-Rendering.pdf
+
+2025-01-06 12:15:53 [INFO] Display text: Rendering: Introduction [PDF]
+
+2025-01-06 12:15:53 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:15:53 [INFO] 
+------------------------------------------------------------
+Processing link 21/104
+------------------------------------------------------------
+
+2025-01-06 12:15:53 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-PerspectiveProjection.pdf
+
+2025-01-06 12:15:53 [INFO] Display text: Rendering: Perspective Projection [PDF]
+
+2025-01-06 12:15:53 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:15:53 [INFO] 
+------------------------------------------------------------
+Processing link 22/104
+------------------------------------------------------------
+
+2025-01-06 12:15:53 [INFO] URL: https://mediaspace.illinois.edu/media/t/1_x5szrkf6
+
+2025-01-06 12:15:53 [INFO] Display text: Lecture [Video]
+
+2025-01-06 12:15:53 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:15:56 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a video lecture, which is unlikely to specifically contain information about course prerequisites without further context indicating such content.
+
+2025-01-06 12:15:58 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain specific information about textbooks for CS 415.
+
+2025-01-06 12:16:01 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain detailed information about a course syllabus.
+
+2025-01-06 12:16:01 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:16:01 [INFO] 
+------------------------------------------------------------
+Processing link 23/104
+------------------------------------------------------------
+
+2025-01-06 12:16:01 [INFO] URL: https://drive.google.com/file/d/1xzDXdAFBlrIISfhpTRMlDwAZDG1wXsrX/view?usp=drive_link
+
+2025-01-06 12:16:01 [INFO] Display text: Fundamentals of Computer Graphics (4th Ed) Ch 7 [PDF]
+
+2025-01-06 12:16:01 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:16:04 [INFO] ❌ Not relevant to 'prerequisites': The display text and URL suggest that the link leads to a specific chapter of a book on computer graphics, which is unlikely to contain information about the prerequisites for a specific course like CS 415.
+
+2025-01-06 12:16:07 [INFO] ✅ Relevant to 'textbooks': The display text indicates that the link is to a PDF of a chapter from a textbook, which is likely used in a course like CS 415 that deals with computer graphics.
+
+2025-01-06 12:16:10 [INFO] ❌ Not relevant to 'syllabusLink': The URL is a direct link to a Google Drive file, and the display text indicates it is a specific chapter of a book on computer graphics, not a syllabus for CS 415.
+
+2025-01-06 12:16:10 [INFO] 📍 Link is relevant for fields: textbooks
+
+2025-01-06 12:16:10 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://drive.google.com/file/d/1xzDXdAFBlrIISfhpTRMlDwAZDG1wXsrX/view?usp=drive_link
+------------------------------------------------------------
+
+2025-01-06 12:16:15 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 12:16:15 [INFO] Found 0 additional relevant links
+
+2025-01-06 12:16:15 [INFO] 
+------------------------------------------------------------
+Processing link 24/104
+------------------------------------------------------------
+
+2025-01-06 12:16:15 [INFO] URL: https://drive.google.com/file/d/1nT2M0aXeWmp2y5_HZSAi2azcYlsgB_F2/view?usp=sharing
+
+2025-01-06 12:16:15 [INFO] Display text: Real-Time Rendering Chapter 2 [PDF]
+
+2025-01-06 12:16:15 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:16:18 [INFO] ❌ Not relevant to 'prerequisites': The display text and URL suggest that the link leads to a PDF of Chapter 2 of a book on Real-Time Rendering, which is unlikely to contain information about the prerequisites for a specific course like CS 415.
+
+2025-01-06 12:16:21 [INFO] ✅ Relevant to 'textbooks': The display text suggests that the link is to a PDF of a chapter from a book, which could be a textbook for CS 415, especially if the course covers real-time rendering topics.
+
+2025-01-06 12:16:24 [INFO] ❌ Not relevant to 'syllabusLink': The display text and URL suggest that the link leads to a PDF of Chapter 2 of a book on Real-Time Rendering, which is unlikely to be the syllabus for CS 415.
+
+2025-01-06 12:16:24 [INFO] 📍 Link is relevant for fields: textbooks
+
+2025-01-06 12:16:24 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://drive.google.com/file/d/1nT2M0aXeWmp2y5_HZSAi2azcYlsgB_F2/view?usp=sharing
+------------------------------------------------------------
+
+2025-01-06 12:16:27 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 12:16:27 [INFO] Found 0 additional relevant links
+
+2025-01-06 12:16:27 [INFO] 
+------------------------------------------------------------
+Processing link 25/104
+------------------------------------------------------------
+
+2025-01-06 12:16:27 [INFO] URL: https://us.prairielearn.com/pl/course_instance/161595/assessment/2443569
+
+2025-01-06 12:16:27 [INFO] Display text: PrairieLearn HW 1 Assigned [Link]
+
+2025-01-06 12:16:27 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:16:29 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a specific homework assignment in PrairieLearn, which is unlikely to contain information about course prerequisites.
+
+2025-01-06 12:16:32 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a specific homework assignment in PrairieLearn, which is unlikely to contain information about the course's textbooks.
+
+2025-01-06 12:16:35 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is for a specific homework assignment in PrairieLearn, not for the syllabus of CS 415.
+
+2025-01-06 12:16:35 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:16:35 [INFO] 
+------------------------------------------------------------
+Processing link 26/104
+------------------------------------------------------------
+
+2025-01-06 12:16:35 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/Game_Dev_With_UE4_Lecture04.pdf
+
+2025-01-06 12:16:35 [INFO] Display text: Design: Level Design [PDF]
+
+2025-01-06 12:16:35 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:16:35 [INFO] 
+------------------------------------------------------------
+Processing link 27/104
+------------------------------------------------------------
+
+2025-01-06 12:16:35 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-LOD-23.pdf
+
+2025-01-06 12:16:35 [INFO] Display text: Rendering: LOD [PDF]
+
+2025-01-06 12:16:35 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:16:35 [INFO] 
+------------------------------------------------------------
+Processing link 28/104
+------------------------------------------------------------
+
+2025-01-06 12:16:35 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-CLOD.pdf
+
+2025-01-06 12:16:35 [INFO] Display text: Rendering: CLOD [PDF]
+
+2025-01-06 12:16:35 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:16:35 [INFO] 
+------------------------------------------------------------
+Processing link 29/104
+------------------------------------------------------------
+
+2025-01-06 12:16:35 [INFO] URL: https://mediaspace.illinois.edu/media/t/1_yg23sun3
+
+2025-01-06 12:16:35 [INFO] Display text: Lecture [Video]
+
+2025-01-06 12:16:35 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:16:37 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a video lecture, which is unlikely to specifically contain information about course prerequisites without further context indicating such content.
+
+2025-01-06 12:16:40 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a video lecture, which is unlikely to contain specific information about textbooks for CS 415.
+
+2025-01-06 12:16:42 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain detailed information about a course syllabus.
+
+2025-01-06 12:16:42 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:16:42 [INFO] 
+------------------------------------------------------------
+Processing link 30/104
+------------------------------------------------------------
+
+2025-01-06 12:16:42 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-LODQEM.pdf
+
+2025-01-06 12:16:42 [INFO] Display text: Rendering: LOD the Math [PDF]
+
+2025-01-06 12:16:42 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:16:42 [INFO] 
+------------------------------------------------------------
+Processing link 31/104
+------------------------------------------------------------
+
+2025-01-06 12:16:42 [INFO] URL: https://classtranscribe.illinois.edu/video?id=4975fca7-4a44-42fc-a4a3-c29c471c8cfa&from=sharedlink
+
+2025-01-06 12:16:42 [INFO] Display text: Rendering: LOD the Math [Video]
+
+2025-01-06 12:16:42 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:16:45 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a video about a specific topic (LOD the Math) and does not indicate any information about course prerequisites for CS 415.
+
+2025-01-06 12:16:49 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a video, likely about a math topic or a specific concept (LOD - Level of Detail). There is no indication that it is related to CS 415's textbooks.
+
+2025-01-06 12:16:52 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a video, likely about a math topic or a specific concept (LOD - Level of Detail). There is no indication that it is related to the syllabus of CS 415.
+
+2025-01-06 12:16:52 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:16:52 [INFO] 
+------------------------------------------------------------
+Processing link 32/104
+------------------------------------------------------------
+
+2025-01-06 12:16:52 [INFO] URL: https://advances.realtimerendering.com/s2021/Karis_Nanite_SIGGRAPH_Advances_2021_final.pdf
+
+2025-01-06 12:16:52 [INFO] Display text: SIGGRAPH 2021: A Deep Dive into Nanite Slides [PDF]
+
+2025-01-06 12:16:52 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:16:52 [INFO] 
+------------------------------------------------------------
+Processing link 33/104
+------------------------------------------------------------
+
+2025-01-06 12:16:52 [INFO] URL: https://youtu.be/eviSykqSUUw?si=itB6ry5OjlipMcPG
+
+2025-01-06 12:16:52 [INFO] Display text: SIGGRAPH 2021 Talk by Epic Engineer Brian Kariss [YouTube]
+
+2025-01-06 12:16:52 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:16:55 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a SIGGRAPH 2021 talk by an Epic Engineer, which is unlikely to contain specific information about the prerequisites for CS 415.
+
+2025-01-06 12:16:58 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a YouTube video of a SIGGRAPH 2021 talk by an Epic engineer. This is unlikely to contain specific information about the textbooks for CS 415.
+
+2025-01-06 12:17:02 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a YouTube video of a SIGGRAPH 2021 talk by an Epic Engineer, which is unlikely to contain information about the syllabus of CS 415.
+
+2025-01-06 12:17:02 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:17:02 [INFO] 
+------------------------------------------------------------
+Processing link 34/104
+------------------------------------------------------------
+
+2025-01-06 12:17:02 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/Game_Dev_With_UE4_Lecture01.pdf
+
+2025-01-06 12:17:02 [INFO] Display text: Game Design [PDF]
+
+2025-01-06 12:17:02 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:17:02 [INFO] 
+------------------------------------------------------------
+Processing link 35/104
+------------------------------------------------------------
+
+2025-01-06 12:17:02 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-StardewValley.pdf
+
+2025-01-06 12:17:02 [INFO] Display text: Stardew Valley [PDF]
+
+2025-01-06 12:17:02 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:17:02 [INFO] 
+------------------------------------------------------------
+Processing link 36/104
+------------------------------------------------------------
+
+2025-01-06 12:17:02 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/blob/main/img/slides/498-AI-1.pdf
+
+2025-01-06 12:17:02 [INFO] Display text: Game AI History [PDF]
+
+2025-01-06 12:17:02 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:17:02 [INFO] 
+------------------------------------------------------------
+Processing link 37/104
+------------------------------------------------------------
+
+2025-01-06 12:17:02 [INFO] URL: https://mediaspace.illinois.edu/media/t/1_n2rplxlt
+
+2025-01-06 12:17:02 [INFO] Display text: Lecture [Video]
+
+2025-01-06 12:17:02 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:17:04 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a video lecture, which is unlikely to specifically contain information about course prerequisites without further context indicating such content.
+
+2025-01-06 12:17:07 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain specific information about textbooks for CS 415.
+
+2025-01-06 12:17:09 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain detailed information about a course syllabus.
+
+2025-01-06 12:17:09 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:17:09 [INFO] 
+------------------------------------------------------------
+Processing link 38/104
+------------------------------------------------------------
+
+2025-01-06 12:17:09 [INFO] URL: https://youtu.be/d8QAVGeEj-U?si=Fk8f2ovx1zX7_cEQ
+
+2025-01-06 12:17:09 [INFO] Display text: Rules of the Game: Five Techniques from Quite Inventive Designers (2016) [YouTube]
+
+2025-01-06 12:17:09 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:17:12 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a YouTube video about design techniques from inventive designers, which is unlikely to contain information about the prerequisites for a specific computer science course, CS 415.
+
+2025-01-06 12:17:15 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a YouTube video about design techniques from inventive designers, which is unlikely to be directly related to the textbooks for a specific course like CS 415.
+
+2025-01-06 12:17:19 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a YouTube video about design techniques from inventive designers, which is unlikely to contain information about the syllabus of a specific computer science course, CS 415.
+
+2025-01-06 12:17:19 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:17:19 [INFO] 
+------------------------------------------------------------
+Processing link 39/104
+------------------------------------------------------------
+
+2025-01-06 12:17:19 [INFO] URL: https://youtu.be/ke_kOD2D-bs?si=FazHhxS2jCf3Q6LL
+
+2025-01-06 12:17:19 [INFO] Display text: Designing Games for Game Designers (2012) [YouTube]
+
+2025-01-06 12:17:19 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:17:21 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest the content is about a video on game design, which is unlikely to contain specific information about the prerequisites for CS 415.
+
+2025-01-06 12:17:24 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest the link is to a YouTube video about game design, which is unlikely to contain specific information about the textbooks for CS 415.
+
+2025-01-06 12:17:27 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest the link is to a YouTube video about game design, which is unlikely to contain specific information about the syllabus of a CS 415 course.
+
+2025-01-06 12:17:27 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:17:27 [INFO] 
+------------------------------------------------------------
+Processing link 40/104
+------------------------------------------------------------
+
+2025-01-06 12:17:27 [INFO] URL: https://www.amazon.com/Blood-Sweat-Pixels-Triumphant-Turbulent/dp/0062651234
+
+2025-01-06 12:17:27 [INFO] Display text: Blood, Sweat, and Pixels [Amazon Link]
+
+2025-01-06 12:17:27 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:17:30 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text indicate that the link is to a book on Amazon, which is unlikely to contain information about the prerequisites for a specific course like CS 415.
+
+2025-01-06 12:17:33 [INFO] ❌ Not relevant to 'textbooks': The URL and display text indicate that the link is to a book on Amazon, which is about the development of video games. It is unlikely to be related to the textbooks for CS 415, unless the course is specifically about video game development.
+
+2025-01-06 12:17:36 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text indicate that the link is to a book on Amazon, which is unlikely to contain information about a specific course syllabus.
+
+2025-01-06 12:17:36 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:17:36 [INFO] 
+------------------------------------------------------------
+Processing link 41/104
+------------------------------------------------------------
+
+2025-01-06 12:17:36 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/blob/main/img/slides/498-AI-3.pdf
+
+2025-01-06 12:17:36 [INFO] Display text: Pathfinding [PDF]
+
+2025-01-06 12:17:36 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:17:36 [INFO] 
+------------------------------------------------------------
+Processing link 42/104
+------------------------------------------------------------
+
+2025-01-06 12:17:36 [INFO] URL: https://classtranscribe.illinois.edu/video?id=1fe9cc72-35da-4c92-beaf-90dabec2d268&from=sharedlink
+
+2025-01-06 12:17:36 [INFO] Display text: Pathfinding [Video]
+
+2025-01-06 12:17:36 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:17:38 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a video about pathfinding, which is not directly related to the prerequisites of CS 415.
+
+2025-01-06 12:17:41 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a video about pathfinding, which is unlikely to contain information about textbooks for CS 415.
+
+2025-01-06 12:17:44 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a video about pathfinding, which is unlikely to be directly related to the syllabus of CS 415.
+
+2025-01-06 12:17:44 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:17:44 [INFO] 
+------------------------------------------------------------
+Processing link 43/104
+------------------------------------------------------------
+
+2025-01-06 12:17:44 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/blob/main/img/slides/498-AI-4.pdf
+
+2025-01-06 12:17:44 [INFO] Display text: A* in Games [PDF]
+
+2025-01-06 12:17:44 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:17:44 [INFO] 
+------------------------------------------------------------
+Processing link 44/104
+------------------------------------------------------------
+
+2025-01-06 12:17:44 [INFO] URL: https://classtranscribe.illinois.edu/video?id=9464b539-b000-4df0-bc81-398c9935b5ad&from=sharedlink
+
+2025-01-06 12:17:44 [INFO] Display text: A* in Games [Video]
+
+2025-01-06 12:17:44 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:17:47 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a video about 'A* in Games', which is likely a topic within a course rather than information about prerequisites for CS 415.
+
+2025-01-06 12:17:49 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a video about 'A* in Games', which is unlikely to be directly related to the textbooks of CS 415.
+
+2025-01-06 12:17:52 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link leads to a video about 'A* in Games', which is unlikely to be directly related to the syllabus of CS 415.
+
+2025-01-06 12:17:52 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:17:52 [INFO] 
+------------------------------------------------------------
+Processing link 45/104
+------------------------------------------------------------
+
+2025-01-06 12:17:52 [INFO] URL: https://us.prairielearn.com/pl/course_instance/161595/assessment/2443570
+
+2025-01-06 12:17:52 [INFO] Display text: PrairieLearn HW 2 [Link]
+
+2025-01-06 12:17:52 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:17:55 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a specific homework assignment on PrairieLearn, which is unlikely to contain detailed information about the prerequisites for CS 415.
+
+2025-01-06 12:17:58 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link leads to a specific homework assessment on PrairieLearn, which is unlikely to contain information about the course's textbooks.
+
+2025-01-06 12:18:00 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a specific homework assessment on PrairieLearn, not to the syllabus of CS 415.
+
+2025-01-06 12:18:00 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:18:00 [INFO] 
+------------------------------------------------------------
+Processing link 46/104
+------------------------------------------------------------
+
+2025-01-06 12:18:00 [INFO] URL: https://i-share-uiu.primo.exlibrisgroup.com/permalink/01CARLI_UIU/gpjosq/alma99955033014505899
+
+2025-01-06 12:18:00 [INFO] Display text: AI for Games 3rd Edition by Ian Millington Sections 4.1 to 4.3 [UIUC Library Link]
+
+2025-01-06 12:18:00 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:18:03 [INFO] ❌ Not relevant to 'prerequisites': The display text and URL suggest that the link is to a specific section of a book about AI for games, which is unlikely to contain information about the prerequisites for a specific course like CS 415.
+
+2025-01-06 12:18:07 [INFO] ✅ Relevant to 'textbooks': The display text indicates that the link is to a specific edition of a book, 'AI for Games' by Ian Millington, and it specifies sections, which suggests it could be a textbook or reading material for a course like CS 415.
+
+2025-01-06 12:18:09 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a specific book section in a library, not to a course syllabus.
+
+2025-01-06 12:18:09 [INFO] 📍 Link is relevant for fields: textbooks
+
+2025-01-06 12:18:09 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://i-share-uiu.primo.exlibrisgroup.com/permalink/01CARLI_UIU/gpjosq/alma99955033014505899
+------------------------------------------------------------
+
+2025-01-06 12:18:11 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 12:18:11 [INFO] Found 0 additional relevant links
+
+2025-01-06 12:18:11 [INFO] 
+------------------------------------------------------------
+Processing link 47/104
+------------------------------------------------------------
+
+2025-01-06 12:18:11 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-NaniteUE5.pdf
+
+2025-01-06 12:18:11 [INFO] Display text: UE5 Virtual Geometry [PDF]
+
+2025-01-06 12:18:11 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:18:11 [INFO] 
+------------------------------------------------------------
+Processing link 48/104
+------------------------------------------------------------
+
+2025-01-06 12:18:11 [INFO] URL: https://mediaspace.illinois.edu/media/t/1_856fcxmr
+
+2025-01-06 12:18:11 [INFO] Display text: Lecture [Video]
+
+2025-01-06 12:18:11 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:18:13 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a video lecture, which is unlikely to specifically contain information about course prerequisites without further context indicating such content.
+
+2025-01-06 12:18:16 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a video lecture, which is unlikely to contain specific information about textbooks for CS 415.
+
+2025-01-06 12:18:18 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link leads to a video lecture, which is unlikely to contain detailed information about a course syllabus.
+
+2025-01-06 12:18:18 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:18:18 [INFO] 
+------------------------------------------------------------
+Processing link 49/104
+------------------------------------------------------------
+
+2025-01-06 12:18:18 [INFO] URL: https://classtranscribe.illinois.edu/video?id=36abfac0-7011-49b4-9f67-f9766b24900f&from=sharedlink
+
+2025-01-06 12:18:18 [INFO] Display text: Rasterization [2022 Video]
+
+2025-01-06 12:18:18 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:18:22 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a video about rasterization, which is a topic in computer graphics. This does not seem to be directly related to the prerequisites of CS 415, which is likely a course in computer science with a different focus.
+
+2025-01-06 12:18:25 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a video about rasterization, which is a topic in computer graphics. This is unlikely to be directly related to the textbooks for CS 415, which is a course on parallel computing.
+
+2025-01-06 12:18:28 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a video about rasterization, which is likely a topic covered in the course, but not specifically about the course syllabus.
+
+2025-01-06 12:18:28 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:18:28 [INFO] 
+------------------------------------------------------------
+Processing link 50/104
+------------------------------------------------------------
+
+2025-01-06 12:18:28 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-Rasterization.pdf
+
+2025-01-06 12:18:28 [INFO] Display text: Rasterization [PDF]
+
+2025-01-06 12:18:28 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:18:28 [INFO] 
+------------------------------------------------------------
+Processing link 51/104
+------------------------------------------------------------
+
+2025-01-06 12:18:28 [INFO] URL: https://classtranscribe.illinois.edu/video?id=ad3810ad-af3b-4e57-9f4c-3582a1901a00&from=sharedlink
+
+2025-01-06 12:18:28 [INFO] Display text: Nanite Rasterization [Video]
+
+2025-01-06 12:18:28 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:18:31 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a video about Nanite Rasterization, which is likely a topic within the course rather than information about prerequisites for CS 415.
+
+2025-01-06 12:18:35 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest that the link is to a video about Nanite Rasterization, which is unlikely to be directly related to the textbooks of CS 415.
+
+2025-01-06 12:18:38 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link is to a video about Nanite Rasterization, which is unlikely to be directly related to the syllabus of CS 415.
+
+2025-01-06 12:18:38 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 12:18:38 [INFO] 
+------------------------------------------------------------
+Processing link 52/104
+------------------------------------------------------------
+
+2025-01-06 12:18:38 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-NaniteRasterization.pdf
+
+2025-01-06 12:18:38 [INFO] Display text: Nanite Rasterization [PDF]
+
+2025-01-06 12:18:38 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:18:38 [INFO] 
+------------------------------------------------------------
+Processing link 53/104
+------------------------------------------------------------
+
+2025-01-06 12:18:38 [INFO] URL: https://drive.google.com/file/d/1rqzUDmTSvfhJFhAfYvcwifew7ApHp5ve/view?usp=sharing
+
+2025-01-06 12:18:38 [INFO] Display text: Real-Time Rendering Chapter 23 [PDF]
+
+2025-01-06 12:18:38 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:18:41 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link leads to a PDF of a chapter from a book on Real-Time Rendering, which is unlikely to contain information about the prerequisites for a specific course like CS 415.
+
+2025-01-06 12:18:44 [INFO] ✅ Relevant to 'textbooks': The display text suggests that the link is to a PDF of a chapter from a book, which could be a textbook for CS 415, especially if the course covers real-time rendering topics.
+
+2025-01-06 12:18:47 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest that the link leads to a PDF of a chapter from a book on Real-Time Rendering, which is unlikely to be the syllabus for CS 415.
+
+2025-01-06 12:18:47 [INFO] 📍 Link is relevant for fields: textbooks
+
+2025-01-06 12:18:47 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://drive.google.com/file/d/1rqzUDmTSvfhJFhAfYvcwifew7ApHp5ve/view?usp=sharing
+------------------------------------------------------------
+
+2025-01-06 12:18:50 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 12:18:50 [INFO] Found 0 additional relevant links
+
+2025-01-06 12:18:50 [INFO] 
+------------------------------------------------------------
+Processing link 54/104
+------------------------------------------------------------
+
+2025-01-06 12:18:50 [INFO] URL: https://github.com/illinois-cs415/illinois-cs415.github.io/raw/main/img/slides/415-Shading.pdf
+
+2025-01-06 12:18:50 [INFO] Display text: Shading [PDF]
+
+2025-01-06 12:18:50 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 12:18:50 [INFO] 
+------------------------------------------------------------
+Processing link 55/104
+------------------------------------------------------------
+
+2025-01-06 12:18:50 [INFO] URL: https://mediaspace.illinois.edu/media/t/1_gsavl3ef
+
+2025-01-06 12:18:50 [INFO] Display text: Shading [Video]
+
+2025-01-06 12:18:50 [INFO] Checking relevance for empty fields:
+
+2025-01-06 12:18:53 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest that the link is to a video about shading, which is unlikely to contain information about the prerequisites for CS 415.
+

@@ -1,0 +1,228 @@
+2025-01-06 23:17:12 [INFO] Testing logger setup
+
+2025-01-06 23:17:12 [INFO] 
+============================================================
+Testing section logging
+============================================================
+
+2025-01-06 23:17:12 [INFO] 
+------------------------------------------------------------
+Testing subsection logging
+------------------------------------------------------------
+
+2025-01-06 23:17:12 [INFO] 
+============================================================
+Starting entity information extraction process
+============================================================
+
+2025-01-06 23:17:12 [INFO] Processing URLs: ['https://yxw.cs.illinois.edu/', 'https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu', 'https://wgropp.cs.illinois.edu/']
+
+2025-01-06 23:17:12 [INFO] 
+############################################################
+Processing URL [1/3]: https://yxw.cs.illinois.edu/
+############################################################
+
+2025-01-06 23:17:12 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 23:17:14 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 23:17:21 [INFO] Detected schema: professor
+
+2025-01-06 23:17:21 [INFO] Reason: The webpage content includes the professor's name, title, department, research interests, publications, and teaching experience, which are typical characteristics of a professor's homepage.
+
+2025-01-06 23:17:21 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 23:17:21 [INFO] Getting response from open source with extra body for professor
+
+2025-01-06 23:17:21 [INFO] Entity schema: <class 'professor.Professor'>
+
+2025-01-06 23:18:47 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-06 23:18:47 [INFO] Discovered 0 relevant links:
+
+2025-01-06 23:18:47 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-06 23:18:47 [INFO] Updating information with relevant links...
+
+2025-01-06 23:18:47 [INFO] Saving final results...
+
+2025-01-06 23:18:47 [INFO] Results saved to ./results/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/professor/0/yuxiong_wang.json
+
+2025-01-06 23:18:47 [INFO] 
+📊 Summary for https://yxw.cs.illinois.edu/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 94.73 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 23:18:47 [INFO] ✅ Results saved to ./results/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/professor/0/yuxiong_wang.json
+
+2025-01-06 23:18:47 [INFO] 
+############################################################
+Processing URL [2/3]: https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu
+############################################################
+
+2025-01-06 23:18:47 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 23:18:52 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 23:18:52 [INFO] Retrying request to /chat/completions in 0.995311 seconds
+
+2025-01-06 23:19:05 [INFO] Detected schema: professor
+
+2025-01-06 23:19:05 [INFO] Reason: The webpage content describes a person, Xiaohui Zhu, with a professional title of Lecturer, and provides information about their research interests, teaching experience, and publications, which are all characteristic of a professor's profile.
+
+2025-01-06 23:19:05 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 23:19:05 [INFO] Getting response from open source with extra body for professor
+
+2025-01-06 23:19:05 [INFO] Entity schema: <class 'professor.Professor'>
+
+2025-01-06 23:19:49 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 23:19:49 [INFO] 
+📊 Summary for https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 62.14 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 23:19:49 [INFO] ✅ Results saved to ./results/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/professor/0/xiaohui_zhu.json
+
+2025-01-06 23:19:49 [INFO] 
+############################################################
+Processing URL [3/3]: https://wgropp.cs.illinois.edu/
+############################################################
+
+2025-01-06 23:19:49 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 23:19:51 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 23:19:58 [INFO] Detected schema: professor
+
+2025-01-06 23:19:58 [INFO] Reason: The webpage content includes the professor's name, title, contact information, research interests, and current projects, which are typical characteristics of a professor's personal webpage.
+
+2025-01-06 23:19:58 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 23:19:58 [INFO] Getting response from open source with extra body for professor
+
+2025-01-06 23:19:58 [INFO] Entity schema: <class 'professor.Professor'>
+
+2025-01-06 23:20:29 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 23:20:29 [INFO] 
+📊 Summary for https://wgropp.cs.illinois.edu/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 40.14 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 23:20:29 [INFO] ✅ Results saved to ./results/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/professor/0/william_d._gropp.json
+
+2025-01-06 23:20:29 [INFO] 
+============================================================
+Final Process Summary
+============================================================
+
+2025-01-06 23:20:29 [INFO] Total Processing Time: 197.01 seconds
+
+2025-01-06 23:20:29 [INFO] Number of URLs Processed: 3
+
+2025-01-06 23:20:29 [INFO] 📊 Detailed Analysis by URL:
+
+2025-01-06 23:20:29 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 23:20:29 [INFO] 🌐 https://yxw.cs.illinois.edu/
+
+2025-01-06 23:20:29 [INFO] ⏱️  Processing Time: 94.73 seconds
+
+2025-01-06 23:20:29 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 23:20:29 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 23:20:29 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 23:20:29 [INFO] 🌐 https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu
+
+2025-01-06 23:20:29 [INFO] ⏱️  Processing Time: 62.14 seconds
+
+2025-01-06 23:20:29 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 23:20:29 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 23:20:29 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 23:20:29 [INFO] 🌐 https://wgropp.cs.illinois.edu/
+
+2025-01-06 23:20:29 [INFO] ⏱️  Processing Time: 40.14 seconds
+
+2025-01-06 23:20:29 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 23:20:29 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 23:20:29 [INFO] 
+============================================================
+Writing process statistics to CSV
+============================================================
+
+2025-01-06 23:20:29 [INFO] 📊 Process statistics written to: ./results/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/0/process_stats_20250106_232029.csv
+
+2025-01-06 23:20:29 [INFO] 
+============================================================
+✅ Process completed successfully!
+============================================================
+

@@ -1,0 +1,115 @@
+{
+    "code": "CS 357",
+    "title": "Numerical Methods I",
+    "credits": 3,
+    "description": "This course introduces the fundamentals of scientific computing and numerical methods, with theoretical algorithms supplemented with hands-on programming exercises. Numerical simulations are only useful when they are accurate and reliable; hence we will learn how to understand the error in scientific computing, particularly the effects of representing real numbers with a finite amount of memory in the form of floating-point numbers. This is just as important as the understanding of the algorithms themselves!",
+    "semester": "Fall",
+    "year": 2024,
+    "instructors": [
+        {
+            "name": "",
+            "email": "",
+            "officeHours": null,
+            "officeLocation": null
+        }
+    ],
+    "teachingAssistants": [
+        {
+            "name": "",
+            "email": "",
+            "officeHours": null,
+            "officeLocation": null
+        }
+    ],
+    "schedule": [
+        {
+            "day": "Tuesday",
+            "timeStart": "11:00am",
+            "timeEnd": "12:15pm",
+            "location": "CIF 0035"
+        },
+        {
+            "day": "Tuesday",
+            "timeStart": "11:00am",
+            "timeEnd": "12:15pm",
+            "location": "Online (no assigned classroom)"
+        },
+        {
+            "day": "Thursday",
+            "timeStart": "11:00am",
+            "timeEnd": "12:15pm",
+            "location": "CIF 0035 (Optional Study Hour)"
+        }
+    ],
+    "prerequisites": [
+        {
+            "courseCode": "MATH 225",
+            "minimumGrade": "",
+            "canBeConcurrent": false
+        },
+        {
+            "courseCode": "MATH 225 or MATH 415",
+            "minimumGrade": "",
+            "canBeConcurrent": false
+        },
+        {
+            "courseCode": "MATH 241",
+            "minimumGrade": "",
+            "canBeConcurrent": false
+        }
+    ],
+    "textbooks": [
+        {
+            "title": "Numerical Methods for Engineers",
+            "authors": [
+                "Steven C. Chapra",
+                "Raymond P. Canale"
+            ],
+            "isbn": "978-0073401065",
+            "required": true,
+            "edition": "7th",
+            "publisher": "McGraw-Hill Education"
+        }
+    ],
+    "gradingComponents": [
+        {
+            "name": "Final exam",
+            "weight": 0.15,
+            "description": "Delivered via PrairieLearn at the CBTF (asynchronously with self-registration)."
+        },
+        {
+            "name": "Bi-weekly quizzes",
+            "weight": 0.35,
+            "description": "Delivered via PrairieLearn at the CBTF (asynchronously with self-registration). Read more [here](https://cs357.cs.illinois.edu/pages/quizzes.html)."
+        },
+        {
+            "name": "Homework",
+            "weight": 0.25,
+            "description": "Submitted twice weekly via PrairieLearn."
+        },
+        {
+            "name": "Machine Problems (MP)",
+            "weight": 0.1,
+            "description": "Submitted 5 times during the semester via PrairieLearn."
+        },
+        {
+            "name": "Group Activity (GA)",
+            "weight": 0.11,
+            "description": "Weekly group work to be completed on Tuesdays (read more [here](https://cs357.cs.illinois.edu/pages/lectures.html))."
+        },
+        {
+            "name": "Pre-Lecture Activity (L)",
+            "weight": 0.04,
+            "description": "Pre-recorded videos available via PrairieLearn on Tuesdays and Thursdays with corresponding short questions."
+        }
+    ],
+    "syllabusLink": "https://cs357.cs.illinois.edu/pages/syllabus.html",
+    "department": "Computer Science",
+    "learningObjectives": [
+        "Analyze the sources of errors in mathematical operations on the computer",
+        "Recognize major numerical methods and their merits and pitfalls",
+        "Calculate the computational cost of a range of numerical methods",
+        "Select and use software tools, based on their numerical methods, for a range of problems",
+        "Estimate the accuracy in approximated numerical solutions"
+    ]
+}

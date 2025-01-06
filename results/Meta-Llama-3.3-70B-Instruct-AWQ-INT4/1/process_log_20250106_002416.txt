@@ -1,0 +1,1279 @@
+2025-01-06 00:24:16 [INFO] Testing logger setup
+
+2025-01-06 00:24:16 [INFO] 
+============================================================
+Testing section logging
+============================================================
+
+2025-01-06 00:24:16 [INFO] 
+------------------------------------------------------------
+Testing subsection logging
+------------------------------------------------------------
+
+2025-01-06 00:24:16 [INFO] 
+============================================================
+Starting entity information extraction process
+============================================================
+
+2025-01-06 00:24:16 [INFO] Processing URLs: ['https://illinois-cs415.github.io/', 'https://uiucwp.gitlab.io/fa-24/', 'https://cs357.cs.illinois.edu/']
+
+2025-01-06 00:24:16 [INFO] 
+############################################################
+Processing URL [1/3]: https://illinois-cs415.github.io/
+############################################################
+
+2025-01-06 00:24:16 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 00:24:17 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 00:24:45 [INFO] Detected schema: course
+
+2025-01-06 00:24:45 [INFO] Reason: The webpage content includes details such as course title (CS 415 Game Development), semester (Fall 2024), instructor names, teaching assistants, course description, topics covered, assessments, grading criteria, and university resources, which are all characteristic of a university course.
+
+2025-01-06 00:24:45 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 00:24:45 [INFO] Getting response from open source with extra body for course
+
+2025-01-06 00:24:45 [INFO] Entity schema: <class 'course.Course'>
+
+2025-01-06 00:26:07 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-06 00:26:07 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-06 00:26:07 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 00:26:26 [INFO] Found 7 links to process
+
+2025-01-06 00:26:26 [INFO] 
+------------------------------------------------------------
+Processing link 1/7
+------------------------------------------------------------
+
+2025-01-06 00:26:26 [INFO] URL: https://campuswire.com/p/GD8317729
+
+2025-01-06 00:26:26 [INFO] Display text: CampusWire
+
+2025-01-06 00:26:26 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:26:32 [INFO] ❌ Not relevant to 'prerequisites': The display text 'CampusWire' is a platform name and the URL does not explicitly mention the course or prerequisites.
+
+2025-01-06 00:26:35 [INFO] ❌ Not relevant to 'textbooks': The display text 'CampusWire' is a platform name and the URL does not explicitly mention textbooks or CS 415.
+
+2025-01-06 00:26:37 [INFO] ❌ Not relevant to 'syllabusLink': The display text 'CampusWire' is a platform name and the URL does not explicitly mention the course or syllabus.
+
+2025-01-06 00:26:37 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:26:37 [INFO] 
+------------------------------------------------------------
+Processing link 2/7
+------------------------------------------------------------
+
+2025-01-06 00:26:37 [INFO] URL: https://illinois-cs415.github.io/schedule
+
+2025-01-06 00:26:37 [INFO] Display text: Lectures page
+
+2025-01-06 00:26:37 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:26:39 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest a schedule or lectures page, which is unlikely to contain prerequisite information.
+
+2025-01-06 00:26:41 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest the link is about the course schedule and lectures, not textbooks.
+
+2025-01-06 00:26:43 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest the link is about the course schedule, not the syllabus.
+
+2025-01-06 00:26:43 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:26:43 [INFO] 
+------------------------------------------------------------
+Processing link 3/7
+------------------------------------------------------------
+
+2025-01-06 00:26:43 [INFO] URL: https://www.unrealengine.com/en-US/download
+
+2025-01-06 00:26:43 [INFO] Display text: Unreal Engine download
+
+2025-01-06 00:26:43 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:26:45 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest a download link for Unreal Engine, unrelated to course prerequisites.
+
+2025-01-06 00:26:47 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest a download link for Unreal Engine, unrelated to course textbooks.
+
+2025-01-06 00:26:49 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest a download link for Unreal Engine, unrelated to a course syllabus.
+
+2025-01-06 00:26:49 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:26:49 [INFO] 
+------------------------------------------------------------
+Processing link 4/7
+------------------------------------------------------------
+
+2025-01-06 00:26:49 [INFO] URL: https://illinois-cs415.github.io/resources
+
+2025-01-06 00:26:49 [INFO] Display text: Resources page
+
+2025-01-06 00:26:49 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:26:51 [INFO] ✅ Relevant to 'prerequisites': The URL and display text suggest a general resources page for the course, which may include information about prerequisites.
+
+2025-01-06 00:26:54 [INFO] ✅ Relevant to 'textbooks': The URL and display text suggest a general resources page for the course, which may include information about textbooks.
+
+2025-01-06 00:26:56 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest a general resources page, not specifically a syllabus link.
+
+2025-01-06 00:26:56 [INFO] 📍 Link is relevant for fields: prerequisites, textbooks
+
+2025-01-06 00:26:56 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://illinois-cs415.github.io/resources
+------------------------------------------------------------
+
+2025-01-06 00:26:56 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 00:26:56 [INFO] Found 0 additional relevant links
+
+2025-01-06 00:26:56 [INFO] 
+------------------------------------------------------------
+Processing link 5/7
+------------------------------------------------------------
+
+2025-01-06 00:26:56 [INFO] URL: https://canvas.illinois.edu/
+
+2025-01-06 00:26:56 [INFO] Display text: Canvas
+
+2025-01-06 00:26:56 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:26:58 [INFO] ✅ Relevant to 'prerequisites': The URL points to a learning management system, which often contains course information, including prerequisites.
+
+2025-01-06 00:27:00 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest a general learning management system, not a specific resource like textbooks for a particular course.
+
+2025-01-06 00:27:03 [INFO] ✅ Relevant to 'syllabusLink': The URL points to a learning management system, and the display text 'Canvas' is a common platform for hosting course materials, including syllabi.
+
+2025-01-06 00:27:03 [INFO] 📍 Link is relevant for fields: prerequisites, syllabusLink
+
+2025-01-06 00:27:03 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://canvas.illinois.edu/
+------------------------------------------------------------
+
+2025-01-06 00:27:11 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 00:27:11 [INFO] Found 0 additional relevant links
+
+2025-01-06 00:27:11 [INFO] 
+------------------------------------------------------------
+Processing link 6/7
+------------------------------------------------------------
+
+2025-01-06 00:27:11 [INFO] URL: https://bart.illinois.edu/
+
+2025-01-06 00:27:11 [INFO] Display text: Bias Assessment and Response Team (BART)
+
+2025-01-06 00:27:11 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:27:14 [INFO] ❌ Not relevant to 'prerequisites': The URL and display text suggest the link is about a team or organization related to bias assessment and response, with no apparent connection to course prerequisites.
+
+2025-01-06 00:27:17 [INFO] ❌ Not relevant to 'textbooks': The URL and display text suggest the link is related to a team or organization focused on bias assessment and response, with no apparent connection to course materials or textbooks.
+
+2025-01-06 00:27:20 [INFO] ❌ Not relevant to 'syllabusLink': The URL and display text suggest a focus on bias assessment and response, with no apparent connection to a course syllabus.
+
+2025-01-06 00:27:20 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:27:20 [INFO] 
+------------------------------------------------------------
+Processing link 7/7
+------------------------------------------------------------
+
+2025-01-06 00:27:20 [INFO] URL: https://illinois.zoom.us/j/89441530187?pwd=BlwTMKigRs05NCya0lnGAb3VD40SdZ.1
+
+2025-01-06 00:27:20 [INFO] Display text: ZOOM LINK
+
+2025-01-06 00:27:20 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:27:23 [INFO] ❌ Not relevant to 'prerequisites': The URL appears to be a Zoom meeting link and the display text 'ZOOM LINK' suggests it is for joining a virtual meeting, not containing course prerequisite information.
+
+2025-01-06 00:27:26 [INFO] ❌ Not relevant to 'textbooks': The URL appears to be a Zoom meeting link and the display text 'ZOOM LINK' suggests it is for joining a virtual meeting, not accessing textbook information.
+
+2025-01-06 00:27:28 [INFO] ❌ Not relevant to 'syllabusLink': The URL appears to be a Zoom meeting link and the display text 'ZOOM LINK' does not indicate any relation to a course syllabus.
+
+2025-01-06 00:27:28 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:27:28 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-06 00:27:28 [INFO] Total relevant links found at this depth: 2
+
+2025-01-06 00:27:38 [INFO] Discovered 2 relevant links:
+
+2025-01-06 00:27:38 [INFO]   • https://canvas.illinois.edu/
+
+2025-01-06 00:27:38 [INFO]     ├─ Display: Canvas
+
+2025-01-06 00:27:38 [INFO]     └─ Relevant to: prerequisites, syllabusLink
+
+2025-01-06 00:27:38 [INFO]   • https://illinois-cs415.github.io/resources
+
+2025-01-06 00:27:38 [INFO]     ├─ Display: Resources page
+
+2025-01-06 00:27:38 [INFO]     └─ Relevant to: prerequisites, textbooks
+
+2025-01-06 00:27:38 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-06 00:27:38 [INFO] Updating information with relevant links...
+
+2025-01-06 00:27:38 [INFO] Processing link 1/2: https://illinois-cs415.github.io/resources
+
+2025-01-06 00:28:01 [INFO] Processing link 2/2: https://canvas.illinois.edu/
+
+2025-01-06 00:28:26 [INFO] Saving final results...
+
+2025-01-06 00:28:26 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/course/1/cs_415.json
+
+2025-01-06 00:28:26 [INFO] 
+📊 Summary for https://illinois-cs415.github.io/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 250.19 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 https://illinois-cs415.github.io/resources
+   Fields: prerequisites, textbooks
+   Reasons:
+   • prerequisites: The URL and display text suggest a general resources page for the course, which may include information about prerequisites.
+   • textbooks: The URL and display text suggest a general resources page for the course, which may include information about textbooks.
+   ⏱️  Update Time: 22.81 seconds
+
+🔗 https://canvas.illinois.edu/
+   Fields: prerequisites, syllabusLink
+   Reasons:
+   • prerequisites: The URL points to a learning management system, which often contains course information, including prerequisites.
+   • syllabusLink: The URL points to a learning management system, and the display text 'Canvas' is a common platform for hosting course materials, including syllabi.
+   ⏱️  Update Time: 22.78 seconds
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 00:28:26 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/course/1/cs_415.json
+
+2025-01-06 00:28:26 [INFO] 
+############################################################
+Processing URL [2/3]: https://uiucwp.gitlab.io/fa-24/
+############################################################
+
+2025-01-06 00:28:26 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 00:28:30 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 00:28:39 [INFO] Detected schema: course
+
+2025-01-06 00:28:39 [INFO] Reason: The webpage content includes a course title (CS 409: The Art of Web Programming), lecture schedule, assignments, exams, grading, and staff information, which are all typical components of a university course.
+
+2025-01-06 00:28:39 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 00:28:39 [INFO] Getting response from open source with extra body for course
+
+2025-01-06 00:28:39 [INFO] Entity schema: <class 'course.Course'>
+
+2025-01-06 00:29:09 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-06 00:29:09 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-06 00:29:09 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 00:31:10 [INFO] Found 53 links to process
+
+2025-01-06 00:31:10 [INFO] 
+------------------------------------------------------------
+Processing link 1/53
+------------------------------------------------------------
+
+2025-01-06 00:31:10 [INFO] URL: https://uiucwp.gitlab.io/fa-24/
+
+2025-01-06 00:31:10 [INFO] Display text: The Art of Web Programming
+
+2025-01-06 00:31:10 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:13 [INFO] ❌ Not relevant to 'textbooks': The display text and URL do not mention textbooks or CS 409 specifically.
+
+2025-01-06 00:31:13 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:13 [INFO] 
+------------------------------------------------------------
+Processing link 2/53
+------------------------------------------------------------
+
+2025-01-06 00:31:13 [INFO] URL: https://illinois.zoom.us/j/87037272792?pwd=31uYz27U4aDnEcI3IGaig7anoRNbTu.1
+
+2025-01-06 00:31:13 [INFO] Display text: Zoom
+
+2025-01-06 00:31:13 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:15 [INFO] ❌ Not relevant to 'textbooks': The URL appears to be a Zoom meeting link and the display text is 'Zoom', which does not suggest any relation to textbooks.
+
+2025-01-06 00:31:15 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:15 [INFO] 
+------------------------------------------------------------
+Processing link 3/53
+------------------------------------------------------------
+
+2025-01-06 00:31:15 [INFO] URL: https://illinois.zoom.us/j/6804463113?pwd=c2RmRnpXeDIrL0JGcTd1TU1sL3V1Zz09&omn=87989449611
+
+2025-01-06 00:31:15 [INFO] Display text: Zoom
+
+2025-01-06 00:31:15 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:18 [INFO] ❌ Not relevant to 'textbooks': The URL appears to be a Zoom meeting link and the display text is 'Zoom', which does not suggest any relation to textbooks.
+
+2025-01-06 00:31:18 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:18 [INFO] 
+------------------------------------------------------------
+Processing link 4/53
+------------------------------------------------------------
+
+2025-01-06 00:31:18 [INFO] URL: https://illinois.zoom.us/j/83646066351?pwd=DrFQJVdbSl9Yu5ndtoCUuQHTfaGWV4.1
+
+2025-01-06 00:31:18 [INFO] Display text: Zoom
+
+2025-01-06 00:31:18 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:20 [INFO] ❌ Not relevant to 'textbooks': The URL appears to be a Zoom meeting link and the display text is 'Zoom', which does not suggest any relation to textbooks.
+
+2025-01-06 00:31:20 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:20 [INFO] 
+------------------------------------------------------------
+Processing link 5/53
+------------------------------------------------------------
+
+2025-01-06 00:31:20 [INFO] URL: https://illinois.zoom.us/j/84010323961?pwd=zmBSvbP3ZkAMoleeoNDm3vet7VbCub.1
+
+2025-01-06 00:31:20 [INFO] Display text: Zoom
+
+2025-01-06 00:31:20 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:23 [INFO] ❌ Not relevant to 'textbooks': The URL appears to be a Zoom meeting link and the display text is 'Zoom', which does not suggest any relation to textbooks.
+
+2025-01-06 00:31:23 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:23 [INFO] 
+------------------------------------------------------------
+Processing link 6/53
+------------------------------------------------------------
+
+2025-01-06 00:31:23 [INFO] URL: https://illinois.zoom.us/j/81944212927?pwd=uD5pnOIlZgiE4tt5yFunNL3tnasbeN.1
+
+2025-01-06 00:31:23 [INFO] Display text: Zoom
+
+2025-01-06 00:31:23 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:25 [INFO] ❌ Not relevant to 'textbooks': The URL appears to be a Zoom meeting link and the display text is 'Zoom', which does not suggest any relation to textbooks.
+
+2025-01-06 00:31:25 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:25 [INFO] 
+------------------------------------------------------------
+Processing link 7/53
+------------------------------------------------------------
+
+2025-01-06 00:31:25 [INFO] URL: https://illinois.zoom.us/j/3394966600?pwd=L2tSajE0a1BGSHVMclpNVmVMbG52QT09
+
+2025-01-06 00:31:25 [INFO] Display text: Zoom
+
+2025-01-06 00:31:25 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:28 [INFO] ❌ Not relevant to 'textbooks': The URL appears to be a Zoom meeting link and the display text is 'Zoom', which does not suggest any relation to textbooks.
+
+2025-01-06 00:31:28 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:28 [INFO] 
+------------------------------------------------------------
+Processing link 8/53
+------------------------------------------------------------
+
+2025-01-06 00:31:28 [INFO] URL: https://drive.google.com/file/d/1B5-NtatgEIvrQRHxckrA7NAG8CXc34LT/view?usp=sharing
+
+2025-01-06 00:31:28 [INFO] Display text: Slides
+
+2025-01-06 00:31:28 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:30 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:31:30 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:30 [INFO] 
+------------------------------------------------------------
+Processing link 9/53
+------------------------------------------------------------
+
+2025-01-06 00:31:30 [INFO] URL: https://drive.google.com/file/d/1T1lehAWsbGSljNkecFqn0_0lGbR9JCNT/view?usp=sharing
+
+2025-01-06 00:31:30 [INFO] Display text: Recording
+
+2025-01-06 00:31:30 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:32 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:31:32 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:32 [INFO] 
+------------------------------------------------------------
+Processing link 10/53
+------------------------------------------------------------
+
+2025-01-06 00:31:32 [INFO] URL: https://drive.google.com/file/d/1aIgf84XtXR6RBh_g_-VAgwijMcN66va8/view?usp=sharing
+
+2025-01-06 00:31:32 [INFO] Display text: Slides
+
+2025-01-06 00:31:32 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:34 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:31:34 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:34 [INFO] 
+------------------------------------------------------------
+Processing link 11/53
+------------------------------------------------------------
+
+2025-01-06 00:31:34 [INFO] URL: https://drive.google.com/file/d/1FAa8eTHfdT0yL2nVnb5Zk3ZCPkXZ-hlo/view?usp=drive_link
+
+2025-01-06 00:31:34 [INFO] Display text: Recording
+
+2025-01-06 00:31:34 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:37 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:31:37 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:37 [INFO] 
+------------------------------------------------------------
+Processing link 12/53
+------------------------------------------------------------
+
+2025-01-06 00:31:37 [INFO] URL: https://drive.google.com/file/d/1ln8frbmc8MhaKiViYjpa4piIwd0vPesd/view?usp=drive_link
+
+2025-01-06 00:31:37 [INFO] Display text: Slides
+
+2025-01-06 00:31:37 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:39 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:31:39 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:39 [INFO] 
+------------------------------------------------------------
+Processing link 13/53
+------------------------------------------------------------
+
+2025-01-06 00:31:39 [INFO] URL: https://drive.google.com/file/d/1AslDOmxj5gWl4ylcnbvjcClipajlvpnH/view?usp=drive_link
+
+2025-01-06 00:31:39 [INFO] Display text: Recording
+
+2025-01-06 00:31:39 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:41 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:31:41 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:41 [INFO] 
+------------------------------------------------------------
+Processing link 14/53
+------------------------------------------------------------
+
+2025-01-06 00:31:41 [INFO] URL: https://drive.google.com/file/d/1KmcSb-D9YFtuLexVR4bwA8tzzGk86BEv/view?usp=drive_link
+
+2025-01-06 00:31:41 [INFO] Display text: Slides
+
+2025-01-06 00:31:41 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:43 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:31:43 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:43 [INFO] 
+------------------------------------------------------------
+Processing link 15/53
+------------------------------------------------------------
+
+2025-01-06 00:31:43 [INFO] URL: https://drive.google.com/file/d/1UOfjTwFoPa3InBKKcK1PrvFkOwDQCfSh/view?usp=sharing
+
+2025-01-06 00:31:43 [INFO] Display text: Recording
+
+2025-01-06 00:31:43 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:45 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:31:45 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:45 [INFO] 
+------------------------------------------------------------
+Processing link 16/53
+------------------------------------------------------------
+
+2025-01-06 00:31:45 [INFO] URL: https://drive.google.com/file/d/1lZgsAGGLEqwYQ7vAmWXc_vc25qjVrXLn/view?usp=drive_link
+
+2025-01-06 00:31:45 [INFO] Display text: Slides
+
+2025-01-06 00:31:45 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:47 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:31:47 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:47 [INFO] 
+------------------------------------------------------------
+Processing link 17/53
+------------------------------------------------------------
+
+2025-01-06 00:31:47 [INFO] URL: https://drive.google.com/file/d/1bjo1VdOxC5OzHLzED2G83INPN0Jx3nvl/view?usp=sharing
+
+2025-01-06 00:31:47 [INFO] Display text: Recording
+
+2025-01-06 00:31:47 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:50 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, and the URL is a Google Drive file, which does not indicate a connection to textbooks.
+
+2025-01-06 00:31:50 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:50 [INFO] 
+------------------------------------------------------------
+Processing link 18/53
+------------------------------------------------------------
+
+2025-01-06 00:31:50 [INFO] URL: https://drive.google.com/file/d/14AxCbFUqEXLvH7stpGPdOgWJqzEYb0sw/view?usp=sharing
+
+2025-01-06 00:31:50 [INFO] Display text: Slides
+
+2025-01-06 00:31:50 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:52 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:31:52 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:52 [INFO] 
+------------------------------------------------------------
+Processing link 19/53
+------------------------------------------------------------
+
+2025-01-06 00:31:52 [INFO] URL: https://drive.google.com/file/d/116OU2TsmXh39KEeNQUTE4BwNm1K6jVp3/view?usp=sharing
+
+2025-01-06 00:31:52 [INFO] Display text: Recording
+
+2025-01-06 00:31:52 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:54 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:31:54 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:54 [INFO] 
+------------------------------------------------------------
+Processing link 20/53
+------------------------------------------------------------
+
+2025-01-06 00:31:54 [INFO] URL: https://drive.google.com/file/d/1Cv_qrONonySRJOcUBaVZa1-8c-QCwqX5/view?usp=sharing
+
+2025-01-06 00:31:54 [INFO] Display text: Slides
+
+2025-01-06 00:31:54 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:56 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:31:56 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:56 [INFO] 
+------------------------------------------------------------
+Processing link 21/53
+------------------------------------------------------------
+
+2025-01-06 00:31:56 [INFO] URL: https://drive.google.com/file/d/1tqOdfTW-Ro6ZhosFpl-Ajmp2QxjMKYGB/view?usp=drive_link
+
+2025-01-06 00:31:56 [INFO] Display text: Recording
+
+2025-01-06 00:31:56 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:31:58 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:31:58 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:31:58 [INFO] 
+------------------------------------------------------------
+Processing link 22/53
+------------------------------------------------------------
+
+2025-01-06 00:31:58 [INFO] URL: https://drive.google.com/file/d/1kKw2r-JY8weVA9W_aRSR3ouiJTY8g8f9/view?usp=sharing
+
+2025-01-06 00:31:58 [INFO] Display text: Slides
+
+2025-01-06 00:31:58 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:00 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:00 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:00 [INFO] 
+------------------------------------------------------------
+Processing link 23/53
+------------------------------------------------------------
+
+2025-01-06 00:32:00 [INFO] URL: https://drive.google.com/file/d/1IACJRrhUO6hjh3yCn0-puK62MV-hufhi/view?usp=sharing
+
+2025-01-06 00:32:00 [INFO] Display text: Recording
+
+2025-01-06 00:32:00 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:02 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:32:02 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:02 [INFO] 
+------------------------------------------------------------
+Processing link 24/53
+------------------------------------------------------------
+
+2025-01-06 00:32:02 [INFO] URL: https://drive.google.com/file/d/1Qc0SQ-Gn8WtReX0xfi7C-Poj_VRoDab_/view?usp=sharing
+
+2025-01-06 00:32:02 [INFO] Display text: Slides
+
+2025-01-06 00:32:02 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:04 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:04 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:04 [INFO] 
+------------------------------------------------------------
+Processing link 25/53
+------------------------------------------------------------
+
+2025-01-06 00:32:04 [INFO] URL: https://drive.google.com/file/d/1rHO1HQbf3PKGwte1_X4YdyACotTy8t1S/view?usp=sharing
+
+2025-01-06 00:32:04 [INFO] Display text: Recording
+
+2025-01-06 00:32:04 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:06 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:32:06 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:06 [INFO] 
+------------------------------------------------------------
+Processing link 26/53
+------------------------------------------------------------
+
+2025-01-06 00:32:06 [INFO] URL: https://drive.google.com/file/d/1nDr6-7w6pHS3htL8xs_LK-l9GPCCeyJa/view?usp=sharing
+
+2025-01-06 00:32:06 [INFO] Display text: Slides
+
+2025-01-06 00:32:06 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:08 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:08 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:08 [INFO] 
+------------------------------------------------------------
+Processing link 27/53
+------------------------------------------------------------
+
+2025-01-06 00:32:08 [INFO] URL: https://drive.google.com/file/d/1S7XNsuh4SYeiWlfb9Wrl7Gx7DRhT246p/view?usp=sharing
+
+2025-01-06 00:32:08 [INFO] Display text: Recording
+
+2025-01-06 00:32:08 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:10 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:32:10 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:10 [INFO] 
+------------------------------------------------------------
+Processing link 28/53
+------------------------------------------------------------
+
+2025-01-06 00:32:10 [INFO] URL: https://drive.google.com/file/d/1GV7qFOoVeFtkbdj1mHnRvFn5jg2cJRtf/view?usp=drive_link
+
+2025-01-06 00:32:10 [INFO] Display text: Slides
+
+2025-01-06 00:32:10 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:12 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:12 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:12 [INFO] 
+------------------------------------------------------------
+Processing link 29/53
+------------------------------------------------------------
+
+2025-01-06 00:32:12 [INFO] URL: https://drive.google.com/file/d/1e5QCxQCa93dNlBnX-a6_PAfiGrEzSOry/view?usp=drive_link
+
+2025-01-06 00:32:12 [INFO] Display text: Recording
+
+2025-01-06 00:32:12 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:15 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:32:15 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:15 [INFO] 
+------------------------------------------------------------
+Processing link 30/53
+------------------------------------------------------------
+
+2025-01-06 00:32:15 [INFO] URL: https://drive.google.com/file/d/1HpAK2JLPYVEAzytxPhzKrMaK83YvBVKF/view?usp=sharing
+
+2025-01-06 00:32:15 [INFO] Display text: Slides
+
+2025-01-06 00:32:15 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:17 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:17 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:17 [INFO] 
+------------------------------------------------------------
+Processing link 31/53
+------------------------------------------------------------
+
+2025-01-06 00:32:17 [INFO] URL: https://drive.google.com/file/d/1lh_pUE2nmO8jmIW3F84GNQnFafQvfLtR/view?usp=sharing
+
+2025-01-06 00:32:17 [INFO] Display text: Dev Lab Slides
+
+2025-01-06 00:32:17 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:20 [INFO] ❌ Not relevant to 'textbooks': The display text 'Dev Lab Slides' suggests the link is related to lab materials, not textbooks.
+
+2025-01-06 00:32:20 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:20 [INFO] 
+------------------------------------------------------------
+Processing link 32/53
+------------------------------------------------------------
+
+2025-01-06 00:32:20 [INFO] URL: https://drive.google.com/file/d/1mYOQ3a5__OY1z3onLlQqV_ui4e98yYe9/view?usp=sharing
+
+2025-01-06 00:32:20 [INFO] Display text: Recording
+
+2025-01-06 00:32:20 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:22 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests a video or audio file, which is unlikely to contain information about textbooks.
+
+2025-01-06 00:32:22 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:22 [INFO] 
+------------------------------------------------------------
+Processing link 33/53
+------------------------------------------------------------
+
+2025-01-06 00:32:22 [INFO] URL: https://drive.google.com/file/d/1KCVzQamCB6FZixTdXpZm9mlPs7lGsdME/view?usp=sharing
+
+2025-01-06 00:32:22 [INFO] Display text: Slides
+
+2025-01-06 00:32:22 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:24 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:24 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:24 [INFO] 
+------------------------------------------------------------
+Processing link 34/53
+------------------------------------------------------------
+
+2025-01-06 00:32:24 [INFO] URL: https://drive.google.com/file/d/1YEpTtSC1FXlDPyqTdhL30rkvYvaULzdD/view?usp=sharing
+
+2025-01-06 00:32:24 [INFO] Display text: Recording
+
+2025-01-06 00:32:24 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:26 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:32:26 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:26 [INFO] 
+------------------------------------------------------------
+Processing link 35/53
+------------------------------------------------------------
+
+2025-01-06 00:32:26 [INFO] URL: https://drive.google.com/file/d/1OaUMhFXE_3fmf0zsA4NDqyK1dm2si_SV/view?usp=sharing
+
+2025-01-06 00:32:26 [INFO] Display text: Slides
+
+2025-01-06 00:32:26 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:28 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:28 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:28 [INFO] 
+------------------------------------------------------------
+Processing link 36/53
+------------------------------------------------------------
+
+2025-01-06 00:32:28 [INFO] URL: https://drive.google.com/file/d/1e6psRagxqPps7uHLnnlYbwHrS-Rc9x1l/view?usp=sharing
+
+2025-01-06 00:32:28 [INFO] Display text: Recording
+
+2025-01-06 00:32:28 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:31 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, and the URL is a Google Drive file, which does not indicate a connection to textbooks.
+
+2025-01-06 00:32:31 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:31 [INFO] 
+------------------------------------------------------------
+Processing link 37/53
+------------------------------------------------------------
+
+2025-01-06 00:32:31 [INFO] URL: https://drive.google.com/file/d/108Fkq9nlhsBzMO-TbufPv-aq7YrexKVE/view?usp=sharing
+
+2025-01-06 00:32:31 [INFO] Display text: Slides
+
+2025-01-06 00:32:31 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:33 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:33 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:33 [INFO] 
+------------------------------------------------------------
+Processing link 38/53
+------------------------------------------------------------
+
+2025-01-06 00:32:33 [INFO] URL: https://drive.google.com/file/d/1L-z45_ZSOr-MELq0eJQGichc_cY9_Q2U/view?usp=sharing
+
+2025-01-06 00:32:33 [INFO] Display text: Recording
+
+2025-01-06 00:32:33 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:35 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:32:35 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:35 [INFO] 
+------------------------------------------------------------
+Processing link 39/53
+------------------------------------------------------------
+
+2025-01-06 00:32:35 [INFO] URL: https://drive.google.com/file/d/1HUNOE_Z1yX74kMuMgYZyGA5T74Y185i2/view?usp=sharing
+
+2025-01-06 00:32:35 [INFO] Display text: Slides
+
+2025-01-06 00:32:35 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:37 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:37 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:37 [INFO] 
+------------------------------------------------------------
+Processing link 40/53
+------------------------------------------------------------
+
+2025-01-06 00:32:37 [INFO] URL: https://drive.google.com/file/d/1aZuzFYwVlH6kagGbEhUqgEFRF8gRYAvC/view?usp=sharing
+
+2025-01-06 00:32:37 [INFO] Display text: Recording
+
+2025-01-06 00:32:37 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:39 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, and the URL is a Google Drive file, which does not indicate a connection to textbooks.
+
+2025-01-06 00:32:39 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:39 [INFO] 
+------------------------------------------------------------
+Processing link 41/53
+------------------------------------------------------------
+
+2025-01-06 00:32:39 [INFO] URL: https://drive.google.com/file/d/1OMRqnqPHFbG-ws4WrcSctZg_k82rPf0E/view?usp=sharing
+
+2025-01-06 00:32:39 [INFO] Display text: Slides
+
+2025-01-06 00:32:39 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:41 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:41 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:41 [INFO] 
+------------------------------------------------------------
+Processing link 42/53
+------------------------------------------------------------
+
+2025-01-06 00:32:41 [INFO] URL: https://drive.google.com/file/d/1v2rsWy-Ag50_ylkZ8zj3HePdI6IJ8rd0/view?usp=sharing
+
+2025-01-06 00:32:41 [INFO] Display text: Dev Lab Slides
+
+2025-01-06 00:32:41 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:44 [INFO] ❌ Not relevant to 'textbooks': The display text 'Dev Lab Slides' suggests the link is related to lab materials, not textbooks.
+
+2025-01-06 00:32:44 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:44 [INFO] 
+------------------------------------------------------------
+Processing link 43/53
+------------------------------------------------------------
+
+2025-01-06 00:32:44 [INFO] URL: https://mediaspace.illinois.edu/media/t/1_aagj4458
+
+2025-01-06 00:32:44 [INFO] Display text: Recording
+
+2025-01-06 00:32:44 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:47 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' and the URL do not indicate any relation to textbooks.
+
+2025-01-06 00:32:47 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:47 [INFO] 
+------------------------------------------------------------
+Processing link 44/53
+------------------------------------------------------------
+
+2025-01-06 00:32:47 [INFO] URL: https://drive.google.com/file/d/1v5dsLANrLQxl_HVeqXa85X4tLDlHemex/view?usp=sharing
+
+2025-01-06 00:32:47 [INFO] Display text: Slides
+
+2025-01-06 00:32:47 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:49 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:49 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:49 [INFO] 
+------------------------------------------------------------
+Processing link 45/53
+------------------------------------------------------------
+
+2025-01-06 00:32:49 [INFO] URL: https://drive.google.com/file/d/1ASEOzQ6_jkJFI7yscFMzNZgDYEqf2u5o/view?usp=sharing
+
+2025-01-06 00:32:49 [INFO] Display text: Recording
+
+2025-01-06 00:32:49 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:51 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:32:51 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:51 [INFO] 
+------------------------------------------------------------
+Processing link 46/53
+------------------------------------------------------------
+
+2025-01-06 00:32:51 [INFO] URL: https://drive.google.com/file/d/1me9FRbrL1EkG_DXY2qdxhGVWpromna2b/view?usp=sharing
+
+2025-01-06 00:32:51 [INFO] Display text: Slides
+
+2025-01-06 00:32:51 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:53 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:32:53 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:53 [INFO] 
+------------------------------------------------------------
+Processing link 47/53
+------------------------------------------------------------
+
+2025-01-06 00:32:53 [INFO] URL: https://drive.google.com/file/d/1g7x0K48J8EoP43TVoFIyjWT07B54q1Kt/view?usp=sharing
+
+2025-01-06 00:32:53 [INFO] Display text: Recording
+
+2025-01-06 00:32:53 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:55 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests a video or audio file, which is unlikely to contain information about textbooks.
+
+2025-01-06 00:32:55 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:55 [INFO] 
+------------------------------------------------------------
+Processing link 48/53
+------------------------------------------------------------
+
+2025-01-06 00:32:55 [INFO] URL: https://colab.research.google.com/github/ninetack/blog-public/blob/main/content/003_blog/003_rag_summaries.ipynb
+
+2025-01-06 00:32:55 [INFO] Display text: Slides
+
+2025-01-06 00:32:55 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:32:58 [INFO] ❌ Not relevant to 'textbooks': The URL points to a Jupyter notebook and the display text is 'Slides', which does not indicate any relation to textbooks.
+
+2025-01-06 00:32:58 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:32:58 [INFO] 
+------------------------------------------------------------
+Processing link 49/53
+------------------------------------------------------------
+
+2025-01-06 00:32:58 [INFO] URL: https://drive.google.com/file/d/183UVXqV9eljHsWEGabHV-2YE45vc5HbQ/view?usp=sharing
+
+2025-01-06 00:32:58 [INFO] Display text: Recording
+
+2025-01-06 00:32:58 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:33:00 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:33:00 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:33:00 [INFO] 
+------------------------------------------------------------
+Processing link 50/53
+------------------------------------------------------------
+
+2025-01-06 00:33:00 [INFO] URL: https://drive.google.com/file/d/17LzGDutPaB6-iU12ljzJ7oY36NvIZ3qk/view?usp=sharing
+
+2025-01-06 00:33:00 [INFO] Display text: Slides
+
+2025-01-06 00:33:00 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:33:02 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' suggests the link contains presentation slides, not textbook information.
+
+2025-01-06 00:33:02 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:33:02 [INFO] 
+------------------------------------------------------------
+Processing link 51/53
+------------------------------------------------------------
+
+2025-01-06 00:33:02 [INFO] URL: https://drive.google.com/file/d/1DyFhxpsZWwrNzxen0yXN7gAvpgyPcuT2/view?usp=sharing
+
+2025-01-06 00:33:02 [INFO] Display text: Recording
+
+2025-01-06 00:33:02 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:33:04 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:33:04 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:33:04 [INFO] 
+------------------------------------------------------------
+Processing link 52/53
+------------------------------------------------------------
+
+2025-01-06 00:33:04 [INFO] URL: https://docs.google.com/presentation/d/1wbF6y_l5K-uG-il7sCGbyK_bgxG0yvsO7_Y9uOtMCxw/edit?usp=sharing
+
+2025-01-06 00:33:04 [INFO] Display text: Slides
+
+2025-01-06 00:33:04 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:33:06 [INFO] ❌ Not relevant to 'textbooks': The display text 'Slides' and the URL pointing to a Google presentation do not indicate a connection to textbooks.
+
+2025-01-06 00:33:06 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:33:06 [INFO] 
+------------------------------------------------------------
+Processing link 53/53
+------------------------------------------------------------
+
+2025-01-06 00:33:06 [INFO] URL: https://drive.google.com/file/d/1TJ4yZJ3iTW4QvFQEXjPJ_aGrXXPCfwLr/view?usp=sharing
+
+2025-01-06 00:33:06 [INFO] Display text: Recording
+
+2025-01-06 00:33:06 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:33:08 [INFO] ❌ Not relevant to 'textbooks': The display text 'Recording' suggests the link is to a video or audio file, not textbooks.
+
+2025-01-06 00:33:08 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:33:08 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-06 00:33:08 [INFO] Total relevant links found at this depth: 0
+
+2025-01-06 00:33:08 [INFO] Discovered 0 relevant links:
+
+2025-01-06 00:33:08 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-06 00:33:08 [INFO] Updating information with relevant links...
+
+2025-01-06 00:33:08 [INFO] Saving final results...
+
+2025-01-06 00:33:08 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/course/1/cs_409.json
+
+2025-01-06 00:33:08 [INFO] 
+📊 Summary for https://uiucwp.gitlab.io/fa-24/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 281.80 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 00:33:08 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/course/1/cs_409.json
+
+2025-01-06 00:33:08 [INFO] 
+############################################################
+Processing URL [3/3]: https://cs357.cs.illinois.edu/
+############################################################
+
+2025-01-06 00:33:08 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 00:33:09 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 00:33:13 [INFO] Detected schema: course
+
+2025-01-06 00:33:13 [INFO] Reason: The webpage content mentions a specific course number (CS 357), learning objectives, syllabus, and instructor information, which are typical characteristics of a course schema.
+
+2025-01-06 00:33:13 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 00:33:13 [INFO] Getting response from open source with extra body for course
+
+2025-01-06 00:33:13 [INFO] Entity schema: <class 'course.Course'>
+
+2025-01-06 00:33:40 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 00:33:40 [INFO] 
+📊 Summary for https://cs357.cs.illinois.edu/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 31.69 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 00:33:40 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/course/1/cs_357.json
+
+2025-01-06 00:33:40 [INFO] 
+============================================================
+Final Process Summary
+============================================================
+
+2025-01-06 00:33:40 [INFO] Total Processing Time: 563.68 seconds
+
+2025-01-06 00:33:40 [INFO] Number of URLs Processed: 3
+
+2025-01-06 00:33:40 [INFO] 📊 Detailed Analysis by URL:
+
+2025-01-06 00:33:40 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:33:40 [INFO] 🌐 https://illinois-cs415.github.io/
+
+2025-01-06 00:33:40 [INFO] ⏱️  Processing Time: 250.19 seconds
+
+2025-01-06 00:33:40 [INFO] 
+📎 Relevant Links Found:
+
+2025-01-06 00:33:40 [INFO] 
+  🔗 https://illinois-cs415.github.io/resources
+
+2025-01-06 00:33:40 [INFO]      Fields: prerequisites, textbooks
+
+2025-01-06 00:33:40 [INFO]      Reasons:
+
+2025-01-06 00:33:40 [INFO]      • prerequisites: The URL and display text suggest a general resources page for the course, which may include information about prerequisites.
+
+2025-01-06 00:33:40 [INFO]      • textbooks: The URL and display text suggest a general resources page for the course, which may include information about textbooks.
+
+2025-01-06 00:33:40 [INFO]      ⏱️  Update Time: 22.81 seconds
+
+2025-01-06 00:33:40 [INFO] 
+  🔗 https://canvas.illinois.edu/
+
+2025-01-06 00:33:40 [INFO]      Fields: prerequisites, syllabusLink
+
+2025-01-06 00:33:40 [INFO]      Reasons:
+
+2025-01-06 00:33:40 [INFO]      • prerequisites: The URL points to a learning management system, which often contains course information, including prerequisites.
+
+2025-01-06 00:33:40 [INFO]      • syllabusLink: The URL points to a learning management system, and the display text 'Canvas' is a common platform for hosting course materials, including syllabi.
+
+2025-01-06 00:33:40 [INFO]      ⏱️  Update Time: 22.78 seconds
+
+2025-01-06 00:33:40 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:33:40 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:33:40 [INFO] 🌐 https://uiucwp.gitlab.io/fa-24/
+
+2025-01-06 00:33:40 [INFO] ⏱️  Processing Time: 281.80 seconds
+
+2025-01-06 00:33:40 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 00:33:40 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:33:40 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:33:40 [INFO] 🌐 https://cs357.cs.illinois.edu/
+
+2025-01-06 00:33:40 [INFO] ⏱️  Processing Time: 31.69 seconds
+
+2025-01-06 00:33:40 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 00:33:40 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:33:40 [INFO] 
+============================================================
+Writing process statistics to CSV
+============================================================
+
+2025-01-06 00:33:40 [INFO] 📊 Process statistics written to: ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/1/process_stats_20250106_003340.csv
+
+2025-01-06 00:33:40 [INFO] 
+============================================================
+✅ Process completed successfully!
+============================================================
+

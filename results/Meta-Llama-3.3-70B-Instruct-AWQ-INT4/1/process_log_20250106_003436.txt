@@ -1,0 +1,213 @@
+2025-01-06 00:34:36 [INFO] Testing logger setup
+
+2025-01-06 00:34:36 [INFO] 
+============================================================
+Testing section logging
+============================================================
+
+2025-01-06 00:34:36 [INFO] 
+------------------------------------------------------------
+Testing subsection logging
+------------------------------------------------------------
+
+2025-01-06 00:34:36 [INFO] 
+============================================================
+Starting entity information extraction process
+============================================================
+
+2025-01-06 00:34:36 [INFO] Processing URLs: ['https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct', 'https://huggingface.co/deepseek-ai/DeepSeek-V3', 'https://huggingface.co/Qwen/Qwen2.5-72B-Instruct']
+
+2025-01-06 00:34:36 [INFO] 
+############################################################
+Processing URL [1/3]: https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct
+############################################################
+
+2025-01-06 00:34:36 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 00:34:39 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 00:34:57 [INFO] Detected schema: language_model
+
+2025-01-06 00:34:57 [INFO] Reason: The webpage content describes a large language model called Llama 3.3, its architecture, training data, and intended use cases, which matches the language_model schema.
+
+2025-01-06 00:34:57 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 00:34:57 [INFO] Getting response from open source with extra body for language_model
+
+2025-01-06 00:34:57 [INFO] Entity schema: <class 'language_model.LanguageModel'>
+
+2025-01-06 00:36:05 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 00:36:05 [INFO] 
+📊 Summary for https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 88.97 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 00:36:05 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/language_model/1/llama-3.3-70b-instruct.json
+
+2025-01-06 00:36:05 [INFO] 
+############################################################
+Processing URL [2/3]: https://huggingface.co/deepseek-ai/DeepSeek-V3
+############################################################
+
+2025-01-06 00:36:05 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 00:36:06 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 00:36:21 [INFO] Detected schema: language_model
+
+2025-01-06 00:36:21 [INFO] Reason: The webpage content describes a language model called DeepSeek-V3, including its architecture, training process, evaluation results, and usage instructions, which matches the language_model schema.
+
+2025-01-06 00:36:21 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 00:36:21 [INFO] Getting response from open source with extra body for language_model
+
+2025-01-06 00:36:21 [INFO] Entity schema: <class 'language_model.LanguageModel'>
+
+2025-01-06 00:37:53 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 00:37:53 [INFO] 
+📊 Summary for https://huggingface.co/deepseek-ai/DeepSeek-V3
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 108.14 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 00:37:53 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/language_model/1/deepseek-v3.json
+
+2025-01-06 00:37:53 [INFO] 
+############################################################
+Processing URL [3/3]: https://huggingface.co/Qwen/Qwen2.5-72B-Instruct
+############################################################
+
+2025-01-06 00:37:53 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 00:37:54 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 00:38:01 [INFO] Detected schema: language_model
+
+2025-01-06 00:38:01 [INFO] Reason: The webpage content describes a large language model, Qwen2.5-72B-Instruct, its architecture, training stage, number of parameters, and performance, which matches the characteristics of a language model schema.
+
+2025-01-06 00:38:01 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 00:38:01 [INFO] Getting response from open source with extra body for language_model
+
+2025-01-06 00:38:01 [INFO] Entity schema: <class 'language_model.LanguageModel'>
+
+2025-01-06 00:38:19 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 00:38:19 [INFO] 
+📊 Summary for https://huggingface.co/Qwen/Qwen2.5-72B-Instruct
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 26.01 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 00:38:19 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/language_model/1/qwen2.5-72b-instruct.json
+
+2025-01-06 00:38:19 [INFO] 
+============================================================
+Final Process Summary
+============================================================
+
+2025-01-06 00:38:19 [INFO] Total Processing Time: 223.12 seconds
+
+2025-01-06 00:38:19 [INFO] Number of URLs Processed: 3
+
+2025-01-06 00:38:19 [INFO] 📊 Detailed Analysis by URL:
+
+2025-01-06 00:38:19 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:38:19 [INFO] 🌐 https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct
+
+2025-01-06 00:38:19 [INFO] ⏱️  Processing Time: 88.97 seconds
+
+2025-01-06 00:38:19 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 00:38:19 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:38:19 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:38:19 [INFO] 🌐 https://huggingface.co/deepseek-ai/DeepSeek-V3
+
+2025-01-06 00:38:19 [INFO] ⏱️  Processing Time: 108.14 seconds
+
+2025-01-06 00:38:19 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 00:38:19 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:38:19 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:38:19 [INFO] 🌐 https://huggingface.co/Qwen/Qwen2.5-72B-Instruct
+
+2025-01-06 00:38:19 [INFO] ⏱️  Processing Time: 26.01 seconds
+
+2025-01-06 00:38:19 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 00:38:19 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:38:19 [INFO] 
+============================================================
+Writing process statistics to CSV
+============================================================
+
+2025-01-06 00:38:19 [INFO] 📊 Process statistics written to: ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/1/process_stats_20250106_003819.csv
+
+2025-01-06 00:38:19 [INFO] 
+============================================================
+✅ Process completed successfully!
+============================================================
+

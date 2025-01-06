@@ -1,0 +1,1671 @@
+2025-01-06 13:15:34 [INFO] Testing logger setup
+
+2025-01-06 13:15:34 [INFO] 
+============================================================
+Testing section logging
+============================================================
+
+2025-01-06 13:15:34 [INFO] 
+------------------------------------------------------------
+Testing subsection logging
+------------------------------------------------------------
+
+2025-01-06 13:15:34 [INFO] 
+============================================================
+Starting entity information extraction process
+============================================================
+
+2025-01-06 13:15:34 [INFO] Processing URLs: ['https://yxw.cs.illinois.edu/', 'https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu', 'https://wgropp.cs.illinois.edu/']
+
+2025-01-06 13:15:34 [INFO] 
+############################################################
+Processing URL [1/3]: https://yxw.cs.illinois.edu/
+############################################################
+
+2025-01-06 13:15:34 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 13:15:36 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 13:15:45 [INFO] Detected schema: professor
+
+2025-01-06 13:15:45 [INFO] Reason: The webpage content describes Yuxiong Wang, who is an Assistant Professor at the University of Illinois Urbana-Champaign. The content includes his research interests, academic background, and the courses he teaches, which are typical elements found on a professor's homepage.
+
+2025-01-06 13:15:45 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 13:15:45 [INFO] Getting response from open source with extra body for professor
+
+2025-01-06 13:15:45 [INFO] Entity schema: <class 'professor.Professor'>
+
+2025-01-06 13:17:40 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-06 13:17:40 [INFO] 
+============================================================
+Gathering links at depth 2
+============================================================
+
+2025-01-06 13:17:40 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 13:18:59 [INFO] Found 49 links to process
+
+2025-01-06 13:18:59 [INFO] 
+------------------------------------------------------------
+Processing link 1/49
+------------------------------------------------------------
+
+2025-01-06 13:18:59 [INFO] URL: https://scholar.google.com/citations?user=T_Q-xDkAAAAJ
+
+2025-01-06 13:18:59 [INFO] Display text: Google Scholar
+
+2025-01-06 13:18:59 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:01 [INFO] ❌ Not relevant to 'office': The URL leads to a Google Scholar profile, which typically contains information about a person's publications and citations, not their office location.
+
+2025-01-06 13:19:04 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text indicate that the link leads to a Google Scholar profile, which typically contains information about publications and citations, not teaching honors.
+
+2025-01-06 13:19:04 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:04 [INFO] 
+------------------------------------------------------------
+Processing link 2/49
+------------------------------------------------------------
+
+2025-01-06 13:19:04 [INFO] URL: https://yxw.cs.illinois.edu/
+
+2025-01-06 13:19:04 [INFO] Display text: Back to top
+
+2025-01-06 13:19:04 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:07 [INFO] ❌ Not relevant to 'office': The display text 'Back to top' suggests that the link is for navigation within a page, not for providing information about a professor's office. The URL, while it includes the professor's initials, does not specifically indicate that it leads to information about the professor's office.
+
+2025-01-06 13:19:11 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not suggest any specific information about Professor Yuxiong Wang's teaching honors. The display text 'Back to top' typically indicates a link to return to the top of a webpage, not to detailed information about a professor's honors or achievements.
+
+2025-01-06 13:19:11 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:11 [INFO] 
+------------------------------------------------------------
+Processing link 3/49
+------------------------------------------------------------
+
+2025-01-06 13:19:11 [INFO] URL: https://www.ri.cmu.edu/ri-faculty/martial-hebert/
+
+2025-01-06 13:19:11 [INFO] Display text: Prof. Martial Hebert
+
+2025-01-06 13:19:11 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:13 [INFO] ❌ Not relevant to 'office': The URL and display text are specific to Prof. Martial Hebert and not related to Prof. Yuxiong Wang.
+
+2025-01-06 13:19:17 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are specific to Prof. Martial Hebert and do not indicate any information about Prof. Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:19:17 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:17 [INFO] 
+------------------------------------------------------------
+Processing link 4/49
+------------------------------------------------------------
+
+2025-01-06 13:19:17 [INFO] URL: https://www.di.ens.fr/~ponce/
+
+2025-01-06 13:19:17 [INFO] Display text: Prof. Jean Ponce
+
+2025-01-06 13:19:17 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:20 [INFO] ❌ Not relevant to 'office': The URL and display text are related to Prof. Jean Ponce, not Yuxiong Wang, and there is no indication that it would contain information about Yuxiong Wang's office.
+
+2025-01-06 13:19:23 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are specific to Prof. Jean Ponce and do not indicate any information about Prof. Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:19:23 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:23 [INFO] 
+------------------------------------------------------------
+Processing link 5/49
+------------------------------------------------------------
+
+2025-01-06 13:19:23 [INFO] URL: https://www.cs.cmu.edu/~deva/
+
+2025-01-06 13:19:23 [INFO] Display text: Prof. Deva Ramanan
+
+2025-01-06 13:19:23 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:26 [INFO] ❌ Not relevant to 'office': The URL and display text are specific to Prof. Deva Ramanan, not Yuxiong Wang, and thus are unlikely to contain information about Yuxiong Wang's office.
+
+2025-01-06 13:19:29 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are specific to Prof. Deva Ramanan and do not indicate any information about Prof. Yuxiong Wang's teaching honors.
+
+2025-01-06 13:19:29 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:29 [INFO] 
+------------------------------------------------------------
+Processing link 6/49
+------------------------------------------------------------
+
+2025-01-06 13:19:29 [INFO] URL: http://www.cs.cmu.edu/~rsalakhu/
+
+2025-01-06 13:19:29 [INFO] Display text: Prof. Ruslan Salakhutdinov
+
+2025-01-06 13:19:29 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:31 [INFO] ❌ Not relevant to 'office': The URL and display text are specific to Prof. Ruslan Salakhutdinov and do not indicate any information about Prof. Yuxiong Wang's office.
+
+2025-01-06 13:19:34 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are specific to Prof. Ruslan Salakhutdinov and do not indicate any information about Prof. Yuxiong Wang's teaching honors.
+
+2025-01-06 13:19:34 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:34 [INFO] 
+------------------------------------------------------------
+Processing link 7/49
+------------------------------------------------------------
+
+2025-01-06 13:19:34 [INFO] URL: https://arxiv.org/pdf/2005.10420.pdf
+
+2025-01-06 13:19:34 [INFO] Display text: Best Paper Honorable Mention Award for streaming perception in ECCV 2020
+
+2025-01-06 13:19:34 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 13:19:34 [INFO] 
+------------------------------------------------------------
+Processing link 8/49
+------------------------------------------------------------
+
+2025-01-06 13:19:34 [INFO] URL: https://blog.iclr.cc/2023/04/05/announcing-notable-reviewers-and-area-chairs-at-iclr-2023/
+
+2025-01-06 13:19:34 [INFO] Display text: Notable Area Chair in ICLR 2023
+
+2025-01-06 13:19:34 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:37 [INFO] ❌ Not relevant to 'office': The URL and display text suggest the link is about notable area chairs at ICLR 2023, not about a specific professor's office.
+
+2025-01-06 13:19:41 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest the link is about notable reviewers and area chairs at ICLR 2023, but there is no specific mention or indication that it relates to Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:19:41 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:41 [INFO] 
+------------------------------------------------------------
+Processing link 9/49
+------------------------------------------------------------
+
+2025-01-06 13:19:41 [INFO] URL: https://openreview.net/group?id=TMLR/Expert_Reviewers
+
+2025-01-06 13:19:41 [INFO] Display text: Expert Reviewer in TMLR
+
+2025-01-06 13:19:41 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:43 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is about expert reviewers for TMLR (Transactions on Machine Learning Research), not about a specific professor's office.
+
+2025-01-06 13:19:46 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is about expert reviewers in TMLR (Transactions on Machine Learning Research), not about teaching honors of a specific professor.
+
+2025-01-06 13:19:46 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:46 [INFO] 
+------------------------------------------------------------
+Processing link 10/49
+------------------------------------------------------------
+
+2025-01-06 13:19:46 [INFO] URL: https://grainger.illinois.edu/news/stories/ansell-wang-NAE
+
+2025-01-06 13:19:46 [INFO] Display text: National Academy of Engineering’s (NAE) Frontiers of Engineering symposium
+
+2025-01-06 13:19:46 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:49 [INFO] ❌ Not relevant to 'office': The URL and display text suggest the link is about a symposium or an event related to the National Academy of Engineering, not about a specific professor's office.
+
+2025-01-06 13:19:52 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest the link is about a symposium or event related to the National Academy of Engineering, not specifically about Yuxiong Wang's teaching honors.
+
+2025-01-06 13:19:52 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:52 [INFO] 
+------------------------------------------------------------
+Processing link 11/49
+------------------------------------------------------------
+
+2025-01-06 13:19:52 [INFO] URL: https://yxw.cs.illinois.edu/archive.old/thesis.pdf
+
+2025-01-06 13:19:52 [INFO] Display text: Learning to Learn for Small Sample Visual Recognition
+
+2025-01-06 13:19:52 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 13:19:52 [INFO] 
+------------------------------------------------------------
+Processing link 12/49
+------------------------------------------------------------
+
+2025-01-06 13:19:52 [INFO] URL: https://yxw.cs.illinois.edu/archive.old/RIThesis-YuxiongWang18.pdf
+
+2025-01-06 13:19:52 [INFO] Display text: Thesis
+
+2025-01-06 13:19:52 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 13:19:52 [INFO] 
+------------------------------------------------------------
+Processing link 13/49
+------------------------------------------------------------
+
+2025-01-06 13:19:52 [INFO] URL: https://www.youtube.com/watch?v=NEg7uhoVy_U&ab_channel=C3DigitalTransformationInstitute
+
+2025-01-06 13:19:52 [INFO] Display text: All-in-One: Unifying Generative and Discriminative AI in the 4D Open World
+
+2025-01-06 13:19:52 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:19:54 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is to a video about AI and digital transformation, which is unlikely to contain specific information about Professor Yuxiong Wang's office.
+
+2025-01-06 13:19:58 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not indicate any specific information about Professor Yuxiong Wang or his teaching honors. The display text suggests a topic related to AI, but it does not mention the professor or any teaching accolades.
+
+2025-01-06 13:19:58 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:19:58 [INFO] 
+------------------------------------------------------------
+Processing link 14/49
+------------------------------------------------------------
+
+2025-01-06 13:19:58 [INFO] URL: https://www.youtube.com/watch?v=9c9KdJ-5JG4&ab_channel=LondonMachineLearningMeetup
+
+2025-01-06 13:19:58 [INFO] Display text: Yuxiong Wang: Bridging Generative & Discriminative Learning in the Open World
+
+2025-01-06 13:19:58 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:01 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is to a video of Yuxiong Wang presenting on a topic related to machine learning. It does not indicate any information about the professor's office location or details.
+
+2025-01-06 13:20:04 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is to a video where Yuxiong Wang is presenting or discussing his research on bridging generative and discriminative learning. There is no indication that the content is related to teaching honors.
+
+2025-01-06 13:20:04 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:04 [INFO] 
+------------------------------------------------------------
+Processing link 15/49
+------------------------------------------------------------
+
+2025-01-06 13:20:04 [INFO] URL: https://scholar.google.com/citations?user=WtUzOKYAAAAJ&hl=en
+
+2025-01-06 13:20:04 [INFO] Display text: Garvita Allabadi
+
+2025-01-06 13:20:04 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:07 [INFO] ❌ Not relevant to 'office': The URL leads to a Google Scholar profile, which typically contains information about a person's publications and citations, not their office location. The display text does not match the name of the professor in question.
+
+2025-01-06 13:20:10 [INFO] ❌ Not relevant to 'teachingHonors': The URL leads to a Google Scholar profile, which typically contains information about publications and citations, not teaching honors. The display text does not match the name of the professor in question.
+
+2025-01-06 13:20:10 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:10 [INFO] 
+------------------------------------------------------------
+Processing link 16/49
+------------------------------------------------------------
+
+2025-01-06 13:20:10 [INFO] URL: https://shengcao-cao.github.io/
+
+2025-01-06 13:20:10 [INFO] Display text: Shengcao Cao
+
+2025-01-06 13:20:10 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:13 [INFO] ❌ Not relevant to 'office': The URL and display text are specific to Shengcao Cao, not Yuxiong Wang, and there is no indication that the link leads to information about any professor's office.
+
+2025-01-06 13:20:16 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are specific to Shengcao Cao, not Yuxiong Wang, and there is no indication that the link would contain information about teaching honors.
+
+2025-01-06 13:20:16 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:16 [INFO] 
+------------------------------------------------------------
+Processing link 17/49
+------------------------------------------------------------
+
+2025-01-06 13:20:16 [INFO] URL: https://www.linkedin.com/in/junkun-chen-a24520167/
+
+2025-01-06 13:20:16 [INFO] Display text: Junkun Chen
+
+2025-01-06 13:20:16 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:18 [INFO] ❌ Not relevant to 'office': The URL leads to a LinkedIn profile for Junkun Chen, which is unlikely to contain information about Professor Yuxiong Wang's office.
+
+2025-01-06 13:20:21 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are specific to Junkun Chen's LinkedIn profile, which is unlikely to contain information about Professor Yuxiong Wang's teaching honors.
+
+2025-01-06 13:20:21 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:21 [INFO] 
+------------------------------------------------------------
+Processing link 18/49
+------------------------------------------------------------
+
+2025-01-06 13:20:21 [INFO] URL: https://yunzeman.github.io/
+
+2025-01-06 13:20:21 [INFO] Display text: Yunze Man
+
+2025-01-06 13:20:21 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:24 [INFO] ❌ Not relevant to 'office': The URL and display text do not indicate any connection to Yuxiong Wang or any information about an office.
+
+2025-01-06 13:20:26 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not indicate any connection to Yuxiong Wang or any information about teaching honors.
+
+2025-01-06 13:20:26 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:26 [INFO] 
+------------------------------------------------------------
+Processing link 19/49
+------------------------------------------------------------
+
+2025-01-06 13:20:26 [INFO] URL: https://ziqipang.github.io/
+
+2025-01-06 13:20:26 [INFO] Display text: Ziqi Pang
+
+2025-01-06 13:20:26 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:28 [INFO] ❌ Not relevant to 'office': The URL and display text do not indicate any connection to Professor Yuxiong Wang or his office.
+
+2025-01-06 13:20:30 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not indicate any connection to Professor Yuxiong Wang or any information about teaching honors.
+
+2025-01-06 13:20:30 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:30 [INFO] 
+------------------------------------------------------------
+Processing link 20/49
+------------------------------------------------------------
+
+2025-01-06 13:20:30 [INFO] URL: https://michalmsr.web.illinois.edu/
+
+2025-01-06 13:20:30 [INFO] Display text: Michal Shlapentokh-Rothman
+
+2025-01-06 13:20:30 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:33 [INFO] ❌ Not relevant to 'office': The URL and display text do not match the name of the professor Yuxiong Wang, and there is no indication that the link is related to his office.
+
+2025-01-06 13:20:36 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not indicate any connection to Yuxiong Wang or any information about teaching honors.
+
+2025-01-06 13:20:36 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:36 [INFO] 
+------------------------------------------------------------
+Processing link 21/49
+------------------------------------------------------------
+
+2025-01-06 13:20:36 [INFO] URL: https://kaiyan289.github.io/
+
+2025-01-06 13:20:36 [INFO] Display text: Kai Yan
+
+2025-01-06 13:20:36 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:38 [INFO] ❌ Not relevant to 'office': The URL and display text do not indicate any connection to Professor Yuxiong Wang or any information about his office.
+
+2025-01-06 13:20:40 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not indicate any connection to Professor Yuxiong Wang or any information about teaching honors.
+
+2025-01-06 13:20:40 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:40 [INFO] 
+------------------------------------------------------------
+Processing link 22/49
+------------------------------------------------------------
+
+2025-01-06 13:20:40 [INFO] URL: https://sirui-xu.github.io
+
+2025-01-06 13:20:40 [INFO] Display text: Sirui Xu
+
+2025-01-06 13:20:40 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:43 [INFO] ❌ Not relevant to 'office': The URL and display text are specific to Sirui Xu, not Yuxiong Wang, and there is no indication that it leads to information about any professor's office.
+
+2025-01-06 13:20:45 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are specific to Sirui Xu, not Yuxiong Wang, and there is no indication that it would contain information about teaching honors.
+
+2025-01-06 13:20:45 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:45 [INFO] 
+------------------------------------------------------------
+Processing link 23/49
+------------------------------------------------------------
+
+2025-01-06 13:20:45 [INFO] URL: https://groundlmm.github.io/
+
+2025-01-06 13:20:45 [INFO] Display text: Website
+
+2025-01-06 13:20:45 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:48 [INFO] ❌ Not relevant to 'office': The URL and display text do not provide specific information that would suggest it contains details about Yuxiong Wang's office.
+
+2025-01-06 13:20:50 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not provide specific information that would suggest it contains details about Yuxiong Wang's teaching honors.
+
+2025-01-06 13:20:50 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:50 [INFO] 
+------------------------------------------------------------
+Processing link 24/49
+------------------------------------------------------------
+
+2025-01-06 13:20:50 [INFO] URL: https://arxiv.org/pdf/2410.08209
+
+2025-01-06 13:20:50 [INFO] Display text: PDF
+
+2025-01-06 13:20:50 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-06 13:20:50 [INFO] 
+------------------------------------------------------------
+Processing link 25/49
+------------------------------------------------------------
+
+2025-01-06 13:20:50 [INFO] URL: https://github.com/Shengcao-Cao/groundLMM
+
+2025-01-06 13:20:50 [INFO] Display text: Code
+
+2025-01-06 13:20:50 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:54 [INFO] ❌ Not relevant to 'office': The URL points to a GitHub repository, which is more likely to contain code or project files rather than information about a professor's office. The display text 'Code' also suggests that the link is related to source code rather than personal or office information.
+
+2025-01-06 13:20:57 [INFO] ❌ Not relevant to 'teachingHonors': The URL points to a GitHub repository, likely for a project or code, and the display text 'Code' suggests it is related to programming or software, not teaching honors.
+
+2025-01-06 13:20:57 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:20:57 [INFO] 
+------------------------------------------------------------
+Processing link 26/49
+------------------------------------------------------------
+
+2025-01-06 13:20:57 [INFO] URL: https://kaiyan289.github.io/jekyll/update/2024/10/16/ODTTD3.html
+
+2025-01-06 13:20:57 [INFO] Display text: Website
+
+2025-01-06 13:20:57 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:20:59 [INFO] ❌ Not relevant to 'office': The URL and display text do not provide any specific indication that the content is related to Professor Yuxiong Wang or his office.
+
+2025-01-06 13:21:01 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not provide any specific indication that the content is related to Professor Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:21:01 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:01 [INFO] 
+------------------------------------------------------------
+Processing link 27/49
+------------------------------------------------------------
+
+2025-01-06 13:21:01 [INFO] URL: https://arxiv.org/pdf/2410.24108
+
+2025-01-06 13:21:01 [INFO] Display text: PDF
+
+2025-01-06 13:21:01 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-06 13:21:01 [INFO] 
+------------------------------------------------------------
+Processing link 28/49
+------------------------------------------------------------
+
+2025-01-06 13:21:01 [INFO] URL: https://github.com/KaiYan289/RL_as_Vitamin_for_Online_Decision_Transformers
+
+2025-01-06 13:21:01 [INFO] Display text: Code
+
+2025-01-06 13:21:01 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:04 [INFO] ❌ Not relevant to 'office': The URL points to a GitHub repository for a project, and the display text 'Code' suggests it is related to source code. This is unlikely to contain information about a professor's office.
+
+2025-01-06 13:21:07 [INFO] ❌ Not relevant to 'teachingHonors': The URL points to a GitHub repository for a specific project, and the display text 'Code' suggests it contains source code. This is unlikely to contain information about teaching honors.
+
+2025-01-06 13:21:07 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:07 [INFO] 
+------------------------------------------------------------
+Processing link 29/49
+------------------------------------------------------------
+
+2025-01-06 13:21:07 [INFO] URL: https://instructg2i.github.io/
+
+2025-01-06 13:21:07 [INFO] Display text: Website
+
+2025-01-06 13:21:07 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:10 [INFO] ❌ Not relevant to 'office': The URL and display text do not provide specific information that would suggest it contains details about Professor Yuxiong Wang's office.
+
+2025-01-06 13:21:12 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not provide specific information related to Professor Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:21:12 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:12 [INFO] 
+------------------------------------------------------------
+Processing link 30/49
+------------------------------------------------------------
+
+2025-01-06 13:21:12 [INFO] URL: https://arxiv.org/pdf/2410.07157
+
+2025-01-06 13:21:12 [INFO] Display text: PDF
+
+2025-01-06 13:21:12 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-06 13:21:12 [INFO] 
+------------------------------------------------------------
+Processing link 31/49
+------------------------------------------------------------
+
+2025-01-06 13:21:12 [INFO] URL: https://github.com/PeterGriffinJin/InstructG2I
+
+2025-01-06 13:21:12 [INFO] Display text: Code
+
+2025-01-06 13:21:12 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:15 [INFO] ❌ Not relevant to 'office': The URL points to a GitHub repository named 'InstructG2I' under the user 'PeterGriffinJin', and the display text 'Code' suggests it is related to source code. This does not seem to be related to information about Professor Yuxiong Wang's office.
+
+2025-01-06 13:21:19 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is related to a GitHub repository for a project called 'InstructG2I' by a user named 'PeterGriffinJin'. There is no indication that this link is related to Professor Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:21:19 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:19 [INFO] 
+------------------------------------------------------------
+Processing link 32/49
+------------------------------------------------------------
+
+2025-01-06 13:21:19 [INFO] URL: https://immortalco.github.io/ProgressEditor/
+
+2025-01-06 13:21:19 [INFO] Display text: Website
+
+2025-01-06 13:21:19 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:22 [INFO] ❌ Not relevant to 'office': The URL and display text do not provide any indication that the link is related to Professor Yuxiong Wang or his office.
+
+2025-01-06 13:21:24 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not provide any indication that the link is related to Professor Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:21:24 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:24 [INFO] 
+------------------------------------------------------------
+Processing link 33/49
+------------------------------------------------------------
+
+2025-01-06 13:21:24 [INFO] URL: https://orangesodahub.github.io/SceneCraft/
+
+2025-01-06 13:21:24 [INFO] Display text: Website
+
+2025-01-06 13:21:24 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:26 [INFO] ❌ Not relevant to 'office': The URL and display text do not provide any indication that the content is related to Professor Yuxiong Wang or his office.
+
+2025-01-06 13:21:29 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not provide any specific indication that the content is related to Professor Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:21:29 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:29 [INFO] 
+------------------------------------------------------------
+Processing link 34/49
+------------------------------------------------------------
+
+2025-01-06 13:21:29 [INFO] URL: https://arxiv.org/abs/2410.09049
+
+2025-01-06 13:21:29 [INFO] Display text: PDF
+
+2025-01-06 13:21:29 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-06 13:21:29 [INFO] 
+------------------------------------------------------------
+Processing link 35/49
+------------------------------------------------------------
+
+2025-01-06 13:21:29 [INFO] URL: https://github.com/OrangeSodahub/SceneCraft
+
+2025-01-06 13:21:29 [INFO] Display text: Code
+
+2025-01-06 13:21:29 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:32 [INFO] ❌ Not relevant to 'office': The URL points to a GitHub repository named 'SceneCraft' and the display text is 'Code'. This suggests the link is related to a code repository, not information about a professor's office.
+
+2025-01-06 13:21:35 [INFO] ❌ Not relevant to 'teachingHonors': The URL points to a GitHub repository named 'SceneCraft' and the display text is 'Code'. This suggests the link is related to a code repository, which is unlikely to contain information about a professor's teaching honors.
+
+2025-01-06 13:21:35 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:35 [INFO] 
+------------------------------------------------------------
+Processing link 36/49
+------------------------------------------------------------
+
+2025-01-06 13:21:35 [INFO] URL: https://sirui-xu.github.io/InterDreamer/
+
+2025-01-06 13:21:35 [INFO] Display text: Website
+
+2025-01-06 13:21:35 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:37 [INFO] ❌ Not relevant to 'office': The URL and display text do not provide any indication that the content is related to Professor Yuxiong Wang or his office.
+
+2025-01-06 13:21:40 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not provide any specific indication that the content is related to Professor Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:21:40 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:40 [INFO] 
+------------------------------------------------------------
+Processing link 37/49
+------------------------------------------------------------
+
+2025-01-06 13:21:40 [INFO] URL: https://arxiv.org/abs/2403.19652
+
+2025-01-06 13:21:40 [INFO] Display text: PDF
+
+2025-01-06 13:21:40 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-06 13:21:40 [INFO] 
+------------------------------------------------------------
+Processing link 38/49
+------------------------------------------------------------
+
+2025-01-06 13:21:40 [INFO] URL: https://yunzeman.github.io/lexicon3d/index.html
+
+2025-01-06 13:21:40 [INFO] Display text: Website
+
+2025-01-06 13:21:40 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:43 [INFO] ❌ Not relevant to 'office': The URL and display text do not provide specific information that would suggest it contains details about Yuxiong Wang's office. The URL points to a GitHub page for a lexicon3d project, which is unlikely to be related to a professor's office information.
+
+2025-01-06 13:21:46 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not provide any specific indication that the content is related to Professor Yuxiong Wang or his teaching honors.
+
+2025-01-06 13:21:46 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:46 [INFO] 
+------------------------------------------------------------
+Processing link 39/49
+------------------------------------------------------------
+
+2025-01-06 13:21:46 [INFO] URL: https://arxiv.org/abs/2409.03757
+
+2025-01-06 13:21:46 [INFO] Display text: PDF
+
+2025-01-06 13:21:46 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-06 13:21:46 [INFO] 
+------------------------------------------------------------
+Processing link 40/49
+------------------------------------------------------------
+
+2025-01-06 13:21:46 [INFO] URL: https://github.com/YunzeMan/Lexicon3D
+
+2025-01-06 13:21:46 [INFO] Display text: Code
+
+2025-01-06 13:21:46 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:49 [INFO] ❌ Not relevant to 'office': The URL points to a GitHub repository named 'Lexicon3D' by user 'YunzeMan', and the display text 'Code' suggests it is related to source code. This does not seem to be related to information about Professor Yuxiong Wang's office.
+
+2025-01-06 13:21:53 [INFO] ❌ Not relevant to 'teachingHonors': The URL points to a GitHub repository named 'Lexicon3D' by user 'YunzeMan', and the display text 'Code' suggests it is related to source code. There is no indication that this link is related to Professor Yuxiong Wang's teaching honors.
+
+2025-01-06 13:21:53 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:53 [INFO] 
+------------------------------------------------------------
+Processing link 41/49
+------------------------------------------------------------
+
+2025-01-06 13:21:53 [INFO] URL: https://yxw.cs.illinois.edu/publications
+
+2025-01-06 13:21:53 [INFO] Display text: More Publications
+
+2025-01-06 13:21:53 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:21:55 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link leads to a page with publications, not information about an office location.
+
+2025-01-06 13:21:58 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link leads to a list of publications, which is not directly related to teaching honors.
+
+2025-01-06 13:21:58 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:21:58 [INFO] 
+------------------------------------------------------------
+Processing link 42/49
+------------------------------------------------------------
+
+2025-01-06 13:21:58 [INFO] URL: https://yxw.cs.illinois.edu/course/CS598LTL.html
+
+2025-01-06 13:21:58 [INFO] Display text: Fall 2020
+
+2025-01-06 13:21:58 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:22:01 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is about a course (CS598LTL) offered in Fall 2020, not about the professor's office.
+
+2025-01-06 13:22:04 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is about a specific course (CS598LTL) in a particular semester (Fall 2020), but do not indicate information about teaching honors specifically.
+
+2025-01-06 13:22:04 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:22:04 [INFO] 
+------------------------------------------------------------
+Processing link 43/49
+------------------------------------------------------------
+
+2025-01-06 13:22:04 [INFO] URL: https://yxw.cs.illinois.edu/course/CS598LTL/F22/
+
+2025-01-06 13:22:04 [INFO] Display text: Fall 2022
+
+2025-01-06 13:22:04 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:22:07 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is about a course (CS598LTL) offered in Fall 2022, not about the professor's office.
+
+2025-01-06 13:22:10 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is about a specific course (CS598LTL) in a particular semester (Fall 2022), but do not indicate information about the professor's teaching honors specifically.
+
+2025-01-06 13:22:10 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:22:10 [INFO] 
+------------------------------------------------------------
+Processing link 44/49
+------------------------------------------------------------
+
+2025-01-06 13:22:10 [INFO] URL: https://yxw.cs.illinois.edu/course/CS598ACV/S21/
+
+2025-01-06 13:22:10 [INFO] Display text: Spring 2021
+
+2025-01-06 13:22:10 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:22:13 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is about a specific course (CS598ACV) in a particular semester (Spring 2021), rather than information about the professor's office.
+
+2025-01-06 13:22:16 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is about a specific course (CS598ACV) in a particular semester (Spring 2021), but do not indicate information about the professor's teaching honors specifically.
+
+2025-01-06 13:22:16 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:22:16 [INFO] 
+------------------------------------------------------------
+Processing link 45/49
+------------------------------------------------------------
+
+2025-01-06 13:22:16 [INFO] URL: https://yxw.cs.illinois.edu/course/CS445/F21/
+
+2025-01-06 13:22:16 [INFO] Display text: Fall 2021
+
+2025-01-06 13:22:16 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:22:19 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is about a specific course (CS445) in a particular semester (Fall 2021), rather than information about a professor's office.
+
+2025-01-06 13:22:23 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is about a specific course (CS445) in a specific semester (Fall 2021), but do not indicate any information about teaching honors specifically.
+
+2025-01-06 13:22:23 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:22:23 [INFO] 
+------------------------------------------------------------
+Processing link 46/49
+------------------------------------------------------------
+
+2025-01-06 13:22:23 [INFO] URL: https://yxw.cs.illinois.edu/course/CS445/S22/
+
+2025-01-06 13:22:23 [INFO] Display text: Spring 2022
+
+2025-01-06 13:22:23 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:22:26 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is about a specific course (CS445) in a particular semester (Spring 2022), rather than information about a professor's office.
+
+2025-01-06 13:22:29 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is about a specific course (CS445) in a specific semester (Spring 2022), but there is no indication that it contains information about the professor's teaching honors.
+
+2025-01-06 13:22:29 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:22:29 [INFO] 
+------------------------------------------------------------
+Processing link 47/49
+------------------------------------------------------------
+
+2025-01-06 13:22:29 [INFO] URL: https://yxw.cs.illinois.edu/course/CS445/S23/
+
+2025-01-06 13:22:29 [INFO] Display text: Spring 2023
+
+2025-01-06 13:22:29 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:22:32 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is about a specific course (CS445) in a particular semester (Spring 2023), rather than information about a professor's office.
+
+2025-01-06 13:22:36 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is about a specific course (CS445) in a specific semester (Spring 2023), but there is no indication that it contains information about the professor's teaching honors.
+
+2025-01-06 13:22:36 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:22:36 [INFO] 
+------------------------------------------------------------
+Processing link 48/49
+------------------------------------------------------------
+
+2025-01-06 13:22:36 [INFO] URL: https://yxw.cs.illinois.edu/course/CS445/S24/
+
+2025-01-06 13:22:36 [INFO] Display text: Spring 2024
+
+2025-01-06 13:22:36 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:22:39 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is about a specific course (CS445) in a particular semester (Spring 2024), rather than information about a professor's office.
+
+2025-01-06 13:22:42 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is about a specific course (CS445) in a specific semester (Spring 2024), but there is no indication that it contains information about the professor's teaching honors.
+
+2025-01-06 13:22:42 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:22:42 [INFO] 
+------------------------------------------------------------
+Processing link 49/49
+------------------------------------------------------------
+
+2025-01-06 13:22:42 [INFO] URL: https://yxw.cs.illinois.edu/course/CS445/F24/
+
+2025-01-06 13:22:42 [INFO] Display text: Fall 2024
+
+2025-01-06 13:22:42 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:22:45 [INFO] ❌ Not relevant to 'office': The URL and display text suggest that the link is about a course (CS445) in Fall 2024, not about the professor's office.
+
+2025-01-06 13:22:48 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest that the link is about a course (CS445) in a specific semester (Fall 2024), but there is no indication that it contains information about Professor Yuxiong Wang's teaching honors specifically.
+
+2025-01-06 13:22:48 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:22:48 [INFO] 
+============================================================
+Completed depth 2
+============================================================
+
+2025-01-06 13:22:48 [INFO] Total relevant links found at this depth: 0
+
+2025-01-06 13:22:48 [INFO] Discovered 0 relevant links:
+
+2025-01-06 13:22:48 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-06 13:22:48 [INFO] Updating information with relevant links...
+
+2025-01-06 13:22:48 [INFO] Saving final results...
+
+2025-01-06 13:22:48 [INFO] Results saved to ./results/Qwen2.5-72B-Instruct-AWQ/professor/2/yuxiong_wang.json
+
+2025-01-06 13:22:48 [INFO] 
+📊 Summary for https://yxw.cs.illinois.edu/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 433.85 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 13:22:48 [INFO] ✅ Results saved to ./results/Qwen2.5-72B-Instruct-AWQ/professor/2/yuxiong_wang.json
+
+2025-01-06 13:22:48 [INFO] 
+############################################################
+Processing URL [2/3]: https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu
+############################################################
+
+2025-01-06 13:22:48 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 13:25:04 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 13:25:18 [INFO] Detected schema: professor
+
+2025-01-06 13:25:18 [INFO] Reason: The content describes an academic profile of Xiaohui Zhu, including his educational background, research interests, publications, and teaching activities, which aligns with the schema of a professor.
+
+2025-01-06 13:25:18 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 13:25:18 [INFO] Getting response from open source with extra body for professor
+
+2025-01-06 13:25:18 [INFO] Entity schema: <class 'professor.Professor'>
+
+2025-01-06 13:27:11 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 13:27:11 [INFO] 
+📊 Summary for https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 262.52 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 13:27:11 [INFO] ✅ Results saved to ./results/Qwen2.5-72B-Instruct-AWQ/professor/2/xiaohui_zhu.json
+
+2025-01-06 13:27:11 [INFO] 
+############################################################
+Processing URL [3/3]: https://wgropp.cs.illinois.edu/
+############################################################
+
+2025-01-06 13:27:11 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 13:27:14 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 13:27:22 [INFO] Detected schema: professor
+
+2025-01-06 13:27:22 [INFO] Reason: The webpage content describes William D. Gropp, who is a professor and director at the National Center for Supercomputing Applications. It includes his academic position, research interests, and current projects, which are typical elements found on a professor's homepage.
+
+2025-01-06 13:27:22 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 13:27:22 [INFO] Getting response from open source with extra body for professor
+
+2025-01-06 13:27:22 [INFO] Entity schema: <class 'professor.Professor'>
+
+2025-01-06 13:28:02 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-06 13:28:02 [INFO] 
+============================================================
+Gathering links at depth 2
+============================================================
+
+2025-01-06 13:28:02 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 13:28:54 [INFO] Found 29 links to process
+
+2025-01-06 13:28:54 [INFO] 
+------------------------------------------------------------
+Processing link 1/29
+------------------------------------------------------------
+
+2025-01-06 13:28:54 [INFO] URL: http://ncsa.illinois.edu
+
+2025-01-06 13:28:54 [INFO] Display text: National Center for Supercomputing Applications
+
+2025-01-06 13:28:54 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:28:57 [INFO] ❌ Not relevant to 'publications': The URL and display text refer to the National Center for Supercomputing Applications, which is not specifically related to Professor William D. Gropp's publications.
+
+2025-01-06 13:28:59 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to a supercomputing center, not to specific information about William D. Gropp's teaching honors.
+
+2025-01-06 13:29:03 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text refer to the National Center for Supercomputing Applications, which is not specifically related to William D. Gropp's courses taught.
+
+2025-01-06 13:29:03 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:29:03 [INFO] 
+------------------------------------------------------------
+Processing link 2/29
+------------------------------------------------------------
+
+2025-01-06 13:29:03 [INFO] URL: http://cs.illinois.edu/directory/profile/namato
+
+2025-01-06 13:29:03 [INFO] Display text: Nancy Amato
+
+2025-01-06 13:29:03 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:29:06 [INFO] ❌ Not relevant to 'publications': The URL and display text are specific to Nancy Amato, not William D. Gropp, and thus are unlikely to contain information about Gropp's publications.
+
+2025-01-06 13:29:08 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are specific to Nancy Amato, not William D. Gropp, and thus are unlikely to contain information about Gropp's teaching honors.
+
+2025-01-06 13:29:11 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text are specific to Nancy Amato, not William D. Gropp, and thus are unlikely to contain information about Gropp's courses taught.
+
+2025-01-06 13:29:11 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:29:11 [INFO] 
+------------------------------------------------------------
+Processing link 3/29
+------------------------------------------------------------
+
+2025-01-06 13:29:11 [INFO] URL: http://orcid.org/0000-0003-2905-3029
+
+2025-01-06 13:29:11 [INFO] Display text: ORCID
+
+2025-01-06 13:29:11 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:29:14 [INFO] ✅ Relevant to 'publications': ORCID is a system that provides unique identifiers for researchers and links to their research outputs. The URL provided is an ORCID identifier, which is likely to lead to a page containing information about the researcher's publications and other scholarly activities.
+
+2025-01-06 13:29:17 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text indicate that the link leads to an ORCID profile, which is a unique identifier for researchers and does not specifically point to teaching honors information.
+
+2025-01-06 13:29:20 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text indicate that the link leads to an ORCID profile, which is typically used to identify researchers and their works, not to list courses taught.
+
+2025-01-06 13:29:20 [INFO] 📍 Link is relevant for fields: publications
+
+2025-01-06 13:29:20 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: http://orcid.org/0000-0003-2905-3029
+------------------------------------------------------------
+
+2025-01-06 13:29:22 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 13:29:22 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-06 13:29:22 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 13:29:25 [INFO] Found 1 links to process
+
+2025-01-06 13:29:25 [INFO] 
+------------------------------------------------------------
+Processing link 1/1
+------------------------------------------------------------
+
+2025-01-06 13:29:25 [INFO] URL: https://orcid.org/
+
+2025-01-06 13:29:25 [INFO] Display text: ORCID
+
+2025-01-06 13:29:25 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:29:28 [INFO] ❌ Not relevant to 'publications': The URL and display text indicate a general ORCID page, which is a service for researchers to manage their digital identities. It does not specifically point to information about William D. Gropp's publications.
+
+2025-01-06 13:29:31 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text indicate that the link leads to the ORCID website, which is a registry for unique researcher identifiers. It is unlikely to contain specific information about William D. Gropp's teaching honors.
+
+2025-01-06 13:29:34 [INFO] ❌ Not relevant to 'coursesTaught': ORCID is a system for unique identification of researchers and contributors, and while it can link to a researcher's publications and activities, it is not typically used to list specific courses taught by a professor.
+
+2025-01-06 13:29:34 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:29:34 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-06 13:29:34 [INFO] Total relevant links found at this depth: 0
+
+2025-01-06 13:29:34 [INFO] Found 0 additional relevant links
+
+2025-01-06 13:29:34 [INFO] 
+------------------------------------------------------------
+Processing link 4/29
+------------------------------------------------------------
+
+2025-01-06 13:29:34 [INFO] URL: https://cra.org/
+
+2025-01-06 13:29:34 [INFO] Display text: Computing Research Association (CRA)
+
+2025-01-06 13:29:34 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:29:37 [INFO] ❌ Not relevant to 'publications': The URL and display text indicate that the link leads to the homepage of the Computing Research Association, which is unlikely to contain specific information about William D. Gropp's publications.
+
+2025-01-06 13:29:40 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text indicate that the link is to the Computing Research Association's website, which is unlikely to contain specific information about William D. Gropp's teaching honors.
+
+2025-01-06 13:29:43 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text indicate that the link is to the Computing Research Association's website, which is unlikely to contain specific information about courses taught by William D. Gropp.
+
+2025-01-06 13:29:43 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:29:43 [INFO] 
+------------------------------------------------------------
+Processing link 5/29
+------------------------------------------------------------
+
+2025-01-06 13:29:43 [INFO] URL: https://cra.org/ccc/
+
+2025-01-06 13:29:43 [INFO] Display text: Computing Community Consortium (CCC)
+
+2025-01-06 13:29:43 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:29:46 [INFO] ❌ Not relevant to 'publications': The URL and display text indicate that the link is to the Computing Community Consortium (CCC) website, which is unlikely to contain specific information about Professor William D. Gropp's publications.
+
+2025-01-06 13:29:48 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to the Computing Community Consortium (CCC), which is unlikely to contain specific information about William D. Gropp's teaching honors.
+
+2025-01-06 13:29:51 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text suggest that the link is to the Computing Community Consortium (CCC) website, which is unlikely to contain specific information about courses taught by Professor William D. Gropp.
+
+2025-01-06 13:29:51 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:29:51 [INFO] 
+------------------------------------------------------------
+Processing link 6/29
+------------------------------------------------------------
+
+2025-01-06 13:29:51 [INFO] URL: http://www.mcs.anl.gov/petsc
+
+2025-01-06 13:29:51 [INFO] Display text: PETSc
+
+2025-01-06 13:29:51 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:29:54 [INFO] ❌ Not relevant to 'publications': The URL and display text are related to PETSc, a software library for the scalable solution of scientific applications, and do not specifically indicate a connection to William D. Gropp's publications.
+
+2025-01-06 13:29:57 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to PETSc, a software library for the scalable solution of scientific applications, and do not indicate any specific information about William D. Gropp's teaching honors.
+
+2025-01-06 13:30:00 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text are related to PETSc, a software library for the scalable solution of scientific applications, and do not specifically indicate information about courses taught by William D. Gropp.
+
+2025-01-06 13:30:00 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:30:00 [INFO] 
+------------------------------------------------------------
+Processing link 7/29
+------------------------------------------------------------
+
+2025-01-06 13:30:00 [INFO] URL: http://www.mpi-forum.org
+
+2025-01-06 13:30:00 [INFO] Display text: MPI
+
+2025-01-06 13:30:00 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:30:03 [INFO] ❌ Not relevant to 'publications': The URL and display text are related to MPI (Message Passing Interface), which is a standard for parallel computing, not specifically to William D. Gropp's publications.
+
+2025-01-06 13:30:05 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to MPI (Message Passing Interface), which is a standard for parallel computing, not to William D. Gropp's teaching honors specifically.
+
+2025-01-06 13:30:08 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text are related to MPI (Message Passing Interface), which is a standard for parallel computing, not specifically about William D. Gropp or his courses.
+
+2025-01-06 13:30:08 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:30:08 [INFO] 
+------------------------------------------------------------
+Processing link 8/29
+------------------------------------------------------------
+
+2025-01-06 13:30:08 [INFO] URL: http://www.mpich.org
+
+2025-01-06 13:30:08 [INFO] Display text: MPICH
+
+2025-01-06 13:30:08 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:30:11 [INFO] ❌ Not relevant to 'publications': The URL and display text are related to MPICH, a software library for message passing, and do not specifically indicate a connection to William D. Gropp's publications.
+
+2025-01-06 13:30:13 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to MPICH, a software library for message passing, and do not specifically indicate information about William D. Gropp's teaching honors.
+
+2025-01-06 13:30:17 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text are related to MPICH, a software library for message passing, and do not specifically indicate information about William D. Gropp's courses taught.
+
+2025-01-06 13:30:17 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:30:17 [INFO] 
+------------------------------------------------------------
+Processing link 9/29
+------------------------------------------------------------
+
+2025-01-06 13:30:17 [INFO] URL: https://delta.ncsa.illinois.edu/
+
+2025-01-06 13:30:17 [INFO] Display text: Delta
+
+2025-01-06 13:30:17 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:30:19 [INFO] ❌ Not relevant to 'publications': The URL and display text do not specifically indicate a connection to William D. Gropp or his publications.
+
+2025-01-06 13:30:22 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not provide specific indication of information related to William D. Gropp's teaching honors.
+
+2025-01-06 13:30:24 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text do not provide specific indication of information related to William D. Gropp's courses taught.
+
+2025-01-06 13:30:24 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:30:24 [INFO] 
+------------------------------------------------------------
+Processing link 10/29
+------------------------------------------------------------
+
+2025-01-06 13:30:24 [INFO] URL: https://access-ci.org/
+
+2025-01-06 13:30:24 [INFO] Display text: ACCESS
+
+2025-01-06 13:30:24 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:30:26 [INFO] ❌ Not relevant to 'publications': The URL and display text do not indicate any specific connection to Professor William D. Gropp or his publications.
+
+2025-01-06 13:30:28 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not indicate any specific information related to Professor William D. Gropp or his teaching honors.
+
+2025-01-06 13:30:31 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text do not indicate any specific connection to Professor William D. Gropp or his courses.
+
+2025-01-06 13:30:31 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:30:31 [INFO] 
+------------------------------------------------------------
+Processing link 11/29
+------------------------------------------------------------
+
+2025-01-06 13:30:31 [INFO] URL: https://www.nsf.gov/pubs/2024/nsf24024/nsf24024.jsp
+
+2025-01-06 13:30:31 [INFO] Display text: National Discovery Cloud for Climate (NDC-C)
+
+2025-01-06 13:30:31 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:30:34 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest that the link is about a national project or initiative related to climate data, not about specific publications by William D. Gropp.
+
+2025-01-06 13:30:37 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to a national project on climate data, which is unlikely to contain specific information about Professor William D. Gropp's teaching honors.
+
+2025-01-06 13:30:39 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text suggest that the link is about a national project or resource for climate research, not about a specific professor's courses.
+
+2025-01-06 13:30:39 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:30:39 [INFO] 
+------------------------------------------------------------
+Processing link 12/29
+------------------------------------------------------------
+
+2025-01-06 13:30:39 [INFO] URL: https://ai.ncsa.illinois.edu/research/hal/
+
+2025-01-06 13:30:39 [INFO] Display text: Deep Learning Major Research Instrument (HAL)
+
+2025-01-06 13:30:39 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:30:42 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest the link is about a research instrument or project called HAL, which is related to deep learning, and does not specifically mention William D. Gropp or his publications.
+
+2025-01-06 13:30:45 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to a research project (HAL) and do not indicate any information about William D. Gropp's teaching honors.
+
+2025-01-06 13:30:47 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text are related to a research project (HAL) and do not indicate any direct connection to Professor William D. Gropp or his courses.
+
+2025-01-06 13:30:47 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:30:47 [INFO] 
+------------------------------------------------------------
+Processing link 13/29
+------------------------------------------------------------
+
+2025-01-06 13:30:47 [INFO] URL: https://www.ncsa.illinois.edu/about/illinois-computes/
+
+2025-01-06 13:30:47 [INFO] Display text: Illinois Computes
+
+2025-01-06 13:30:47 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:30:50 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest the link is about the Illinois Computes initiative, not specifically about William D. Gropp's publications.
+
+2025-01-06 13:30:52 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest the link is about a computing initiative at the University of Illinois, not specifically about Professor William D. Gropp's teaching honors.
+
+2025-01-06 13:30:55 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text suggest the link is about a computing initiative or resource at the University of Illinois, not specifically about Professor William D. Gropp or his courses.
+
+2025-01-06 13:30:55 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:30:55 [INFO] 
+------------------------------------------------------------
+Processing link 14/29
+------------------------------------------------------------
+
+2025-01-06 13:30:55 [INFO] URL: http://ceesd.ncsa.illinois.edu/
+
+2025-01-06 13:30:55 [INFO] Display text: Center for Exascale-enabled Scramjet Design
+
+2025-01-06 13:30:55 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:30:58 [INFO] ❌ Not relevant to 'publications': The URL and display text are related to a research center focused on scramjet design, which is not directly related to William D. Gropp's known field of expertise in computer science and parallel computing.
+
+2025-01-06 13:31:01 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to a research center focused on scramjet design, which is not directly related to William D. Gropp's teaching honors.
+
+2025-01-06 13:31:03 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text are related to a research center focused on scramjet design, which is not directly related to William D. Gropp or his courses.
+
+2025-01-06 13:31:03 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:31:03 [INFO] 
+------------------------------------------------------------
+Processing link 15/29
+------------------------------------------------------------
+
+2025-01-06 13:31:03 [INFO] URL: https://share-ng.sandia.gov/psaapIII/
+
+2025-01-06 13:31:03 [INFO] Display text: Predictive Science Academic Alliance Program (PSAAP III)
+
+2025-01-06 13:31:03 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:31:06 [INFO] ❌ Not relevant to 'publications': The URL and display text are related to the Predictive Science Academic Alliance Program (PSAAP III), which does not specifically indicate a connection to William D. Gropp or his publications.
+
+2025-01-06 13:31:09 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to a program (PSAAP III) and do not specifically mention William D. Gropp or any teaching honors.
+
+2025-01-06 13:31:11 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text are related to a program (PSAAP III) and do not specifically mention William D. Gropp or any courses he might have taught.
+
+2025-01-06 13:31:11 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:31:11 [INFO] 
+------------------------------------------------------------
+Processing link 16/29
+------------------------------------------------------------
+
+2025-01-06 13:31:11 [INFO] URL: https://midwestbigdatahub.org/
+
+2025-01-06 13:31:11 [INFO] Display text: Midwest Big Data Hub (MBDH)
+
+2025-01-06 13:31:11 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:31:14 [INFO] ❌ Not relevant to 'publications': The URL and display text are related to the Midwest Big Data Hub, which is a regional organization and not specifically about Professor William D. Gropp or his publications.
+
+2025-01-06 13:31:17 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not indicate any specific information about William D. Gropp or his teaching honors. The link is to a general information site about the Midwest Big Data Hub.
+
+2025-01-06 13:31:19 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text do not indicate any specific connection to Professor William D. Gropp or his courses.
+
+2025-01-06 13:31:19 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:31:19 [INFO] 
+------------------------------------------------------------
+Processing link 17/29
+------------------------------------------------------------
+
+2025-01-06 13:31:19 [INFO] URL: https://www.mpi-forum.org/
+
+2025-01-06 13:31:19 [INFO] Display text: MPI Forum
+
+2025-01-06 13:31:19 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:31:22 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest that the link is to the MPI Forum website, which is a general resource for the Message Passing Interface standard, not specifically about Professor William D. Gropp's publications.
+
+2025-01-06 13:31:25 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to MPI (Message Passing Interface) Forum, which is unlikely to contain specific information about William D. Gropp's teaching honors.
+
+2025-01-06 13:31:28 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text refer to the MPI Forum, which is an organization focused on the Message Passing Interface standard for parallel computing. It is unlikely to contain specific information about courses taught by Professor William D. Gropp.
+
+2025-01-06 13:31:28 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:31:28 [INFO] 
+------------------------------------------------------------
+Processing link 18/29
+------------------------------------------------------------
+
+2025-01-06 13:31:28 [INFO] URL: https://wgropp.cs.illinois.edu/projects/studentproj.htm
+
+2025-01-06 13:31:28 [INFO] Display text: More information can be found here
+
+2025-01-06 13:31:28 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:31:31 [INFO] ❌ Not relevant to 'publications': The URL and display text do not specifically indicate that the content is related to William D. Gropp's publications. The URL points to a projects page, and the display text is generic, not mentioning publications or the professor's name.
+
+2025-01-06 13:31:34 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text do not specifically indicate that the content is related to William D. Gropp's teaching honors. The URL points to a projects page, and the display text is generic, not mentioning teaching or honors.
+
+2025-01-06 13:31:37 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text do not specifically indicate that the content is related to William D. Gropp's courses taught. The URL points to a projects page and the display text is generic, not mentioning courses or the professor.
+
+2025-01-06 13:31:37 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:31:37 [INFO] 
+------------------------------------------------------------
+Processing link 19/29
+------------------------------------------------------------
+
+2025-01-06 13:31:37 [INFO] URL: https://www.hpcwire.com/35-hpc-legends/
+
+2025-01-06 13:31:37 [INFO] Display text: 35 HPC Legends
+
+2025-01-06 13:31:37 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:31:40 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest a list of influential figures in the field of High-Performance Computing (HPC), but do not specifically indicate information about William D. Gropp's publications.
+
+2025-01-06 13:31:43 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest a list of 35 influential figures in High Performance Computing (HPC), but do not specifically indicate information about William D. Gropp's teaching honors.
+
+2025-01-06 13:31:46 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text suggest the page is about 35 influential figures in High Performance Computing (HPC), not specifically about courses taught by William D. Gropp.
+
+2025-01-06 13:31:46 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:31:46 [INFO] 
+------------------------------------------------------------
+Processing link 20/29
+------------------------------------------------------------
+
+2025-01-06 13:31:46 [INFO] URL: https://www.hpcwire.com/2023-readers-editors-choice-outstanding-leadership/?utm_source=HPCwire+Services+-+Announcements&utm_medium=email-BOTH&utm_campaign=HPCwire+Readers%E2%80%99+and+Editors%E2%80%99+Choice+Awards+Announced%21&utm_term=7465H7080134H0B&oly_enc_id=7465H7080134H0B
+
+2025-01-06 13:31:46 [INFO] Display text: HPCWire Readers Choice Award for Outstanding Leadership in HPC
+
+2025-01-06 13:31:46 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:31:49 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest the link is about an award for leadership in High-Performance Computing (HPC), not about specific publications by William D. Gropp.
+
+2025-01-06 13:31:52 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text refer to a general award for leadership in HPC, not specifically to William D. Gropp or his teaching honors.
+
+2025-01-06 13:31:55 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text suggest the link is about an award for leadership in High-Performance Computing (HPC), not about specific courses taught by William D. Gropp.
+
+2025-01-06 13:31:55 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:31:55 [INFO] 
+------------------------------------------------------------
+Processing link 21/29
+------------------------------------------------------------
+
+2025-01-06 13:31:55 [INFO] URL: https://www.mpi-forum.org/docs/mpi-4.1/mpi41-report.pdf
+
+2025-01-06 13:31:55 [INFO] Display text: MPI 4.1 Standard
+
+2025-01-06 13:31:55 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 13:31:55 [INFO] 
+------------------------------------------------------------
+Processing link 22/29
+------------------------------------------------------------
+
+2025-01-06 13:31:55 [INFO] URL: https://www.mpi-forum.org/docs/mpi-4.1/mpi41-report/mpi41-report.htm
+
+2025-01-06 13:31:55 [INFO] Display text: Unofficial HTML version of MPI 4.1
+
+2025-01-06 13:31:55 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:31:58 [INFO] ❌ Not relevant to 'publications': The URL and display text indicate that the link is to an unofficial HTML version of the MPI 4.1 standard, which is unlikely to contain specific information about William D. Gropp's publications.
+
+2025-01-06 13:32:01 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text indicate that the link is to an unofficial HTML version of the MPI 4.1 report, which is unlikely to contain information about William D. Gropp's teaching honors.
+
+2025-01-06 13:32:04 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text indicate that the link is to an unofficial HTML version of the MPI 4.1 report, which is unlikely to contain information about specific courses taught by Professor William D. Gropp.
+
+2025-01-06 13:32:04 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:32:04 [INFO] 
+------------------------------------------------------------
+Processing link 23/29
+------------------------------------------------------------
+
+2025-01-06 13:32:04 [INFO] URL: https://nap.nationalacademies.org/catalog/26042/next-generation-earth-systems-science-at-the-national-science-foundation
+
+2025-01-06 13:32:04 [INFO] Display text: Next Generation Earth Systems Science at the National Science Foundation
+
+2025-01-06 13:32:04 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:32:06 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest the content is about Earth Systems Science at the National Science Foundation, not about William D. Gropp's publications.
+
+2025-01-06 13:32:10 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are related to a publication about Earth Systems Science at the National Science Foundation, which is unlikely to contain specific information about William D. Gropp's teaching honors.
+
+2025-01-06 13:32:13 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text are related to a publication about Earth Systems Science at the National Science Foundation, which is unlikely to contain specific information about courses taught by William D. Gropp.
+
+2025-01-06 13:32:13 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:32:13 [INFO] 
+------------------------------------------------------------
+Processing link 24/29
+------------------------------------------------------------
+
+2025-01-06 13:32:13 [INFO] URL: http://www.nap.edu/catalog/21886/future-directions-for-nsf-advanced-computing-infrastructure-to-support-us-science-and-engineering-in-2017-2020
+
+2025-01-06 13:32:13 [INFO] Display text: Future Directions for NSF Advanced Computing Infrastructure to Support U.S. Science and Engineering in 2017-2020
+
+2025-01-06 13:32:13 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:32:16 [INFO] ❌ Not relevant to 'publications': The URL and display text do not mention William D. Gropp or any specific publications. The content appears to be about future directions for NSF advanced computing infrastructure.
+
+2025-01-06 13:32:18 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text are about future directions for NSF advanced computing infrastructure and do not mention William D. Gropp or any teaching honors.
+
+2025-01-06 13:32:21 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text suggest the content is about future directions for NSF advanced computing infrastructure, not about specific courses taught by William D. Gropp.
+
+2025-01-06 13:32:21 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:32:21 [INFO] 
+------------------------------------------------------------
+Processing link 25/29
+------------------------------------------------------------
+
+2025-01-06 13:32:21 [INFO] URL: https://sc25.supercomputing.org/
+
+2025-01-06 13:32:21 [INFO] Display text: SC25
+
+2025-01-06 13:32:21 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:32:23 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest the link is about the Supercomputing 2025 conference, not specifically about William D. Gropp's publications.
+
+2025-01-06 13:32:26 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text refer to a supercomputing conference (SC25) and do not specifically mention William D. Gropp or any teaching honors.
+
+2025-01-06 13:32:29 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text suggest that the link is about the Supercomputing Conference 2025 (SC25), which is unlikely to contain specific information about courses taught by William D. Gropp.
+
+2025-01-06 13:32:29 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:32:29 [INFO] 
+------------------------------------------------------------
+Processing link 26/29
+------------------------------------------------------------
+
+2025-01-06 13:32:29 [INFO] URL: https://www.ipdps.org/
+
+2025-01-06 13:32:29 [INFO] Display text: IPDPS'25
+
+2025-01-06 13:32:29 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:32:32 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest that the link is to a conference (IPDPS - International Parallel and Distributed Processing Symposium) and not specifically about Professor William D. Gropp's publications.
+
+2025-01-06 13:32:34 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text refer to the International Parallel and Distributed Processing Symposium, which is unlikely to contain specific information about William D. Gropp's teaching honors.
+
+2025-01-06 13:32:37 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text refer to the International Parallel and Distributed Processing Symposium, which is unlikely to contain specific information about courses taught by William D. Gropp.
+
+2025-01-06 13:32:37 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:32:37 [INFO] 
+------------------------------------------------------------
+Processing link 27/29
+------------------------------------------------------------
+
+2025-01-06 13:32:37 [INFO] URL: https://events.vsc.ac.at/event/123/
+
+2025-01-06 13:32:37 [INFO] Display text: EuroMPI'24
+
+2025-01-06 13:32:37 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:32:40 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest the link is about an event (EuroMPI'24), not specifically about William D. Gropp's publications.
+
+2025-01-06 13:32:42 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text suggest the link is about an event (EuroMPI'24), not about Professor William D. Gropp's teaching honors.
+
+2025-01-06 13:32:45 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text suggest the link is about an event (EuroMPI'24), not about courses taught by a specific professor.
+
+2025-01-06 13:32:45 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:32:45 [INFO] 
+------------------------------------------------------------
+Processing link 28/29
+------------------------------------------------------------
+
+2025-01-06 13:32:45 [INFO] URL: http://www.cs.illinois.edu
+
+2025-01-06 13:32:45 [INFO] Display text: Computer Science Department
+
+2025-01-06 13:32:45 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:32:47 [INFO] ❌ Not relevant to 'publications': The URL and display text indicate a general link to the Computer Science Department at the University of Illinois, without any specific reference to Professor William D. Gropp or his publications.
+
+2025-01-06 13:32:50 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text indicate a general link to the Computer Science Department at the University of Illinois, without any specific reference to Professor William D. Gropp or his teaching honors.
+
+2025-01-06 13:32:53 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text indicate a general link to the Computer Science Department at the University of Illinois, without any specific reference to Professor William D. Gropp or his courses.
+
+2025-01-06 13:32:53 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:32:53 [INFO] 
+------------------------------------------------------------
+Processing link 29/29
+------------------------------------------------------------
+
+2025-01-06 13:32:53 [INFO] URL: http://illinois.edu
+
+2025-01-06 13:32:53 [INFO] Display text: University of Illinois Urbana-Champaign
+
+2025-01-06 13:32:53 [INFO] Checking relevance for empty fields:
+
+2025-01-06 13:32:56 [INFO] ❌ Not relevant to 'publications': The URL and display text only indicate the homepage of the University of Illinois Urbana-Champaign and do not suggest any specific information about Professor William D. Gropp's publications.
+
+2025-01-06 13:32:58 [INFO] ❌ Not relevant to 'teachingHonors': The URL and display text only refer to the University of Illinois Urbana-Champaign in general and do not specifically mention William D. Gropp or any teaching honors.
+
+2025-01-06 13:33:01 [INFO] ❌ Not relevant to 'coursesTaught': The URL and display text only provide general information about the University of Illinois Urbana-Champaign and do not specifically indicate any information about William D. Gropp or his courses.
+
+2025-01-06 13:33:01 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 13:33:01 [INFO] 
+============================================================
+Completed depth 2
+============================================================
+
+2025-01-06 13:33:01 [INFO] Total relevant links found at this depth: 1
+
+2025-01-06 13:33:04 [INFO] Discovered 1 relevant links:
+
+2025-01-06 13:33:04 [INFO]   • http://orcid.org/0000-0003-2905-3029
+
+2025-01-06 13:33:04 [INFO]     ├─ Display: ORCID
+
+2025-01-06 13:33:04 [INFO]     └─ Relevant to: publications
+
+2025-01-06 13:33:04 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-06 13:33:04 [INFO] Updating information with relevant links...
+
+2025-01-06 13:33:04 [INFO] Processing link 1/1: http://orcid.org/0000-0003-2905-3029
+
+2025-01-06 13:33:42 [INFO] Saving final results...
+
+2025-01-06 13:33:42 [INFO] Results saved to ./results/Qwen2.5-72B-Instruct-AWQ/professor/2/william_d._gropp.json
+
+2025-01-06 13:33:42 [INFO] 
+📊 Summary for https://wgropp.cs.illinois.edu/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 391.40 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 http://orcid.org/0000-0003-2905-3029
+   Fields: publications
+   Reasons:
+   • publications: ORCID is a system that provides unique identifiers for researchers and links to their research outputs. The URL provided is an ORCID identifier, which is likely to lead to a page containing information about the researcher's publications and other scholarly activities.
+   ⏱️  Update Time: 37.26 seconds
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 13:33:42 [INFO] ✅ Results saved to ./results/Qwen2.5-72B-Instruct-AWQ/professor/2/william_d._gropp.json
+
+2025-01-06 13:33:42 [INFO] 
+============================================================
+Final Process Summary
+============================================================
+
+2025-01-06 13:33:42 [INFO] Total Processing Time: 1087.77 seconds
+
+2025-01-06 13:33:42 [INFO] Number of URLs Processed: 3
+
+2025-01-06 13:33:42 [INFO] 📊 Detailed Analysis by URL:
+
+2025-01-06 13:33:42 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 13:33:42 [INFO] 🌐 https://yxw.cs.illinois.edu/
+
+2025-01-06 13:33:42 [INFO] ⏱️  Processing Time: 433.85 seconds
+
+2025-01-06 13:33:42 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 13:33:42 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 13:33:42 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 13:33:42 [INFO] 🌐 https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu
+
+2025-01-06 13:33:42 [INFO] ⏱️  Processing Time: 262.52 seconds
+
+2025-01-06 13:33:42 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 13:33:42 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 13:33:42 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 13:33:42 [INFO] 🌐 https://wgropp.cs.illinois.edu/
+
+2025-01-06 13:33:42 [INFO] ⏱️  Processing Time: 391.40 seconds
+
+2025-01-06 13:33:42 [INFO] 
+📎 Relevant Links Found:
+
+2025-01-06 13:33:42 [INFO] 
+  🔗 http://orcid.org/0000-0003-2905-3029
+
+2025-01-06 13:33:42 [INFO]      Fields: publications
+
+2025-01-06 13:33:42 [INFO]      Reasons:
+
+2025-01-06 13:33:42 [INFO]      • publications: ORCID is a system that provides unique identifiers for researchers and links to their research outputs. The URL provided is an ORCID identifier, which is likely to lead to a page containing information about the researcher's publications and other scholarly activities.
+
+2025-01-06 13:33:42 [INFO]      ⏱️  Update Time: 37.26 seconds
+
+2025-01-06 13:33:42 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 13:33:42 [INFO] 
+============================================================
+Writing process statistics to CSV
+============================================================
+
+2025-01-06 13:33:42 [INFO] 📊 Process statistics written to: ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/2/process_stats_20250106_133342.csv
+
+2025-01-06 13:33:42 [INFO] 
+============================================================
+✅ Process completed successfully!
+============================================================
+

@@ -1,0 +1,989 @@
+2025-01-06 00:01:25 [INFO] Testing logger setup
+
+2025-01-06 00:01:25 [INFO] 
+============================================================
+Testing section logging
+============================================================
+
+2025-01-06 00:01:25 [INFO] 
+------------------------------------------------------------
+Testing subsection logging
+------------------------------------------------------------
+
+2025-01-06 00:01:25 [INFO] 
+============================================================
+Starting entity information extraction process
+============================================================
+
+2025-01-06 00:01:25 [INFO] Processing URLs: ['https://biboyqg.github.io/', 'https://yunzeman.github.io/', 'https://kaiyan289.github.io/']
+
+2025-01-06 00:01:25 [INFO] 
+############################################################
+Processing URL [1/3]: https://biboyqg.github.io/
+############################################################
+
+2025-01-06 00:01:25 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 00:01:27 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 00:01:31 [INFO] Detected schema: student
+
+2025-01-06 00:01:31 [INFO] Reason: The content describes a senior undergraduate student at the University of Illinois at Urbana-Champaign, detailing their academic focus, research projects, and previous educational background.
+
+2025-01-06 00:01:31 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 00:01:31 [INFO] Getting response from open source with extra body for student
+
+2025-01-06 00:01:31 [INFO] Entity schema: <class 'student.Student'>
+
+2025-01-06 00:02:44 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-06 00:02:44 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-06 00:02:44 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 00:02:58 [INFO] Found 8 links to process
+
+2025-01-06 00:02:58 [INFO] 
+------------------------------------------------------------
+Processing link 1/8
+------------------------------------------------------------
+
+2025-01-06 00:02:58 [INFO] URL: https://scholar.google.com/citations?hl=en&authuser=1&user=0XAPPrEAAAAJ
+
+2025-01-06 00:02:58 [INFO] Display text: Google Scholar
+
+2025-01-06 00:02:58 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:03:01 [INFO] ❌ Not relevant to 'publications': The URL and display text do not specifically indicate that it is related to Banghao Chi's publications. It is a general link to a Google Scholar profile, which could belong to any researcher.
+
+2025-01-06 00:03:01 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:03:01 [INFO] 
+------------------------------------------------------------
+Processing link 2/8
+------------------------------------------------------------
+
+2025-01-06 00:03:01 [INFO] URL: https://github.com/biboyqg
+
+2025-01-06 00:03:01 [INFO] Display text: Github
+
+2025-01-06 00:03:01 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:03:03 [INFO] ❌ Not relevant to 'publications': The URL and display text only indicate a GitHub profile, which is not specific to Banghao Chi or his publications.
+
+2025-01-06 00:03:03 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:03:03 [INFO] 
+------------------------------------------------------------
+Processing link 3/8
+------------------------------------------------------------
+
+2025-01-06 00:03:03 [INFO] URL: https://www.linkedin.com/in/banghao-chi-550737276
+
+2025-01-06 00:03:03 [INFO] Display text: LinkedIn
+
+2025-01-06 00:03:03 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:03:06 [INFO] ❌ Not relevant to 'publications': The URL is a LinkedIn profile link for Banghao Chi, but LinkedIn profiles typically do not focus specifically on publications unless the user has added them to their profile.
+
+2025-01-06 00:03:06 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:03:06 [INFO] 
+------------------------------------------------------------
+Processing link 4/8
+------------------------------------------------------------
+
+2025-01-06 00:03:06 [INFO] URL: https://minjiazhang.github.io/
+
+2025-01-06 00:03:06 [INFO] Display text: Minjia Zhang
+
+2025-01-06 00:03:06 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:03:09 [INFO] ❌ Not relevant to 'publications': The URL and display text do not indicate any connection to Banghao Chi or his publications. The link appears to lead to a personal website for Minjia Zhang.
+
+2025-01-06 00:03:09 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:03:09 [INFO] 
+------------------------------------------------------------
+Processing link 5/8
+------------------------------------------------------------
+
+2025-01-06 00:03:09 [INFO] URL: https://siebelschool.illinois.edu/about/people/all-faculty/kcchang
+
+2025-01-06 00:03:09 [INFO] Display text: Kevin Chang
+
+2025-01-06 00:03:09 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:03:11 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest the link is about Kevin Chang, a faculty member, not about the student Banghao Chi or their publications.
+
+2025-01-06 00:03:11 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:03:11 [INFO] 
+------------------------------------------------------------
+Processing link 6/8
+------------------------------------------------------------
+
+2025-01-06 00:03:11 [INFO] URL: https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu
+
+2025-01-06 00:03:11 [INFO] Display text: Xiaohui Zhu
+
+2025-01-06 00:03:11 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:03:14 [INFO] ❌ Not relevant to 'publications': The URL and display text refer to Xiaohui Zhu, not Banghao Chi, and there is no indication that the link leads to information about Banghao Chi's publications.
+
+2025-01-06 00:03:14 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:03:14 [INFO] 
+------------------------------------------------------------
+Processing link 7/8
+------------------------------------------------------------
+
+2025-01-06 00:03:14 [INFO] URL: https://biboyqg.github.io/cv/
+
+2025-01-06 00:03:14 [INFO] Display text: CV
+
+2025-01-06 00:03:14 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:03:18 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest that the link leads to a CV, which typically contains a broad overview of a person's professional history, including education, work experience, and skills. While a CV might include a section on publications, the information provided does not specifically indicate that this CV will contain information about Banghao Chi's publications.
+
+2025-01-06 00:03:18 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:03:18 [INFO] 
+------------------------------------------------------------
+Processing link 8/8
+------------------------------------------------------------
+
+2025-01-06 00:03:18 [INFO] URL: https://biboyqg.github.io/publications/
+
+2025-01-06 00:03:18 [INFO] Display text: publications
+
+2025-01-06 00:03:18 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:03:21 [INFO] ✅ Relevant to 'publications': The URL and display text both suggest that the link leads to a page containing publications, which could include those of the student Banghao Chi.
+
+2025-01-06 00:03:21 [INFO] 📍 Link is relevant for fields: publications
+
+2025-01-06 00:03:21 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://biboyqg.github.io/publications/
+------------------------------------------------------------
+
+2025-01-06 00:03:21 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 00:03:21 [INFO] Found 0 additional relevant links
+
+2025-01-06 00:03:21 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-06 00:03:21 [INFO] Total relevant links found at this depth: 1
+
+2025-01-06 00:03:23 [INFO] Discovered 1 relevant links:
+
+2025-01-06 00:03:23 [INFO]   • https://biboyqg.github.io/publications/
+
+2025-01-06 00:03:23 [INFO]     ├─ Display: publications
+
+2025-01-06 00:03:23 [INFO]     └─ Relevant to: publications
+
+2025-01-06 00:03:23 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-06 00:03:23 [INFO] Updating information with relevant links...
+
+2025-01-06 00:03:23 [INFO] Processing link 1/1: https://biboyqg.github.io/publications/
+
+2025-01-06 00:03:54 [INFO] Saving final results...
+
+2025-01-06 00:03:54 [INFO] Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/student/1/banghao_chi.json
+
+2025-01-06 00:03:54 [INFO] 
+📊 Summary for https://biboyqg.github.io/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 148.54 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 https://biboyqg.github.io/publications/
+   Fields: publications
+   Reasons:
+   • publications: The URL and display text both suggest that the link leads to a page containing publications, which could include those of the student Banghao Chi.
+   ⏱️  Update Time: 29.84 seconds
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 00:03:54 [INFO] ✅ Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/student/1/banghao_chi.json
+
+2025-01-06 00:03:54 [INFO] 
+############################################################
+Processing URL [2/3]: https://yunzeman.github.io/
+############################################################
+
+2025-01-06 00:03:54 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 00:03:55 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 00:04:01 [INFO] Detected schema: student
+
+2025-01-06 00:04:01 [INFO] Reason: The content describes a Ph.D. student at the University of Illinois Urbana-Champaign, including their academic background, research interests, publications, and professional activities.
+
+2025-01-06 00:04:01 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 00:04:01 [INFO] Getting response from open source with extra body for student
+
+2025-01-06 00:04:01 [INFO] Entity schema: <class 'student.Student'>
+
+2025-01-06 00:05:00 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-06 00:05:00 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-06 00:05:00 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 00:05:53 [INFO] Found 36 links to process
+
+2025-01-06 00:05:53 [INFO] 
+------------------------------------------------------------
+Processing link 1/36
+------------------------------------------------------------
+
+2025-01-06 00:05:53 [INFO] URL: https://illinois.edu/
+
+2025-01-06 00:05:53 [INFO] Display text: University of Illinois Urbana-Champaign
+
+2025-01-06 00:05:53 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:05:56 [INFO] ❌ Not relevant to 'workExperience': The URL and display text indicate a general link to the University of Illinois Urbana-Champaign's homepage, which is unlikely to contain specific information about Yunze Man's work experience without further navigation to a more specific page.
+
+2025-01-06 00:05:56 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:05:56 [INFO] 
+------------------------------------------------------------
+Processing link 2/36
+------------------------------------------------------------
+
+2025-01-06 00:05:56 [INFO] URL: https://yxw.web.illinois.edu/
+
+2025-01-06 00:05:56 [INFO] Display text: Yuxiong Wang
+
+2025-01-06 00:05:56 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:00 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any specific connection to Yunze Man or his work experience. The display text is a different name, and the URL does not suggest a personal or work-related page for the student in question.
+
+2025-01-06 00:06:00 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:00 [INFO] 
+------------------------------------------------------------
+Processing link 3/36
+------------------------------------------------------------
+
+2025-01-06 00:06:00 [INFO] URL: https://cs.illinois.edu/about/people/all-faculty/lgui
+
+2025-01-06 00:06:00 [INFO] Display text: Liangyan Gui
+
+2025-01-06 00:06:00 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:02 [INFO] ❌ Not relevant to 'workExperience': The URL and display text suggest the link is about a faculty member, Liangyan Gui, and not about a student named Yunze Man or their work experience.
+
+2025-01-06 00:06:02 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:02 [INFO] 
+------------------------------------------------------------
+Processing link 4/36
+------------------------------------------------------------
+
+2025-01-06 00:06:02 [INFO] URL: https://research.nvidia.com/graduate-fellowships
+
+2025-01-06 00:06:02 [INFO] Display text: NVIDIA PhD Fellowship
+
+2025-01-06 00:06:02 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:05 [INFO] ❌ Not relevant to 'workExperience': The URL and display text suggest that the link is about NVIDIA's PhD fellowship program, not specifically about Yunze Man's work experience.
+
+2025-01-06 00:06:05 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:05 [INFO] 
+------------------------------------------------------------
+Processing link 5/36
+------------------------------------------------------------
+
+2025-01-06 00:06:05 [INFO] URL: https://www.ri.cmu.edu/
+
+2025-01-06 00:06:05 [INFO] Display text: Carnegie Mellon University
+
+2025-01-06 00:06:05 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:07 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not specifically indicate any information about Yunze Man or any student's work experience. The link is to the general homepage of Carnegie Mellon University.
+
+2025-01-06 00:06:07 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:07 [INFO] 
+------------------------------------------------------------
+Processing link 6/36
+------------------------------------------------------------
+
+2025-01-06 00:06:07 [INFO] URL: http://www.cs.cmu.edu/~kkitani/
+
+2025-01-06 00:06:07 [INFO] Display text: Kris Kitani
+
+2025-01-06 00:06:07 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:10 [INFO] ❌ Not relevant to 'workExperience': The URL and display text are related to Kris Kitani, not Yunze Man, and thus are unlikely to contain information about Yunze Man's work experience.
+
+2025-01-06 00:06:10 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:10 [INFO] 
+------------------------------------------------------------
+Processing link 7/36
+------------------------------------------------------------
+
+2025-01-06 00:06:10 [INFO] URL: https://scholar.google.com/citations?user=xvQIEKAAAAAJ
+
+2025-01-06 00:06:10 [INFO] Display text: Google Scholar
+
+2025-01-06 00:06:10 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:12 [INFO] ❌ Not relevant to 'workExperience': The URL and display text suggest that the link leads to a Google Scholar profile, which typically contains information about a person's publications and research, not their work experience.
+
+2025-01-06 00:06:12 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:12 [INFO] 
+------------------------------------------------------------
+Processing link 8/36
+------------------------------------------------------------
+
+2025-01-06 00:06:12 [INFO] URL: https://github.com/YunzeMan
+
+2025-01-06 00:06:12 [INFO] Display text: Github
+
+2025-01-06 00:06:12 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:15 [INFO] ❌ Not relevant to 'workExperience': The URL is a GitHub profile link, which typically contains code repositories and projects, not necessarily work experience information.
+
+2025-01-06 00:06:15 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:15 [INFO] 
+------------------------------------------------------------
+Processing link 9/36
+------------------------------------------------------------
+
+2025-01-06 00:06:15 [INFO] URL: https://twitter.com/YunzeM
+
+2025-01-06 00:06:15 [INFO] Display text: Twitter
+
+2025-01-06 00:06:15 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:18 [INFO] ❌ Not relevant to 'workExperience': The URL points to a Twitter profile for 'YunzeM', but there is no specific indication that this profile contains information about Yunze Man's work experience. Social media profiles can contain a variety of information, but without more context, it cannot be assumed that it includes work experience details.
+
+2025-01-06 00:06:18 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:18 [INFO] 
+------------------------------------------------------------
+Processing link 10/36
+------------------------------------------------------------
+
+2025-01-06 00:06:18 [INFO] URL: https://blogs.nvidia.com/blog/graduate-fellowship-recipients-2025-2026/
+
+2025-01-06 00:06:18 [INFO] Display text: NVIDIA Graduate Fellowship 2025
+
+2025-01-06 00:06:18 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:21 [INFO] ❌ Not relevant to 'workExperience': The URL and display text suggest the link is about NVIDIA's Graduate Fellowship program for 2025-2026, not specifically about Yunze Man's work experience.
+
+2025-01-06 00:06:21 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:21 [INFO] 
+------------------------------------------------------------
+Processing link 11/36
+------------------------------------------------------------
+
+2025-01-06 00:06:21 [INFO] URL: https://neurips.cc/Conferences/2024/ProgramCommittee
+
+2025-01-06 00:06:21 [INFO] Display text: Top Reviewers in NeurIPS 2024
+
+2025-01-06 00:06:21 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:24 [INFO] ❌ Not relevant to 'workExperience': The URL and display text suggest that the link is about the program committee and top reviewers for NeurIPS 2024, not about a specific student's work experience.
+
+2025-01-06 00:06:24 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:24 [INFO] 
+------------------------------------------------------------
+Processing link 12/36
+------------------------------------------------------------
+
+2025-01-06 00:06:24 [INFO] URL: https://arxiv.org/abs/2409.03757
+
+2025-01-06 00:06:24 [INFO] Display text: Lexicon3D
+
+2025-01-06 00:06:24 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-06 00:06:24 [INFO] 
+------------------------------------------------------------
+Processing link 13/36
+------------------------------------------------------------
+
+2025-01-06 00:06:24 [INFO] URL: https://arxiv.org/abs/2410.09049
+
+2025-01-06 00:06:24 [INFO] Display text: SceneCraft
+
+2025-01-06 00:06:24 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-06 00:06:24 [INFO] 
+------------------------------------------------------------
+Processing link 14/36
+------------------------------------------------------------
+
+2025-01-06 00:06:24 [INFO] URL: https://cvpr.thecvf.com/Conferences/2024/ProgramCommittee
+
+2025-01-06 00:06:24 [INFO] Display text: Outstanding Reviewers in CVPR 2024
+
+2025-01-06 00:06:24 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:27 [INFO] ❌ Not relevant to 'workExperience': The URL and display text suggest that the link is about the program committee and outstanding reviewers for CVPR 2024, not about a specific student's work experience.
+
+2025-01-06 00:06:27 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:27 [INFO] 
+------------------------------------------------------------
+Processing link 15/36
+------------------------------------------------------------
+
+2025-01-06 00:06:27 [INFO] URL: https://arxiv.org/abs/2310.12973
+
+2025-01-06 00:06:27 [INFO] Display text: LLM4Vision
+
+2025-01-06 00:06:27 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-06 00:06:27 [INFO] 
+------------------------------------------------------------
+Processing link 16/36
+------------------------------------------------------------
+
+2025-01-06 00:06:27 [INFO] URL: https://ziqipang.github.io/
+
+2025-01-06 00:06:27 [INFO] Display text: Ziqi Pang
+
+2025-01-06 00:06:27 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:29 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:06:29 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:29 [INFO] 
+------------------------------------------------------------
+Processing link 17/36
+------------------------------------------------------------
+
+2025-01-06 00:06:29 [INFO] URL: https://tianyuanzhang.com/
+
+2025-01-06 00:06:29 [INFO] Display text: Tianyuan Zhang
+
+2025-01-06 00:06:29 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:31 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:06:31 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:31 [INFO] 
+------------------------------------------------------------
+Processing link 18/36
+------------------------------------------------------------
+
+2025-01-06 00:06:31 [INFO] URL: https://luanfujun.com/
+
+2025-01-06 00:06:31 [INFO] Display text: Fujun Luan
+
+2025-01-06 00:06:31 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:33 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:06:33 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:33 [INFO] 
+------------------------------------------------------------
+Processing link 19/36
+------------------------------------------------------------
+
+2025-01-06 00:06:33 [INFO] URL: https://www.cs.unc.edu/~airsplay/
+
+2025-01-06 00:06:33 [INFO] Display text: Hao Tan
+
+2025-01-06 00:06:33 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:35 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:06:35 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:35 [INFO] 
+------------------------------------------------------------
+Processing link 20/36
+------------------------------------------------------------
+
+2025-01-06 00:06:35 [INFO] URL: https://kai-46.github.io/website/
+
+2025-01-06 00:06:35 [INFO] Display text: Kai Zhang
+
+2025-01-06 00:06:35 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:37 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:06:37 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:37 [INFO] 
+------------------------------------------------------------
+Processing link 21/36
+------------------------------------------------------------
+
+2025-01-06 00:06:37 [INFO] URL: https://billf.mit.edu/
+
+2025-01-06 00:06:37 [INFO] Display text: William T. Freeman
+
+2025-01-06 00:06:37 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:40 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any direct connection to Yunze Man or his work experience. The link appears to be related to William T. Freeman, who is likely a different individual.
+
+2025-01-06 00:06:40 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:40 [INFO] 
+------------------------------------------------------------
+Processing link 22/36
+------------------------------------------------------------
+
+2025-01-06 00:06:40 [INFO] URL: https://zsh2000.github.io/
+
+2025-01-06 00:06:40 [INFO] Display text: Shuhong Zheng
+
+2025-01-06 00:06:40 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:42 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:06:42 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:42 [INFO] 
+------------------------------------------------------------
+Processing link 23/36
+------------------------------------------------------------
+
+2025-01-06 00:06:42 [INFO] URL: https://zpbao.github.io/
+
+2025-01-06 00:06:42 [INFO] Display text: Zhipeng Bao
+
+2025-01-06 00:06:42 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:44 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:06:44 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:44 [INFO] 
+------------------------------------------------------------
+Processing link 24/36
+------------------------------------------------------------
+
+2025-01-06 00:06:44 [INFO] URL: http://www.cs.cmu.edu/~hebert
+
+2025-01-06 00:06:44 [INFO] Display text: Martial Hebert
+
+2025-01-06 00:06:44 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:47 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any direct connection to Yunze Man or his work experience. The link appears to be for Martial Hebert, who is likely a different individual.
+
+2025-01-06 00:06:47 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:47 [INFO] 
+------------------------------------------------------------
+Processing link 25/36
+------------------------------------------------------------
+
+2025-01-06 00:06:47 [INFO] URL: https://orangesodahub.github.io/SceneCraft/
+
+2025-01-06 00:06:47 [INFO] Display text: SceneCraft Project
+
+2025-01-06 00:06:47 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:50 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not provide specific information related to Yunze Man's work experience. They only indicate a project called SceneCraft, which could be related to various aspects of a student's or developer's work, but not specifically to Yunze Man's work experience.
+
+2025-01-06 00:06:50 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:50 [INFO] 
+------------------------------------------------------------
+Processing link 26/36
+------------------------------------------------------------
+
+2025-01-06 00:06:50 [INFO] URL: https://ziyangxie.site/
+
+2025-01-06 00:06:50 [INFO] Display text: Ziyang Xie
+
+2025-01-06 00:06:50 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:52 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:06:52 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:52 [INFO] 
+------------------------------------------------------------
+Processing link 27/36
+------------------------------------------------------------
+
+2025-01-06 00:06:52 [INFO] URL: https://openreview.net/group?id=ICLR.cc/2024/Conference#tab-accept-oral
+
+2025-01-06 00:06:52 [INFO] Display text: ICLR 2024
+
+2025-01-06 00:06:52 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:56 [INFO] ❌ Not relevant to 'workExperience': The URL and display text indicate that the link is to a conference (ICLR 2024) and likely lists accepted oral presentations. It does not specifically mention any individual or their work experience.
+
+2025-01-06 00:06:56 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:56 [INFO] 
+------------------------------------------------------------
+Processing link 28/36
+------------------------------------------------------------
+
+2025-01-06 00:06:56 [INFO] URL: https://yunzeman.github.io/ORG/index.html
+
+2025-01-06 00:06:56 [INFO] Display text: Floating No More Project
+
+2025-01-06 00:06:56 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:06:58 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not specifically indicate information about work experience. The display text suggests a project, but not necessarily related to work experience.
+
+2025-01-06 00:06:58 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:06:58 [INFO] 
+------------------------------------------------------------
+Processing link 29/36
+------------------------------------------------------------
+
+2025-01-06 00:06:58 [INFO] URL: https://yunzeman.github.io/situation3d/index.html
+
+2025-01-06 00:06:58 [INFO] Display text: SituationVLM Project
+
+2025-01-06 00:06:58 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:07:01 [INFO] ❌ Not relevant to 'workExperience': The URL and display text suggest that the link is about a project called 'SituationVLM', but there is no direct indication that it contains information about Yunze Man's work experience.
+
+2025-01-06 00:07:01 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:07:01 [INFO] 
+------------------------------------------------------------
+Processing link 30/36
+------------------------------------------------------------
+
+2025-01-06 00:07:01 [INFO] URL: https://yunzeman.github.io/DualCross/index.html
+
+2025-01-06 00:07:01 [INFO] Display text: DualCross Project
+
+2025-01-06 00:07:01 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:07:04 [INFO] ❌ Not relevant to 'workExperience': The URL and display text suggest that the link is about a project called 'DualCross', but there is no direct indication that it contains information about Yunze Man's work experience.
+
+2025-01-06 00:07:04 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:07:04 [INFO] 
+------------------------------------------------------------
+Processing link 31/36
+------------------------------------------------------------
+
+2025-01-06 00:07:04 [INFO] URL: https://openaccess.thecvf.com/content/CVPR2023/papers/Man_BEV-Guided_Multi-Modality_Fusion_for_Driving_Perception_CVPR_2023_paper.pdf
+
+2025-01-06 00:07:04 [INFO] Display text: BEV-Guided Multi-Modality Fusion for Driving Perception
+
+2025-01-06 00:07:04 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-06 00:07:04 [INFO] 
+------------------------------------------------------------
+Processing link 32/36
+------------------------------------------------------------
+
+2025-01-06 00:07:04 [INFO] URL: https://yunzeman.github.io/BEVGuide/index.html
+
+2025-01-06 00:07:04 [INFO] Display text: BEV-Guided Multi-Modality Fusion for Driving Perception Project
+
+2025-01-06 00:07:04 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:07:07 [INFO] ✅ Relevant to 'workExperience': The URL contains the username 'yunzeman', which likely refers to the student, and the display text describes a project, which could be part of the student's work experience.
+
+2025-01-06 00:07:07 [INFO] 📍 Link is relevant for fields: workExperience
+
+2025-01-06 00:07:07 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://yunzeman.github.io/BEVGuide/index.html
+------------------------------------------------------------
+
+2025-01-06 00:07:07 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 00:07:07 [INFO] Found 0 additional relevant links
+
+2025-01-06 00:07:07 [INFO] 
+------------------------------------------------------------
+Processing link 33/36
+------------------------------------------------------------
+
+2025-01-06 00:07:07 [INFO] URL: https://chrisding.github.io/
+
+2025-01-06 00:07:07 [INFO] Display text: Zhiding Yu
+
+2025-01-06 00:07:07 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:07:09 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:07:09 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:07:09 [INFO] 
+------------------------------------------------------------
+Processing link 34/36
+------------------------------------------------------------
+
+2025-01-06 00:07:09 [INFO] URL: https://ai.stanford.edu/~dahuang/
+
+2025-01-06 00:07:09 [INFO] Display text: De-An Huang
+
+2025-01-06 00:07:09 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:07:12 [INFO] ❌ Not relevant to 'workExperience': The URL and display text are related to De-An Huang, not Yunze Man, and thus are unlikely to contain information about Yunze Man's work experience.
+
+2025-01-06 00:07:12 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:07:12 [INFO] 
+------------------------------------------------------------
+Processing link 35/36
+------------------------------------------------------------
+
+2025-01-06 00:07:12 [INFO] URL: https://liuguilin1225.github.io/
+
+2025-01-06 00:07:12 [INFO] Display text: Gulin Liu
+
+2025-01-06 00:07:12 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:07:14 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or any information about work experience.
+
+2025-01-06 00:07:14 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:07:14 [INFO] 
+------------------------------------------------------------
+Processing link 36/36
+------------------------------------------------------------
+
+2025-01-06 00:07:14 [INFO] URL: https://jimmie33.github.io/
+
+2025-01-06 00:07:14 [INFO] Display text: Jianming Zhang
+
+2025-01-06 00:07:14 [INFO] Checking relevance for empty fields:
+
+2025-01-06 00:07:16 [INFO] ❌ Not relevant to 'workExperience': The URL and display text do not indicate any connection to Yunze Man or his work experience.
+
+2025-01-06 00:07:16 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 00:07:16 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-06 00:07:16 [INFO] Total relevant links found at this depth: 1
+
+2025-01-06 00:07:19 [INFO] Discovered 1 relevant links:
+
+2025-01-06 00:07:19 [INFO]   • https://yunzeman.github.io/BEVGuide/index.html
+
+2025-01-06 00:07:19 [INFO]     ├─ Display: BEV-Guided Multi-Modality Fusion for Driving Perception Project
+
+2025-01-06 00:07:19 [INFO]     └─ Relevant to: workExperience
+
+2025-01-06 00:07:19 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-06 00:07:19 [INFO] Updating information with relevant links...
+
+2025-01-06 00:07:19 [INFO] Processing link 1/1: https://yunzeman.github.io/BEVGuide/index.html
+
+2025-01-06 00:08:17 [INFO] Saving final results...
+
+2025-01-06 00:08:17 [INFO] Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/student/1/yunze_man.json
+
+2025-01-06 00:08:17 [INFO] 
+📊 Summary for https://yunzeman.github.io/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 263.58 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 https://yunzeman.github.io/BEVGuide/index.html
+   Fields: workExperience
+   Reasons:
+   • workExperience: The URL contains the username 'yunzeman', which likely refers to the student, and the display text describes a project, which could be part of the student's work experience.
+   ⏱️  Update Time: 58.14 seconds
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 00:08:17 [INFO] ✅ Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/student/1/yunze_man.json
+
+2025-01-06 00:08:17 [INFO] 
+############################################################
+Processing URL [3/3]: https://kaiyan289.github.io/
+############################################################
+
+2025-01-06 00:08:17 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 00:08:19 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 00:08:26 [INFO] Detected schema: student
+
+2025-01-06 00:08:26 [INFO] Reason: The content describes a personal website of a Ph.D. student, including details about their academic background, research interests, publications, and experiences, which aligns with the 'student' schema.
+
+2025-01-06 00:08:26 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 00:08:26 [INFO] Getting response from open source with extra body for student
+
+2025-01-06 00:08:26 [INFO] Entity schema: <class 'student.Student'>
+
+2025-01-06 00:09:51 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 00:09:51 [INFO] 
+📊 Summary for https://kaiyan289.github.io/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 93.39 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 00:09:51 [INFO] ✅ Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/student/1/kai_yan.json
+
+2025-01-06 00:09:51 [INFO] 
+============================================================
+Final Process Summary
+============================================================
+
+2025-01-06 00:09:51 [INFO] Total Processing Time: 505.50 seconds
+
+2025-01-06 00:09:51 [INFO] Number of URLs Processed: 3
+
+2025-01-06 00:09:51 [INFO] 📊 Detailed Analysis by URL:
+
+2025-01-06 00:09:51 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:09:51 [INFO] 🌐 https://biboyqg.github.io/
+
+2025-01-06 00:09:51 [INFO] ⏱️  Processing Time: 148.54 seconds
+
+2025-01-06 00:09:51 [INFO] 
+📎 Relevant Links Found:
+
+2025-01-06 00:09:51 [INFO] 
+  🔗 https://biboyqg.github.io/publications/
+
+2025-01-06 00:09:51 [INFO]      Fields: publications
+
+2025-01-06 00:09:51 [INFO]      Reasons:
+
+2025-01-06 00:09:51 [INFO]      • publications: The URL and display text both suggest that the link leads to a page containing publications, which could include those of the student Banghao Chi.
+
+2025-01-06 00:09:51 [INFO]      ⏱️  Update Time: 29.84 seconds
+
+2025-01-06 00:09:51 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:09:51 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:09:51 [INFO] 🌐 https://yunzeman.github.io/
+
+2025-01-06 00:09:51 [INFO] ⏱️  Processing Time: 263.58 seconds
+
+2025-01-06 00:09:51 [INFO] 
+📎 Relevant Links Found:
+
+2025-01-06 00:09:51 [INFO] 
+  🔗 https://yunzeman.github.io/BEVGuide/index.html
+
+2025-01-06 00:09:51 [INFO]      Fields: workExperience
+
+2025-01-06 00:09:51 [INFO]      Reasons:
+
+2025-01-06 00:09:51 [INFO]      • workExperience: The URL contains the username 'yunzeman', which likely refers to the student, and the display text describes a project, which could be part of the student's work experience.
+
+2025-01-06 00:09:51 [INFO]      ⏱️  Update Time: 58.14 seconds
+
+2025-01-06 00:09:51 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:09:51 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:09:51 [INFO] 🌐 https://kaiyan289.github.io/
+
+2025-01-06 00:09:51 [INFO] ⏱️  Processing Time: 93.39 seconds
+
+2025-01-06 00:09:51 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 00:09:51 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 00:09:51 [INFO] 
+============================================================
+Writing process statistics to CSV
+============================================================
+
+2025-01-06 00:09:51 [INFO] 📊 Process statistics written to: ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/1/process_stats_20250106_000951.csv
+
+2025-01-06 00:09:51 [INFO] 
+============================================================
+✅ Process completed successfully!
+============================================================
+

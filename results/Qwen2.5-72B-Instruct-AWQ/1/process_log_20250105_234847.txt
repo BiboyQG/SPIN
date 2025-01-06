@@ -1,0 +1,972 @@
+2025-01-05 23:48:47 [INFO] Testing logger setup
+
+2025-01-05 23:48:47 [INFO] 
+============================================================
+Testing section logging
+============================================================
+
+2025-01-05 23:48:47 [INFO] 
+------------------------------------------------------------
+Testing subsection logging
+------------------------------------------------------------
+
+2025-01-05 23:48:47 [INFO] 
+============================================================
+Starting entity information extraction process
+============================================================
+
+2025-01-05 23:48:47 [INFO] Processing URLs: ['https://voxposer.github.io/', 'https://lapisrocks.github.io/LanguageAgentTreeSearch/', 'https://sirui-xu.github.io/InterDreamer/']
+
+2025-01-05 23:48:47 [INFO] 
+############################################################
+Processing URL [1/3]: https://voxposer.github.io/
+############################################################
+
+2025-01-05 23:48:47 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-05 23:48:48 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-05 23:48:56 [INFO] Detected schema: research
+
+2025-01-05 23:48:56 [INFO] Reason: The content describes a research project named VoxPoser, which involves the use of large language models and vision-language models to create 3D value maps for robotic manipulation tasks. It includes details about the authors, their affiliations, the publication venue, and links to the paper, code, and video, which are typical elements of a research project.
+
+2025-01-05 23:48:56 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-05 23:48:56 [INFO] Getting response from open source with extra body for research
+
+2025-01-05 23:48:56 [INFO] Entity schema: <class 'research.Research'>
+
+2025-01-05 23:49:44 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-05 23:49:44 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-05 23:49:44 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-05 23:50:21 [INFO] Found 26 links to process
+
+2025-01-05 23:50:21 [INFO] 
+------------------------------------------------------------
+Processing link 1/26
+------------------------------------------------------------
+
+2025-01-05 23:50:21 [INFO] URL: https://www.corl2023.org/
+
+2025-01-05 23:50:21 [INFO] Display text: CoRL 2023 (Oral)
+
+2025-01-05 23:50:21 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:50:25 [INFO] ❌ Not relevant to 'dataset': The URL and display text indicate that the link is to the CoRL 2023 conference, which is a general robotics conference. There is no specific indication that it contains information about the VoxPoser dataset.
+
+2025-01-05 23:50:29 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text indicate that the link is to the CoRL 2023 conference, which is a general robotics conference. There is no specific indication that it contains information about the research 'VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models' or its related publications.
+
+2025-01-05 23:50:29 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:50:29 [INFO] 
+------------------------------------------------------------
+Processing link 2/26
+------------------------------------------------------------
+
+2025-01-05 23:50:29 [INFO] URL: https://huangwl18.github.io/
+
+2025-01-05 23:50:29 [INFO] Display text: Wenlong Huang
+
+2025-01-05 23:50:29 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:50:31 [INFO] ❌ Not relevant to 'dataset': The URL and display text suggest a personal homepage or profile for Wenlong Huang, but do not indicate any specific information about the research or dataset mentioned.
+
+2025-01-05 23:50:35 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text do not provide specific information related to the research on VoxPoser or its related publications. The URL appears to be a personal homepage, and the display text is a name, which does not indicate a direct connection to the research topic.
+
+2025-01-05 23:50:35 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:50:35 [INFO] 
+------------------------------------------------------------
+Processing link 3/26
+------------------------------------------------------------
+
+2025-01-05 23:50:35 [INFO] URL: https://www.chenwangjeremy.net/
+
+2025-01-05 23:50:35 [INFO] Display text: Chen Wang
+
+2025-01-05 23:50:35 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:50:38 [INFO] ❌ Not relevant to 'dataset': The URL and display text do not provide specific information related to the research on VoxPoser or its dataset. The link appears to be a personal website for Chen Wang, which may not necessarily contain information about the specific research mentioned.
+
+2025-01-05 23:50:40 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text do not provide any indication that the content is related to the research on VoxPoser or its related publications.
+
+2025-01-05 23:50:40 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:50:40 [INFO] 
+------------------------------------------------------------
+Processing link 4/26
+------------------------------------------------------------
+
+2025-01-05 23:50:40 [INFO] URL: https://ai.stanford.edu/~zharu/
+
+2025-01-05 23:50:40 [INFO] Display text: Ruohan Zhang
+
+2025-01-05 23:50:40 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:50:44 [INFO] ❌ Not relevant to 'dataset': The URL and display text do not provide specific information related to the research on VoxPoser or its dataset. The URL is a personal homepage and the display text is a name, which does not indicate a direct connection to the research topic.
+
+2025-01-05 23:50:47 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text do not provide specific information about the research VoxPoser or related publications. The URL is a personal homepage and the display text is a name, which does not indicate a direct connection to the research topic.
+
+2025-01-05 23:50:47 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:50:47 [INFO] 
+------------------------------------------------------------
+Processing link 5/26
+------------------------------------------------------------
+
+2025-01-05 23:50:47 [INFO] URL: https://yunzhuli.github.io/
+
+2025-01-05 23:50:47 [INFO] Display text: Yunzhu Li
+
+2025-01-05 23:50:47 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:50:50 [INFO] ❌ Not relevant to 'dataset': The URL and display text suggest it is a personal homepage for Yunzhu Li, but there is no specific indication that it contains information about the VoxPoser dataset.
+
+2025-01-05 23:50:52 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text do not provide specific information related to the research on VoxPoser or its related publications.
+
+2025-01-05 23:50:52 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:50:52 [INFO] 
+------------------------------------------------------------
+Processing link 6/26
+------------------------------------------------------------
+
+2025-01-05 23:50:52 [INFO] URL: https://jiajunwu.com/
+
+2025-01-05 23:50:52 [INFO] Display text: Jiajun Wu
+
+2025-01-05 23:50:52 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:50:55 [INFO] ❌ Not relevant to 'dataset': The URL and display text only provide information about a person, Jiajun Wu, and do not indicate any specific research or dataset related to VoxPoser or robotic manipulation with language models.
+
+2025-01-05 23:50:58 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text only provide information about Jiajun Wu's personal website. There is no specific indication that it contains information about the research VoxPoser or its related publications.
+
+2025-01-05 23:50:58 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:50:58 [INFO] 
+------------------------------------------------------------
+Processing link 7/26
+------------------------------------------------------------
+
+2025-01-05 23:50:58 [INFO] URL: https://profiles.stanford.edu/fei-fei-li
+
+2025-01-05 23:50:58 [INFO] Display text: Li Fei-Fei
+
+2025-01-05 23:50:58 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:51:01 [INFO] ❌ Not relevant to 'dataset': The URL and display text suggest that the link is to a personal profile of Li Fei-Fei, likely at Stanford University. It does not indicate any specific information about the research or dataset mentioned.
+
+2025-01-05 23:51:04 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text suggest the link is to a personal profile of Li Fei-Fei, likely at Stanford University. It does not indicate any specific information about the research on VoxPoser or related publications.
+
+2025-01-05 23:51:04 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:51:04 [INFO] 
+------------------------------------------------------------
+Processing link 8/26
+------------------------------------------------------------
+
+2025-01-05 23:51:04 [INFO] URL: https://voxposer.github.io/voxposer.pdf
+
+2025-01-05 23:51:04 [INFO] Display text: Paper
+
+2025-01-05 23:51:04 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-05 23:51:04 [INFO] 
+------------------------------------------------------------
+Processing link 9/26
+------------------------------------------------------------
+
+2025-01-05 23:51:04 [INFO] URL: https://arxiv.org/abs/2307.05973
+
+2025-01-05 23:51:04 [INFO] Display text: ArXiv
+
+2025-01-05 23:51:04 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-05 23:51:04 [INFO] 
+------------------------------------------------------------
+Processing link 10/26
+------------------------------------------------------------
+
+2025-01-05 23:51:04 [INFO] URL: https://youtu.be/Yvn4eR05A3M
+
+2025-01-05 23:51:04 [INFO] Display text: Video
+
+2025-01-05 23:51:04 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:51:07 [INFO] ❌ Not relevant to 'dataset': The URL is a YouTube video link and the display text is generic. There is no specific indication that the content is related to the research on VoxPoser or its dataset.
+
+2025-01-05 23:51:10 [INFO] ❌ Not relevant to 'relatedPublications': The URL is a YouTube video link and the display text is generic. There is no specific indication that the content is related to the research on VoxPoser or its related publications.
+
+2025-01-05 23:51:10 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:51:10 [INFO] 
+------------------------------------------------------------
+Processing link 11/26
+------------------------------------------------------------
+
+2025-01-05 23:51:10 [INFO] URL: https://github.com/huangwl18/VoxPoser
+
+2025-01-05 23:51:10 [INFO] Display text: Code
+
+2025-01-05 23:51:10 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:51:13 [INFO] ✅ Relevant to 'dataset': The URL points to a GitHub repository named 'VoxPoser', which is likely related to the research project. The display text 'Code' suggests that the repository contains the source code for the project, which could include information about the dataset used in the research.
+
+2025-01-05 23:51:16 [INFO] ❌ Not relevant to 'relatedPublications': The URL points to a GitHub repository, which is likely to contain the code for the VoxPoser project. The display text 'Code' further suggests that the link is directed to the source code rather than related publications.
+
+2025-01-05 23:51:16 [INFO] 📍 Link is relevant for fields: dataset
+
+2025-01-05 23:51:16 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://github.com/huangwl18/VoxPoser
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-05 23:51:19 [INFO] Found 0 additional relevant links
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 12/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/real_planner_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Planner
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 13/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/real_composer_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Composer
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 14/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/real_parse_query_obj_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Parse Query Object
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 15/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/real_get_affordance_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Affordance Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 16/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/real_get_avoidance_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Avoidance Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 17/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/real_get_rotation_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Rotation Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 18/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/real_get_velocity_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Velocity Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 19/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/real_get_gripper_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Gripper Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 20/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/sim_composer_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Composer
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 21/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/sim_parse_query_obj_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Parse Query Object
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 22/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/sim_get_affordance_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Affordance Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 23/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/sim_get_avoidance_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Avoidance Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 24/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/sim_get_rotation_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Rotation Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 25/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/sim_get_velocity_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Velocity Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+------------------------------------------------------------
+Processing link 26/26
+------------------------------------------------------------
+
+2025-01-05 23:51:19 [INFO] URL: https://voxposer.github.io/prompts/sim_get_gripper_map_prompt.txt
+
+2025-01-05 23:51:19 [INFO] Display text: Get Gripper Maps
+
+2025-01-05 23:51:19 [INFO] ⏩ Skipping - txt URL
+
+2025-01-05 23:51:19 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-05 23:51:19 [INFO] Total relevant links found at this depth: 1
+
+2025-01-05 23:51:23 [INFO] Discovered 1 relevant links:
+
+2025-01-05 23:51:23 [INFO]   • https://github.com/huangwl18/VoxPoser
+
+2025-01-05 23:51:23 [INFO]     ├─ Display: Code
+
+2025-01-05 23:51:23 [INFO]     └─ Relevant to: dataset
+
+2025-01-05 23:51:23 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-05 23:51:23 [INFO] Getting initial response from webpage...
+
+2025-01-05 23:51:23 [INFO] Getting response from open source with extra body for research
+
+2025-01-05 23:51:23 [INFO] Entity schema: <class 'research.Research'>
+
+2025-01-05 23:52:11 [INFO] Updating information with relevant links...
+
+2025-01-05 23:52:11 [INFO] Processing link 1/1: https://github.com/huangwl18/VoxPoser
+
+2025-01-05 23:53:06 [INFO] Saving final results...
+
+2025-01-05 23:53:06 [INFO] Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/research/1/voxposer:_composable_3d_value_maps_for_robotic_manipulation_with_language_models.json
+
+2025-01-05 23:53:06 [INFO] 
+📊 Summary for https://voxposer.github.io/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 258.26 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 https://github.com/huangwl18/VoxPoser
+   Fields: dataset
+   Reasons:
+   • dataset: The URL points to a GitHub repository named 'VoxPoser', which is likely related to the research project. The display text 'Code' suggests that the repository contains the source code for the project, which could include information about the dataset used in the research.
+   ⏱️  Update Time: 52.93 seconds
+────────────────────────────────────────────────────────────
+
+
+2025-01-05 23:53:06 [INFO] ✅ Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/research/1/voxposer:_composable_3d_value_maps_for_robotic_manipulation_with_language_models.json
+
+2025-01-05 23:53:06 [INFO] 
+############################################################
+Processing URL [2/3]: https://lapisrocks.github.io/LanguageAgentTreeSearch/
+############################################################
+
+2025-01-05 23:53:06 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-05 23:53:07 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-05 23:53:12 [INFO] Detected schema: research
+
+2025-01-05 23:53:12 [INFO] Reason: The webpage describes a research project, 'Language Agent Tree Search', which is a framework that unifies reasoning, acting, and planning in language models. It includes a paper, code, and a demo, and discusses the methodology, results, and citations, which are typical components of a research publication.
+
+2025-01-05 23:53:12 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-05 23:53:12 [INFO] Getting response from open source with extra body for research
+
+2025-01-05 23:53:12 [INFO] Entity schema: <class 'research.Research'>
+
+2025-01-05 23:53:49 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-05 23:53:49 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-05 23:53:49 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-05 23:53:57 [INFO] Found 3 links to process
+
+2025-01-05 23:53:57 [INFO] 
+------------------------------------------------------------
+Processing link 1/3
+------------------------------------------------------------
+
+2025-01-05 23:53:57 [INFO] URL: https://arxiv.org/abs/2310.04406
+
+2025-01-05 23:53:57 [INFO] Display text: Paper
+
+2025-01-05 23:53:57 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-05 23:53:57 [INFO] 
+------------------------------------------------------------
+Processing link 2/3
+------------------------------------------------------------
+
+2025-01-05 23:53:57 [INFO] URL: https://github.com/andyz245/LanguageAgentTreeSearch
+
+2025-01-05 23:53:57 [INFO] Display text: Code
+
+2025-01-05 23:53:57 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:54:01 [INFO] ✅ Relevant to 'relatedPublications': The URL points to a GitHub repository named 'LanguageAgentTreeSearch', which is likely related to the research on Language Agent Tree Search. The display text 'Code' suggests that the repository contains the implementation of the research, which could include related publications or references to them.
+
+2025-01-05 23:54:04 [INFO] ❌ Not relevant to 'fundingSources': The URL points to a GitHub repository, which is more likely to contain code and documentation related to the research rather than information about funding sources. The display text 'Code' also suggests that the link leads to the source code of the project.
+
+2025-01-05 23:54:04 [INFO] 📍 Link is relevant for fields: relatedPublications
+
+2025-01-05 23:54:04 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://github.com/andyz245/LanguageAgentTreeSearch
+------------------------------------------------------------
+
+2025-01-05 23:54:07 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-05 23:54:07 [INFO] Found 0 additional relevant links
+
+2025-01-05 23:54:07 [INFO] 
+------------------------------------------------------------
+Processing link 3/3
+------------------------------------------------------------
+
+2025-01-05 23:54:07 [INFO] URL: https://huggingface.co/spaces/AIatUIUC/CodeLATS
+
+2025-01-05 23:54:07 [INFO] Display text: Demo
+
+2025-01-05 23:54:07 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:54:10 [INFO] ✅ Relevant to 'relatedPublications': The URL points to a Hugging Face space, which is often used to share models and demos related to AI research. The display text 'Demo' suggests that the link could lead to a demonstration or implementation of the research mentioned, which is related to Language Agent Tree Search.
+
+2025-01-05 23:54:14 [INFO] ❌ Not relevant to 'fundingSources': The URL and display text do not provide any indication of funding sources for the research. The URL points to a Hugging Face space, which is more likely to contain a demo or code related to the research rather than information about its funding.
+
+2025-01-05 23:54:14 [INFO] 📍 Link is relevant for fields: relatedPublications
+
+2025-01-05 23:54:14 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://huggingface.co/spaces/AIatUIUC/CodeLATS
+------------------------------------------------------------
+
+2025-01-05 23:54:15 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-05 23:54:15 [INFO] Found 0 additional relevant links
+
+2025-01-05 23:54:15 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-05 23:54:15 [INFO] Total relevant links found at this depth: 2
+
+2025-01-05 23:54:23 [INFO] Discovered 2 relevant links:
+
+2025-01-05 23:54:23 [INFO]   • https://huggingface.co/spaces/AIatUIUC/CodeLATS
+
+2025-01-05 23:54:23 [INFO]     ├─ Display: Demo
+
+2025-01-05 23:54:23 [INFO]     └─ Relevant to: relatedPublications
+
+2025-01-05 23:54:23 [INFO]   • https://github.com/andyz245/LanguageAgentTreeSearch
+
+2025-01-05 23:54:23 [INFO]     ├─ Display: Code
+
+2025-01-05 23:54:23 [INFO]     └─ Relevant to: relatedPublications
+
+2025-01-05 23:54:23 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-05 23:54:23 [INFO] Getting initial response from webpage...
+
+2025-01-05 23:54:23 [INFO] Getting response from open source with extra body for research
+
+2025-01-05 23:54:23 [INFO] Entity schema: <class 'research.Research'>
+
+2025-01-05 23:55:00 [INFO] Updating information with relevant links...
+
+2025-01-05 23:55:00 [INFO] Processing link 1/2: https://github.com/andyz245/LanguageAgentTreeSearch
+
+2025-01-05 23:55:45 [INFO] Processing link 2/2: https://huggingface.co/spaces/AIatUIUC/CodeLATS
+
+2025-01-05 23:56:24 [INFO] Saving final results...
+
+2025-01-05 23:56:24 [INFO] Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/research/1/language_agent_tree_search_unifies_reasoning_acting_and_planning_in_language_models.json
+
+2025-01-05 23:56:24 [INFO] 
+📊 Summary for https://lapisrocks.github.io/LanguageAgentTreeSearch/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 197.92 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 https://github.com/andyz245/LanguageAgentTreeSearch
+   Fields: relatedPublications
+   Reasons:
+   • relatedPublications: The URL points to a GitHub repository named 'LanguageAgentTreeSearch', which is likely related to the research on Language Agent Tree Search. The display text 'Code' suggests that the repository contains the implementation of the research, which could include related publications or references to them.
+   ⏱️  Update Time: 42.82 seconds
+
+🔗 https://huggingface.co/spaces/AIatUIUC/CodeLATS
+   Fields: relatedPublications
+   Reasons:
+   • relatedPublications: The URL points to a Hugging Face space, which is often used to share models and demos related to AI research. The display text 'Demo' suggests that the link could lead to a demonstration or implementation of the research mentioned, which is related to Language Agent Tree Search.
+   ⏱️  Update Time: 37.14 seconds
+────────────────────────────────────────────────────────────
+
+
+2025-01-05 23:56:24 [INFO] ✅ Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/research/1/language_agent_tree_search_unifies_reasoning_acting_and_planning_in_language_models.json
+
+2025-01-05 23:56:24 [INFO] 
+############################################################
+Processing URL [3/3]: https://sirui-xu.github.io/InterDreamer/
+############################################################
+
+2025-01-05 23:56:24 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-05 23:56:27 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-05 23:56:33 [INFO] Detected schema: research
+
+2025-01-05 23:56:33 [INFO] Reason: The content describes a research paper presented at NeurIPS 2024, detailing a novel framework called InterDreamer for generating 3D dynamic human-object interactions from text. It includes authors, affiliations, links to the paper and demo, and a detailed explanation of the methodology and results.
+
+2025-01-05 23:56:33 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-05 23:56:33 [INFO] Getting response from open source with extra body for research
+
+2025-01-05 23:56:33 [INFO] Entity schema: <class 'research.Research'>
+
+2025-01-05 23:57:20 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-05 23:57:20 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-05 23:57:20 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-05 23:57:35 [INFO] Found 8 links to process
+
+2025-01-05 23:57:35 [INFO] 
+------------------------------------------------------------
+Processing link 1/8
+------------------------------------------------------------
+
+2025-01-05 23:57:35 [INFO] URL: https://sirui-xu.github.io/
+
+2025-01-05 23:57:35 [INFO] Display text: Sirui Xu
+
+2025-01-05 23:57:35 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:57:37 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text do not provide specific indication of content related to the research InterDreamer or its related publications.
+
+2025-01-05 23:57:40 [INFO] ❌ Not relevant to 'fundingSources': The URL and display text suggest a personal homepage for Sirui Xu, which is unlikely to contain specific information about the funding sources of a particular research project without further context indicating such content.
+
+2025-01-05 23:57:40 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:57:40 [INFO] 
+------------------------------------------------------------
+Processing link 2/8
+------------------------------------------------------------
+
+2025-01-05 23:57:40 [INFO] URL: https://sirui-xu.github.io/InterDreamer/
+
+2025-01-05 23:57:40 [INFO] Display text: Ziyin Wang
+
+2025-01-05 23:57:40 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:57:43 [INFO] ✅ Relevant to 'relatedPublications': The URL contains 'InterDreamer', which is likely related to the research project mentioned. The display text, however, does not provide additional context to support this conclusion.
+
+2025-01-05 23:57:46 [INFO] ❌ Not relevant to 'fundingSources': The URL points to a personal GitHub page, and the display text is a name, which does not suggest that the link is related to the funding sources of the InterDreamer research.
+
+2025-01-05 23:57:46 [INFO] 📍 Link is relevant for fields: relatedPublications
+
+2025-01-05 23:57:46 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://sirui-xu.github.io/InterDreamer/
+------------------------------------------------------------
+
+2025-01-05 23:57:47 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-05 23:57:47 [INFO] Found 0 additional relevant links
+
+2025-01-05 23:57:47 [INFO] 
+------------------------------------------------------------
+Processing link 3/8
+------------------------------------------------------------
+
+2025-01-05 23:57:47 [INFO] URL: https://yxw.web.illinois.edu/
+
+2025-01-05 23:57:47 [INFO] Display text: Yu-Xiong Wang
+
+2025-01-05 23:57:47 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:57:49 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text do not provide specific indication of content related to InterDreamer or zero-shot text to 3D dynamic human-object interaction research.
+
+2025-01-05 23:57:52 [INFO] ❌ Not relevant to 'fundingSources': The URL and display text do not provide specific indications that the content is related to the funding sources of the InterDreamer project.
+
+2025-01-05 23:57:52 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:57:52 [INFO] 
+------------------------------------------------------------
+Processing link 4/8
+------------------------------------------------------------
+
+2025-01-05 23:57:52 [INFO] URL: https://cs.illinois.edu/about/people/faculty/lgui
+
+2025-01-05 23:57:52 [INFO] Display text: Liang-Yan Gui
+
+2025-01-05 23:57:52 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:57:55 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text suggest that the link is about a specific person, Liang-Yan Gui, and their profile at the University of Illinois. There is no direct indication that this link would contain information about the research InterDreamer or its related publications.
+
+2025-01-05 23:57:59 [INFO] ❌ Not relevant to 'fundingSources': The URL and display text suggest that the link is about a specific person, Liang-Yan Gui, and is likely to lead to their faculty profile. While it may contain information about their research, there is no direct indication that it will provide details about the funding sources of the specific research project 'InterDreamer'.
+
+2025-01-05 23:57:59 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:57:59 [INFO] 
+------------------------------------------------------------
+Processing link 5/8
+------------------------------------------------------------
+
+2025-01-05 23:57:59 [INFO] URL: https://nips.cc/virtual/2024/poster/96187
+
+2025-01-05 23:57:59 [INFO] Display text: NeurIPS 2024
+
+2025-01-05 23:57:59 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:58:03 [INFO] ❌ Not relevant to 'relatedPublications': The URL and display text indicate that the link is to a poster presentation at the NeurIPS 2024 conference, but there is no specific information suggesting it is related to the InterDreamer research or its related publications.
+
+2025-01-05 23:58:06 [INFO] ❌ Not relevant to 'fundingSources': The URL and display text suggest that the link leads to a poster or presentation from the NeurIPS 2024 conference, but there is no specific indication that it would contain information about the funding sources of the InterDreamer research.
+
+2025-01-05 23:58:06 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:58:06 [INFO] 
+------------------------------------------------------------
+Processing link 6/8
+------------------------------------------------------------
+
+2025-01-05 23:58:06 [INFO] URL: https://arxiv.org/abs/2403.19652
+
+2025-01-05 23:58:06 [INFO] Display text: Arxiv
+
+2025-01-05 23:58:06 [INFO] ⏩ Skipping - arxiv URL
+
+2025-01-05 23:58:06 [INFO] 
+------------------------------------------------------------
+Processing link 7/8
+------------------------------------------------------------
+
+2025-01-05 23:58:06 [INFO] URL: https://arxiv.org/pdf/2403.19652.pdf
+
+2025-01-05 23:58:06 [INFO] Display text: Paper
+
+2025-01-05 23:58:06 [INFO] ⏩ Skipping - PDF URL
+
+2025-01-05 23:58:06 [INFO] 
+------------------------------------------------------------
+Processing link 8/8
+------------------------------------------------------------
+
+2025-01-05 23:58:06 [INFO] URL: https://sirui-xu.github.io/InterDreamer/images/interdreamer.mp4
+
+2025-01-05 23:58:06 [INFO] Display text: Demo
+
+2025-01-05 23:58:06 [INFO] Checking relevance for empty fields:
+
+2025-01-05 23:58:09 [INFO] ❌ Not relevant to 'relatedPublications': The URL points to a video file, and the display text 'Demo' suggests it is a demonstration rather than a publication or detailed information about the research.
+
+2025-01-05 23:58:11 [INFO] ❌ Not relevant to 'fundingSources': The URL points to a video file, and the display text 'Demo' suggests it is a demonstration, which is unlikely to contain detailed information about funding sources.
+
+2025-01-05 23:58:11 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-05 23:58:11 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-05 23:58:11 [INFO] Total relevant links found at this depth: 1
+
+2025-01-05 23:58:15 [INFO] Discovered 1 relevant links:
+
+2025-01-05 23:58:15 [INFO]   • https://sirui-xu.github.io/InterDreamer/
+
+2025-01-05 23:58:15 [INFO]     ├─ Display: Ziyin Wang
+
+2025-01-05 23:58:15 [INFO]     └─ Relevant to: relatedPublications
+
+2025-01-05 23:58:15 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-05 23:58:15 [INFO] Getting initial response from webpage...
+
+2025-01-05 23:58:15 [INFO] Getting response from open source with extra body for research
+
+2025-01-05 23:58:15 [INFO] Entity schema: <class 'research.Research'>
+
+2025-01-05 23:59:01 [INFO] Updating information with relevant links...
+
+2025-01-05 23:59:01 [INFO] Processing link 1/1: https://sirui-xu.github.io/InterDreamer/
+
+2025-01-05 23:59:50 [INFO] Saving final results...
+
+2025-01-05 23:59:50 [INFO] Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/research/1/interdreamer:_zero-shot_text_to_3d_dynamic_human-object_interaction.json
+
+2025-01-05 23:59:50 [INFO] 
+📊 Summary for https://sirui-xu.github.io/InterDreamer/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 206.89 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 https://sirui-xu.github.io/InterDreamer/
+   Fields: relatedPublications
+   Reasons:
+   • relatedPublications: The URL contains 'InterDreamer', which is likely related to the research project mentioned. The display text, however, does not provide additional context to support this conclusion.
+   ⏱️  Update Time: 48.79 seconds
+────────────────────────────────────────────────────────────
+
+
+2025-01-05 23:59:50 [INFO] ✅ Results saved to ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/research/1/interdreamer:_zero-shot_text_to_3d_dynamic_human-object_interaction.json
+
+2025-01-05 23:59:50 [INFO] 
+============================================================
+Final Process Summary
+============================================================
+
+2025-01-05 23:59:50 [INFO] Total Processing Time: 663.07 seconds
+
+2025-01-05 23:59:50 [INFO] Number of URLs Processed: 3
+
+2025-01-05 23:59:50 [INFO] 📊 Detailed Analysis by URL:
+
+2025-01-05 23:59:50 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-05 23:59:50 [INFO] 🌐 https://voxposer.github.io/
+
+2025-01-05 23:59:50 [INFO] ⏱️  Processing Time: 258.26 seconds
+
+2025-01-05 23:59:50 [INFO] 
+📎 Relevant Links Found:
+
+2025-01-05 23:59:50 [INFO] 
+  🔗 https://github.com/huangwl18/VoxPoser
+
+2025-01-05 23:59:50 [INFO]      Fields: dataset
+
+2025-01-05 23:59:50 [INFO]      Reasons:
+
+2025-01-05 23:59:50 [INFO]      • dataset: The URL points to a GitHub repository named 'VoxPoser', which is likely related to the research project. The display text 'Code' suggests that the repository contains the source code for the project, which could include information about the dataset used in the research.
+
+2025-01-05 23:59:50 [INFO]      ⏱️  Update Time: 52.93 seconds
+
+2025-01-05 23:59:50 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-05 23:59:50 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-05 23:59:50 [INFO] 🌐 https://lapisrocks.github.io/LanguageAgentTreeSearch/
+
+2025-01-05 23:59:50 [INFO] ⏱️  Processing Time: 197.92 seconds
+
+2025-01-05 23:59:50 [INFO] 
+📎 Relevant Links Found:
+
+2025-01-05 23:59:50 [INFO] 
+  🔗 https://github.com/andyz245/LanguageAgentTreeSearch
+
+2025-01-05 23:59:50 [INFO]      Fields: relatedPublications
+
+2025-01-05 23:59:50 [INFO]      Reasons:
+
+2025-01-05 23:59:50 [INFO]      • relatedPublications: The URL points to a GitHub repository named 'LanguageAgentTreeSearch', which is likely related to the research on Language Agent Tree Search. The display text 'Code' suggests that the repository contains the implementation of the research, which could include related publications or references to them.
+
+2025-01-05 23:59:50 [INFO]      ⏱️  Update Time: 42.82 seconds
+
+2025-01-05 23:59:50 [INFO] 
+  🔗 https://huggingface.co/spaces/AIatUIUC/CodeLATS
+
+2025-01-05 23:59:50 [INFO]      Fields: relatedPublications
+
+2025-01-05 23:59:50 [INFO]      Reasons:
+
+2025-01-05 23:59:50 [INFO]      • relatedPublications: The URL points to a Hugging Face space, which is often used to share models and demos related to AI research. The display text 'Demo' suggests that the link could lead to a demonstration or implementation of the research mentioned, which is related to Language Agent Tree Search.
+
+2025-01-05 23:59:50 [INFO]      ⏱️  Update Time: 37.14 seconds
+
+2025-01-05 23:59:50 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-05 23:59:50 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-05 23:59:50 [INFO] 🌐 https://sirui-xu.github.io/InterDreamer/
+
+2025-01-05 23:59:50 [INFO] ⏱️  Processing Time: 206.89 seconds
+
+2025-01-05 23:59:50 [INFO] 
+📎 Relevant Links Found:
+
+2025-01-05 23:59:50 [INFO] 
+  🔗 https://sirui-xu.github.io/InterDreamer/
+
+2025-01-05 23:59:50 [INFO]      Fields: relatedPublications
+
+2025-01-05 23:59:50 [INFO]      Reasons:
+
+2025-01-05 23:59:50 [INFO]      • relatedPublications: The URL contains 'InterDreamer', which is likely related to the research project mentioned. The display text, however, does not provide additional context to support this conclusion.
+
+2025-01-05 23:59:50 [INFO]      ⏱️  Update Time: 48.79 seconds
+
+2025-01-05 23:59:50 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-05 23:59:50 [INFO] 
+============================================================
+Writing process statistics to CSV
+============================================================
+
+2025-01-05 23:59:50 [INFO] 📊 Process statistics written to: ./results/Qwen/Qwen2.5-72B-Instruct-AWQ/1/process_stats_20250105_235950.csv
+
+2025-01-05 23:59:50 [INFO] 
+============================================================
+✅ Process completed successfully!
+============================================================
+

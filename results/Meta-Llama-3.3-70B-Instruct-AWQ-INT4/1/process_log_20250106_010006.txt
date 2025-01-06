@@ -1,0 +1,455 @@
+2025-01-06 01:00:06 [INFO] Testing logger setup
+
+2025-01-06 01:00:06 [INFO] 
+============================================================
+Testing section logging
+============================================================
+
+2025-01-06 01:00:06 [INFO] 
+------------------------------------------------------------
+Testing subsection logging
+------------------------------------------------------------
+
+2025-01-06 01:00:06 [INFO] 
+============================================================
+Starting entity information extraction process
+============================================================
+
+2025-01-06 01:00:06 [INFO] Processing URLs: ['https://biboyqg.github.io/', 'https://yunzeman.github.io/', 'https://kaiyan289.github.io/']
+
+2025-01-06 01:00:06 [INFO] 
+############################################################
+Processing URL [1/3]: https://biboyqg.github.io/
+############################################################
+
+2025-01-06 01:00:06 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 01:00:07 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 01:00:12 [INFO] Detected schema: student
+
+2025-01-06 01:00:12 [INFO] Reason: The webpage content mentions the person's academic background, research work, and experience as a student, including their undergraduate studies, thesis, and work as a course assistant, which are all characteristic of a student's profile.
+
+2025-01-06 01:00:12 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 01:00:12 [INFO] Getting response from open source with extra body for student
+
+2025-01-06 01:00:12 [INFO] Entity schema: <class 'student.Student'>
+
+2025-01-06 01:01:19 [INFO] 
+------------------------------------------------------------
+Gathering relevant links recursively
+------------------------------------------------------------
+
+2025-01-06 01:01:19 [INFO] 
+============================================================
+Gathering links at depth 1
+============================================================
+
+2025-01-06 01:01:19 [INFO] 
+------------------------------------------------------------
+Extracting links from current page
+------------------------------------------------------------
+
+2025-01-06 01:01:33 [INFO] Found 8 links to process
+
+2025-01-06 01:01:33 [INFO] 
+------------------------------------------------------------
+Processing link 1/8
+------------------------------------------------------------
+
+2025-01-06 01:01:33 [INFO] URL: https://scholar.google.com/citations?hl=en&authuser=1&user=0XAPPrEAAAAJ
+
+2025-01-06 01:01:33 [INFO] Display text: Google Scholar
+
+2025-01-06 01:01:33 [INFO] Checking relevance for empty fields:
+
+2025-01-06 01:01:36 [INFO] ✅ Relevant to 'publications': The URL is from Google Scholar, a platform for tracking publications, and the display text suggests an academic profile, which could include a student's publications.
+
+2025-01-06 01:01:38 [INFO] ✅ Relevant to 'awards': Google Scholar often contains information about a researcher's publications and awards, and the URL suggests a specific author's profile.
+
+2025-01-06 01:01:38 [INFO] 📍 Link is relevant for fields: publications, awards
+
+2025-01-06 01:01:38 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://scholar.google.com/citations?hl=en&authuser=1&user=0XAPPrEAAAAJ
+------------------------------------------------------------
+
+2025-01-06 01:01:40 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 01:01:40 [INFO] Found 0 additional relevant links
+
+2025-01-06 01:01:40 [INFO] 
+------------------------------------------------------------
+Processing link 2/8
+------------------------------------------------------------
+
+2025-01-06 01:01:40 [INFO] URL: https://github.com/biboyqg
+
+2025-01-06 01:01:40 [INFO] Display text: Github
+
+2025-01-06 01:01:40 [INFO] Checking relevance for empty fields:
+
+2025-01-06 01:01:42 [INFO] ❌ Not relevant to 'publications': The display text and URL do not mention the student's name or publications
+
+2025-01-06 01:01:44 [INFO] ❌ Not relevant to 'awards': The URL and display text suggest a personal GitHub page, which is unlikely to contain information about awards for a specific student, Banghao Chi.
+
+2025-01-06 01:01:44 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 01:01:44 [INFO] 
+------------------------------------------------------------
+Processing link 3/8
+------------------------------------------------------------
+
+2025-01-06 01:01:44 [INFO] URL: https://www.linkedin.com/in/banghao-chi-550737276
+
+2025-01-06 01:01:44 [INFO] Display text: LinkedIn
+
+2025-01-06 01:01:44 [INFO] Checking relevance for empty fields:
+
+2025-01-06 01:01:46 [INFO] ✅ Relevant to 'publications': The URL contains a specific LinkedIn profile, and LinkedIn often includes information about a person's publications and professional experience.
+
+2025-01-06 01:01:49 [INFO] ✅ Relevant to 'awards': The URL contains a specific LinkedIn profile, and the display text is 'LinkedIn', which is a professional networking site where users often list their achievements, including awards.
+
+2025-01-06 01:01:49 [INFO] 📍 Link is relevant for fields: publications, awards
+
+2025-01-06 01:01:49 [INFO] 
+------------------------------------------------------------
+Scraping relevant URL: https://www.linkedin.com/in/banghao-chi-550737276
+------------------------------------------------------------
+
+2025-01-06 01:01:51 [INFO] 🔄 Starting recursive link gathering...
+
+2025-01-06 01:01:51 [INFO] Found 0 additional relevant links
+
+2025-01-06 01:01:51 [INFO] 
+------------------------------------------------------------
+Processing link 4/8
+------------------------------------------------------------
+
+2025-01-06 01:01:51 [INFO] URL: https://minjiazhang.github.io/
+
+2025-01-06 01:01:51 [INFO] Display text: Prof. Minjia Zhang
+
+2025-01-06 01:01:51 [INFO] Checking relevance for empty fields:
+
+2025-01-06 01:01:54 [INFO] ❌ Not relevant to 'publications': The display text mentions Prof. Minjia Zhang, not Banghao Chi, and the URL appears to be a personal website, suggesting it's about the professor, not the student.
+
+2025-01-06 01:01:56 [INFO] ❌ Not relevant to 'awards': The URL and display text suggest a personal website of Prof. Minjia Zhang, with no apparent connection to Banghao Chi or student awards.
+
+2025-01-06 01:01:56 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 01:01:56 [INFO] 
+------------------------------------------------------------
+Processing link 5/8
+------------------------------------------------------------
+
+2025-01-06 01:01:56 [INFO] URL: https://siebelschool.illinois.edu/about/people/all-faculty/kcchang
+
+2025-01-06 01:01:56 [INFO] Display text: Dr. Kevin Chang
+
+2025-01-06 01:01:56 [INFO] Checking relevance for empty fields:
+
+2025-01-06 01:01:59 [INFO] ❌ Not relevant to 'publications': The URL and display text refer to a specific faculty member, Dr. Kevin Chang, and do not mention the student Banghao Chi or publications.
+
+2025-01-06 01:02:01 [INFO] ❌ Not relevant to 'awards': The URL and display text refer to a specific faculty member, Dr. Kevin Chang, and do not mention the student Banghao Chi or awards.
+
+2025-01-06 01:02:01 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 01:02:01 [INFO] 
+------------------------------------------------------------
+Processing link 6/8
+------------------------------------------------------------
+
+2025-01-06 01:02:01 [INFO] URL: https://scholar.xjtlu.edu.cn/en/persons/XiaohuiZhu
+
+2025-01-06 01:02:01 [INFO] Display text: Prof. Xiaohui Zhu
+
+2025-01-06 01:02:01 [INFO] Checking relevance for empty fields:
+
+2025-01-06 01:02:03 [INFO] ❌ Not relevant to 'publications': The URL and display text refer to a different individual, Prof. Xiaohui Zhu, and do not mention Banghao Chi.
+
+2025-01-06 01:02:06 [INFO] ❌ Not relevant to 'awards': The URL and display text refer to a specific professor, not a student named Banghao Chi, and do not indicate any information about awards.
+
+2025-01-06 01:02:06 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 01:02:06 [INFO] 
+------------------------------------------------------------
+Processing link 7/8
+------------------------------------------------------------
+
+2025-01-06 01:02:06 [INFO] URL: https://biboyqg.github.io/cv/
+
+2025-01-06 01:02:06 [INFO] Display text: CV
+
+2025-01-06 01:02:06 [INFO] Checking relevance for empty fields:
+
+2025-01-06 01:02:08 [INFO] ❌ Not relevant to 'publications': The URL and display text suggest a personal CV, but do not specifically indicate publications, and the name in the URL does not match the student's name
+
+2025-01-06 01:02:11 [INFO] ❌ Not relevant to 'awards': The URL and display text suggest a personal CV, which may contain general information about a person, but does not specifically indicate the presence of awards information about Banghao Chi.
+
+2025-01-06 01:02:11 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 01:02:11 [INFO] 
+------------------------------------------------------------
+Processing link 8/8
+------------------------------------------------------------
+
+2025-01-06 01:02:11 [INFO] URL: https://biboyqg.github.io/publications/
+
+2025-01-06 01:02:11 [INFO] Display text: publications
+
+2025-01-06 01:02:11 [INFO] Checking relevance for empty fields:
+
+2025-01-06 01:02:13 [INFO] ❌ Not relevant to 'publications': The URL and display text do not mention the student's name, Banghao Chi
+
+2025-01-06 01:02:15 [INFO] ❌ Not relevant to 'awards': The URL and display text suggest a list of publications, not awards.
+
+2025-01-06 01:02:15 [INFO] ⏩ Skipping - No relevant fields found
+
+2025-01-06 01:02:15 [INFO] 
+============================================================
+Completed depth 1
+============================================================
+
+2025-01-06 01:02:15 [INFO] Total relevant links found at this depth: 2
+
+2025-01-06 01:02:24 [INFO] Discovered 2 relevant links:
+
+2025-01-06 01:02:24 [INFO]   • https://www.linkedin.com/in/banghao-chi-550737276
+
+2025-01-06 01:02:24 [INFO]     ├─ Display: LinkedIn
+
+2025-01-06 01:02:24 [INFO]     └─ Relevant to: publications, awards
+
+2025-01-06 01:02:24 [INFO]   • https://scholar.google.com/citations?hl=en&authuser=1&user=0XAPPrEAAAAJ
+
+2025-01-06 01:02:24 [INFO]     ├─ Display: Google Scholar
+
+2025-01-06 01:02:24 [INFO]     └─ Relevant to: publications, awards
+
+2025-01-06 01:02:24 [INFO] 
+------------------------------------------------------------
+Extracting information from relevant links
+------------------------------------------------------------
+
+2025-01-06 01:02:24 [INFO] Updating information with relevant links...
+
+2025-01-06 01:02:24 [INFO] Processing link 1/2: https://scholar.google.com/citations?hl=en&authuser=1&user=0XAPPrEAAAAJ
+
+2025-01-06 01:02:56 [INFO] Processing link 2/2: https://www.linkedin.com/in/banghao-chi-550737276
+
+2025-01-06 01:03:33 [INFO] Saving final results...
+
+2025-01-06 01:03:33 [INFO] Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/student/1/banghao_chi.json
+
+2025-01-06 01:03:33 [INFO] 
+📊 Summary for https://biboyqg.github.io/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 206.53 seconds
+
+📎 Relevant Links Analysis:
+
+🔗 https://scholar.google.com/citations?hl=en&authuser=1&user=0XAPPrEAAAAJ
+   Fields: publications, awards
+   Reasons:
+   • publications: The URL is from Google Scholar, a platform for tracking publications, and the display text suggests an academic profile, which could include a student's publications.
+   • awards: Google Scholar often contains information about a researcher's publications and awards, and the URL suggests a specific author's profile.
+   ⏱️  Update Time: 31.11 seconds
+
+🔗 https://www.linkedin.com/in/banghao-chi-550737276
+   Fields: publications, awards
+   Reasons:
+   • publications: The URL contains a specific LinkedIn profile, and LinkedIn often includes information about a person's publications and professional experience.
+   • awards: The URL contains a specific LinkedIn profile, and the display text is 'LinkedIn', which is a professional networking site where users often list their achievements, including awards.
+   ⏱️  Update Time: 34.55 seconds
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 01:03:33 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/student/1/banghao_chi.json
+
+2025-01-06 01:03:33 [INFO] 
+############################################################
+Processing URL [2/3]: https://yunzeman.github.io/
+############################################################
+
+2025-01-06 01:03:33 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 01:03:34 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 01:03:40 [INFO] Detected schema: student
+
+2025-01-06 01:03:40 [INFO] Reason: The webpage content describes a Ph.D. student's profile, including their research interests, education, publications, internship experience, and professional service, which matches the characteristics of a student schema.
+
+2025-01-06 01:03:40 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 01:03:40 [INFO] Getting response from open source with extra body for student
+
+2025-01-06 01:03:40 [INFO] Entity schema: <class 'student.Student'>
+
+2025-01-06 01:04:31 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 01:04:31 [INFO] 
+📊 Summary for https://yunzeman.github.io/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 58.36 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 01:04:31 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/student/1/yunze_man.json
+
+2025-01-06 01:04:31 [INFO] 
+############################################################
+Processing URL [3/3]: https://kaiyan289.github.io/
+############################################################
+
+2025-01-06 01:04:31 [INFO] 
+------------------------------------------------------------
+Scraping webpage content
+------------------------------------------------------------
+
+2025-01-06 01:04:32 [INFO] 
+------------------------------------------------------------
+Detecting schema for webpage content
+------------------------------------------------------------
+
+2025-01-06 01:04:38 [INFO] Detected schema: student
+
+2025-01-06 01:04:38 [INFO] Reason: The webpage content describes a Ph.D. student's personal website, including their research interests, publications, work experiences, teaching experiences, and other activities, which matches the characteristics of a student schema.
+
+2025-01-06 01:04:38 [INFO] 
+------------------------------------------------------------
+Extracting initial entity data
+------------------------------------------------------------
+
+2025-01-06 01:04:38 [INFO] Getting response from open source with extra body for student
+
+2025-01-06 01:04:38 [INFO] Entity schema: <class 'student.Student'>
+
+2025-01-06 01:05:21 [INFO] 
+------------------------------------------------------------
+No empty fields found, saving initial data
+------------------------------------------------------------
+
+2025-01-06 01:05:21 [INFO] 
+📊 Summary for https://kaiyan289.github.io/
+────────────────────────────────────────────────────────────
+⏱️  Total Processing Duration: 49.96 seconds
+
+❌ No relevant links found
+────────────────────────────────────────────────────────────
+
+
+2025-01-06 01:05:21 [INFO] ✅ Results saved to ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/student/1/kai_yan.json
+
+2025-01-06 01:05:21 [INFO] 
+============================================================
+Final Process Summary
+============================================================
+
+2025-01-06 01:05:21 [INFO] Total Processing Time: 314.86 seconds
+
+2025-01-06 01:05:21 [INFO] Number of URLs Processed: 3
+
+2025-01-06 01:05:21 [INFO] 📊 Detailed Analysis by URL:
+
+2025-01-06 01:05:21 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 01:05:21 [INFO] 🌐 https://biboyqg.github.io/
+
+2025-01-06 01:05:21 [INFO] ⏱️  Processing Time: 206.53 seconds
+
+2025-01-06 01:05:21 [INFO] 
+📎 Relevant Links Found:
+
+2025-01-06 01:05:21 [INFO] 
+  🔗 https://scholar.google.com/citations?hl=en&authuser=1&user=0XAPPrEAAAAJ
+
+2025-01-06 01:05:21 [INFO]      Fields: publications, awards
+
+2025-01-06 01:05:21 [INFO]      Reasons:
+
+2025-01-06 01:05:21 [INFO]      • publications: The URL is from Google Scholar, a platform for tracking publications, and the display text suggests an academic profile, which could include a student's publications.
+
+2025-01-06 01:05:21 [INFO]      • awards: Google Scholar often contains information about a researcher's publications and awards, and the URL suggests a specific author's profile.
+
+2025-01-06 01:05:21 [INFO]      ⏱️  Update Time: 31.11 seconds
+
+2025-01-06 01:05:21 [INFO] 
+  🔗 https://www.linkedin.com/in/banghao-chi-550737276
+
+2025-01-06 01:05:21 [INFO]      Fields: publications, awards
+
+2025-01-06 01:05:21 [INFO]      Reasons:
+
+2025-01-06 01:05:21 [INFO]      • publications: The URL contains a specific LinkedIn profile, and LinkedIn often includes information about a person's publications and professional experience.
+
+2025-01-06 01:05:21 [INFO]      • awards: The URL contains a specific LinkedIn profile, and the display text is 'LinkedIn', which is a professional networking site where users often list their achievements, including awards.
+
+2025-01-06 01:05:21 [INFO]      ⏱️  Update Time: 34.55 seconds
+
+2025-01-06 01:05:21 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 01:05:21 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 01:05:21 [INFO] 🌐 https://yunzeman.github.io/
+
+2025-01-06 01:05:21 [INFO] ⏱️  Processing Time: 58.36 seconds
+
+2025-01-06 01:05:21 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 01:05:21 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 01:05:21 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 01:05:21 [INFO] 🌐 https://kaiyan289.github.io/
+
+2025-01-06 01:05:21 [INFO] ⏱️  Processing Time: 49.96 seconds
+
+2025-01-06 01:05:21 [INFO] 
+❌ No relevant links found for this URL
+
+2025-01-06 01:05:21 [INFO] 
+────────────────────────────────────────────────────────────
+
+2025-01-06 01:05:21 [INFO] 
+============================================================
+Writing process statistics to CSV
+============================================================
+
+2025-01-06 01:05:21 [INFO] 📊 Process statistics written to: ./results/ibnzterrell/Meta-Llama-3.3-70B-Instruct-AWQ-INT4/1/process_stats_20250106_010521.csv
+
+2025-01-06 01:05:21 [INFO] 
+============================================================
+✅ Process completed successfully!
+============================================================
+
