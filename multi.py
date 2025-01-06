@@ -351,6 +351,10 @@ def gather_links_recursively(
             logger.info("⏩ Skipping - txt URL")
             continue
 
+        if "drive.google" in link.url:
+            logger.info("⏩ Skipping - google drive URL")
+            continue
+
         visited_urls.add(link.url)
 
         # Check relevance of the link
