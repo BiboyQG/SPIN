@@ -21,7 +21,7 @@ class TextBook(BaseModel):
 
 class GradingComponent(BaseModel):
     name: str
-    weight: float
+    weight: float = Field(description="E.g. 0.05 for 5%")
     description: Optional[str] = None
 
 
