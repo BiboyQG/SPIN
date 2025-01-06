@@ -71,7 +71,7 @@ class ResponseOfRelevance(BaseModel):
 def setup_logging(open_source_model, max_depth):
     global logger
     # Create results directory structure instead of logs
-    base_path = f"./results/{open_source_model}/{max_depth}"
+    base_path = f"./results/{open_source_model.split('/')[1]}/{max_depth}"
     os.makedirs(base_path, exist_ok=True)
 
     log_path = f"{base_path}/process_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
@@ -457,7 +457,7 @@ def write_process_stats_to_csv(
     """
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     csv_path = (
-        f"./results/{open_source_model}/{max_depth}/process_stats_{timestamp}.csv"
+        f"./results/{open_source_model.split('/')[1]}/{max_depth}/process_stats_{timestamp}.csv"
     )
 
     with open(csv_path, "w", newline="") as csvfile:
