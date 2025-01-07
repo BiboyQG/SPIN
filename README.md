@@ -140,7 +140,7 @@ banghao-chi-knowledge-agent/
 ├── frontend/                   # Web interface
 ├── create_dataset.py           # Dataset creation utilities
 ├── eval.py                     # Evaluation metrics and scripts
-├── generate_results.py         # Result generation
+├── generate_results.py         # Result generation for one-time FSM data
 ├── multi.py                    # Complete pipeline of intelligent knowledge extraction
 ├── database.py                 # Database operations
 └── outlines.ipynb              # FSM explanation and example
