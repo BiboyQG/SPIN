@@ -17,11 +17,6 @@ class ProfessionalHighlight(BaseModel):
     year_end: Union[int, None] = Field(..., alias="yearEnd")
 
 
-class ResearchInterest(BaseModel):
-    area: str
-    description: str
-
-
 class Publication(BaseModel):
     title: str
     authors: List[str]
@@ -63,7 +58,6 @@ class Professor(BaseModel):
         ..., alias="professionalHighlights"
     )
     research_statement: str = Field(..., alias="researchStatement")
-    research_interests: List[ResearchInterest] = Field(..., alias="researchInterests")
     research_areas: List[str] = Field(..., alias="researchAreas")
     publications: List[Publication]
     teaching_honors: List[TeachingHonor] = Field(..., alias="teachingHonors")

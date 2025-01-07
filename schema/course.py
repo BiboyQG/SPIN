@@ -13,10 +13,7 @@ class Instructor(BaseModel):
 class TextBook(BaseModel):
     title: str
     authors: List[str]
-    isbn: Optional[str] = None
-    required: bool = True
-    edition: Optional[str] = None
-    publisher: Optional[str] = None
+    link: Optional[str]
 
 
 class GradingComponent(BaseModel):

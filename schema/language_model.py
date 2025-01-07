@@ -59,6 +59,8 @@ class LanguageModel(BaseModel):
     architecture: Architecture
     training_metrics: TrainingMetrics
 
+    knowledge_cutoff: Optional[str] = None
+
     limitations: List[str]
 
     benchmarks: List[Benchmark]
