@@ -4,8 +4,7 @@ import { Button } from '../components/ui/button';
 import { startExtraction, getExtractionStatus } from '../api/client';
 import { ExtractionResponse } from '../types/api';
 import { getStoredSettings, POLLING_INTERVAL } from '../lib/utils';
-import { JsonView } from 'react-json-view-lite';
-import 'react-json-view-lite/dist/index.css';
+import ReactJson from 'react-json-view';
 
 export function Home() {
   const navigate = useNavigate();
@@ -112,7 +111,7 @@ export function Home() {
         <form onSubmit={handleSubmit} className="space-y-6 mb-8">
           <div>
             <label htmlFor="input" className="block text-sm font-medium mb-1">
-              Search Query or URLs
+              Search Query or URLs (separated by comma)
             </label>
             <textarea
               id="input"
@@ -184,14 +183,17 @@ export function Home() {
 
         {extractionStatus?.result && (
           <div className="relative bg-white p-4 rounded-lg shadow-sm border">
-            <button
-              onClick={() => navigator.clipboard.writeText(JSON.stringify(extractionStatus.result, null, 2))}
-              className="absolute top-2 right-2 bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded text-sm"
-            >
-              Copy
-            </button>
-            <div className="font-mono text-sm overflow-auto mt-4">
-              <JsonView data={parseJsonResult(extractionStatus.result)} />
+            <div className="font-mono text-sm overflow-auto">
+              <ReactJson 
+                src={parseJsonResult(extractionStatus.result)}
+                name={false}
+                theme="rjv-default"
+                enableClipboard={true}
+                displayDataTypes={false}
+                displayObjectSize={false}
+                displayArrayKey={false}
+                style={{ backgroundColor: 'transparent' }}
+              />
             </div>
           </div>
         )}
