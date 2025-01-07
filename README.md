@@ -18,8 +18,8 @@ This repository presents a novel hierarchical framework for Language Model (LLM)
 | transformers  | 4.45.1      |
 | vLLM          | 0.6.6.post1 |
 | DrissionPage  | 4.1.0.17    |
-| DeepDiff      |             |
-| FuzzyWuzzy    |             |
+| DeepDiff      | 8.1.1       |
+| FuzzyWuzzy    | 0.18.0      |
 
 > [!TIP]
 >
@@ -57,6 +57,8 @@ Once you have the environment ready, you can setup the database by running:
 docker compose up -d && make migrate-up
 ```
 
+You should also setup the environment variables inside the `.envrc` file.
+
 #### Launching Server
 
 Then we need to setup server-side to provide the service to the clients. To launch our OpenAI-compatible server, simply:
@@ -70,6 +72,18 @@ CUDA_VISIBLE_DEVICES=... NCCL_P2P_DISABLE=1 vllm serve YOUR_MODEL_NAME --gpu-mem
 ```
 
 #### Knowledge Extraction
+
+##### Web Interface
+
+After that, we can launch the provided fullstack application by running a simple bash script:
+```bash
+./dev.sh
+```
+By browsing `http:localhost:5173` and entering OpenAI base URL and model name, the only thing that you need to do to extract information is to provide the search query or URLs that you want the program to extract from, and then designate the number of max depth of gathering info:
+
+![Web Interface Screenshot](./assets/web_interface.png)
+
+##### CLI
 
 After that, we can run our main program by inputting a search query, one URL or a list of URLs separated by comma:
 
