@@ -9,6 +9,7 @@ import time
 import csv
 import sys
 import os
+import re
 
 from pydantic import BaseModel, HttpUrl, TypeAdapter, ValidationError
 from schema.schema_manager import schema_manager
@@ -602,7 +603,7 @@ Return only the Python code for the schema, without any other text(```python and
             },
             {
                 "role": "user",
-                "content": f"Generate a {schema_type} Pydantic schema for this webpage content:\n{webpage_content}",
+                "content": f"Generate a {snake_case_to_normal_case(schema_type)} Pydantic schema, whose model name should be exactly {snake_case_to_camel_case(schema_type)}, for this webpage content:\n{webpage_content}",
             },
         ],
         max_tokens=16384,
@@ -610,6 +611,16 @@ Return only the Python code for the schema, without any other text(```python and
     )
 
     return response.choices[0].message.content
+
+
+def snake_case_to_camel_case(text: str) -> str:
+    """Convert snake case to camel case."""
+    return "".join(word.capitalize() for word in text.split("_"))
+
+
+def snake_case_to_normal_case(text: str) -> str:
+    """Convert snake case to normal case."""
+    return " ".join(word.capitalize() for word in text.split("_"))
 
 
 def process_entity_with_schema(scrape_result: str) -> tuple:

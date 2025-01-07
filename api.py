@@ -176,23 +176,25 @@ class ExtractionTask:
                     schema_type = input("The schema name: ")
                     self.update_progress(
                         "schema_generation",
-                        f"Generating new schema for type: {schema_type}",
+                        f"Generating new schema for type: {snake_case_to_normal_case(schema_type)}",
                         40,
                     )
-                    new_schema_code = generate_new_schema(scrape_result, schema_type)
+                    new_schema_code = generate_new_schema(
+                        scrape_result, schema_type
+                    )
                     schema_manager.save_new_schema(schema_type, new_schema_code)
                 else:
                     schema_type = schema_result.schema
                     self.update_progress(
                         "schema_detection",
-                        f"Detected schema: {schema_type}. Reason: {schema_result.reason}",
+                        f"Detected schema: {snake_case_to_normal_case(schema_type)}. Reason: {schema_result.reason}",
                         40,
                     )
 
                 # Stage 3: Extract initial data
                 self.update_progress(
                     "initial_extraction",
-                    f"Extracting initial entity data for schema: {schema_type}. The reason is: {schema_result.reason}",
+                    f"Extracting initial entity data for schema: {snake_case_to_normal_case(schema_type)}. The reason is: {schema_result.reason}",
                     50,
                 )
                 original_response = get_response_from_open_source_with_extra_body(
@@ -324,6 +326,16 @@ def create_schema(name: str, content: str):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+def snake_case_to_camel_case(text: str) -> str:
+    """Convert snake case to camel case."""
+    return "".join(word.capitalize() for word in text.split("_"))
+
+
+def snake_case_to_normal_case(text: str) -> str:
+    """Convert snake case to normal case."""
+    return " ".join(word.capitalize() for word in text.split("_"))
+
+
 def brave_search(query: str) -> str:
     """
     Perform a Brave search and return the top result URL.
@@ -416,7 +428,7 @@ Return only the Python code for the schema, without any other text(```python and
             },
             {
                 "role": "user",
-                "content": f"Generate a {schema_type} Pydantic schema for this webpage content:\n{webpage_content}",
+                "content": f"Generate a {snake_case_to_normal_case(schema_type)} Pydantic schema, whose model name should be exactly {snake_case_to_camel_case(schema_type)}, for this webpage content:\n{webpage_content}",
             },
         ],
         max_tokens=16384,
