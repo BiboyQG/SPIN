@@ -198,13 +198,17 @@ def compare_json_objects(ground_truth: dict, test_object: dict):
 
 ## Issues and Future Work
 
-Currently, we only have a pipeline for professor data extraction. We will add more pipelines for other data types in the future, so that the entire framework can handle:
-
+Explore more intelligent ways of:
+- Scraping relevant links:
+  - [ ] Utilize more of the search engine?
+  - [ ] Utilize [browser-use-webui](https://github.com/warmshao/browser-use-webui) for browser control?
+- Updating the JSON object:
+  - [ ] Update field by field instead of the entire JSON object?
 - [x] Dynamic schema creation
-- [x] Better scraper by rendering through local browser
-- [ ] Multi-source data extraction
-- [ ] Database operations
+- [x] Bypass anti-scraping by rendering the page in the local browser
 - [ ] Information effectiveness evaluation
+- [ ] Database operations
+- [ ] Modularize the codebase
 
 ## Contributors
 
@@ -224,7 +228,7 @@ Fall 2024 (Student 1)
 * Week of 12/11/2024: Implemented multi-phase knowledge extraction and database operations.
 * Week of 12/20/2024: Finalized first version of the project.
 * Week of 1/10/2024: Completed intelligent recursive scraping with max depth, brave search
-API integration and comprehensive logging system
+API integration and comprehensive logging system.
 * Week of 1/21/2024: Implemented schema manager, including schema detection and dynamic schema creation and finishing the enhanced version of pipeline of LLM-based Knowledge Agents.
 
 ## License
