@@ -25,6 +25,7 @@ import uvicorn
 global client
 client = None
 
+
 class MemoryLogger:
     def __init__(self):
         self.logs: List[Dict] = []
@@ -109,10 +110,22 @@ class ExtractionTask:
     def __init__(self, request: ExtractionRequest):
         self.request = request
         self.status = "pending"
-        self.progress = {}
+        self.progress = {
+            "stage": "initializing",  # Current stage of extraction
+            "stage_progress": 0,  # Progress within current stage (0-100)
+            "current_url": None,  # Current URL being processed
+            "url_number": 0,  # Current URL number
+            "total_urls": 0,  # Total URLs to process
+            "message": "Starting extraction...",  # Current status message
+        }
         self.result = None
         self.error = None
         self.logger = MemoryLogger()
+
+    def update_progress(self, stage: str, message: str, stage_progress: int = 0):
+        self.progress.update(
+            {"stage": stage, "stage_progress": stage_progress, "message": message}
+        )
 
     def run(self):
         global client
@@ -123,34 +136,81 @@ class ExtractionTask:
             # Configure environment
             os.environ["OPENAI_BASE_URL"] = self.request.openai_base_url
             os.environ["OPEN_SOURCE_MODEL"] = self.request.model_name
-            
+
             client = OpenAI()
 
             # Process URLs
             urls = process_input_urls(self.request.input)
+            self.progress["total_urls"] = len(urls)
 
             results = {}
             for idx, url in enumerate(urls):
-                self.progress = {
-                    "current_url": url,
-                    "url_number": idx + 1,
-                    "total_urls": len(urls),
-                }
+                self.progress.update(
+                    {
+                        "current_url": url,
+                        "url_number": idx + 1,
+                    }
+                )
 
-                # Scrape content
+                # Stage 1: Scrape content
+                self.update_progress("scraping", f"Scraping content from {url}", 0)
                 scrape_result = scraper.scrape_url(url)["markdown"]
                 if not scrape_result:
                     self.logger.warning(f"Failed to scrape URL: {url}")
                     continue
 
-                # Process entity
-                entity_schema, entity_data, schema_type, original_response = (
-                    process_entity_with_schema(scrape_result)
+                # Stage 2: Detect schema
+                self.update_progress(
+                    "schema_detection",
+                    "Analyzing webpage content to detect schema...",
+                    20,
                 )
+                schema_result = detect_schema(scrape_result)
 
-                # Get empty fields and gather links
+                if schema_result.schema == "No match":
+                    self.update_progress(
+                        "schema_detection",
+                        "The schema of the entity doesn't match any existing schema, please input schema name on the backend",
+                        30,
+                    )
+                    schema_type = input("The schema name: ")
+                    self.update_progress(
+                        "schema_generation",
+                        f"Generating new schema for type: {schema_type}",
+                        40,
+                    )
+                    new_schema_code = generate_new_schema(scrape_result, schema_type)
+                    schema_manager.save_new_schema(schema_type, new_schema_code)
+                else:
+                    schema_type = schema_result.schema
+                    self.update_progress(
+                        "schema_detection",
+                        f"Detected schema: {schema_type}. Reason: {schema_result.reason}",
+                        40,
+                    )
+
+                # Stage 3: Extract initial data
+                self.update_progress(
+                    "initial_extraction",
+                    f"Extracting initial entity data for schema: {schema_type}. The reason is: {schema_result.reason}",
+                    50,
+                )
+                original_response = get_response_from_open_source_with_extra_body(
+                    scrape_result, schema_type
+                )
+                entity_data = json.loads(original_response)
+
+                # Stage 4: Get empty fields
+                self.update_progress("analyzing_fields", "Analyzing empty fields", 60)
                 none_keys = get_none_value_keys(entity_data)
+
                 if none_keys:
+                    # Stage 5: Gather links
+                    self.update_progress(
+                        "gathering_links",
+                        f"Gathering relevant links for fields: {', '.join(none_keys)}",
+                        70,
+                    )
                     all_discovered_links, relevance_dict = gather_links_recursively(
                         scrape_result,
                         entity_data,
@@ -159,26 +219,49 @@ class ExtractionTask:
                         max_depth=self.request.depth,
                     )
 
-                    # Update information
-                    updated_data = get_final_information_from_all_links_one_by_one(
-                        scrape_result,
-                        relevance_dict,
-                        None,  # Don't save to file
-                        schema_type,
-                        original_response,
-                    )
+                    # Stage 6: Update information
+                    total_links = len(relevance_dict)
+                    if total_links > 0:
+                        progress_per_link = (
+                            20 / total_links
+                        )  # 20 is the range from 80 to 100
+                        for i, (link, fields) in enumerate(relevance_dict.items()):
+                            current_progress = 80 + (i * progress_per_link)
+                            self.update_progress(
+                                "updating_data",
+                                f"Updating information from link {i+1}/{total_links}: {link}",
+                                int(current_progress),
+                            )
+                            scrape_result = scraper.scrape_url(link)["markdown"]
+                            if scrape_result is None:
+                                continue
 
-                    results[url] = updated_data
+                            original_response = (
+                                get_response_from_open_source_with_extra_body_update(
+                                    scrape_result,
+                                    original_response,
+                                    fields,
+                                    schema_type,
+                                )
+                            )
+
+                    results[url] = original_response
                 else:
                     results[url] = original_response
 
+                self.update_progress(
+                    "finalizing", f"Completed processing URL {idx + 1}/{len(urls)}", 100
+                )
+
             self.result = results
             self.status = "completed"
+            self.update_progress("completed", "Extraction completed successfully", 100)
 
         except Exception as e:
             self.status = "failed"
             self.error = str(e)
             self.logger.error(str(e))
+            self.update_progress("failed", f"Extraction failed: {str(e)}", 0)
             raise
 
 
@@ -239,6 +322,7 @@ def create_schema(name: str, content: str):
         return {"message": f"Schema {name} created successfully"}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 
 def brave_search(query: str) -> str:
     """
@@ -365,37 +449,6 @@ def get_response_from_open_source_with_extra_body(scrape_result: str, schema_typ
         extra_body={"guided_json": entity_schema.model_json_schema()},
     )
     return response.choices[0].message.content
-
-
-def process_entity_with_schema(scrape_result: str) -> tuple:
-    """Process entity information using appropriate schema."""
-    global logger
-    logger.subsection("Detecting schema for webpage content")
-    schema_result = detect_schema(scrape_result)
-
-    if schema_result.schema == "No match":
-        logger.info(
-            "No matching schema found. Please input the schema name you want to use."
-        )
-        schema_name = input("The schema name: ")
-        new_schema_code = generate_new_schema(scrape_result, schema_name)
-
-        logger.info(f"Saving new schema: {schema_name}")
-        schema_manager.save_new_schema(schema_name, new_schema_code)
-        entity_schema = schema_manager.get_schema(schema_name)
-    else:
-        schema_name = schema_result.schema
-        logger.info(f"Detected schema: {schema_name}")
-        logger.info(f"Reason: {schema_result.reason}")
-        entity_schema = schema_manager.get_schema(schema_name)
-
-    logger.subsection("Extracting initial entity data")
-    entity_data_json = get_response_from_open_source_with_extra_body(
-        scrape_result, schema_name
-    )
-    entity_data = json.loads(entity_data_json)
-
-    return entity_schema, entity_data, schema_name, entity_data_json
 
 
 def get_none_value_keys(json_obj: dict) -> List[str]:
@@ -609,36 +662,6 @@ def get_response_from_open_source_with_extra_body_update(
         extra_body={"guided_json": entity_schema.model_json_schema()},
     )
     return response.choices[0].message.content
-
-
-def get_final_information_from_all_links_one_by_one(
-    scrape_result,
-    relevance_dict,
-    output_path,
-    schema_type: str,
-    original_response: str,
-):
-    global logger
-
-    logger.info("Updating information with relevant links...")
-
-    for i, (link, none_keys) in enumerate(
-        tqdm(relevance_dict.items(), desc="Processing links")
-    ):
-        logger.info(f"Processing link {i+1}/{len(relevance_dict)}: {link}")
-        scrape_result = scraper.scrape_url(link)["markdown"]
-        if scrape_result is None:
-            logger.warning(f"Skipping link {link} because it is not accessible")
-            continue
-
-        original_response = get_response_from_open_source_with_extra_body_update(
-            scrape_result,
-            original_response,
-            none_keys,
-            schema_type,
-        )
-
-    return original_response
 
 
 if __name__ == "__main__":

@@ -154,10 +154,30 @@ export function Home() {
         )}
 
         {extractionStatus?.progress && (
-          <div className="mb-6">
+          <div className="mb-6 space-y-4">
+            {/* URL Progress */}
             <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded">
-              Processing URL {extractionStatus.progress.url_number} of {extractionStatus.progress.total_urls}:
-              {' '}{extractionStatus.progress.current_url}
+              {extractionStatus.progress.total_urls > 0 && (
+                <div>
+                  Processing URL {extractionStatus.progress.url_number} of {extractionStatus.progress.total_urls}
+                  {extractionStatus.progress.current_url && `: ${extractionStatus.progress.current_url}`}
+                </div>
+              )}
+            </div>
+
+            {/* Stage Progress */}
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm text-gray-600">
+                <span className="capitalize">{extractionStatus.progress.stage.replace(/_/g, ' ')}</span>
+                <span>{extractionStatus.progress.stage_progress}%</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2.5">
+                <div
+                  className="bg-blue-600 h-2.5 rounded-full transition-all duration-300"
+                  style={{ width: `${extractionStatus.progress.stage_progress}%` }}
+                ></div>
+              </div>
+              <p className="text-sm text-gray-600">{extractionStatus.progress.message}</p>
             </div>
           </div>
         )}

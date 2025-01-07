@@ -6,9 +6,12 @@ export interface ExtractionRequest {
 }
 
 export interface ExtractionProgress {
-  current_url: string;
+  stage: 'initializing' | 'scraping' | 'schema_detection' | 'schema_generation' | 'initial_extraction' | 'analyzing_fields' | 'gathering_links' | 'updating_data' | 'finalizing' | 'completed' | 'failed';
+  stage_progress: number;
+  current_url: string | null;
   url_number: number;
   total_urls: number;
+  message: string;
 }
 
 export interface ExtractionResponse {
