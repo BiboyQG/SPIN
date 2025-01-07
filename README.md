@@ -120,10 +120,10 @@ banghao-chi-knowledge-agent/
 ├── schema/                     # Dynamically generated that are used to extract info 
 │   ├── schema_manager.py       # Schema manager that can generate schemas
 │   └── ...                     # Dynamically generated schemas
+├── frontend/                   # Web interface
 ├── create_dataset.py           # Dataset creation utilities
 ├── eval.py                     # Evaluation metrics and scripts
 ├── generate_results.py         # Result generation
-├── interface.py                # Web interface
 ├── multi.py                    # Complete pipeline of intelligent knowledge extraction
 ├── database.py                 # Database operations
 └── outlines.ipynb              # FSM explanation and example
