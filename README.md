@@ -57,7 +57,10 @@ Once you have the environment ready, you can setup the database by running:
 docker compose up -d && make migrate-up
 ```
 
-You should also setup the environment variables inside the `.envrc` file.
+You can also setup the web interface by running the following code:
+```bash
+cd frontend && npm install --legacy-peer-deps
+```
 
 #### Launching Server
 
