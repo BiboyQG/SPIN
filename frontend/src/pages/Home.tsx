@@ -5,6 +5,7 @@ import { startExtraction, getExtractionStatus } from '../api/client';
 import { ExtractionResponse } from '../types/api';
 import { getStoredSettings, POLLING_INTERVAL } from '../lib/utils';
 import ReactJson from 'react-json-view';
+import { SchemaInputModal } from '../components/SchemaInputModal';
 
 export function Home() {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ export function Home() {
   const [taskId, setTaskId] = useState<string | null>(null);
   const [extractionStatus, setExtractionStatus] = useState<ExtractionResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isSchemaModalOpen, setIsSchemaModalOpen] = useState(false);
+  const [schemaReason, setSchemaReason] = useState('');
 
   useEffect(() => {
     const settings = getStoredSettings();
@@ -31,6 +34,15 @@ export function Home() {
       try {
         const status = await getExtractionStatus(taskId);
         setExtractionStatus(status);
+
+        if (status.progress?.stage === 'schema_detection' && 
+            status.progress?.message?.includes("The schema of the entity doesn't match")) {
+          const schemaResponse = status.progress.message as string;
+          setSchemaReason(schemaResponse);
+          setIsSchemaModalOpen(true);
+          clearInterval(pollInterval);
+          return;
+        }
 
         if (status.status === 'completed' || status.status === 'failed') {
           clearInterval(pollInterval);
@@ -75,6 +87,25 @@ export function Home() {
     } catch {
       setIsExtracting(false);
       setError('Failed to start extraction');
+    }
+  };
+
+  const handleSchemaSubmit = async (schemaType: string) => {
+    setIsSchemaModalOpen(false);
+    
+    try {
+      const settings = getStoredSettings();
+      const response = await startExtraction({
+        input,
+        depth,
+        openai_base_url: settings.openai_base_url,
+        model_name: settings.model_name,
+        schema_type: schemaType,
+      });
+      setTaskId(response.task_id);
+    } catch {
+      setIsExtracting(false);
+      setError('Failed to restart extraction with schema type');
     }
   };
 
@@ -198,6 +229,16 @@ export function Home() {
           </div>
         )}
       </div>
+
+      <SchemaInputModal
+        isOpen={isSchemaModalOpen}
+        onClose={() => {
+          setIsSchemaModalOpen(false);
+          setIsExtracting(false);
+        }}
+        onSubmit={handleSchemaSubmit}
+        reason={schemaReason}
+      />
     </div>
   );
 } 

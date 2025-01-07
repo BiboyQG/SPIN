@@ -95,6 +95,7 @@ class ExtractionRequest(BaseModel):
     depth: int = 1
     openai_base_url: str
     model_name: str
+    schema_type: Optional[str] = None  # Optional schema type for manual input
 
 
 class ExtractionResponse(BaseModel):
@@ -117,6 +118,7 @@ class ExtractionTask:
             "url_number": 0,  # Current URL number
             "total_urls": 0,  # Total URLs to process
             "message": "Starting extraction...",  # Current status message
+            "schema_type": None,  # Schema type if manually provided
         }
         self.result = None
         self.error = None
@@ -165,25 +167,24 @@ class ExtractionTask:
                     "Analyzing webpage content to detect schema...",
                     20,
                 )
-                schema_result = detect_schema(scrape_result)
 
-                if schema_result.schema == "No match":
+                # Use provided schema type or detect it
+                if self.request.schema_type:
+                    schema_type = self.request.schema_type
                     self.update_progress(
                         "schema_detection",
-                        "The schema of the entity doesn't match any existing schema, please input schema name on the backend",
-                        30,
-                    )
-                    schema_type = input("The schema name: ")
-                    self.update_progress(
-                        "schema_generation",
-                        f"Generating new schema for type: {snake_case_to_normal_case(schema_type)}",
+                        f"Using provided schema: {snake_case_to_normal_case(schema_type)}",
                         40,
                     )
-                    new_schema_code = generate_new_schema(
-                        scrape_result, schema_type
-                    )
-                    schema_manager.save_new_schema(schema_type, new_schema_code)
                 else:
+                    schema_result = detect_schema(scrape_result)
+                    if schema_result.schema == "No match":
+                        self.update_progress(
+                            "schema_detection",
+                            "The schema of the entity doesn't match any existing schema, please input the general schema name of the entity below:",
+                            30,
+                        )
+                        return
                     schema_type = schema_result.schema
                     self.update_progress(
                         "schema_detection",
@@ -191,10 +192,25 @@ class ExtractionTask:
                         40,
                     )
 
-                # Stage 3: Extract initial data
+                # Stage 3: Generate schema if needed
+                is_generated = False
+                if (
+                    self.request.schema_type
+                    and schema_type not in schema_manager.get_schema_names()
+                ):
+                    is_generated = True
+                    self.update_progress(
+                        "schema_generation",
+                        f"Generating new schema for type: {snake_case_to_normal_case(schema_type)}",
+                        40,
+                    )
+                    new_schema_code = generate_new_schema(scrape_result, schema_type)
+                    schema_manager.save_new_schema(schema_type, new_schema_code)
+
+                # Stage 4: Extract initial data
                 self.update_progress(
                     "initial_extraction",
-                    f"Extracting initial entity data for schema: {snake_case_to_normal_case(schema_type)}. The reason is: {schema_result.reason}",
+                    f"Extracting initial entity data for schema: {snake_case_to_normal_case(schema_type)}. The reason is: {schema_result.reason}" if not is_generated else f"Extracting initial entity data for newly generated schema: {snake_case_to_normal_case(schema_type)}",
                     50,
                 )
                 original_response = get_response_from_open_source_with_extra_body(
@@ -202,12 +218,12 @@ class ExtractionTask:
                 )
                 entity_data = json.loads(original_response)
 
-                # Stage 4: Get empty fields
+                # Stage 5: Get empty fields
                 self.update_progress("analyzing_fields", "Analyzing empty fields", 60)
                 none_keys = get_none_value_keys(entity_data)
 
                 if none_keys:
-                    # Stage 5: Gather links
+                    # Stage 6: Gather links
                     self.update_progress(
                         "gathering_links",
                         f"Gathering relevant links for fields: {', '.join(none_keys)}",
@@ -221,7 +237,7 @@ class ExtractionTask:
                         max_depth=self.request.depth,
                     )
 
-                    # Stage 6: Update information
+                    # Stage 7: Update information
                     total_links = len(relevance_dict)
                     if total_links > 0:
                         progress_per_link = (

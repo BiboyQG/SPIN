@@ -3,6 +3,7 @@ export interface ExtractionRequest {
   depth: number;
   openai_base_url: string;
   model_name: string;
+  schema_type?: string;
 }
 
 export interface ExtractionProgress {
@@ -12,6 +13,7 @@ export interface ExtractionProgress {
   url_number: number;
   total_urls: number;
   message: string;
+  schema_type?: string;
 }
 
 export interface ExtractionResponse {
@@ -25,4 +27,4 @@ export interface ExtractionResponse {
 export interface Settings {
   openai_base_url: string;
   model_name: string;
-} 
+}
