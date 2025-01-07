@@ -5,3 +5,5 @@ pydantic
 markdownify
 requests
 beautifulsoup4
+fuzzywuzzy
+deepdiff
