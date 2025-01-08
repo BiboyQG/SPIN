@@ -88,7 +88,7 @@ By browsing `http:localhost:5173` and entering OpenAI base URL and model name, t
 
 ##### CLI
 
-After that, we can run our main program by inputting a search query, one URL or a list of URLs separated by comma:
+We can also run our main program by inputting a search query, one URL or a list of URLs separated by comma:
 
 > [!NOTE]
 >
@@ -137,7 +137,8 @@ banghao-chi-knowledge-agent/
 ├── schema/                     # Dynamically generated that are used to extract info 
 │   ├── schema_manager.py       # Schema manager that can generate schemas
 │   └── ...                     # Dynamically generated schemas
-├── frontend/                   # Web interface
+├── frontend/                   # Web interface(frontend)
+├── api.py                      # Backend API
 ├── create_dataset.py           # Dataset creation utilities
 ├── eval.py                     # Evaluation metrics and scripts
 ├── generate_results.py         # Result generation for one-time FSM data
