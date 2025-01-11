@@ -195,7 +195,7 @@ def compare_json_objects(ground_truth: dict, test_object: dict):
 
 ## Demo Video
 
-[Google Drive](https://drive.google.com/file/d/1Fhn3xOkEkrD5brdmNYp2SDXCdtOYqBBG/view?usp=drive_link)
+[Google Drive](https://drive.google.com/file/d/1NfJb7PlCTLgdWJNAMGxVCz5PRmFC1MY_/view?usp=sharing)
 
 ## Issues and Future Work
 
