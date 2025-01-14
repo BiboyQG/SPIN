@@ -218,7 +218,7 @@ Explore more intelligent ways of:
 
 ## Change Log
 
-Fall 2024 (Student 1)
+Fall 2024 (Banghao Chi)
 
 * Week of 8/28/2024: Started the project and built interface demo.
 * Week of 9/18/2024: Added the car schema, started to extract car data and evaluate the results.
