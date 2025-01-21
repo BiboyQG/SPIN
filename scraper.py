@@ -19,6 +19,8 @@ class WebScraper:
         # Initialize ChromiumPage for fallback
         self.chrome_page = ChromiumPage()
 
+        self.MAX_TOKEN_LENGTH = 10000
+
         # Common class and ID names for navigation elements
         self.nav_selectors = [
             "nav",
@@ -204,9 +206,10 @@ class WebScraper:
 
             # If it's a publication page, only return the first half
             if self.is_publication_page(url):
-                lines = markdown_content.splitlines()
-                half_length = len(lines) // 2
-                markdown_content = "\n".join(lines[:half_length])
+                if len(markdown_content) > self.MAX_TOKEN_LENGTH:
+                    lines = markdown_content.splitlines()
+                    half_length = len(lines) // 2
+                    markdown_content = "\n".join(lines[:half_length])
 
             return {"markdown": markdown_content}
 
