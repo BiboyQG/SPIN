@@ -693,6 +693,22 @@ def get_response_from_open_source_with_extra_body_update(
     return response.choices[0].message.content
 
 
+def get_model_field_names(model_class, prefix="") -> List[str]:
+    """Extract all field names from a Pydantic model, including nested fields using dot notation"""
+    field_names = []
+    for field_name, field in model_class.model_fields.items():
+        if hasattr(field.annotation, "model_fields"):
+            # This is a nested Pydantic model
+            nested_prefix = f"{prefix}{field_name}." if prefix else f"{field_name}."
+            nested_fields = get_model_field_names(field.annotation, nested_prefix)
+            field_names.extend(nested_fields)
+        else:
+            # This is a regular field
+            full_name = f"{prefix}{field_name}" if prefix else field_name
+            field_names.append(full_name)
+    return field_names
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Run the Information Extraction API server"
