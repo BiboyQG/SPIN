@@ -9,10 +9,9 @@ import time
 import csv
 import sys
 import os
-import re
 
 from pydantic import BaseModel, HttpUrl, TypeAdapter, ValidationError
-from schema.schema_manager import schema_manager
+from schemas.schema_manager import schema_manager
 from scraper import WebScraper
 from openai import OpenAI
 

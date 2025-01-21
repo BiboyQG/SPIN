@@ -15,7 +15,7 @@ from multi import (
     ResponseOfRelevance,
     RelatedLinks,
 )
-from schema.schema_manager import schema_manager
+from schemas.schema_manager import schema_manager
 from scraper import WebScraper
 from openai import OpenAI
 from tqdm import tqdm
