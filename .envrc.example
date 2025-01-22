@@ -1,0 +1,5 @@
+export DB_ADDR="postgres://admin:adminpassword@localhost/spin?sslmode=disable"
+export OPENAI_BASE_URL=""
+export OPEN_SOURCE_MODEL="Qwen/Qwen2.5-72B-Instruct-AWQ"
+export BRAVE_SEARCH_URL="https://api.search.brave.com/res/v1/web/search"
+export BRAVE_SEARCH_API_KEY=""
