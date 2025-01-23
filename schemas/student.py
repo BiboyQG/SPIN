@@ -7,7 +7,7 @@ class Education(BaseModel):
     institution: str
     degree: str
     major: str
-    gpa: float
+    gpa: Optional[float]
     period: str = Field(
         description="The period of the education, e.g., 'Fall 2023 - Fall 2025'"
     )
@@ -60,7 +60,7 @@ class Skills(BaseModel):
 
 class Contact(BaseModel):
     email: str
-    phone: str
+    phone: Optional[str]
     address: str
     portfolio: str
 
