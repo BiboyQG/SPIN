@@ -29,7 +29,7 @@ class Benchmark(BaseModel):
     name: str = Field(description="e.g., 'HumanEval', 'MMLU', 'MATH' etc.")
     score: float
     shot_count: Optional[int] = Field(
-        None, description="Number of shots used in evaluation"
+        None, description="Number of shots used in evaluation", alias="shotCount"
     )
 
 
