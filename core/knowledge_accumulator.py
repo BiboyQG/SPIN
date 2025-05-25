@@ -27,7 +27,7 @@ class KnowledgeAccumulator:
         # Add to main knowledge base
         self.knowledge_base.append(item)
 
-        # Index by schema fields
+        # Index by schema fields DIDN"T HANDLE NESTED FIELDS
         for field in item.schema_fields:
             self.field_knowledge[field].append(item)
 
