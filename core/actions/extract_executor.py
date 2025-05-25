@@ -34,6 +34,11 @@ class ExtractExecutor(ActionExecutor):
             # Prepare knowledge for extraction
             knowledge_text = self._prepare_knowledge_for_extraction(context)
 
+            print("="*80)
+            print("Knowledge text:\n\n")
+            print(knowledge_text)
+            print("="*80)
+
             # Extract structured data using LLM
             extracted_data = self._extract_with_llm(
                 knowledge_text,
@@ -92,8 +97,8 @@ class ExtractExecutor(ActionExecutor):
 
                 # Add supporting evidence
                 knowledge_sections.append("**Sources**:")
-                for item in field_knowledge[:3]:  # Top 3 items
-                    knowledge_sections.append(f"- {item.answer[:200]}...")
+                for item in field_knowledge[:3]:  # TODO: Limit to top 3 items
+                    knowledge_sections.append(f"- {item.answer}")
                     if item.source_urls:
                         knowledge_sections.append(f"  Source: {item.source_urls[0]}")
 
@@ -104,8 +109,8 @@ class ExtractExecutor(ActionExecutor):
 
         if general_knowledge:
             knowledge_sections.append("\n## Additional Information\n")
-            for item in general_knowledge[:5]:
-                knowledge_sections.append(f"- {item.answer[:200]}...")
+            for item in general_knowledge: # TODO: Limit to top 5 items
+                knowledge_sections.append(f"- {item.answer}") # TODO: Limit to 200 characters
 
         return "\n".join(knowledge_sections)
 
@@ -122,7 +127,7 @@ class ExtractExecutor(ActionExecutor):
 
 Entity Query: {entity_query}
 
-Based on the following research findings, extract all available information and structure it according to the provided schema.
+Based on the following research findings, extract all available information and structure it according to the provided JSON schema. The JSON schema is: {schema_class.model_json_schema()}.
 If a field cannot be determined from the available information, leave it as null or empty (depending on the field type).
 
 Research Findings:
@@ -137,6 +142,9 @@ Important guidelines:
 
 Return the extracted information as a JSON object matching the schema."""
 
+        if self.config.llm_config.enable_reasoning:
+            prompt += "\n\nPlease reason and think about the given context and instructions before generating the JSON object."
+
         try:
             response = self.llm_client.chat.completions.create(
                 model=self.config.llm_config.model_name,
@@ -147,10 +155,17 @@ Return the extracted information as a JSON object matching the schema."""
                     },
                     {"role": "user", "content": prompt},
                 ],
-                temperature=0.0,
+                temperature=self.config.llm_config.temperature,
                 max_tokens=self.config.llm_config.max_tokens,
                 extra_body={"guided_json": schema_class.model_json_schema()},
             )
+
+            if self.config.llm_config.enable_reasoning:
+                reasoning_content = response.choices[0].message.reasoning_content
+                print("="*80)
+                print("Reasoning content:\n\n")
+                print(reasoning_content)
+                print("="*80)
 
             # Parse and validate response
             extracted_json = response.choices[0].message.content

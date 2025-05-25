@@ -2,6 +2,7 @@ from typing import Dict, Any, List
 from datetime import datetime
 from openai import OpenAI
 
+from core.response_model import ResponseOfReflectionResearchState, ResponseOfReflectionSubQuestions
 from core.actions.base import ActionExecutor
 from core.data_structures import (
     ResearchContext,
@@ -110,14 +111,12 @@ Format your response as a JSON object with keys: 'found_info', 'missing_info', '
                     },
                     {"role": "user", "content": prompt},
                 ],
-                temperature=0.3,
-                response_format={"type": "json_object"},
+                temperature=self.config.llm_config.temperature,
+                extra_body={"guided_json": ResponseOfReflectionResearchState.model_json_schema()},
             )
 
-            import json
-
-            analysis = json.loads(response.choices[0].message.content)
-            return analysis
+            analysis = ResponseOfReflectionResearchState.model_validate_json(response.choices[0].message.content)
+            return analysis.model_dump()
 
         except Exception as e:
             raise LLMError(f"Failed to analyze research state: {str(e)}")
@@ -126,7 +125,7 @@ Format your response as a JSON object with keys: 'found_info', 'missing_info', '
         self, context: ResearchContext, analysis: Dict[str, Any]
     ) -> List[str]:
         """Generate sub-questions to address knowledge gaps"""
-        focus_fields = list(context.empty_fields)[:5]  # Focus on top 5 empty fields
+        focus_fields = list(context.empty_fields)
 
         prompt = f"""Based on the research for "{context.original_query}", generate specific sub-questions that would help find information for these missing fields:
 
@@ -141,6 +140,9 @@ These should be different from previously asked questions and target specific as
 
 Return as a JSON object with key 'questions' containing a list of questions."""
 
+        if self.config.llm_config.enable_reasoning:
+            prompt += "\n\nPlease reason and think about the given context and instructions before generating the questions in JSON format."
+
         try:
             response = self.llm_client.chat.completions.create(
                 model=self.config.llm_config.model_name,
@@ -151,14 +153,19 @@ Return as a JSON object with key 'questions' containing a list of questions."""
                     },
                     {"role": "user", "content": prompt},
                 ],
-                temperature=0.5,
-                response_format={"type": "json_object"},
+                temperature=self.config.llm_config.temperature,
+                extra_body={"guided_json": ResponseOfReflectionSubQuestions.model_json_schema()},
             )
 
-            import json
+            if self.config.llm_config.enable_reasoning:
+                reasoning_content = response.choices[0].message.reasoning_content
+                print("="*80)
+                print("Reasoning content:\n\n")
+                print(reasoning_content)
+                print("="*80)
 
-            result = json.loads(response.choices[0].message.content)
-            return result.get("questions", [])
+            result = ResponseOfReflectionSubQuestions.model_validate_json(response.choices[0].message.content)
+            return result.questions
 
         except Exception as e:
             self.logger.error(
@@ -174,10 +181,10 @@ Return as a JSON object with key 'questions' containing a list of questions."""
         summary_parts = []
 
         # Group knowledge by field
-        for field in list(context.filled_fields)[:5]:  # Top 5 filled fields
+        for field in list(context.filled_fields): # TODO: Limit to top 5 filled fields
             knowledge = self.knowledge_accumulator.get_best_knowledge_for_field(field)
             if knowledge:
-                summary_parts.append(f"- {field}: {knowledge.answer[:100]}...")
+                summary_parts.append(f"- {field}: {knowledge.answer}") # TODO: Limit to 200 characters
 
         if not summary_parts:
             return "No significant information found yet."

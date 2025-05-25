@@ -161,7 +161,7 @@ class ResearchAgent:
         self.logger.subsection("Detecting Entity Type")
 
         # First, search for the entity
-        search_results = self.search_engine.search(query, num_results=1)
+        search_results = self.search_engine.search(query, num_results=5)
 
         if not search_results:
             raise ValueError("No search results found for entity detection")
@@ -171,34 +171,65 @@ class ResearchAgent:
 
         # Scrape the page
         scrape_result = self.web_scraper.scrape_url(top_url)
-        content = scrape_result.get("markdown")
+        content = scrape_result.get("markdown")[:8000] # Limit content size
 
         if not content:
-            raise ValueError("Failed to scrape content for entity detection")
+            for url in search_results[1:]:
+                scrape_result = self.web_scraper.scrape_url(url.url)
+                content = scrape_result.get("markdown")[:8000] # Limit content size
+                if content:
+                    break
 
         # Use schema detection logic from api.py
         available_schemas = schema_manager.get_schema_names()
         ResponseOfSchema = schema_manager.get_response_of_schema()
+
+        prompt = f"You are an expert at analyzing webpage content and determining the type of entity being described. You will analyze the content and determine if the main entity in the webpages matches one of the following schemas: {', '.join(available_schemas)}. Return your analysis as a JSON object with the matched schema name and reason. The JSON schema is: {ResponseOfSchema.model_json_schema()}. If no schema matches, return 'No match' in the schema field."
+
+        if self.config.llm_config.enable_reasoning:
+            prompt += "\n\nPlease reason and think about the given context and instructions before answering the question in JSON format."
 
         response = self.llm_client.chat.completions.create(
             model=self.config.llm_config.model_name,
             messages=[
                 {
                     "role": "system",
-                    "content": f"You are an expert at analyzing webpage content and determining the type of entity being described. You will analyze the content and determine if it matches one of the following schemas: {', '.join(available_schemas)}. Return your analysis as a JSON object with the matched schema name and reason. If no schema matches, return 'No match'.",
+                    "content": prompt,
                 },
                 {
                     "role": "user",
-                    "content": f"Analyze this webpage content and determine which schema it matches:\n{content[:5000]}",  # Limit content size
+                    "content": f"Analyze the webpage content and determine which schema it matches:\n{content}",
                 },
             ],
-            temperature=0.0,
+            temperature=self.config.llm_config.temperature,
             extra_body={"guided_json": ResponseOfSchema.model_json_schema()},
         )
 
-        result = ResponseOfSchema.model_validate_json(
-            response.choices[0].message.content
-        )
+        if self.config.llm_config.enable_reasoning:
+            reasoning_content = response.choices[0].message.reasoning_content
+            print("="*80)
+            print("Reasoning content:\n\n")
+            print(reasoning_content)
+            print("="*80)
+
+        print("="*80)
+        print("Response content:\n\n")
+        print(response.choices[0].message.content)
+        print("="*80)
+
+        try:
+            result = ResponseOfSchema.model_validate_json(
+                response.choices[0].message.content
+            )
+        except Exception as e:
+            print("="*80)
+            print("Error:\n\n")
+            print(e)
+            print("="*80)
+            result = ResponseOfSchema.model_validate_json(
+                response.choices[0].message.reasoning_content
+            )
+
 
         if result.schema == "No match":
             # TODO: Handle schema generation like in api.py

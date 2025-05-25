@@ -26,11 +26,12 @@ class LLMConfig:
     """Configuration for LLM interactions"""
 
     provider: str = "openai"
-    model_name: str = "Qwen/Qwen3-32B"
+    model_name: str = "Qwen/Qwen3-32B-AWQ"
     base_url: Optional[str] = None
     api_key: Optional[str] = None
     temperature: float = 0.0
     max_tokens: int = 16384
+    enable_reasoning: bool = True
 
     def __post_init__(self):
         if not self.base_url:
@@ -122,7 +123,7 @@ class ConfigManager:
             raise ValueError("min_relevance_threshold must be between 0 and 1")
 
         # Validate sub-configs
-        if config.search_config.provider not in ["brave", "duck", "serper"]:
+        if config.search_config.provider not in ["brave", "serpapi"]:
             raise ValueError(
                 f"Unknown search provider: {config.search_config.provider}"
             )

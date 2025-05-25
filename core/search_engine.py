@@ -206,7 +206,7 @@ class SearchEngine:
 
         # Add queries for empty fields
         empty_fields = context.get("empty_fields", [])
-        for field in empty_fields[:3]:  # Limit to top 3 empty fields
+        for field in empty_fields:  # TODO: Limit to top 3 empty fields
             if entity_name:
                 queries.append(f"{entity_name} {field}")
             else:
@@ -261,7 +261,7 @@ class SearchEngine:
             "background",
         ]
 
-        for keyword in entity_keywords[:2]:  # Limit alternatives
+        for keyword in entity_keywords:  # TODO: Use LLMs to generate queries
             if keyword not in query.lower():
                 alternatives.append(f"{query} {keyword}")
 
