@@ -158,10 +158,10 @@ class ResearchContext:
             return False
         if self.current_step >= self.max_steps:
             return False
-        if self.total_tokens_used >= self.max_tokens:
-            return False
-        if self.get_progress_percentage() >= 95:  # Good enough
-            return False
+        # if self.total_tokens_used >= self.max_tokens: # Ignore token budget for now
+        #     return False
+        # if self.get_progress_percentage() >= 95: # Ignore progress for now
+        #     return False
         return True
 
 
