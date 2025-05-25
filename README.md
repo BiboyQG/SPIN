@@ -1,241 +1,264 @@
-# Knowledge LLM Agent
+# LLM Knowledge Agent System
+
+An advanced Python-based research agent that performs deep, iterative research on entities and extracts structured information using Large Language Models.
 
 ## Overview
 
-This repository presents a novel hierarchical framework for Language Model (LLM) assessment that mirrors human's information retrieval process. Our approach integrates Finite State Machines (FSM) to achieve structured outputs, enabling systematic assessment and improved database operations.
+This system combines iterative research methodology with entity information extraction to gather comprehensive, structured data about entities (professors, companies, students, etc.) from web sources. It uses a multi-action approach inspired by advanced research agents, performing searches, visiting URLs, reflecting on gaps, and extracting structured data.
 
-## Setup
+## Key Features
 
-> [!IMPORTANT]
->
-> The requirement below is mandatory. And we've only tested our project on the following platform.
+- **Automatic Entity Type Detection**: Automatically detects what type of entity is being researched
+- **Iterative Research Process**: Uses SEARCH, VISIT, REFLECT, EXTRACT, and EVALUATE actions
+- **Schema-Driven Extraction**: Maps findings to predefined schemas using guided JSON with LLMs
+- **Smart URL Management**: Ranks and filters URLs based on relevance and diversity
+- **Knowledge Accumulation**: Builds confidence through multiple sources
+- **Progress Tracking**: Detailed logging and progress reporting
+- **Quality Evaluation**: Assesses completeness, accuracy, and consistency
 
-| Mandatory     | Recommended |
-| ------------- | ----------- |
-| Python        | 3.10        |
-| CUDA          | 12.2        |
-| torch         | 2.5.1       |
-| transformers  | 4.45.1      |
-| vLLM          | 0.6.6.post1 |
-| DrissionPage  | 4.1.0.17    |
-| DeepDiff      | 8.1.1       |
-| FuzzyWuzzy    | 0.18.0      |
+## Architecture
 
-> [!TIP]
->
-> Use `pip install -r requirement.txt` to install all the requirement if you want to create a new environment on your own or stick with existing environment.
+### Core Components
 
-### Quickstart
+1. **ResearchAgent** (`core/research_agent.py`)
 
-#### Repo Download
+   - Main orchestrator that coordinates the research process
+   - Manages the iterative loop and action execution
 
-We first clone the whole project by git clone this repo:
+2. **URLManager** (`core/url_manager.py`)
 
-```bash
-git clone git@github.com:Forward-UIUC-2024F/banghao-chi-knowledge-agent.git && cd banghao-chi-knowledge-agent
-```
+   - Discovers, ranks, and filters URLs
+   - Ensures diversity and relevance
 
-#### Environment Setup
+3. **KnowledgeAccumulator** (`core/knowledge_accumulator.py`)
 
-Then, it is necessary for us to setup a virtual environmrnt in order to run the project.
+   - Stores and consolidates research findings
+   - Maps knowledge to schema fields
+   - Calculates confidence scores
 
-Currently, we don't provide docker image or dockerfile. So we recommend you to use `conda` to setup the environment.
+4. **SearchEngine** (`core/search_engine.py`)
 
-> [!NOTE]
->
-> You can rename `my_new_env` to any name you want.
+   - Integrates with search APIs (Brave, DuckDuckGo, etc.)
+   - Generates targeted queries
 
-```bash
-conda env create -n my_new_env python=3.10 && conda activate my_new_env && pip install -r requirements.txt
-```
+5. **ActionPlanner** (`core/action_planner.py`)
+   - Decides next actions based on current state
+   - Balances exploration vs exploitation
 
-You should also install docker desktop on your own machine, which is required for setting up the database. If you don't have it, you can download it from [here](https://www.docker.com/products/docker-desktop/).
+### Action Types
 
-Once you have the environment ready, you can setup the database by running:
+- **SEARCH**: Web search for relevant information
+- **VISIT**: Deep content extraction from URLs
+- **REFLECT**: Analyze knowledge gaps and plan next steps
+- **EXTRACT**: Structure information into schema format
+- **EVALUATE**: Assess research quality and completeness
 
-```bash
-docker compose up -d && make migrate-up
-```
+## Installation
 
-You can also setup the web interface by running the following code:
-```bash
-cd frontend && npm install --legacy-peer-deps
-```
-
-#### Launching Server
-
-Then we need to setup server-side to provide the service to the clients. To launch our OpenAI-compatible server, simply:
-
-> [!NOTE]
->
-> Replcae `YOUR_MODEL_NAME` with the Huggingface directory of the model that you'd like to use
+1. Clone the repository:
 
 ```bash
-CUDA_VISIBLE_DEVICES=... NCCL_P2P_DISABLE=1 vllm serve YOUR_MODEL_NAME --gpu-memory-utilization=0.95 --trust-remote-code
+git clone <repository_url>
+cd SPIN
 ```
 
-#### Knowledge Extraction
+2. Install dependencies:
 
-##### Web Interface
-
-After that, we can launch the provided fullstack application by running a simple bash script:
 ```bash
-./dev.sh
-```
-By browsing `http:localhost:5173` and entering OpenAI base URL and model name, the only thing that you need to do to extract information is to provide the search query or URLs that you want the program to extract from, and then designate the number of max depth of gathering info:
-
-![Web Interface Screenshot](./assets/web_interface.png)
-
-##### CLI
-
-We can also run our main program by inputting a search query, one URL or a list of URLs separated by comma:
-
-> [!NOTE]
->
-> Replcae `NUM_OF_DEPTH` with the desire number of depth that you want to extract for the object
-
-```bach
-python multi.py "Banghao Chi UIUC" -d NUM_OF_DEPTH
+pip install -r requirements_research.txt
 ```
 
-or:
+3. Set up environment variables:
 
-```bach
-python multi.py "https://illinois.edu/about/index.html" -d NUM_OF_DEPTH
+```bash
+cp .envrc.example .envrc
+# Edit .envrc with your API keys:
+# - OPENAI_API_KEY or compatible LLM API key
+# - BRAVE_SEARCH_API_KEY (for search functionality)
+# - OPENAI_BASE_URL (if using custom endpoint)
 ```
 
-or:
+## Usage
 
-```bach
-python multi.py "https://illinois.edu/about/index.html,https://www.gatech.edu/about" -d NUM_OF_DEPTH
-```
-
-## Codebase Structure
-
-```
-banghao-chi-knowledge-agent/
-├── requirements.txt            # Project dependencies
-├── .gitignore                  # Git ignore file
-├── README.md                   # Project documentation
-├── dataset/                    # Data storage and results
-│   ├── article/                # Raw article data
-│   ├── results/                # One-time FSM data
-│   │   ├── gt/                 # Ground truth data
-│   │   ├── open-source/        # Open-source model results
-│   │   └── proprietary/        # Proprietary model results
-│   └── source/                 # Source URLs
-├── results/                    # Results of completed pipeline of knowledge extraction
-│   ├── YOUR_MODEL_NAME/        # Final results with different depth of search
-│   │   └── SCHEMA/             # Schema of the extracted entity
-│   │       └── NUM_OF_DEPTH/   # Number of depth, which contains the final JSON file(s)
-│   │           └── {name}.json # The extracted final JSON file(s)
-│   ├── gt/                     # Groud truth data
-│   │   └── SCHEMA/             # Schema of different groud truth data
-│   │       └── {name}.json     # Groud truth JSON file(s)
-│   ├── scrape/                 # Scraping results, which are used to compare with Firecrawl
-│   └── fsm/                    # FSM integrated one-time results
-├── schema/                     # Dynamically generated that are used to extract info 
-│   ├── schema_manager.py       # Schema manager that can generate schemas
-│   └── ...                     # Dynamically generated schemas
-├── frontend/                   # Web interface(frontend)
-├── api.py                      # Backend API
-├── create_dataset.py           # Dataset creation utilities
-├── eval.py                     # Evaluation metrics and scripts
-├── generate_results.py         # Result generation for one-time FSM data
-├── multi.py                    # Complete pipeline of intelligent knowledge extraction
-├── database.py                 # Database operations
-└── outlines.ipynb              # FSM explanation and example
-```
-
-## Functional Design (Usage)
-
-This framework provides several key functionalities for extracting structured information from text using LLMs and FSM-guided outputs.
-
-### Core Extraction Functions
-
-* Extract structured information from text using open-source models (e.g. Qwen/Qwen2.5-72B-Instruct-AWQ):
+### Basic Usage
 
 ```python
-def get_response_from_open_source_with_extra_body():
-    client = OpenAI()
-    response = client.chat.completions.create(
-        model=open_source_model_name,
-        messages=[
-            {
-                "role": "system",
-                "content": "...",
-            },
-            {
-                "role": "user",
-                "content": "...",
-            },
-        ],
-        extra_body={"guided_json": your_pydantic_model.model_json_schema()},
+from core.research_agent import ResearchAgent
+
+# Initialize the agent
+agent = ResearchAgent()
+
+# Research an entity (auto-detect type)
+results = agent.research_entity("Geoffrey Hinton professor")
+
+# Research with explicit type
+results = agent.research_entity("John Smith MIT", entity_type="professor")
+
+# Access results
+print(f"Entity Type: {results['entity_type']}")
+print(f"Extracted Data: {results['extracted_data']}")
+print(f"Completeness: {results['metadata']['completeness']}%")
+```
+
+### Command Line Usage
+
+```bash
+# Run test script
+python test_research.py "Geoffrey Hinton professor"
+
+# Results will be saved to: research_results_Geoffrey_Hinton_professor.json
+```
+
+### Configuration
+
+Create a custom configuration:
+
+```python
+from core.config import ResearchConfig, SearchConfig, LLMConfig
+
+config = ResearchConfig(
+    max_steps=30,
+    max_tokens_budget=50000,
+    max_urls_per_step=3,
+    search_config=SearchConfig(
+        provider="brave",
+        max_results_per_query=10
+    ),
+    llm_config=LLMConfig(
+        model_name="gpt-4o-mini",
+        temperature=0.0
     )
-    return response.choices[0].message.content
+)
+
+agent = ResearchAgent(config)
 ```
 
-### Evaluation Functions
+## Research Process Flow
 
-* Compare extracted JSON against ground truth:
+1. **Entity Detection**
+
+   - Search for the entity
+   - Analyze top result to detect entity type
+   - Load appropriate schema
+
+2. **Iterative Research Loop**
+
+   - Plan next action based on current state
+   - Execute action (search, visit, reflect, etc.)
+   - Update knowledge base
+   - Evaluate progress
+   - Repeat until complete or budget exhausted
+
+3. **Final Extraction**
+   - Consolidate all findings
+   - Extract structured data using LLM with guided JSON
+   - Validate against schema
+
+## Output Format
+
+The system returns a comprehensive result dictionary:
+
+```json
+{
+  "success": true,
+  "entity_type": "professor",
+  "query": "Geoffrey Hinton professor",
+  "extracted_data": {
+    "name": "Geoffrey Hinton",
+    "title": "Professor",
+    "department": "Computer Science",
+    "university": "University of Toronto",
+    "email": "...",
+    "research_interests": [...],
+    // ... other fields
+  },
+  "metadata": {
+    "duration_seconds": 45.2,
+    "fields_filled": 12,
+    "total_fields": 15,
+    "completeness": 80.0,
+    "confidence_score": 0.85,
+    "urls_visited": 8,
+    "knowledge_items": 23,
+    "tokens_used": 15000
+  },
+  "research_trail": {
+    "actions_taken": [...],
+    "search_queries": [...],
+    "visited_urls": [...],
+    "knowledge_summary": {...}
+  }
+}
+```
+
+## Extending the System
+
+### Adding New Entity Types
+
+1. Create a new schema in `schemas/` directory:
 
 ```python
-def compare_json_objects(ground_truth: dict, test_object: dict):
-  """
-  Evaluates extraction accuracy against ground truth.
-  Returns:
-    OrderedDict with metrics:
-      json_validity: bool
-      key_similarity: float
-      value_exactness: float
-      numeric_similarity: float
-      string_similarity: float
-  """
+# schemas/company.py
+from pydantic import BaseModel, Field
+from typing import List, Optional
+
+class Company(BaseModel):
+    name: str = Field(description="Company name")
+    industry: str = Field(description="Primary industry")
+    headquarters: Optional[str] = None
+    website: Optional[str] = None
+    # ... more fields
 ```
 
-## Demo Video
+2. The system will automatically detect and use the new schema
 
-[Google Drive](https://drive.google.com/file/d/1NfJb7PlCTLgdWJNAMGxVCz5PRmFC1MY_/view?usp=sharing)
+### Custom Action Executors
 
-## Issues and Future Work
+Create new action types by extending `ActionExecutor`:
 
-Explore more intelligent ways of:
-- Scraping relevant links:
-  - [ ] Utilize more of the search engine?
-  - [ ] Utilize [browser-use-webui](https://github.com/warmshao/browser-use-webui) for browser control?
-- Updating the JSON object:
-  - [ ] Update field by field instead of the entire JSON object?
-- [x] Dynamic schema creation
-- [x] Bypass anti-scraping by rendering the page in the local browser
-- [ ] Information effectiveness evaluation
-- [ ] Database operations
-- [ ] Modularize the codebase
+```python
+from core.actions.base import ActionExecutor
 
-## Contributors
+class CustomExecutor(ActionExecutor):
+    def execute(self, action, context):
+        # Implementation
+        pass
+```
 
-* [Banghao Chi](https://biboyqg.github.io/)
-* Advisor: [Kevin Chang](https://siebelschool.illinois.edu/about/people/faculty/kcchang)
+## Performance Considerations
 
-## Change Log
+- **Token Budget**: Monitor token usage to stay within limits
+- **Rate Limiting**: Built-in delays between API calls
+- **URL Diversity**: Limits URLs per domain to ensure broad coverage
+- **Caching**: Consider implementing caching for repeated searches
 
-Fall 2024 (Banghao Chi)
+## Troubleshooting
 
-* Week of 8/28/2024: Started the project and built interface demo.
-* Week of 9/18/2024: Added the car schema, started to extract car data and evaluate the results.
-* Week of 10/8/2024: Added the movie, professor schema, started to extract movie, professor data and evaluate the results.
-* Week of 10/22/2024: Added explanation for the FSM and example.
-* Week of 11/5/2024: Removed `Instructor-based` extraction and added pure `FSM-based` extraction.
-* Week of 11/20/2024: Added the database setup, connection, and migration.
-* Week of 12/11/2024: Implemented multi-phase knowledge extraction and database operations.
-* Week of 12/20/2024: Finalized first version of the project.
-* Week of 1/10/2024: Completed intelligent recursive scraping with max depth, brave search
-API integration and comprehensive logging system.
-* Week of 1/21/2024: Implemented schema manager, including schema detection and dynamic schema creation and finishing the enhanced version of pipeline of LLM-based Knowledge Agents.
+- **No search results**: Check API keys and network connectivity
+- **Schema detection fails**: Ensure entity has a matching schema or implement schema generation
+- **Low completeness**: Increase max_steps or adjust search strategies
+- **Token budget exceeded**: Reduce max_urls_per_step or content chunk sizes
+
+## Limitations
+
+- Requires reliable internet connection
+- Dependent on search API availability
+- LLM accuracy affects extraction quality
+- Some entity types may require custom schemas
+
+## Future Enhancements
+
+- API interface for integration
+- Parallel URL processing
+- Advanced caching system
+- Multi-language support
+- Real-time progress streaming
+- Custom entity type generation
 
 ## License
 
-[License information will be added]
+[Your License Here]
 
-## Acknowledgments
+## Contributing
 
-Special thanks to [Kevin Chang](https://siebelschool.illinois.edu/about/people/faculty/kcchang) and National Center for Supercomputing Applications([NCSA](https://ncsa.illinois.edu/)) for providing the research infrastructure and support for this project.
+Contributions are welcome! Please read the contributing guidelines before submitting PRs.
