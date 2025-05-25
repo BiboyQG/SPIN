@@ -11,3 +11,7 @@ test*.ipynb
 .ipynb_checkpoints/**
 
 test*.json
+
+logs/**
+
+.vscode/**
