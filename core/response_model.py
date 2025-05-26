@@ -1,3 +1,4 @@
+from typing_extensions import Literal
 from pydantic import BaseModel
 from typing import List
 from enum import Enum
@@ -24,4 +25,30 @@ class Action(str, Enum):
 
 class ResponseOfActionPlan(BaseModel):
     action: Action
+    reason: str
+
+
+class ResponseOfConsolidation(BaseModel):
+    value: str
+    sources: List[str]
+    reasoning: str
+
+
+class Assessment(BaseModel):
+    url: str
+    credibility: Literal["high", "medium", "low"]
+    reason: str
+
+
+class ResponseOfCredibility(BaseModel):
+    assessments: List[Assessment]
+
+
+class ResponseOfSelection(BaseModel):
+    selected_urls: List[str]
+    reasoning: str
+
+
+class ResponseOfWorthVisiting(BaseModel):
+    worth_visiting: bool
     reason: str
