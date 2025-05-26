@@ -27,18 +27,18 @@ class ResearchAgent:
         self.config = config or get_config()
         self.logger = get_logger()
 
-        # Initialize components
-        self.url_manager = URLManager()
-        self.knowledge_accumulator = KnowledgeAccumulator()
-        self.search_engine = SearchEngine()
-        self.action_planner = ActionPlanner()
-        self.web_scraper = WebScraper()
-
         # Initialize LLM client
         self.llm_client = OpenAI(
             api_key=self.config.llm_config.api_key,
             base_url=self.config.llm_config.base_url,
         )
+
+        # Initialize components
+        self.url_manager = URLManager(self.llm_client)
+        self.knowledge_accumulator = KnowledgeAccumulator(self.llm_client)
+        self.action_planner = ActionPlanner(self.llm_client)
+        self.search_engine = SearchEngine()
+        self.web_scraper = WebScraper()
 
         # Initialize action executors
         self.executors = {
@@ -46,7 +46,10 @@ class ResearchAgent:
                 self.search_engine, self.url_manager, self.knowledge_accumulator
             ),
             ActionType.VISIT: VisitExecutor(
-                self.url_manager, self.knowledge_accumulator, self.web_scraper
+                self.url_manager,
+                self.knowledge_accumulator,
+                self.web_scraper,
+                self.llm_client,
             ),
             ActionType.REFLECT: ReflectExecutor(
                 self.knowledge_accumulator, self.llm_client
@@ -76,9 +79,9 @@ class ResearchAgent:
         try:
             # Detect entity type and schema if not provided
             if not entity_type:
-                entity_type, initial_url = self._detect_entity_type(query)
+                entity_type, initial_urls = self._detect_entity_type(query)
             else:
-                initial_url = None
+                initial_urls = None
 
             # Get schema
             schema_class = schema_manager.get_schema(entity_type)
@@ -88,17 +91,37 @@ class ResearchAgent:
             # Initialize research context
             context = self._initialize_context(query, entity_type, schema_class)
 
-            # If we have an initial URL from detection, add it
-            if initial_url:
-                self._add_initial_url(context, initial_url)
+            # If we have initial URLs from detection, add them
+            if initial_urls:
+                for url in initial_urls:
+                    self._add_initial_url(context, url)
 
             # Main research loop
             while context.should_continue_research():
-                # Decide next action
-                action = self.action_planner.decide_next_action(context)
-                if not action:
-                    self.logger.info("RESEARCH_COMPLETE", "No more actions to take")
-                    break
+                # Check if all fields are complete before planning next action
+                is_complete, missing_fields = (
+                    self.knowledge_accumulator.check_schema_completeness(context.schema)
+                )
+
+                if is_complete and not context.current_extraction:
+                    # All fields have values, trigger extract action
+                    self.logger.info(
+                        "SCHEMA_COMPLETE",
+                        "All schema fields have values, triggering extraction",
+                    )
+                    from core.data_structures import ResearchAction
+
+                    action = ResearchAction(
+                        action_type=ActionType.EXTRACT,
+                        reason="All schema fields have been filled with values",
+                        parameters={"automatic": True},
+                    )
+                else:
+                    # Decide next action normally
+                    action = self.action_planner.decide_next_action(context)
+                    if not action:
+                        self.logger.info("RESEARCH_COMPLETE", "No more actions to take")
+                        break
 
                 # Execute action
                 executor = self.executors.get(action.action_type)
@@ -166,19 +189,16 @@ class ResearchAgent:
         if not search_results:
             raise ValueError("No search results found for entity detection")
 
-        # Get the top URL
-        top_url = search_results[0].url
+        initial_urls = [search_result.url for search_result in search_results]
 
-        # Scrape the page
-        scrape_result = self.web_scraper.scrape_url(top_url)
-        content = scrape_result.get("markdown")[:8000] # Limit content size
+        initial_url = None
 
-        if not content:
-            for url in search_results[1:]:
-                scrape_result = self.web_scraper.scrape_url(url.url)
-                content = scrape_result.get("markdown")[:8000] # Limit content size
-                if content:
-                    break
+        for url in initial_urls:
+            scrape_result = self.web_scraper.scrape_url(url)
+            content = scrape_result.get("markdown")[:8000]  # Limit content size
+            if content:
+                initial_url = url
+                break
 
         # Use schema detection logic from api.py
         available_schemas = schema_manager.get_schema_names()
@@ -207,29 +227,28 @@ class ResearchAgent:
 
         if self.config.llm_config.enable_reasoning:
             reasoning_content = response.choices[0].message.reasoning_content
-            print("="*80)
+            print("=" * 80)
             print("Reasoning content:\n\n")
             print(reasoning_content)
-            print("="*80)
+            print("=" * 80)
 
-        print("="*80)
+        print("=" * 80)
         print("Response content:\n\n")
         print(response.choices[0].message.content)
-        print("="*80)
+        print("=" * 80)
 
         try:
             result = ResponseOfSchema.model_validate_json(
                 response.choices[0].message.content
             )
         except Exception as e:
-            print("="*80)
+            print("=" * 80)
             print("Error:\n\n")
             print(e)
-            print("="*80)
+            print("=" * 80)
             result = ResponseOfSchema.model_validate_json(
                 response.choices[0].message.reasoning_content
             )
-
 
         if result.schema == "No match":
             # TODO: Handle schema generation like in api.py
@@ -239,10 +258,10 @@ class ResearchAgent:
             "ENTITY_TYPE_DETECTED",
             f"Detected entity type: {result.schema}",
             reason=result.reason,
-            url=top_url,
+            url=initial_url,
         )
 
-        return result.schema, top_url
+        return result.schema, initial_urls
 
     def _initialize_context(
         self, query: str, entity_type: str, schema_class: type
