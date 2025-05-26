@@ -1,9 +1,9 @@
-from typing import List, Dict, Set, Optional, Tuple, Any, TYPE_CHECKING
+from typing import List, Dict, Optional, Tuple, Any, TYPE_CHECKING
 from datetime import datetime
 from openai import OpenAI
 from collections import defaultdict
 
-from core.data_structures import KnowledgeItem, KnowledgeType
+from core.data_structures import KnowledgeItem
 from core.config import get_config
 from core.logging_config import get_logger
 from core.response_model import ResponseOfConsolidation

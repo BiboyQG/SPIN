@@ -12,7 +12,6 @@ from core.data_structures import (
 )
 from core.url_manager import URLManager
 from core.knowledge_accumulator import KnowledgeAccumulator
-from core.logging_config import ExtractionError
 from scraper import WebScraper
 from core.response_model import ResponseOfWorthVisiting
 from openai import OpenAI
