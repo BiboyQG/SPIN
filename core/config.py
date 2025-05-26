@@ -33,6 +33,15 @@ class LLMConfig:
     max_tokens: int = 16384
     enable_reasoning: bool = True
 
+    # Specialized model configurations
+    planning_model: str = model_name
+
+    consolidation_model: str = model_name
+
+    credibility_model: str = model_name
+
+    selection_model: str = model_name
+
     def __post_init__(self):
         if not self.base_url:
             self.base_url = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
@@ -45,7 +54,7 @@ class ResearchConfig:
     """Main configuration for research operations"""
 
     # Research constraints
-    max_steps: int = 50
+    max_steps: int = 20
     max_tokens_budget: int = 100000
     max_urls_per_step: int = 5
     max_search_queries: int = 10
