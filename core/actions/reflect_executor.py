@@ -2,7 +2,10 @@ from typing import Dict, Any, List
 from datetime import datetime
 from openai import OpenAI
 
-from core.response_model import ResponseOfReflectionResearchState, ResponseOfReflectionSubQuestions
+from core.response_model import (
+    ResponseOfReflectionResearchState,
+    ResponseOfReflectionSubQuestions,
+)
 from core.actions.base import ActionExecutor
 from core.data_structures import (
     ResearchContext,
@@ -56,7 +59,7 @@ class ReflectExecutor(ActionExecutor):
                     "progress": context.get_progress_percentage(),
                 },
             )
-            self.knowledge_accumulator.add_knowledge(reflection_item)
+            self.knowledge_accumulator.add_knowledge(reflection_item, context)
 
             result = {
                 "success": True,
@@ -112,10 +115,27 @@ Format your response as a JSON object with keys: 'found_info', 'missing_info', '
                     {"role": "user", "content": prompt},
                 ],
                 temperature=self.config.llm_config.temperature,
-                extra_body={"guided_json": ResponseOfReflectionResearchState.model_json_schema()},
+                extra_body={
+                    "guided_json": ResponseOfReflectionResearchState.model_json_schema()
+                },
             )
 
-            analysis = ResponseOfReflectionResearchState.model_validate_json(response.choices[0].message.content)
+            try:
+                analysis = ResponseOfReflectionResearchState.model_validate_json(
+                    response.choices[0].message.content
+                )
+            except Exception as e:
+                try:
+                    analysis = ResponseOfReflectionResearchState.model_validate_json(
+                        response.choices[0].message.reasoning_content
+                    )
+                except Exception as e:
+                    self.logger.error(
+                        "REFLECTION_ANALYSIS_PARSE_ERROR",
+                        f"Failed to parse LLM response for reflection analysis: {e}",
+                    )
+                    return {"success": False, "error": str(e), "items_processed": 0}
+
             return analysis.model_dump()
 
         except Exception as e:
@@ -154,17 +174,21 @@ Return as a JSON object with key 'questions' containing a list of questions."""
                     {"role": "user", "content": prompt},
                 ],
                 temperature=self.config.llm_config.temperature,
-                extra_body={"guided_json": ResponseOfReflectionSubQuestions.model_json_schema()},
+                extra_body={
+                    "guided_json": ResponseOfReflectionSubQuestions.model_json_schema()
+                },
             )
 
             if self.config.llm_config.enable_reasoning:
                 reasoning_content = response.choices[0].message.reasoning_content
-                print("="*80)
+                print("=" * 80)
                 print("Reasoning content:\n\n")
                 print(reasoning_content)
-                print("="*80)
+                print("=" * 80)
 
-            result = ResponseOfReflectionSubQuestions.model_validate_json(response.choices[0].message.content)
+            result = ResponseOfReflectionSubQuestions.model_validate_json(
+                response.choices[0].message.content
+            )
             return result.questions
 
         except Exception as e:
@@ -181,10 +205,12 @@ Return as a JSON object with key 'questions' containing a list of questions."""
         summary_parts = []
 
         # Group knowledge by field
-        for field in list(context.filled_fields): # TODO: Limit to top 5 filled fields
+        for field in list(context.filled_fields):  # TODO: Limit to top 5 filled fields
             knowledge = self.knowledge_accumulator.get_best_knowledge_for_field(field)
             if knowledge:
-                summary_parts.append(f"- {field}: {knowledge.answer}") # TODO: Limit to 200 characters
+                summary_parts.append(
+                    f"- {field}: {knowledge.answer}"
+                )  # TODO: Limit to 200 characters
 
         if not summary_parts:
             return "No significant information found yet."

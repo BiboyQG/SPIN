@@ -61,7 +61,7 @@ class SearchExecutor(ActionExecutor):
                         result.snippet, context
                     ),
                 )
-                self.knowledge_accumulator.add_knowledge(knowledge_item)
+                self.knowledge_accumulator.add_knowledge(knowledge_item, context)
 
             result = {
                 "success": True,

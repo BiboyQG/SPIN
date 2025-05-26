@@ -73,46 +73,7 @@ class ExtractExecutor(ActionExecutor):
             return {"success": False, "error": str(e), "items_processed": 0}
 
     def _prepare_knowledge_for_extraction(self, context: ResearchContext) -> str:
-        """Prepare consolidated knowledge for extraction"""
-        knowledge_sections = []
-
-        # Add header
-        knowledge_sections.append(
-            f"# Consolidated Research for: {context.original_query}\n"
-        )
-
-        # Group knowledge by schema field
-        for field in context.schema.keys():
-            field_knowledge = self.knowledge_accumulator.get_knowledge_for_field(field)
-
-            if field_knowledge:
-                knowledge_sections.append(f"\n## {field.replace('_', ' ').title()}\n")
-
-                # Add consolidated answer if available
-                consolidated = self.knowledge_accumulator.consolidate_field_knowledge(
-                    field
-                )
-                if consolidated:
-                    knowledge_sections.append(f"**Summary**: {consolidated}\n")
-
-                # Add supporting evidence
-                knowledge_sections.append("**Sources**:")
-                for item in field_knowledge[:3]:  # TODO: Limit to top 3 items
-                    knowledge_sections.append(f"- {item.answer}")
-                    if item.source_urls:
-                        knowledge_sections.append(f"  Source: {item.source_urls[0]}")
-
-        # Add any general knowledge not tied to specific fields
-        general_knowledge = [
-            item for item in context.knowledge_items if not item.schema_fields
-        ]
-
-        if general_knowledge:
-            knowledge_sections.append("\n## Additional Information\n")
-            for item in general_knowledge: # TODO: Limit to top 5 items
-                knowledge_sections.append(f"- {item.answer}") # TODO: Limit to 200 characters
-
-        return "\n".join(knowledge_sections)
+        return self.knowledge_accumulator.generate_knowledge_summary()
 
     def _extract_with_llm(
         self,
