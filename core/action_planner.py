@@ -1,13 +1,10 @@
-from typing import List, Optional, Dict, Any
-from datetime import datetime
+from typing import Optional, Dict, Any
 from openai import OpenAI
 
 from core.data_structures import (
     ResearchContext,
     ResearchAction,
     ActionType,
-    KnowledgeType,
-    EvaluationResult,
 )
 from core.config import get_config
 from core.logging_config import get_logger
@@ -69,7 +66,15 @@ Entity Type: {context.entity_type}
 
 Current Progress:
 - Fields filled: {len(context.filled_fields)}/{len(context.schema.keys())}
-- URLs discovered: {len(context.discovered_urls)}
+- URLs unvisited: {
+            len(
+                list(
+                    set(context.discovered_urls.keys())
+                    - context.visited_urls
+                    - context.failed_urls
+                )[: self.config.max_urls_per_step]
+            )
+        }
 - URLs visited: {len(context.visited_urls)}
 - Knowledge items collected: {len(context.knowledge_items)}
 - Current step: {context.current_step}
@@ -101,7 +106,7 @@ Choose one action and provide a clear reason and return your response in a JSON 
 
         try:
             response = self.llm_client.chat.completions.create(
-                model=self.config.llm_config.planning_model,
+                model=self.config.llm_config.model_name,
                 messages=[
                     {
                         "role": "system",
@@ -156,7 +161,11 @@ Choose one action and provide a clear reason and return your response in a JSON 
             )
 
         # URL status
-        unvisited = set(context.discovered_urls.keys()) - context.visited_urls - context.failed_urls
+        unvisited = (
+            set(context.discovered_urls.keys())
+            - context.visited_urls
+            - context.failed_urls
+        )
         if unvisited:
             summary_parts.append(f"{len(unvisited)} unvisited URLs available")
             # Show sample of unvisited URLs

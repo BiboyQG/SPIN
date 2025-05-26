@@ -136,7 +136,7 @@ Consider:
 
         try:
             response = self.llm_client.chat.completions.create(
-                model=self.config.llm_config.consolidation_model,
+                model=self.config.llm_config.model_name,
                 messages=[
                     {
                         "role": "system",

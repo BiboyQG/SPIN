@@ -30,17 +30,8 @@ class LLMConfig:
     base_url: Optional[str] = None
     api_key: Optional[str] = None
     temperature: float = 0.0
-    max_tokens: int = 16384
+    max_tokens: int = 32768
     enable_reasoning: bool = True
-
-    # Specialized model configurations
-    planning_model: str = model_name
-
-    consolidation_model: str = model_name
-
-    credibility_model: str = model_name
-
-    selection_model: str = model_name
 
     def __post_init__(self):
         if not self.base_url:
@@ -55,28 +46,26 @@ class ResearchConfig:
 
     # Research constraints
     max_steps: int = 20
-    max_tokens_budget: int = 100000
+    max_tokens_budget: int = 1000000
     max_urls_per_step: int = 5
     max_search_queries: int = 10
     max_reflection_depth: int = 3
 
     # Timeouts and delays
     request_timeout: int = 30  # seconds
-    step_delay: float = 0.3  # seconds between steps
+    step_delay: float = 1  # seconds between steps
 
-    # Quality thresholds
-    min_confidence_threshold: float = 0.05
-    min_relevance_threshold: float = 0.05
+    # Completeness thresholds
     min_completeness_for_finish: float = 1
 
     # URL filtering
     blocked_domains: list = None
     allowed_domains: list = None
 
-    # Features
-    enable_caching: bool = True
-    enable_parallel_visits: bool = False
-    enable_smart_extraction: bool = True
+    # TODO: Other advanced features
+    # enable_caching: bool = True
+    # enable_parallel_research: bool = False
+    # enable_smart_extraction: bool = True
 
     # Sub-configurations
     search_config: SearchConfig = None
@@ -126,10 +115,6 @@ class ConfigManager:
             raise ValueError("max_steps must be positive")
         if config.max_tokens_budget <= 0:
             raise ValueError("max_tokens_budget must be positive")
-        if not 0 <= config.min_confidence_threshold <= 1:
-            raise ValueError("min_confidence_threshold must be between 0 and 1")
-        if not 0 <= config.min_relevance_threshold <= 1:
-            raise ValueError("min_relevance_threshold must be between 0 and 1")
 
         # Validate sub-configs
         if config.search_config.provider not in ["brave", "serpapi"]:

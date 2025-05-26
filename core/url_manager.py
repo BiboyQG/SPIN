@@ -266,7 +266,7 @@ Respond in JSON format:
 
         try:
             response = self.llm_client.chat.completions.create(
-                model=self.config.llm_config.credibility_model,
+                model=self.config.llm_config.model_name,
                 messages=[
                     {
                         "role": "system",
@@ -354,7 +354,7 @@ Respond in JSON format:
 
         try:
             response = self.llm_client.chat.completions.create(
-                model=self.config.llm_config.selection_model,
+                model=self.config.llm_config.model_name,
                 messages=[
                     {
                         "role": "system",
