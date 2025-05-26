@@ -103,13 +103,13 @@ class ResearchContext:
 
     # Research progress
     actions_taken: List[ResearchAction] = field(default_factory=list)
-    current_step: int = 0
+    current_step: int = 1
     total_tokens_used: int = 0
     start_time: datetime = field(default_factory=datetime.now)
 
     # Constraints
-    max_steps: int = 50
-    max_tokens: int = 100000
+    max_steps: int = 20
+    max_tokens: int = 1000000
     max_urls_per_step: int = 5
 
     # Research state
@@ -172,7 +172,6 @@ class EvaluationResult:
     completeness: float  # 0-1 score
     accuracy: float  # 0-1 score
     consistency: float  # 0-1 score
-    freshness: float  # 0-1 score
     overall_score: float  # 0-1 score
     missing_critical_fields: List[str]
     recommendations: List[str]
