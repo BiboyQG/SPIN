@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 from core.data_structures import ResearchContext, ResearchAction
 from core.config import get_config
