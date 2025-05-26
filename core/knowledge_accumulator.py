@@ -1,281 +1,549 @@
-from typing import List, Dict, Set, Optional, Tuple
+from typing import List, Dict, Set, Optional, Tuple, Any, TYPE_CHECKING
 from datetime import datetime
-import re
+from openai import OpenAI
 from collections import defaultdict
 
 from core.data_structures import KnowledgeItem, KnowledgeType
 from core.config import get_config
 from core.logging_config import get_logger
+from core.response_model import ResponseOfConsolidation
+
+if TYPE_CHECKING:
+    from core.data_structures import ResearchContext
 
 
 class KnowledgeAccumulator:
-    """Manages research findings and knowledge building"""
+    """Manages research findings and knowledge building using LLM-based consolidation"""
 
-    def __init__(self):
+    def __init__(self, llm_client: OpenAI):
         self.config = get_config()
         self.logger = get_logger()
-        self.knowledge_base: List[KnowledgeItem] = []
-        self.field_knowledge: Dict[str, List[KnowledgeItem]] = defaultdict(list)
-        self.source_credibility: Dict[str, float] = {}
+        self.llm_client = llm_client
 
-    def add_knowledge(self, item: KnowledgeItem) -> None:
-        """Add a knowledge item to the accumulator"""
-        # Validate knowledge item
-        if not self._validate_knowledge(item):
-            return
+        # Simple field -> value mapping with sources
+        self.field_values: Dict[str, Dict[str, Any]] = {}
+        # field_values structure: {
+        #     "field_name": {
+        #         "value": "actual value",
+        #         "sources": ["url1", "url2"],
+        #         "last_updated": datetime
+        #     }
+        # }
 
-        # Add to main knowledge base
-        self.knowledge_base.append(item)
+        # Raw knowledge items for reference
+        self.knowledge_items: List[KnowledgeItem] = []
 
-        # Index by schema fields DIDN"T HANDLE NESTED FIELDS
-        for field in item.schema_fields:
-            self.field_knowledge[field].append(item)
+        # Track all discovered information by field
+        self.field_discoveries: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+        # field_discoveries structure: {
+        #     "field_name": [
+        #         {"value": "v1", "source": "url1", "context": "..."},
+        #         {"value": "v2", "source": "url2", "context": "..."}
+        #     ]
+        # }
 
-        # Update source credibility
-        for url in item.source_urls:
-            self._update_source_credibility(url, item.confidence)
+    def add_knowledge(
+        self, item: KnowledgeItem, context: Optional["ResearchContext"] = None
+    ) -> None:
+        """Add a knowledge item and update field values"""
+        # Store raw knowledge item
+        self.knowledge_items.append(item)
+
+        # Extract field-specific information
+        self._extract_field_values(item, context)
 
         self.logger.info(
             "KNOWLEDGE_ADDED",
             f"Added knowledge item of type {item.item_type.value}",
             fields=item.schema_fields,
-            confidence=item.confidence,
+            sources=item.source_urls[:2],  # Log first 2 sources
         )
 
-    def _validate_knowledge(self, item: KnowledgeItem) -> bool:
-        """Validate a knowledge item before adding"""
-        if not item.answer or not item.answer.strip():
-            self.logger.warning("KNOWLEDGE_VALIDATION", "Rejected empty knowledge item")
-            return False
-
-        if item.confidence < 0.1:  # Very low confidence threshold
-            self.logger.warning(
-                "KNOWLEDGE_VALIDATION",
-                "Rejected knowledge item with very low confidence",
-                confidence=item.confidence,
-            )
-            return False
-
-        return True
-
-    def _update_source_credibility(self, url: str, confidence: float) -> None:
-        """Update credibility score for a source"""
-        if url not in self.source_credibility:
-            self.source_credibility[url] = confidence
-        else:
-            # Running average
-            self.source_credibility[url] = (
-                self.source_credibility[url] * 0.7 + confidence * 0.3
+    def _extract_field_values(
+        self, item: KnowledgeItem, context: Optional["ResearchContext"] = None
+    ) -> None:
+        """Extract field values from a knowledge item"""
+        # For each field this knowledge item relates to
+        for field in item.schema_fields:
+            # Store the discovery
+            self.field_discoveries[field].append(
+                {
+                    "value": item.answer,
+                    "source": item.source_urls[0] if item.source_urls else "unknown",
+                    "context": item.question,
+                    "timestamp": item.timestamp,
+                }
             )
 
-    def get_knowledge_for_field(self, field_name: str) -> List[KnowledgeItem]:
-        """Get all knowledge items related to a specific field"""
-        return self.field_knowledge.get(field_name, [])
+            # Update consolidated field value if needed
+            self._update_field_value(field, context)
 
-    def get_best_knowledge_for_field(self, field_name: str) -> Optional[KnowledgeItem]:
-        """Get the most confident knowledge item for a field"""
-        field_items = self.get_knowledge_for_field(field_name)
-        if not field_items:
-            return None
+    def _update_field_value(
+        self, field_name: str, context: Optional["ResearchContext"] = None
+    ) -> None:
+        """Update the consolidated value for a field using LLM"""
+        discoveries = self.field_discoveries.get(field_name, [])
+        if not discoveries:
+            return
 
-        # Sort by confidence and recency
-        def score_item(item: KnowledgeItem) -> float:
-            recency_factor = 1.0  # Could decay based on age
-            source_factor = (
-                max(self.source_credibility.get(url, 0.5) for url in item.source_urls)
-                if item.source_urls
-                else 0.5
+        # If only one discovery, use it directly
+        if len(discoveries) == 1:
+            self.field_values[field_name] = {
+                "value": discoveries[0]["value"],
+                "sources": [discoveries[0]["source"]],
+                "last_updated": datetime.now(),
+            }
+            return
+
+        # When there are multiple discoveries, add field to context.filled_fields if context is provided
+        if context is not None and len(discoveries) > 1:
+            context.filled_fields.add(field_name)
+
+        # Use LLM to consolidate multiple discoveries
+        consolidated = self._llm_consolidate_field(field_name, discoveries)
+        if consolidated:
+            self.field_values[field_name] = consolidated
+
+    def _llm_consolidate_field(
+        self, field_name: str, discoveries: List[Dict[str, Any]]
+    ) -> Optional[Dict[str, Any]]:
+        """Use LLM to consolidate multiple discoveries for a field"""
+        # Prepare discoveries for prompt
+        discovery_text = ""
+        for i, disc in enumerate(discoveries, 1):
+            discovery_text += f"\n{i}. Value: {disc['value']}\n   Source: {disc['source']}\n   Context: {disc['context']}\n"
+
+        prompt = f"""You are consolidating information for the field '{field_name}'.
+
+Multiple sources have provided the following information:
+{discovery_text}
+
+Based on these sources, determine:
+1. The most accurate/complete information for this field
+2. Which sources support this value
+
+Respond in JSON format:
+{{
+    "value": "the consolidated information",
+    "sources": ["url1", "url2"],
+    "reasoning": "brief explanation of why this value was chosen"
+}}
+
+Consider:
+- If values agree, combine sources
+- If values conflict, choose the most credible/detailed one
+- If values complement each other, merge them appropriately"""
+
+        try:
+            response = self.llm_client.chat.completions.create(
+                model=self.config.llm_config.consolidation_model,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an expert at consolidating information from multiple sources.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.llm_config.temperature,
+                max_tokens=self.config.llm_config.max_tokens,
+                extra_body={"guided_json": ResponseOfConsolidation.model_json_schema()},
             )
 
-            return item.confidence * 0.6 + source_factor * 0.3 + recency_factor * 0.1
+            try:
+                result = ResponseOfConsolidation.model_validate_json(
+                    response.choices[0].message.content
+                )
+            except Exception as e:
+                print("=" * 80)
+                print("Error:\n\n")
+                print(e)
+                print("=" * 80)
+                result = ResponseOfConsolidation.model_validate_json(
+                    response.choices[0].message.reasoning_content
+                )
 
-        return max(field_items, key=score_item)
-
-    def consolidate_field_knowledge(self, field_name: str) -> Optional[str]:
-        """Consolidate multiple knowledge items for a field into a single answer"""
-        field_items = self.get_knowledge_for_field(field_name)
-        if not field_items:
-            return None
-
-        # If only one item, return it
-        if len(field_items) == 1:
-            return field_items[0].answer
-
-        # Group by answer similarity
-        answer_groups = self._group_similar_answers(field_items)
-
-        # Select the best group (most items with high confidence)
-        best_group = max(
-            answer_groups, key=lambda g: sum(item.confidence for item in g) * len(g)
-        )
-
-        # Return the answer from the most confident item in the best group
-        best_item = max(best_group, key=lambda item: item.confidence)
-
-        self.logger.debug(
-            "KNOWLEDGE_CONSOLIDATION",
-            f"Consolidated {len(field_items)} items for field {field_name}",
-            selected_confidence=best_item.confidence,
-        )
-
-        return best_item.answer
-
-    def _group_similar_answers(
-        self, items: List[KnowledgeItem]
-    ) -> List[List[KnowledgeItem]]:
-        """Group knowledge items with similar answers"""
-        groups = []
-
-        for item in items:
-            # Try to find a matching group
-            matched = False
-            for group in groups:
-                if self._are_answers_similar(item.answer, group[0].answer):
-                    group.append(item)
-                    matched = True
-                    break
-
-            # Create new group if no match
-            if not matched:
-                groups.append([item])
-
-        return groups
-
-    def _are_answers_similar(self, answer1: str, answer2: str) -> bool:
-        """Check if two answers are similar enough to be grouped"""
-        # Normalize answers
-        norm1 = self._normalize_answer(answer1)
-        norm2 = self._normalize_answer(answer2)
-
-        # Exact match after normalization
-        if norm1 == norm2:
-            return True
-
-        # Check token overlap (simple similarity)
-        tokens1 = set(norm1.split())
-        tokens2 = set(norm2.split())
-
-        if not tokens1 or not tokens2:
-            return False
-
-        overlap = len(tokens1 & tokens2)
-        total = len(tokens1 | tokens2)
-
-        similarity = overlap / total if total > 0 else 0
-        return similarity > 0.7
-
-    def _normalize_answer(self, answer: str) -> str:
-        """Normalize an answer for comparison"""
-        # Convert to lowercase
-        answer = answer.lower()
-        # Remove extra whitespace
-        answer = " ".join(answer.split())
-        # Remove punctuation from edges
-        answer = answer.strip(".,!?;:")
-        return answer
-
-    def calculate_field_confidence(self, field_name: str) -> float:
-        """Calculate overall confidence for a schema field"""
-        field_items = self.get_knowledge_for_field(field_name)
-        if not field_items:
-            return 0.0
-
-        # Consider multiple factors
-        max_confidence = max(item.confidence for item in field_items)
-        avg_confidence = sum(item.confidence for item in field_items) / len(field_items)
-
-        # Agreement bonus - higher confidence if multiple items agree
-        answer_groups = self._group_similar_answers(field_items)
-        largest_group_ratio = max(len(g) for g in answer_groups) / len(field_items)
-
-        # Weighted combination
-        confidence = (
-            max_confidence * 0.4 + avg_confidence * 0.3 + largest_group_ratio * 0.3
-        )
-
-        return min(confidence, 1.0)
-
-    def get_schema_completion_map(self, schema_fields: List[str]) -> Dict[str, float]:
-        """Get completion status for all schema fields"""
-        completion_map = {}
-
-        for field in schema_fields:
-            confidence = self.calculate_field_confidence(field)
-            completion_map[field] = confidence
-
-        return completion_map
-
-    def identify_knowledge_gaps(
-        self, schema_fields: List[str], threshold: float = 0.7
-    ) -> List[str]:
-        """Identify schema fields that need more research"""
-        gaps = []
-        completion_map = self.get_schema_completion_map(schema_fields)
-
-        for field, confidence in completion_map.items():
-            if confidence < threshold:
-                gaps.append(field)
-
-        # Sort by lowest confidence first
-        gaps.sort(key=lambda f: completion_map[f])
-
-        return gaps
-
-    def generate_summary(self) -> Dict[str, any]:
-        """Generate a summary of accumulated knowledge"""
-        summary = {
-            "total_items": len(self.knowledge_base),
-            "by_type": defaultdict(int),
-            "by_field": {},
-            "source_count": len(
-                set(url for item in self.knowledge_base for url in item.source_urls)
-            ),
-            "avg_confidence": sum(item.confidence for item in self.knowledge_base)
-            / len(self.knowledge_base)
-            if self.knowledge_base
-            else 0,
-        }
-
-        # Count by type
-        for item in self.knowledge_base:
-            summary["by_type"][item.item_type.value] += 1
-
-        # Count and confidence by field
-        for field, items in self.field_knowledge.items():
-            summary["by_field"][field] = {
-                "count": len(items),
-                "confidence": self.calculate_field_confidence(field),
+            return {
+                "value": result.value,
+                "sources": result.sources,
+                "last_updated": datetime.now(),
             }
 
-        return dict(summary)
+        except Exception as e:
+            self.logger.error(
+                "LLM_CONSOLIDATION_ERROR",
+                f"Failed to consolidate field {field_name}: {str(e)}",
+            )
+            # Fallback to most recent discovery
+            return {
+                "value": discoveries[-1]["value"],
+                "sources": [discoveries[-1]["source"]],
+                "last_updated": datetime.now(),
+            }
+
+    def get_field_value(self, field_name: str) -> Optional[str]:
+        """Get the consolidated value for a field"""
+        field_data = self.field_values.get(field_name)
+        return field_data["value"] if field_data else None
+
+    def get_field_sources(self, field_name: str) -> List[str]:
+        """Get all sources for a field value"""
+        field_data = self.field_values.get(field_name)
+        return field_data["sources"] if field_data else []
+
+    def get_all_field_values(self) -> Dict[str, Any]:
+        """Get all field values with their sources"""
+        return {
+            field: {"value": data["value"], "sources": data["sources"]}
+            for field, data in self.field_values.items()
+        }
+
+    def check_schema_completeness(
+        self, schema: Dict[str, Any]
+    ) -> Tuple[bool, List[str]]:
+        """Check if all fields (including nested) in the schema have values"""
+        missing_fields = []
+
+        def check_fields(obj: Dict[str, Any], prefix: str = ""):
+            for key, value in obj.items():
+                field_path = f"{prefix}.{key}" if prefix else key
+
+                if isinstance(value, dict) and not value.get("type"):
+                    # Nested object
+                    check_fields(value, field_path)
+                else:
+                    # Regular field
+                    if field_path not in self.field_values:
+                        missing_fields.append(field_path)
+
+        check_fields(schema)
+
+        is_complete = len(missing_fields) == 0
+        return is_complete, missing_fields
+
+    def get_knowledge_for_field(self, field_name: str) -> List[Dict[str, Any]]:
+        """Get all discoveries for a specific field"""
+        return self.field_discoveries.get(field_name, [])
+
+    def identify_knowledge_gaps(self, schema_fields: List[str]) -> List[str]:
+        """Identify schema fields that don't have values yet"""
+        gaps = []
+        for field in schema_fields:
+            if field not in self.field_values:
+                gaps.append(field)
+        return gaps
+
+    def generate_summary(self) -> Dict[str, Any]:
+        """Generate a summary of accumulated knowledge"""
+        total_fields = len(self.field_values)
+        total_discoveries = sum(
+            len(discoveries) for discoveries in self.field_discoveries.values()
+        )
+
+        # Get source distribution
+        all_sources = set()
+        for field_data in self.field_values.values():
+            all_sources.update(field_data["sources"])
+
+        summary = {
+            "total_fields_filled": total_fields,
+            "total_discoveries": total_discoveries,
+            "unique_sources": len(all_sources),
+            "fields_with_multiple_sources": sum(
+                1
+                for discoveries in self.field_discoveries.values()
+                if len(discoveries) > 1
+            ),
+            "knowledge_items_count": len(self.knowledge_items),
+            "latest_update": max(
+                (data["last_updated"] for data in self.field_values.values()),
+                default=None,
+            ),
+        }
+
+        return summary
 
     def merge_knowledge_bases(self, other: "KnowledgeAccumulator") -> None:
         """Merge another knowledge accumulator into this one"""
-        for item in other.knowledge_base:
-            self.add_knowledge(item)
+        # Merge knowledge items
+        for item in other.knowledge_items:
+            self.add_knowledge(item, None)
 
-    def prune_low_quality_knowledge(self, min_confidence: float = 0.3) -> int:
-        """Remove low-quality knowledge items"""
-        original_count = len(self.knowledge_base)
+        # Merge discoveries (will trigger re-consolidation)
+        for field, discoveries in other.field_discoveries.items():
+            self.field_discoveries[field].extend(discoveries)
+            self._update_field_value(field, None)
 
-        # Filter knowledge base
-        self.knowledge_base = [
-            item for item in self.knowledge_base if item.confidence >= min_confidence
-        ]
+    def export_extraction(self) -> Dict[str, Any]:
+        """Export the current extraction with sources"""
+        extraction = {}
+        for field, data in self.field_values.items():
+            # Handle nested fields
+            parts = field.split(".")
+            current = extraction
+            for part in parts[:-1]:
+                if part not in current:
+                    current[part] = {}
+                current = current[part]
 
-        # Rebuild field index
-        self.field_knowledge.clear()
-        for item in self.knowledge_base:
-            for field in item.schema_fields:
-                self.field_knowledge[field].append(item)
+            # Set the value with metadata
+            current[parts[-1]] = {"value": data["value"], "sources": data["sources"]}
 
-        pruned_count = original_count - len(self.knowledge_base)
+        return extraction
 
-        if pruned_count > 0:
-            self.logger.info(
-                "KNOWLEDGE_PRUNING",
-                f"Pruned {pruned_count} low-quality knowledge items",
-                min_confidence=min_confidence,
+    def get_fields_needing_verification(self) -> List[str]:
+        """Identify fields that might benefit from additional verification"""
+        fields_to_verify = []
+
+        for field, discoveries in self.field_discoveries.items():
+            if len(discoveries) > 1:
+                # Check if values differ significantly
+                values = [d["value"] for d in discoveries]
+                if len(set(values)) > 1:  # Multiple different values
+                    fields_to_verify.append(field)
+
+        return fields_to_verify
+
+    def generate_knowledge_summary(
+        self,
+        entity_query: str = "Entity",
+        entity_type: str = "Unknown",
+        include_sources: bool = True,
+        include_metadata: bool = True,
+    ) -> str:
+        """Generate a comprehensive markdown report of accumulated knowledge"""
+
+        # Generate timestamp
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        # Start building the markdown report
+        markdown_lines = []
+
+        # Header
+        markdown_lines.extend(
+            [
+                f"# Knowledge Summary Report",
+                f"",
+                f"**Entity:** {entity_query}",
+                f"**Type:** {entity_type}",
+                f"**Generated:** {timestamp}",
+                f"",
+                "---",
+                f"",
+            ]
+        )
+
+        # Overview section
+        summary_stats = self.generate_summary()
+        markdown_lines.extend(
+            [
+                "## Overview",
+                f"",
+                f"- **Fields with data:** {summary_stats['total_fields_filled']}",
+                f"- **Total discoveries:** {summary_stats['total_discoveries']}",
+                f"- **Unique sources:** {summary_stats['unique_sources']}",
+                f"- **Knowledge items:** {summary_stats['knowledge_items_count']}",
+                f"- **Fields with multiple sources:** {summary_stats['fields_with_multiple_sources']}",
+                f"",
+            ]
+        )
+
+        # Field-by-field breakdown
+        if self.field_values:
+            markdown_lines.extend(["## Field Information", f""])
+
+            # Sort fields alphabetically for consistent output
+            sorted_fields = sorted(self.field_values.keys())
+
+            for field in sorted_fields:
+                field_data = self.field_values[field]
+                discoveries = self.field_discoveries.get(field, [])
+
+                # Format field name (convert snake_case to Title Case)
+                display_name = field.replace("_", " ").title()
+
+                markdown_lines.extend(
+                    [
+                        f"### {display_name}",
+                        f"",
+                        f"**Value:** {field_data['value']}",
+                        f"",
+                    ]
+                )
+
+                if include_sources and field_data.get("sources"):
+                    markdown_lines.extend([f"**Sources:**"])
+                    for i, source in enumerate(field_data["sources"], 1):
+                        markdown_lines.append(f"{i}. {source}")
+                    markdown_lines.append("")
+
+                # Show discovery details if multiple discoveries exist
+                if len(discoveries) > 1:
+                    markdown_lines.extend(
+                        [f"**Multiple discoveries found ({len(discoveries)}):**", f""]
+                    )
+                    for i, discovery in enumerate(discoveries, 1):
+                        markdown_lines.extend(
+                            [
+                                f"- **Discovery {i}:** {discovery['value']}",
+                                f"  - *Source:* {discovery['source']}",
+                                f"  - *Context:* {discovery['context']}",
+                            ]
+                        )
+                    markdown_lines.append("")
+
+                if include_metadata:
+                    last_updated = field_data.get("last_updated")
+                    if last_updated:
+                        formatted_time = last_updated.strftime("%Y-%m-%d %H:%M:%S")
+                        markdown_lines.extend(
+                            [f"*Last updated: {formatted_time}*", f""]
+                        )
+
+                markdown_lines.append("---")
+                markdown_lines.append("")
+
+        # Knowledge items breakdown by type
+        if self.knowledge_items:
+            markdown_lines.extend(["## Knowledge Items Analysis", f""])
+
+            # Group by knowledge type
+            items_by_type = {}
+            for item in self.knowledge_items:
+                item_type = item.item_type.value
+                if item_type not in items_by_type:
+                    items_by_type[item_type] = []
+                items_by_type[item_type].append(item)
+
+            for item_type, items in items_by_type.items():
+                type_display = item_type.replace("_", " ").title()
+                markdown_lines.extend([f"### {type_display} ({len(items)} items)", f""])
+
+                # Show top items by confidence
+                sorted_items = sorted(items, key=lambda x: x.confidence, reverse=True)
+                for i, item in enumerate(sorted_items[:5], 1):  # Show top 5
+                    confidence_pct = int(item.confidence * 100)
+                    markdown_lines.extend(
+                        [
+                            f"{i}. **Q:** {item.question}",
+                            f"   **A:** {item.answer[:2000]}{'...' if len(item.answer) > 2000 else ''}",
+                            f"   **Confidence:** {confidence_pct}% | **Fields:** {', '.join(item.schema_fields)}",
+                            f"",
+                        ]
+                    )
+
+                if len(items) > 5:
+                    markdown_lines.extend(
+                        [f"*... and {len(items) - 5} more items*", f""]
+                    )
+
+                markdown_lines.append("")
+
+        # Source analysis
+        if include_sources:
+            all_sources = set()
+            source_usage = {}
+
+            for field_data in self.field_values.values():
+                for source in field_data.get("sources", []):
+                    all_sources.add(source)
+                    source_usage[source] = source_usage.get(source, 0) + 1
+
+            if all_sources:
+                markdown_lines.extend(
+                    [
+                        "## Source Analysis",
+                        f"",
+                        f"**Total unique sources:** {len(all_sources)}",
+                        f"",
+                    ]
+                )
+
+                # Show most frequently used sources
+                sorted_sources = sorted(
+                    source_usage.items(), key=lambda x: x[1], reverse=True
+                )
+                markdown_lines.extend(["### Most Referenced Sources", f""])
+
+                for source, count in sorted_sources[:10]:  # Top 10 sources
+                    markdown_lines.append(
+                        f"- {source} ({count} field{'s' if count > 1 else ''})"
+                    )
+
+                markdown_lines.append("")
+
+        # Fields needing verification
+        verification_fields = self.get_fields_needing_verification()
+        if verification_fields:
+            markdown_lines.extend(
+                [
+                    "## Fields Needing Verification",
+                    f"",
+                    "The following fields have conflicting information from multiple sources:",
+                    f"",
+                ]
             )
 
-        return pruned_count
+            for field in verification_fields:
+                discoveries = self.field_discoveries[field]
+                unique_values = list(set(d["value"] for d in discoveries))
+
+                display_name = field.replace("_", " ").title()
+                markdown_lines.extend(
+                    [f"### {display_name}", f"**Conflicting values found:**"]
+                )
+
+                for i, value in enumerate(unique_values, 1):
+                    sources = [d["source"] for d in discoveries if d["value"] == value]
+                    markdown_lines.append(
+                        f'{i}. "{value}" (from {len(sources)} source{"s" if len(sources) > 1 else ""})'
+                    )
+
+                markdown_lines.append("")
+
+        # Research recommendations
+        markdown_lines.extend(["## Research Recommendations", f""])
+
+        if verification_fields:
+            markdown_lines.extend(
+                [
+                    "### Priority Actions",
+                    f"1. **Verify conflicting information** for {len(verification_fields)} field{'s' if len(verification_fields) > 1 else ''}: {', '.join(verification_fields)}",
+                    f"2. **Cross-reference sources** to determine most reliable information",
+                    f"",
+                ]
+            )
+
+        # Identify fields with single sources that might need more validation
+        single_source_fields = [
+            field
+            for field, data in self.field_values.items()
+            if len(data.get("sources", [])) == 1
+        ]
+
+        if single_source_fields:
+            markdown_lines.extend(
+                [
+                    "### Additional Validation Suggested",
+                    f"The following fields are based on single sources and might benefit from additional validation:",
+                    f"",
+                ]
+            )
+            for field in single_source_fields[:5]:  # Show first 5
+                display_name = field.replace("_", " ").title()
+                markdown_lines.append(f"- {display_name}")
+
+            if len(single_source_fields) > 5:
+                markdown_lines.append(f"- ... and {len(single_source_fields) - 5} more")
+
+            markdown_lines.append("")
+
+        # Footer
+        markdown_lines.extend(
+            [
+                "---",
+                f"",
+                f"*Report generated by SPIN Knowledge Accumulator on {timestamp}*",
+            ]
+        )
+
+        return "\n".join(markdown_lines)
