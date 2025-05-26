@@ -62,7 +62,6 @@ class Contact(BaseModel):
     email: str
     phone: Optional[str]
     address: str
-    portfolio: str
 
 
 class Student(BaseModel):
