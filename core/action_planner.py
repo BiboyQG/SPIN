@@ -66,7 +66,7 @@ Entity Type: {context.entity_type}
 
 Current Progress:
 - Fields filled: {len(context.filled_fields)}/{len(context.schema.keys())}
-- URLs unvisited: {
+- URLs unvisited in the next step: {
             len(
                 list(
                     set(context.discovered_urls.keys())
