@@ -3,19 +3,35 @@ from urllib.parse import urlparse, urljoin
 import re
 from datetime import datetime
 from collections import defaultdict
+from openai import OpenAI
+import json
 
 from core.data_structures import URLInfo, SearchResult
 from core.config import get_config
 from core.logging_config import get_logger
+from core.response_model import ResponseOfCredibility, ResponseOfSelection
 
 
 class URLManager:
-    """Manages URL discovery, ranking, filtering, and diversity"""
+    """Manages URL discovery, filtering, and LLM-based credibility assessment"""
 
-    def __init__(self):
+    def __init__(self, llm_client: OpenAI):
         self.config = get_config()
         self.logger = get_logger()
-        self.url_history: Dict[str, URLInfo] = {}
+        self.llm_client = llm_client
+
+        # Enhanced URL storage with text labels
+        self.url_registry: Dict[str, Dict[str, any]] = {}
+        # url_registry structure: {
+        #     "url": {
+        #         "info": URLInfo object,
+        #         "link_text": "text that was clickable",
+        #         "credibility": "high|medium|low",
+        #         "credibility_reason": "why this rating",
+        #         "domain": "example.com"
+        #     }
+        # }
+
         self.domain_counts: Dict[str, int] = defaultdict(int)
 
     def normalize_url(self, url: str) -> str:
@@ -96,7 +112,7 @@ class URLManager:
                 url=url,
                 title=result.title,
                 relevance_score=result.relevance_score,
-                schema_fields_coverage=[],  # Will be populated later
+                schema_fields_coverage=[],
                 metadata={
                     "source": "search",
                     "snippet": result.snippet,
@@ -104,9 +120,15 @@ class URLManager:
                 },
             )
 
-            # Update history
-            if url not in self.url_history:
-                self.url_history[url] = url_info
+            # Store in registry with additional metadata
+            if url not in self.url_registry:
+                self.url_registry[url] = {
+                    "info": url_info,
+                    "link_text": result.title,  # For search results, use title as link text
+                    "domain": self.extract_domain(url),
+                    "credibility": None,  # Will be assessed later
+                    "credibility_reason": None,
+                }
                 discovered_urls.append(url_info)
                 self.domain_counts[self.extract_domain(url)] += 1
 
@@ -119,19 +141,17 @@ class URLManager:
         return discovered_urls
 
     def discover_urls_from_content(self, base_url: str, content: str) -> List[URLInfo]:
-        """Extract URLs from webpage content"""
+        """Extract URLs from webpage content with their link text"""
         discovered_urls = []
 
-        # Find all URLs in content using regex
-        url_pattern = r'https?://[^\s<>"{}|\\^`\[\]]+|href=["\']([^"\']+)["\']'
-        matches = re.findall(url_pattern, content)
+        # Enhanced regex to capture link text
+        # Match [link text](url) patterns from Markdown
+        link_pattern = r'\[([^\]]+)\]\(([^)]+)\)'
+        matches = re.findall(link_pattern, content, re.IGNORECASE)
 
-        for match in matches:
-            # Handle href matches
-            if match.startswith("href="):
-                url = match.split("=", 1)[1].strip("\"'")
-            else:
-                url = match
+        for link_text, url in matches:
+            # Clean up link text
+            link_text = re.sub(r"\s+", " ", link_text.strip())
 
             # Convert relative URLs to absolute
             if not url.startswith(("http://", "https://")):
@@ -142,11 +162,13 @@ class URLManager:
             if not self.is_valid_url(url):
                 continue
 
-            if url not in self.url_history:
+            url = url.rstrip(")")
+
+            if url not in self.url_registry:
                 url_info = URLInfo(
                     url=url,
-                    title="",  # Will be filled when visited
-                    relevance_score=0.0,  # Will be calculated
+                    title=link_text,  # Use link text as title
+                    relevance_score=0.0,
                     schema_fields_coverage=[],
                     metadata={
                         "source": "content_extraction",
@@ -154,149 +176,274 @@ class URLManager:
                         "discovered_at": datetime.now(),
                     },
                 )
-                self.url_history[url] = url_info
+
+                self.url_registry[url] = {
+                    "info": url_info,
+                    "link_text": link_text,
+                    "domain": self.extract_domain(url),
+                    "credibility": None,
+                    "credibility_reason": None,
+                }
                 discovered_urls.append(url_info)
                 self.domain_counts[self.extract_domain(url)] += 1
 
+        # Also find plain URLs without link text
+        url_pattern = r'https?://[^\s<>"{}|\\^`\[\]]+'
+        plain_urls = re.findall(url_pattern, content)
+
+        for plain_url in plain_urls:
+            url = self.normalize_url(plain_url)
+
+            if not self.is_valid_url(url) or url in self.url_registry:
+                continue
+
+            url_info = URLInfo(
+                url=url,
+                title="",
+                relevance_score=0.0,
+                schema_fields_coverage=[],
+                metadata={
+                    "source": "content_extraction",
+                    "found_on": base_url,
+                    "discovered_at": datetime.now(),
+                },
+            )
+
+            self.url_registry[url] = {
+                "info": url_info,
+                "link_text": "",  # No link text for plain URLs
+                "domain": self.extract_domain(url),
+                "credibility": None,
+                "credibility_reason": None,
+            }
+            discovered_urls.append(url_info)
+            self.domain_counts[self.extract_domain(url)] += 1
+
         return discovered_urls
 
-    def rank_urls(
+    def assess_url_credibility(
+        self, urls: List[str], research_context: str
+    ) -> Dict[str, Tuple[str, str]]:
+        """Use LLM to assess credibility of URLs"""
+        if not urls:
+            return {}
+
+        # Prepare URL information for assessment
+        url_details = []
+        for url in urls[:20]:  # Limit to 20 URLs per assessment
+            if url in self.url_registry:
+                entry = self.url_registry[url]
+                url_details.append(
+                    {
+                        "url": url,
+                        "domain": entry["domain"],
+                        "link_text": entry["link_text"],
+                        "title": entry["info"].title,
+                    }
+                )
+
+        prompt = f"""Assess the credibility of these URLs for research on: {research_context}
+
+URLs to assess:
+{json.dumps(url_details, indent=2)}
+
+For each URL, rate its credibility as "high", "medium", or "low" based on:
+- Domain reputation (edu, gov, established organizations or entity's website vs unknown sites)
+- URL structure (official pages vs user-generated content)
+- Link text relevance to the research topic
+- Likelihood of containing authoritative information
+
+Respond in JSON format:
+{{
+    "assessments": [
+        {{
+            "url": "url here",
+            "credibility": "high|medium|low",
+            "reason": "brief explanation"
+        }}
+    ]
+}}"""
+
+        try:
+            response = self.llm_client.chat.completions.create(
+                model=self.config.llm_config.credibility_model,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an expert at assessing source credibility.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.llm_config.temperature,
+                max_tokens=self.config.llm_config.max_tokens,
+                extra_body={"guided_json": ResponseOfCredibility.model_json_schema()},
+            )
+
+            result = json.loads(response.choices[0].message.content)
+
+            # Update registry with assessments
+            credibility_results = {}
+            for assessment in result.get("assessments", []):
+                url = assessment["url"]
+                credibility = assessment["credibility"]
+                reason = assessment["reason"]
+
+                if url in self.url_registry:
+                    self.url_registry[url]["credibility"] = credibility
+                    self.url_registry[url]["credibility_reason"] = reason
+                    credibility_results[url] = (credibility, reason)
+
+            return credibility_results
+
+        except Exception as e:
+            self.logger.error(
+                "CREDIBILITY_ASSESSMENT_ERROR", f"Failed to assess URLs: {str(e)}"
+            )
+            return {}
+
+    def select_urls_for_visit(
         self,
-        urls: List[URLInfo],
         query: str,
         empty_fields: Set[str],
         visited_urls: Set[str],
+        failed_urls: Set[str],
+        max_urls: Optional[int] = None,
     ) -> List[URLInfo]:
-        """Rank URLs based on relevance and potential value"""
-        # Filter out already visited URLs
-        unvisited_urls = [u for u in urls if u.url not in visited_urls]
+        """Use LLM to select best URLs to visit next"""
+        if max_urls is None:
+            max_urls = self.config.max_urls_per_step
 
-        # Calculate scores for each URL
-        scored_urls = []
-        for url_info in unvisited_urls:
-            score = self._calculate_url_score(url_info, query, empty_fields)
-            scored_urls.append((score, url_info))
+        # Get unvisited URLs
+        unvisited_urls = []
+        for url, entry in self.url_registry.items():
+            if url not in visited_urls and url not in failed_urls:
+                unvisited_urls.append(
+                    {
+                        "url": url,
+                        "link_text": entry["link_text"],
+                        "title": entry["info"].title,
+                        "domain": entry["domain"],
+                        "credibility": entry.get("credibility", "unknown"),
+                        "snippet": entry["info"].metadata.get("snippet", ""),
+                    }
+                )
 
-        # Sort by score (descending)
-        scored_urls.sort(key=lambda x: x[0], reverse=True)
+        if not unvisited_urls:
+            return []
 
-        # Apply diversity filtering
-        diverse_urls = self._ensure_diversity([u[1] for u in scored_urls])
+        # Prepare prompt for URL selection
+        prompt = f"""Select the best URLs to visit for researching: {query}
 
-        self.logger.debug(
-            "URL_RANKING",
-            f"Ranked {len(diverse_urls)} URLs",
-            top_scores=[u[0] for u in scored_urls[:5]],
-        )
+Empty fields to fill: {list(empty_fields)}
 
-        return diverse_urls
+Available URLs (showing first 30):
+{json.dumps(unvisited_urls[:30], indent=2)}
 
-    def _calculate_url_score(
-        self, url_info: URLInfo, query: str, empty_fields: Set[str]
-    ) -> float:
-        """Calculate relevance score for a URL"""
-        score = 0.0
+Select up to {max_urls} URLs that are most likely to contain information for the empty fields.
+Prioritize:
+1. High credibility sources
+2. URLs with relevant titles/link text
+3. Diverse domains (don't select too many from same site)
+4. Official or primary sources over secondary
 
-        # Base relevance score from search
-        score += url_info.relevance_score * 0.3
+Respond in JSON format:
+{{
+    "selected_urls": ["url1", "url2", ...],
+    "reasoning": "brief explanation of selection"
+}}"""
 
-        # Title relevance
-        if url_info.title:
-            query_terms = query.lower().split()
-            title_lower = url_info.title.lower()
-            matching_terms = sum(1 for term in query_terms if term in title_lower)
-            score += (matching_terms / len(query_terms)) * 0.2
+        try:
+            response = self.llm_client.chat.completions.create(
+                model=self.config.llm_config.selection_model,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an expert at selecting relevant research sources.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.llm_config.temperature,
+                max_tokens=self.config.llm_config.max_tokens,
+                extra_body={"guided_json": ResponseOfSelection.model_json_schema()},
+            )
 
-        # Schema field coverage potential
-        if url_info.schema_fields_coverage:
-            coverage_score = len(set(url_info.schema_fields_coverage) & empty_fields)
-            score += (coverage_score / len(empty_fields)) * 0.3 if empty_fields else 0
+            result = json.loads(response.choices[0].message.content)
+            selected_urls = result.get("selected_urls", [])
 
-        # Source credibility
-        domain = self.extract_domain(url_info.url)
-        credible_domains = [
-            "wikipedia.org",
-            "edu",
-            "gov",
-            "ieee.org",
-            "acm.org",
-            "nature.com",
-            "science.org",
-            "nih.gov",
-            "arxiv.org",
-        ]
-        if any(cred in domain for cred in credible_domains):
-            score += 0.1
+            # Convert to URLInfo objects
+            selected_url_infos = []
+            for url in selected_urls:
+                if url in self.url_registry:
+                    selected_url_infos.append(self.url_registry[url]["info"])
 
-        # Freshness (if available)
-        if "discovered_at" in url_info.metadata:
-            score += 0.1  # Bonus for recently discovered URLs
+            self.logger.info(
+                "URL_SELECTION",
+                f"Selected {len(selected_url_infos)} URLs to visit",
+                reasoning=result.get("reasoning", ""),
+            )
 
-        # Penalty for over-represented domains
-        if self.domain_counts[domain] > 3:
-            score *= 0.7  # Reduce score for domains we've seen too much
+            return selected_url_infos
 
-        return min(score, 1.0)  # Cap at 1.0
-
-    def _ensure_diversity(
-        self, ranked_urls: List[URLInfo], max_per_domain: int = 2
-    ) -> List[URLInfo]:
-        """Ensure URL diversity by limiting URLs per domain"""
-        domain_counts = defaultdict(int)
-        diverse_urls = []
-
-        for url_info in ranked_urls:
-            domain = self.extract_domain(url_info.url)
-            if domain_counts[domain] < max_per_domain:
-                diverse_urls.append(url_info)
-                domain_counts[domain] += 1
-
-        return diverse_urls
-
-    def filter_urls(
-        self, urls: List[URLInfo], min_relevance: Optional[float] = None
-    ) -> List[URLInfo]:
-        """Filter URLs based on various criteria"""
-        if min_relevance is None:
-            min_relevance = self.config.min_relevance_threshold
-
-        filtered = []
-        for url_info in urls:
-            # Check relevance threshold
-            if url_info.relevance_score < min_relevance:
-                continue
-
-            # Additional filtering logic can be added here
-            filtered.append(url_info)
-
-        return filtered
-
-    def get_url_batch(
-        self, ranked_urls: List[URLInfo], batch_size: Optional[int] = None
-    ) -> List[URLInfo]:
-        """Get a batch of URLs for processing"""
-        if batch_size is None:
-            batch_size = self.config.max_urls_per_step
-
-        return ranked_urls[:batch_size]
+        except Exception as e:
+            self.logger.error("URL_SELECTION_ERROR", f"Failed to select URLs: {str(e)}")
+            # Fallback to simple selection
+            fallback_urls = []
+            for url, entry in list(self.url_registry.items())[:max_urls]:
+                if url not in visited_urls and url not in failed_urls:
+                    fallback_urls.append(entry["info"])
+            return fallback_urls
 
     def update_url_info(self, url: str, **kwargs):
         """Update information about a URL"""
-        if url in self.url_history:
-            url_info = self.url_history[url]
+        if url in self.url_registry:
+            url_info = self.url_registry[url]["info"]
             for key, value in kwargs.items():
                 if hasattr(url_info, key):
                     setattr(url_info, key, value)
+                elif key in ["credibility", "credibility_reason"]:
+                    self.url_registry[url][key] = value
                 else:
                     url_info.metadata[key] = value
 
+    def get_url_with_context(self, url: str) -> Dict[str, any]:
+        """Get URL information including link text and credibility"""
+        if url in self.url_registry:
+            entry = self.url_registry[url]
+            return {
+                "url": url,
+                "link_text": entry["link_text"],
+                "title": entry["info"].title,
+                "credibility": entry.get("credibility", "unknown"),
+                "credibility_reason": entry.get("credibility_reason", ""),
+                "domain": entry["domain"],
+            }
+        return None
+
     def get_statistics(self) -> Dict[str, any]:
         """Get URL management statistics"""
+        credibility_counts = {"high": 0, "medium": 0, "low": 0, "unknown": 0}
+        for entry in self.url_registry.values():
+            cred = entry.get("credibility", "unknown")
+            if cred in credibility_counts:
+                credibility_counts[cred] += 1
+            else:
+                credibility_counts["unknown"] += 1
+
         return {
-            "total_discovered": len(self.url_history),
+            "total_discovered": len(self.url_registry),
             "domains": dict(self.domain_counts),
-            "visited": sum(1 for u in self.url_history.values() if u.visit_count > 0),
+            "visited": sum(
+                1
+                for entry in self.url_registry.values()
+                if entry["info"].visit_count > 0
+            ),
             "successful": sum(
-                1 for u in self.url_history.values() if u.extraction_success
+                1
+                for entry in self.url_registry.values()
+                if entry["info"].extraction_success
+            ),
+            "credibility_distribution": credibility_counts,
+            "urls_with_link_text": sum(
+                1 for entry in self.url_registry.values() if entry["link_text"]
             ),
         }
