@@ -1,6 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import List, Union
-import json
+from typing import List, Optional
 
 
 class Education(BaseModel):
@@ -13,8 +12,8 @@ class Education(BaseModel):
 class ProfessionalHighlight(BaseModel):
     position: str
     organization: str
-    year_start: int = Field(..., alias="yearStart")
-    year_end: Union[int, None] = Field(..., alias="yearEnd")
+    year_start: int
+    year_end: Optional[int]
 
 
 class Publication(BaseModel):
@@ -54,22 +53,10 @@ class Professor(BaseModel):
     office: str
     education: List[Education]
     biography: str
-    professional_highlights: List[ProfessionalHighlight] = Field(
-        ..., alias="professionalHighlights"
-    )
-    research_statement: str = Field(..., alias="researchStatement")
-    research_areas: List[str] = Field(..., alias="researchAreas")
+    professional_highlights: List[ProfessionalHighlight]
+    research_statement: str
+    research_areas: List[str]
     publications: List[Publication]
-    teaching_honors: List[TeachingHonor] = Field(..., alias="teachingHonors")
-    research_honors: List[ResearchHonor] = Field(..., alias="researchHonors")
-    courses_taught: List[Course] = Field(..., alias="coursesTaught")
-
-    class Config:
-        allow_population_by_field_name = True
-        alias_generator = lambda field_name: "".join(
-            word.capitalize() if i > 0 else word
-            for i, word in enumerate(field_name.split("_"))
-        )
-
-    def json(self, **kwargs):
-        return json.loads(super().json(by_alias=True, exclude_none=True, **kwargs))
+    teaching_honors: List[TeachingHonor]
+    research_honors: List[ResearchHonor]
+    courses_taught: List[Course]

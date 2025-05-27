@@ -12,7 +12,7 @@ class Education(BaseModel):
         description="The period of the education, e.g., 'Fall 2023 - Fall 2025'"
     )
     location: str
-    core_modules: List[str] = Field(..., alias="coreModules")
+    core_modules: List[str]
 
 
 class Publication(BaseModel):
@@ -32,8 +32,8 @@ class ResearchExperience(BaseModel):
     period: str = Field(
         description="The period of the research experience, e.g., 'Fall 2023 - Fall 2025'"
     )
-    code_link: Optional[str] = Field(..., alias="codeLink")
-    project_link: Optional[str] = Field(..., alias="projectLink")
+    code_link: Optional[str]
+    project_link: Optional[str]
     achievements: List[str]
 
 
@@ -69,19 +69,7 @@ class Student(BaseModel):
     contact: Contact
     education: List[Education]
     publications: List[Publication]
-    research_experience: List[ResearchExperience] = Field(
-        ..., alias="researchExperience"
-    )
-    work_experience: List[WorkExperience] = Field(..., alias="workExperience")
+    research_experience: List[ResearchExperience]
+    work_experience: List[WorkExperience]
     awards: List[Award]
     skills: Skills
-
-    class Config:
-        allow_population_by_field_name = True
-        alias_generator = lambda field_name: "".join(
-            word.capitalize() if i > 0 else word
-            for i, word in enumerate(field_name.split("_"))
-        )
-
-    def json(self, **kwargs):
-        return json.loads(super().json(by_alias=True, exclude_none=True, **kwargs))

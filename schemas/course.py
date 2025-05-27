@@ -1,13 +1,12 @@
 from typing import List, Optional, Union
 from pydantic import BaseModel, Field
-import json
 
 
 class Instructor(BaseModel):
     name: str
     email: str
-    office_hours: Optional[List[str]] = Field(None, alias="officeHours")
-    office_location: Optional[str] = Field(None, alias="officeLocation")
+    office_hours: Optional[List[str]]
+    office_location: Optional[str]
 
 
 class TextBook(BaseModel):
@@ -19,27 +18,27 @@ class TextBook(BaseModel):
 class GradingComponent(BaseModel):
     name: str
     weight: float = Field(description="E.g. 0.05 for 5%")
-    description: Optional[str] = None
+    description: Optional[str]
 
 
 class Schedule(BaseModel):
     day: str
-    time_start: str = Field(..., alias="timeStart")
-    time_end: str = Field(..., alias="timeEnd")
+    time_start: str
+    time_end: str
     location: str
 
 
 class PreRequisite(BaseModel):
-    course_code: str = Field(..., alias="courseCode")
-    minimum_grade: Optional[str] = Field(None, alias="minimumGrade")
-    can_be_concurrent: bool = Field(False, alias="canBeConcurrent")
+    course_code: str
+    minimum_grade: Optional[str]
+    can_be_concurrent: bool
 
 
 class TeachingAssistant(BaseModel):
     name: str
     email: str
-    office_hours: Optional[List[str]] = Field(None, alias="officeHours")
-    office_location: Optional[str] = Field(None, alias="officeLocation")
+    office_hours: Optional[List[str]]
+    office_location: Optional[str]
 
 
 class Course(BaseModel):
@@ -52,19 +51,9 @@ class Course(BaseModel):
     instructors: List[Instructor]
     teaching_assistants: Optional[List[TeachingAssistant]]
     schedule: List[Schedule]
-    prerequisites: Optional[List[PreRequisite]] = None
-    textbooks: Optional[List[TextBook]] = None
-    grading_components: List[GradingComponent] = Field(..., alias="gradingComponents")
-    syllabus_link: Optional[str] = Field(None, alias="syllabusLink")
+    prerequisites: Optional[List[PreRequisite]]
+    textbooks: Optional[List[TextBook]]
+    grading_components: List[GradingComponent]
+    syllabus_link: Optional[str]
     department: str
-    learning_objectives: List[str] = Field(..., alias="learningObjectives")
-
-    class Config:
-        allow_population_by_field_name = True
-        alias_generator = lambda field_name: "".join(
-            word.capitalize() if i > 0 else word
-            for i, word in enumerate(field_name.split("_"))
-        )
-
-    def json(self, **kwargs):
-        return json.loads(super().json(by_alias=True, exclude_none=True, **kwargs))
+    learning_objectives: List[str]
