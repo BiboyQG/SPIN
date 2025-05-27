@@ -1,13 +1,12 @@
 from pydantic import BaseModel, Field
 from typing import List, Literal, Optional
-import json
 
 
 class Education(BaseModel):
     institution: str
     degree: str
     major: str
-    gpa: Optional[float]
+    gpa: Optional[float] = None
     period: str = Field(
         description="The period of the education, e.g., 'Fall 2023 - Fall 2025'"
     )
@@ -32,8 +31,8 @@ class ResearchExperience(BaseModel):
     period: str = Field(
         description="The period of the research experience, e.g., 'Fall 2023 - Fall 2025'"
     )
-    code_link: Optional[str]
-    project_link: Optional[str]
+    code_link: Optional[str] = None
+    project_link: Optional[str] = None
     achievements: List[str]
 
 
@@ -60,7 +59,7 @@ class Skills(BaseModel):
 
 class Contact(BaseModel):
     email: str
-    phone: Optional[str]
+    phone: Optional[str] = None
     address: str
 
 

@@ -9,7 +9,7 @@ class Architecture(BaseModel):
     attention_mechanism: str = Field(
         description="e.g., 'Grouped Query Attention', 'Multi Head Attention', 'Vanilla Attention'",
     )
-    token_count: Optional[int] = Field(description="Training tokens count in billions")
+    token_count: Optional[int] = Field(None, description="Training tokens count in billions")
 
 
 class TrainingMetrics(BaseModel):
@@ -22,9 +22,7 @@ class TrainingMetrics(BaseModel):
 class Benchmark(BaseModel):
     name: str = Field(description="e.g., 'HumanEval', 'MMLU', 'MATH' etc.")
     score: float
-    shot_count: Optional[int] = Field(
-        ..., description="Number of shots used in evaluation"
-    )
+    shot_count: Optional[int] = Field(None, description="Number of shots used in evaluation")
 
 
 class Publication(BaseModel):
@@ -32,7 +30,7 @@ class Publication(BaseModel):
     authors: List[str]
     venue: str
     year: int
-    url: Optional[str]
+    url: Optional[str] = None
 
 
 class License(BaseModel):
@@ -55,11 +53,11 @@ class LanguageModel(BaseModel):
     architecture: Architecture
     training_metrics: TrainingMetrics
 
-    knowledge_cutoff: Optional[str]
+    knowledge_cutoff: Optional[str] = None
 
     limitations: List[str]
 
     benchmarks: List[Benchmark]
-    publication: Optional[Publication]
+    publication: Optional[Publication] = None
 
     license: License

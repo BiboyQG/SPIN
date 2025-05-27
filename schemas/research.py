@@ -1,19 +1,18 @@
 from typing import List, Optional, Dict, Literal
 from pydantic import BaseModel, Field
 from datetime import date
-import json
 
 
 class Author(BaseModel):
     name: str
     institution: str
-    email: Optional[str]
+    email: Optional[str] = None
 
 
 class Implementation(BaseModel):
     language: str
     repository_url: str
-    documentation_url: Optional[str]
+    documentation_url: Optional[str] = None
     requirements: List[str]
 
 
@@ -22,8 +21,8 @@ class Citation(BaseModel):
     authors: List[str]
     venue: str
     year: int
-    doi: Optional[str]
-    citations_count: Optional[int]
+    doi: Optional[str] = None
+    citations_count: Optional[int] = None
 
 
 class ResearchOutput(BaseModel):
@@ -51,7 +50,7 @@ class Research(BaseModel):
 
     # Technical details
     implementation: Implementation
-    dataset: Optional[Dataset]  # Dataset details if applicable
+    dataset: Optional[Dataset] = None  # Dataset details if applicable
 
     # Results and impact
     research_output: ResearchOutput
@@ -65,5 +64,5 @@ class Research(BaseModel):
         description="e.g., 'completed', 'ongoing', 'archived'"
     )
     start_date: date
-    end_date: Optional[date]
+    end_date: Optional[date] = None
     funding_sources: List[str]

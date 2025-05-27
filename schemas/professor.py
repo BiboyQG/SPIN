@@ -13,7 +13,7 @@ class ProfessionalHighlight(BaseModel):
     position: str
     organization: str
     year_start: int
-    year_end: Optional[int]
+    year_end: Optional[int] = None
 
 
 class Publication(BaseModel):

@@ -5,20 +5,20 @@ from pydantic import BaseModel, Field
 class Instructor(BaseModel):
     name: str
     email: str
-    office_hours: Optional[List[str]]
-    office_location: Optional[str]
+    office_hours: Optional[List[str]] = None
+    office_location: Optional[str] = None
 
 
 class TextBook(BaseModel):
     title: str
     authors: List[str]
-    link: Optional[str]
+    link: Optional[str] = None
 
 
 class GradingComponent(BaseModel):
     name: str
     weight: float = Field(description="E.g. 0.05 for 5%")
-    description: Optional[str]
+    description: Optional[str] = None
 
 
 class Schedule(BaseModel):
@@ -37,8 +37,8 @@ class PreRequisite(BaseModel):
 class TeachingAssistant(BaseModel):
     name: str
     email: str
-    office_hours: Optional[List[str]]
-    office_location: Optional[str]
+    office_hours: Optional[List[str]] = None
+    office_location: Optional[str] = None
 
 
 class Course(BaseModel):
@@ -49,11 +49,11 @@ class Course(BaseModel):
     semester: str
     year: int
     instructors: List[Instructor]
-    teaching_assistants: Optional[List[TeachingAssistant]]
+    teaching_assistants: Optional[List[TeachingAssistant]] = None
     schedule: List[Schedule]
-    prerequisites: Optional[List[PreRequisite]]
-    textbooks: Optional[List[TextBook]]
+    prerequisites: Optional[List[PreRequisite]] = None
+    textbooks: Optional[List[TextBook]] = None
     grading_components: List[GradingComponent]
-    syllabus_link: Optional[str]
+    syllabus_link: Optional[str] = None
     department: str
     learning_objectives: List[str]
