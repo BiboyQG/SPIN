@@ -2,19 +2,19 @@ from typing import Dict, Any, List
 from datetime import datetime
 from openai import OpenAI
 
+from core.knowledge_accumulator import KnowledgeAccumulator
+from core.actions.base import ActionExecutor
+from core.logging_config import LLMError
 from core.response_model import (
     ResponseOfReflectionResearchState,
     ResponseOfReflectionSubQuestions,
 )
-from core.actions.base import ActionExecutor
 from core.data_structures import (
     ResearchContext,
     ResearchAction,
     KnowledgeItem,
     KnowledgeType,
 )
-from core.knowledge_accumulator import KnowledgeAccumulator
-from core.logging_config import LLMError
 
 
 class ReflectExecutor(ActionExecutor):
@@ -50,13 +50,11 @@ class ReflectExecutor(ActionExecutor):
                 question="What are the knowledge gaps in our research?",
                 answer=analysis["gap_summary"],
                 source_urls=[],
-                confidence=0.8,
                 timestamp=datetime.now(),
                 item_type=KnowledgeType.REFLECTION,
                 schema_fields=list(context.empty_fields),
                 metadata={
                     "sub_questions": sub_questions,
-                    "progress": context.get_progress_percentage(),
                 },
             )
             self.knowledge_accumulator.add_knowledge(reflection_item, context)
@@ -104,6 +102,9 @@ Provide a brief analysis of:
 
 Format your response as a JSON object with keys: 'found_info', 'missing_info', 'difficulties', 'strategies', 'gap_summary'"""
 
+        if self.config.llm_config.enable_reasoning:
+            prompt += "\n\nPlease reason and think about the given context and instructions before answering the question in JSON format."
+
         try:
             response = self.llm_client.chat.completions.create(
                 model=self.config.llm_config.model_name,
@@ -134,7 +135,7 @@ Format your response as a JSON object with keys: 'found_info', 'missing_info', '
                         "REFLECTION_ANALYSIS_PARSE_ERROR",
                         f"Failed to parse LLM response for reflection analysis: {e}",
                     )
-                    return {"success": False, "error": str(e), "items_processed": 0}
+                    raise ValueError("Reflection analysis could not be determined")
 
             return analysis.model_dump()
 
@@ -179,16 +180,22 @@ Return as a JSON object with key 'questions' containing a list of questions."""
                 },
             )
 
-            if self.config.llm_config.enable_reasoning:
-                reasoning_content = response.choices[0].message.reasoning_content
-                print("=" * 80)
-                print("Reasoning content:\n\n")
-                print(reasoning_content)
-                print("=" * 80)
+            try:
+                result = ResponseOfReflectionSubQuestions.model_validate_json(
+                    response.choices[0].message.content
+                )
+            except Exception as e:
+                try:
+                    result = ResponseOfReflectionSubQuestions.model_validate_json(
+                        response.choices[0].message.reasoning_content
+                    )
+                except Exception as e:
+                    self.logger.error(
+                        "LLM_SUB_QUESTION_GENERATION_ERROR",
+                        f"Failed to generate sub-questions: {str(e)}",
+                    )
+                    raise ValueError("Sub-questions could not be generated")
 
-            result = ResponseOfReflectionSubQuestions.model_validate_json(
-                response.choices[0].message.content
-            )
             return result.questions
 
         except Exception as e:

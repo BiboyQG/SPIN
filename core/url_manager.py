@@ -1,19 +1,19 @@
-from typing import List, Dict, Set, Optional, Tuple
+from typing import List, Dict, Set, Optional, Any
 from urllib.parse import urlparse, urljoin
-import re
-from datetime import datetime
 from collections import defaultdict
+from datetime import datetime
 from openai import OpenAI
 import json
+import re
 
+from core.response_model import ResponseOfSelection
 from core.data_structures import URLInfo, SearchResult
-from core.config import get_config
 from core.logging_config import get_logger
-from core.response_model import ResponseOfCredibility, ResponseOfSelection
+from core.config import get_config
 
 
 class URLManager:
-    """Manages URL discovery, filtering, and LLM-based credibility assessment"""
+    """Manages URL discovery, filtering, and LLM-based URL selection"""
 
     def __init__(self, llm_client: OpenAI):
         self.config = get_config()
@@ -26,8 +26,6 @@ class URLManager:
         #     "url": {
         #         "info": URLInfo object,
         #         "link_text": "text that was clickable",
-        #         "credibility": "high|medium|low",
-        #         "credibility_reason": "why this rating",
         #         "domain": "example.com"
         #     }
         # }
@@ -126,8 +124,6 @@ class URLManager:
                     "info": url_info,
                     "link_text": result.title,  # For search results, use title as link text
                     "domain": self.extract_domain(url),
-                    "credibility": None,  # Will be assessed later
-                    "credibility_reason": None,
                 }
                 discovered_urls.append(url_info)
                 self.domain_counts[self.extract_domain(url)] += 1
@@ -146,7 +142,7 @@ class URLManager:
 
         # Enhanced regex to capture link text
         # Match [link text](url) patterns from Markdown
-        link_pattern = r'\[([^\]]+)\]\(([^)]+)\)'
+        link_pattern = r"\[([^\]]+)\]\(([^)]+)\)"
         matches = re.findall(link_pattern, content, re.IGNORECASE)
 
         for link_text, url in matches:
@@ -181,8 +177,6 @@ class URLManager:
                     "info": url_info,
                     "link_text": link_text,
                     "domain": self.extract_domain(url),
-                    "credibility": None,
-                    "credibility_reason": None,
                 }
                 discovered_urls.append(url_info)
                 self.domain_counts[self.extract_domain(url)] += 1
@@ -213,93 +207,11 @@ class URLManager:
                 "info": url_info,
                 "link_text": "",  # No link text for plain URLs
                 "domain": self.extract_domain(url),
-                "credibility": None,
-                "credibility_reason": None,
             }
             discovered_urls.append(url_info)
             self.domain_counts[self.extract_domain(url)] += 1
 
         return discovered_urls
-
-    def assess_url_credibility(
-        self, urls: List[str], research_context: str
-    ) -> Dict[str, Tuple[str, str]]:
-        """Use LLM to assess credibility of URLs"""
-        if not urls:
-            return {}
-
-        # Prepare URL information for assessment
-        url_details = []
-        for url in urls[:20]:  # Limit to 20 URLs per assessment
-            if url in self.url_registry:
-                entry = self.url_registry[url]
-                url_details.append(
-                    {
-                        "url": url,
-                        "domain": entry["domain"],
-                        "link_text": entry["link_text"],
-                        "title": entry["info"].title,
-                    }
-                )
-
-        prompt = f"""Assess the credibility of these URLs for research on: {research_context}
-
-URLs to assess:
-{json.dumps(url_details, indent=2)}
-
-For each URL, rate its credibility as "high", "medium", or "low" based on:
-- Domain reputation (edu, gov, established organizations or entity's website vs unknown sites)
-- URL structure (official pages vs user-generated content)
-- Link text relevance to the research topic
-- Likelihood of containing authoritative information
-
-Respond in JSON format:
-{{
-    "assessments": [
-        {{
-            "url": "url here",
-            "credibility": "high|medium|low",
-            "reason": "brief explanation"
-        }}
-    ]
-}}"""
-
-        try:
-            response = self.llm_client.chat.completions.create(
-                model=self.config.llm_config.model_name,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "You are an expert at assessing source credibility.",
-                    },
-                    {"role": "user", "content": prompt},
-                ],
-                temperature=self.config.llm_config.temperature,
-                max_tokens=self.config.llm_config.max_tokens,
-                extra_body={"guided_json": ResponseOfCredibility.model_json_schema()},
-            )
-
-            result = json.loads(response.choices[0].message.content)
-
-            # Update registry with assessments
-            credibility_results = {}
-            for assessment in result.get("assessments", []):
-                url = assessment["url"]
-                credibility = assessment["credibility"]
-                reason = assessment["reason"]
-
-                if url in self.url_registry:
-                    self.url_registry[url]["credibility"] = credibility
-                    self.url_registry[url]["credibility_reason"] = reason
-                    credibility_results[url] = (credibility, reason)
-
-            return credibility_results
-
-        except Exception as e:
-            self.logger.error(
-                "CREDIBILITY_ASSESSMENT_ERROR", f"Failed to assess URLs: {str(e)}"
-            )
-            return {}
 
     def select_urls_for_visit(
         self,
@@ -308,6 +220,7 @@ Respond in JSON format:
         visited_urls: Set[str],
         failed_urls: Set[str],
         max_urls: Optional[int] = None,
+        current_extraction: Optional[Dict[str, Any]] = None,
     ) -> List[URLInfo]:
         """Use LLM to select best URLs to visit next"""
         if max_urls is None:
@@ -323,7 +236,6 @@ Respond in JSON format:
                         "link_text": entry["link_text"],
                         "title": entry["info"].title,
                         "domain": entry["domain"],
-                        "credibility": entry.get("credibility", "unknown"),
                         "snippet": entry["info"].metadata.get("snippet", ""),
                     }
                 )
@@ -334,23 +246,26 @@ Respond in JSON format:
         # Prepare prompt for URL selection
         prompt = f"""Select the best URLs to visit for researching: {query}
 
+Current information that we have for the entity: {current_extraction}
+
 Empty fields to fill: {list(empty_fields)}
 
 Available URLs (showing first 30):
 {json.dumps(unvisited_urls[:30], indent=2)}
 
 Select up to {max_urls} URLs that are most likely to contain information for the empty fields.
-Prioritize:
-1. High credibility sources
-2. URLs with relevant titles/link text
-3. Diverse domains (don't select too many from same site)
-4. Official or primary sources over secondary
+Prioritize: URLs with **relevant titles/link text**.
+
+If there are no URLs that are likely to contain information for the empty fields, return an empty list and explain why.
 
 Respond in JSON format:
 {{
     "selected_urls": ["url1", "url2", ...],
     "reasoning": "brief explanation of selection"
 }}"""
+
+        if self.config.llm_config.enable_reasoning:
+            prompt += "\n\nPlease reason and think about the given context and instructions before answering the question in JSON format."
 
         try:
             response = self.llm_client.chat.completions.create(
@@ -367,8 +282,26 @@ Respond in JSON format:
                 extra_body={"guided_json": ResponseOfSelection.model_json_schema()},
             )
 
-            result = json.loads(response.choices[0].message.content)
+            try:
+                result = json.loads(response.choices[0].message.content)
+            except Exception as e:
+                try:
+                    result = json.loads(response.choices[0].message.reasoning_content)
+                except Exception as e:
+                    self.logger.error(
+                        "LLM_URL_SELECTION_ERROR", f"Failed to select URLs: {str(e)}"
+                    )
+                    raise ValueError("URLs could not be selected")
+
             selected_urls = result.get("selected_urls", [])
+
+            if not selected_urls:
+                self.logger.info(
+                    "URL_SELECTION",
+                    "No URLs selected for visit",
+                    reasoning=result.get("reasoning", ""),
+                )
+                return []
 
             # Convert to URLInfo objects
             selected_url_infos = []
@@ -400,34 +333,23 @@ Respond in JSON format:
             for key, value in kwargs.items():
                 if hasattr(url_info, key):
                     setattr(url_info, key, value)
-                elif key in ["credibility", "credibility_reason"]:
-                    self.url_registry[url][key] = value
                 else:
                     url_info.metadata[key] = value
 
     def get_url_with_context(self, url: str) -> Dict[str, any]:
-        """Get URL information including link text and credibility"""
+        """Get URL information including link text"""
         if url in self.url_registry:
             entry = self.url_registry[url]
             return {
                 "url": url,
                 "link_text": entry["link_text"],
                 "title": entry["info"].title,
-                "credibility": entry.get("credibility", "unknown"),
-                "credibility_reason": entry.get("credibility_reason", ""),
                 "domain": entry["domain"],
             }
         return None
 
     def get_statistics(self) -> Dict[str, any]:
         """Get URL management statistics"""
-        credibility_counts = {"high": 0, "medium": 0, "low": 0, "unknown": 0}
-        for entry in self.url_registry.values():
-            cred = entry.get("credibility", "unknown")
-            if cred in credibility_counts:
-                credibility_counts[cred] += 1
-            else:
-                credibility_counts["unknown"] += 1
 
         return {
             "total_discovered": len(self.url_registry),
@@ -442,7 +364,6 @@ Respond in JSON format:
                 for entry in self.url_registry.values()
                 if entry["info"].extraction_success
             ),
-            "credibility_distribution": credibility_counts,
             "urls_with_link_text": sum(
                 1 for entry in self.url_registry.values() if entry["link_text"]
             ),

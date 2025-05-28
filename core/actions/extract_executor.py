@@ -1,13 +1,12 @@
 from typing import Dict, Any, Type
-import json
-from openai import OpenAI
 from pydantic import BaseModel
+from openai import OpenAI
 
-from core.actions.base import ActionExecutor
 from core.data_structures import ResearchContext, ResearchAction
 from core.knowledge_accumulator import KnowledgeAccumulator
-from core.logging_config import LLMError
 from schemas.schema_manager import schema_manager
+from core.actions.base import ActionExecutor
+from core.logging_config import LLMError
 
 
 class ExtractExecutor(ActionExecutor):
@@ -19,7 +18,10 @@ class ExtractExecutor(ActionExecutor):
         self.llm_client = llm_client
 
     def execute(
-        self, action: ResearchAction, context: ResearchContext
+        self,
+        action: ResearchAction,
+        context: ResearchContext,
+        skip_step: bool = False,
     ) -> Dict[str, Any]:
         """Execute an extract action"""
         self.pre_execute(action, context)
@@ -33,11 +35,6 @@ class ExtractExecutor(ActionExecutor):
             # Prepare knowledge for extraction
             knowledge_text = self._prepare_knowledge_for_extraction(context)
 
-            print("="*80)
-            print("Knowledge text:\n\n")
-            print(knowledge_text)
-            print("="*80)
-
             # Extract structured data using LLM
             extracted_data = self._extract_with_llm(
                 knowledge_text,
@@ -50,21 +47,15 @@ class ExtractExecutor(ActionExecutor):
             context.current_extraction = extracted_data
             context.update_field_status()
 
-            # Calculate extraction quality
-            extraction_quality = self._assess_extraction_quality(
-                extracted_data, context
-            )
-
             result = {
                 "success": True,
                 "extracted_data": extracted_data,
                 "fields_filled": len(context.filled_fields),
                 "total_fields": len(context.schema),
-                "extraction_quality": extraction_quality,
                 "items_processed": 1,
             }
 
-            self.post_execute(action, context, result)
+            self.post_execute(action, context, result, skip_step)
             return result
 
         except Exception as e:
@@ -72,7 +63,12 @@ class ExtractExecutor(ActionExecutor):
             return {"success": False, "error": str(e), "items_processed": 0}
 
     def _prepare_knowledge_for_extraction(self, context: ResearchContext) -> str:
-        return self.knowledge_accumulator.generate_knowledge_summary()
+        return self.knowledge_accumulator.generate_knowledge_summary(
+            entity_query=context.original_query,
+            entity_type=context.entity_type,
+            include_sources=True,
+            include_metadata=True,
+        )
 
     def _extract_with_llm(
         self,
@@ -120,51 +116,23 @@ Return the extracted information as a JSON object matching the schema."""
                 extra_body={"guided_json": schema_class.model_json_schema()},
             )
 
-            if self.config.llm_config.enable_reasoning:
-                reasoning_content = response.choices[0].message.reasoning_content
-                print("="*80)
-                print("Reasoning content:\n\n")
-                print(reasoning_content)
-                print("="*80)
+            try:
+                result = schema_class.model_validate_json(
+                    response.choices[0].message.content
+                )
+            except Exception as e:
+                try:
+                    result = schema_class.model_validate_json(
+                        response.choices[0].message.reasoning_content
+                    )
+                except Exception as e:
+                    self.logger.error(
+                        "LLM_EXTRACTION_ERROR",
+                        f"Failed to extract structured data: {str(e)}",
+                    )
+                    raise ValueError("Extraction could not be determined")
 
-            # Parse and validate response
-            extracted_json = response.choices[0].message.content
-            extracted_data = json.loads(extracted_json)
-
-            # Validate against schema
-            validated_data = schema_class.model_validate(extracted_data)
-
-            return validated_data.model_dump()
+            return result.model_dump()
 
         except Exception as e:
             raise LLMError(f"Failed to extract structured data: {str(e)}")
-
-    def _assess_extraction_quality(
-        self, extracted_data: Dict[str, Any], context: ResearchContext
-    ) -> Dict[str, float]:
-        """Assess the quality of the extraction"""
-        total_fields = len(context.schema)
-        filled_fields = 0
-        high_confidence_fields = 0
-
-        for field, value in extracted_data.items():
-            if value is not None and value != "" and value != []:
-                filled_fields += 1
-
-                # Check confidence for this field
-                field_confidence = (
-                    self.knowledge_accumulator.calculate_field_confidence(field)
-                )
-                if field_confidence > 0.8:
-                    high_confidence_fields += 1
-
-        completeness = filled_fields / total_fields if total_fields > 0 else 0
-        confidence = high_confidence_fields / filled_fields if filled_fields > 0 else 0
-
-        return {
-            "completeness": completeness,
-            "confidence": confidence,
-            "filled_fields": filled_fields,
-            "high_confidence_fields": high_confidence_fields,
-            "total_fields": total_fields,
-        }

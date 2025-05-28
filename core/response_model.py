@@ -1,6 +1,5 @@
-from typing_extensions import Literal
+from typing import List, Optional
 from pydantic import BaseModel
-from typing import List
 from enum import Enum
 
 
@@ -34,18 +33,8 @@ class ResponseOfConsolidation(BaseModel):
     reasoning: str
 
 
-class Assessment(BaseModel):
-    url: str
-    credibility: Literal["high", "medium", "low"]
-    reason: str
-
-
-class ResponseOfCredibility(BaseModel):
-    assessments: List[Assessment]
-
-
 class ResponseOfSelection(BaseModel):
-    selected_urls: List[str]
+    selected_urls: Optional[List[str]]
     reasoning: str
 
 

@@ -19,6 +19,17 @@ For all the components in `core` folder, we need to verify that each of them is 
 - [ ] `core/knowledge_accumulator.py`
 - [x] `core/logging_config.py`
 - [ ] `core/research_agent.py`
-- [ ] `core/response_model.py`
+- [x] `core/response_model.py`
 - [ ] `core/search_engine.py`
 - [ ] `core/url_manager.py`
+
+### Verification Process
+
+- [ ] Correct fields
+  - [ ] `data_structures/ResearchContext`
+  - [ ] `knowledge_items`
+  - [ ] `filled_fields`
+  - [ ] `empty_fields`
+  - [ ] `actions_taken`
+- [ ] `knowledge_accumulator`
+- [ ] `url_manager`

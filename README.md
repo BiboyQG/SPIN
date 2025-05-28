@@ -12,7 +12,7 @@ This system combines iterative research methodology with entity information extr
 - **Iterative Research Process**: Uses SEARCH, VISIT, REFLECT, EXTRACT, and EVALUATE actions
 - **Schema-Driven Extraction**: Maps findings to predefined schemas using guided JSON with LLMs
 - **Smart URL Management**: Ranks and filters URLs based on relevance and diversity
-- **Knowledge Accumulation**: Builds confidence through multiple sources
+- **Knowledge Accumulation**: Builds knowledge through multiple sources
 - **Progress Tracking**: Detailed logging and progress reporting
 - **Quality Evaluation**: Assesses completeness, accuracy, and consistency
 
@@ -34,7 +34,6 @@ This system combines iterative research methodology with entity information extr
 
    - Stores and consolidates research findings
    - Maps knowledge to schema fields
-   - Calculates confidence scores
 
 4. **SearchEngine** (`core/search_engine.py`)
 

@@ -19,7 +19,6 @@
 - [x] Implement `KnowledgeAccumulator` class
   - [x] Knowledge storage and retrieval
   - [x] Schema field mapping
-  - [x] Confidence score calculation
   - [x] Knowledge consolidation
 - [x] Implement `SearchEngine` integration
   - [x] Brave Search API integration

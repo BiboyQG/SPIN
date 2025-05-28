@@ -2,7 +2,10 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime
 import time
 
+from core.knowledge_accumulator import KnowledgeAccumulator
+from core.response_model import ResponseOfWorthVisiting
 from core.actions.base import ActionExecutor
+from core.url_manager import URLManager
 from core.data_structures import (
     ResearchContext,
     ResearchAction,
@@ -10,10 +13,7 @@ from core.data_structures import (
     KnowledgeType,
     URLInfo,
 )
-from core.url_manager import URLManager
-from core.knowledge_accumulator import KnowledgeAccumulator
 from scraper import WebScraper
-from core.response_model import ResponseOfWorthVisiting
 from openai import OpenAI
 from tqdm import tqdm
 
@@ -196,7 +196,6 @@ class VisitExecutor(ActionExecutor):
                         question=f"What is the {field} of {context.original_query}?",
                         answer=field_info,
                         source_urls=[url],
-                        confidence=0.8,  # Higher confidence for targeted extraction
                         timestamp=datetime.now(),
                         item_type=KnowledgeType.EXTRACTION,
                         schema_fields=[field],
@@ -307,21 +306,27 @@ class VisitExecutor(ActionExecutor):
             prompt = f"""You are an expert research assistant evaluating whether a URL is worth visiting for research purposes.
 
 Research Query: {context.original_query}
-Empty Fields: {", ".join(context.empty_fields) if context.empty_fields else "None"}
-Already Visited URLs: {len(context.visited_urls)} URLs
-Failed URLs: {len(context.failed_urls)} URLs
+
+Current information that we have for the entity: {context.current_extraction}
+
+Empty fields to fill: {list(context.empty_fields)}
 
 URL to Evaluate:
 - URL: {url_info.url}
 - Title: {url_info.title or "Unknown"}
+- Link Text: {url_info.link_text or "Unknown"}
+- Domain: {url_info.domain or "Unknown"}
+- Snippet: {url_info.snippet or "Unknown"}
 
 Determine if this URL is worth visiting based on:
 1. Relevance to the research query
 2. Potential to fill empty fields
-3. URL quality and credibility
-4. Whether it's likely to contain useful information
+3. URL quality
 
 Return your decision as a JSON object with 'worth_visiting' (boolean) and 'reason' (string explaining your decision)."""
+
+            if self.config.llm_config.enable_reasoning:
+                prompt += "\n\nPlease reason and think about the given context and instructions before answering the question in JSON format."
 
             response = self.llm_client.chat.completions.create(
                 model=self.config.llm_config.planning_model,
@@ -337,30 +342,23 @@ Return your decision as a JSON object with 'worth_visiting' (boolean) and 'reaso
                 extra_body={"guided_json": ResponseOfWorthVisiting.model_json_schema()},
             )
 
-            if self.config.llm_config.enable_reasoning:
-                reasoning_content = response.choices[0].message.reasoning_content
-                self.logger.debug("URL_EVALUATION_REASONING", reasoning_content)
-
             try:
                 result = ResponseOfWorthVisiting.model_validate_json(
                     response.choices[0].message.content
                 )
             except Exception as e:
                 # Fallback to reasoning content if main content fails
-                if self.config.llm_config.enable_reasoning:
-                    try:
-                        result = ResponseOfWorthVisiting.model_validate_json(
-                            response.choices[0].message.reasoning_content
-                        )
-                    except Exception as e:
-                        # Default to visiting if parsing fails
-                        self.logger.warning(
-                            "URL_EVALUATION_PARSE_ERROR_FALLBACK",
-                            f"Failed to parse LLM response for URL {url_info.url}: {e}",
-                        )
-                        return True
-                else:
-                    return True
+                try:
+                    result = ResponseOfWorthVisiting.model_validate_json(
+                        response.choices[0].message.reasoning_content
+                    )
+                except Exception as e:
+                    # Default to visiting if parsing fails
+                    self.logger.warning(
+                        "URL_EVALUATION_PARSE_ERROR_FALLBACK",
+                        f"Failed to parse LLM response for URL {url_info.url}: {e}",
+                    )
+                    raise ValueError("URL evaluation could not be determined")
 
             self.logger.debug(
                 "URL_EVALUATION_RESULT",

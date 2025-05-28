@@ -1,22 +1,23 @@
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any, Optional, Tuple, Type, get_origin, get_args, Union
+from pydantic import BaseModel
 from datetime import datetime
-import json
-import time
 from openai import OpenAI
+import inspect
+import time
 
-from core.data_structures import ResearchContext, ActionType
-from core.config import get_config, ResearchConfig
-from core.logging_config import get_logger
-from core.url_manager import URLManager
+from core.data_structures import ResearchContext, ResearchAction, ActionType
 from core.knowledge_accumulator import KnowledgeAccumulator
-from core.search_engine import SearchEngine
-from core.action_planner import ActionPlanner
-from core.actions.search_executor import SearchExecutor
-from core.actions.visit_executor import VisitExecutor
+from core.actions.evaluate_executor import EvaluateExecutor
 from core.actions.reflect_executor import ReflectExecutor
 from core.actions.extract_executor import ExtractExecutor
-from core.actions.evaluate_executor import EvaluateExecutor
+from core.actions.search_executor import SearchExecutor
+from core.actions.visit_executor import VisitExecutor
+from core.config import get_config, ResearchConfig
 from schemas.schema_manager import schema_manager
+from core.action_planner import ActionPlanner
+from core.search_engine import SearchEngine
+from core.logging_config import get_logger
+from core.url_manager import URLManager
 from scraper import WebScraper
 
 
@@ -98,18 +99,19 @@ class ResearchAgent:
 
             # Main research loop
             while context.should_continue_research():
-                # Check if all fields are complete before planning next action
+                # Check if all fields of the current extraction are complete before planning next action
                 is_complete, missing_fields = (
-                    self.knowledge_accumulator.check_schema_completeness(context.schema)
+                    self.knowledge_accumulator.check_schema_completeness(
+                        context.current_extraction
+                    )
                 )
 
-                if is_complete and not context.current_extraction:
+                if is_complete:
                     # All fields have values, trigger extract action
                     self.logger.info(
                         "SCHEMA_COMPLETE",
                         "All schema fields have values, triggering extraction",
                     )
-                    from core.data_structures import ResearchAction
 
                     action = ResearchAction(
                         action_type=ActionType.EXTRACT,
@@ -128,6 +130,13 @@ class ResearchAgent:
                 if executor:
                     result = executor.execute(action, context)
                     self._update_token_usage(context, result)
+
+                    # Update current extraction after knowledge-gathering actions
+                    if action.action_type in [
+                        ActionType.VISIT,
+                        ActionType.REFLECT,
+                    ]:
+                        self._update_current_extraction(context)
                 else:
                     self.logger.error(
                         "UNKNOWN_ACTION",
@@ -143,17 +152,13 @@ class ResearchAgent:
                     context.max_steps,
                     f"Completed {action.action_type.value} action",
                     {
-                        "progress": context.get_progress_percentage(),
                         "tokens_used": context.total_tokens_used,
                         "urls_visited": len(context.visited_urls),
                     },
                 )
 
             # Final extraction if needed
-            if (
-                not context.current_extraction
-                or context.get_progress_percentage() < 100
-            ):
+            if not context.current_extraction:
                 self._perform_final_extraction(context)
 
             # Prepare results
@@ -225,30 +230,21 @@ class ResearchAgent:
             extra_body={"guided_json": ResponseOfSchema.model_json_schema()},
         )
 
-        if self.config.llm_config.enable_reasoning:
-            reasoning_content = response.choices[0].message.reasoning_content
-            print("=" * 80)
-            print("Reasoning content:\n\n")
-            print(reasoning_content)
-            print("=" * 80)
-
-        print("=" * 80)
-        print("Response content:\n\n")
-        print(response.choices[0].message.content)
-        print("=" * 80)
-
         try:
             result = ResponseOfSchema.model_validate_json(
                 response.choices[0].message.content
             )
         except Exception as e:
-            print("=" * 80)
-            print("Error:\n\n")
-            print(e)
-            print("=" * 80)
-            result = ResponseOfSchema.model_validate_json(
-                response.choices[0].message.reasoning_content
-            )
+            try:
+                result = ResponseOfSchema.model_validate_json(
+                    response.choices[0].message.reasoning_content
+                )
+            except Exception as e:
+                self.logger.error(
+                    "LLM_SCHEMA_DETECTION_ERROR",
+                    f"Failed to detect entity type: {str(e)}",
+                )
+                raise ValueError("Entity type could not be determined")
 
         if result.schema == "No match":
             # TODO: Handle schema generation like in api.py
@@ -263,18 +259,79 @@ class ResearchAgent:
 
         return result.schema, initial_urls
 
-    def _initialize_context(
-        self, query: str, entity_type: str, schema_class: type
-    ) -> ResearchContext:
-        """Initialize research context"""
-        # Get schema fields
+    def _extract_schema_fields(self, schema_class: BaseModel, prefix: str = "") -> dict:
+        """Extract schema fields recursively, including nested models"""
         schema_dict = {}
+
         for field_name, field_info in schema_class.model_fields.items():
-            schema_dict[field_name] = {
-                "type": str(field_info.annotation),
+            full_field_name = f"{prefix}.{field_name}" if prefix else field_name
+            field_type = field_info.annotation
+
+            # Handle the field info
+            field_data = {
+                "type": str(field_type),
                 "required": field_info.is_required(),
                 "description": field_info.description or "",
             }
+
+            # Check if this is a nested Pydantic model
+            if inspect.isclass(field_type) and issubclass(field_type, BaseModel):
+                # It's a nested Pydantic model
+                field_data["nested_fields"] = self._extract_schema_fields(
+                    field_type, full_field_name
+                )
+            else:
+                # Handle generic types like List, Optional, Union
+                origin = get_origin(field_type)
+                args = get_args(field_type)
+
+                if origin is list and args:
+                    # Handle List[SomeModel]
+                    list_type = args[0]
+                    if inspect.isclass(list_type) and issubclass(list_type, BaseModel):
+                        field_data["list_item_type"] = str(list_type)
+                        field_data["nested_fields"] = self._extract_schema_fields(
+                            list_type, f"{full_field_name}[item]"
+                        )
+                elif origin is Union and args:
+                    # Handle Optional (Union[X, None]) and other unions
+                    non_none_types = [arg for arg in args if arg is not type(None)]
+                    if len(non_none_types) == 1:
+                        # This is Optional[X]
+                        optional_type = non_none_types[0]
+                        if inspect.isclass(optional_type) and issubclass(
+                            optional_type, BaseModel
+                        ):
+                            field_data["optional_type"] = str(optional_type)
+                            field_data["nested_fields"] = self._extract_schema_fields(
+                                optional_type, full_field_name
+                            )
+
+            schema_dict[full_field_name] = field_data
+
+        return schema_dict
+
+    def _get_all_field_names(self, schema_dict: dict) -> set:
+        """Extract all field names including nested fields from schema dictionary"""
+        all_fields = set()
+
+        for field_name, field_data in schema_dict.items():
+            # Add the current field
+            all_fields.add(field_name)
+
+            # If this field has nested fields, recursively add them
+            if "nested_fields" in field_data:
+                nested_fields = self._get_all_field_names(field_data["nested_fields"])
+                all_fields.update(nested_fields)
+
+        return all_fields
+
+    def _initialize_context(
+        self, query: str, entity_type: str, schema_class: Type[BaseModel]
+    ) -> ResearchContext:
+        """Initialize research context"""
+        # Get schema fields using the improved extraction method
+        schema_dict = self._extract_schema_fields(schema_class)
 
         context = ResearchContext(
             original_query=query,
@@ -285,8 +342,8 @@ class ResearchAgent:
             max_urls_per_step=self.config.max_urls_per_step,
         )
 
-        # Initialize empty fields
-        context.empty_fields = set(schema_dict.keys())
+        # Initialize empty fields - now includes all nested fields
+        context.empty_fields = self._get_all_field_names(schema_dict)
 
         return context
 
@@ -309,6 +366,36 @@ class ResearchAgent:
         # Simplified - in production would track actual token usage
         estimated_tokens = result.get("items_processed", 0) * 100
         context.total_tokens_used += estimated_tokens
+
+    def _update_current_extraction(self, context: ResearchContext):
+        """Update current extraction with latest knowledge"""
+        try:
+            # Create a lightweight extraction action
+            extract_action = ResearchAction(
+                action_type=ActionType.EXTRACT,
+                reason="Incremental extraction to update current state after knowledge-gathering actions",
+                parameters={"incremental": True},
+            )
+
+            # Execute extraction to update current_extraction
+            executor = self.executors[ActionType.EXTRACT]
+            result = executor.execute(extract_action, context)
+
+            if result.get("success"):
+                self.logger.debug(
+                    "EXTRACTION_UPDATED",
+                    "Current extraction updated with latest knowledge",
+                )
+            else:
+                self.logger.warning(
+                    "EXTRACTION_UPDATE_FAILED", "Failed to update current extraction"
+                )
+
+        except Exception as e:
+            self.logger.warning(
+                "EXTRACTION_UPDATE_ERROR",
+                f"Error updating current extraction: {str(e)}",
+            )
 
     def _perform_final_extraction(self, context: ResearchContext):
         """Perform final extraction if not done yet"""
@@ -344,8 +431,6 @@ class ResearchAgent:
                 "duration_seconds": duration,
                 "fields_filled": len(context.filled_fields),
                 "total_fields": len(context.schema),
-                "completeness": context.get_progress_percentage(),
-                "confidence_score": context.confidence_score,
                 "urls_visited": len(context.visited_urls),
                 "urls_discovered": len(context.discovered_urls),
                 "knowledge_items": len(context.knowledge_items),

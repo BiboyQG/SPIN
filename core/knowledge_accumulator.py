@@ -1,12 +1,12 @@
 from typing import List, Dict, Optional, Tuple, Any, TYPE_CHECKING
+from collections import defaultdict
 from datetime import datetime
 from openai import OpenAI
-from collections import defaultdict
 
-from core.data_structures import KnowledgeItem
-from core.config import get_config
-from core.logging_config import get_logger
 from core.response_model import ResponseOfConsolidation
+from core.data_structures import KnowledgeItem
+from core.logging_config import get_logger
+from core.config import get_config
 
 if TYPE_CHECKING:
     from core.data_structures import ResearchContext
@@ -134,6 +134,9 @@ Consider:
 - If values conflict, choose the most credible/detailed one
 - If values complement each other, merge them appropriately"""
 
+        if self.config.llm_config.enable_reasoning:
+            prompt += "\n\nPlease reason and think about the given context and instructions before answering the question in JSON format."
+
         try:
             response = self.llm_client.chat.completions.create(
                 model=self.config.llm_config.model_name,
@@ -154,13 +157,16 @@ Consider:
                     response.choices[0].message.content
                 )
             except Exception as e:
-                print("=" * 80)
-                print("Error:\n\n")
-                print(e)
-                print("=" * 80)
-                result = ResponseOfConsolidation.model_validate_json(
-                    response.choices[0].message.reasoning_content
-                )
+                try:
+                    result = ResponseOfConsolidation.model_validate_json(
+                        response.choices[0].message.reasoning_content
+                    )
+                except Exception as e:
+                    self.logger.error(
+                        "LLM_CONSOLIDATION_ERROR",
+                        f"Failed to consolidate field {field_name}: {str(e)}",
+                    )
+                    raise ValueError("Consolidation could not be determined")
 
             return {
                 "value": result.value,
@@ -197,28 +203,80 @@ Consider:
             for field, data in self.field_values.items()
         }
 
-    def check_schema_completeness(
-        self, schema: Dict[str, Any]
-    ) -> Tuple[bool, List[str]]:
-        """Check if all fields (including nested) in the schema have values"""
-        missing_fields = []
+    def check_schema_completeness(self, data: Dict[str, Any]) -> Tuple[bool, List[str]]:
+        """
+        Check if all fields (including nested) in the data have values.
+        A list field is considered complete if it's not empty AND at least one of its items is complete.
+        An item is complete if all its own fields have values (and so on, recursively).
+        """
+        overall_missing_fields: List[str] = []
 
-        def check_fields(obj: Dict[str, Any], prefix: str = ""):
-            for key, value in obj.items():
-                field_path = f"{prefix}.{key}" if prefix else key
+        def _recursive_check_and_collect(
+            node_data: Any, current_path_prefix: str, target_missing_list: List[str]
+        ):
+            if isinstance(node_data, dict):
+                # If the dict itself is None, its path would have been caught by the parent.
+                # An empty dict as a field value means all its (potential) required fields are effectively missing
+                # or it's an optional empty object. Pydantic handles required fields by them being None if not provided.
+                # So, we just iterate through its keys.
+                for key, value in node_data.items():
+                    field_path = (
+                        f"{current_path_prefix}.{key}" if current_path_prefix else key
+                    )
+                    _recursive_check_and_collect(value, field_path, target_missing_list)
 
-                if isinstance(value, dict) and not value.get("type"):
-                    # Nested object
-                    check_fields(value, field_path)
+            elif isinstance(node_data, list):
+                # current_path_prefix is the path to the list field itself, e.g., "education"
+                if not node_data:  # Empty list
+                    target_missing_list.append(f"{current_path_prefix} (list is empty)")
                 else:
-                    # Regular field
-                    if field_path not in self.field_values:
-                        missing_fields.append(field_path)
+                    # List is not empty. Check if at least one item is complete.
+                    one_item_is_fully_complete = False
+                    # This list will store missing fields from all items, used if NO item is complete.
+                    all_items_missing_details_if_list_fails: List[str] = []
 
-        check_fields(schema)
+                    for index, item_in_list in enumerate(node_data):
+                        item_path = f"{current_path_prefix}[{index}]"
 
-        is_complete = len(missing_fields) == 0
-        return is_complete, missing_fields
+                        # Check this item_in_list for its own completeness.
+                        # Findings for this specific item go into a temporary list.
+                        item_specific_missing_fields: List[str] = []
+                        # Recursive call for the item. Its missing fields are collected in item_specific_missing_fields.
+                        _recursive_check_and_collect(
+                            item_in_list, item_path, item_specific_missing_fields
+                        )
+
+                        if not item_specific_missing_fields:  # This item is complete
+                            one_item_is_fully_complete = True
+                            all_items_missing_details_if_list_fails.clear()  # Clear details, list is complete.
+                            break  # Found a complete item, so the list field (current_path_prefix) is complete.
+                        else:
+                            # This item is not complete. Store its missing fields in case the whole list fails.
+                            all_items_missing_details_if_list_fails.extend(
+                                item_specific_missing_fields
+                            )
+
+                    if not one_item_is_fully_complete:
+                        # No item in the list was complete. The list field itself is incomplete.
+                        # Add a general message for the list field.
+                        target_missing_list.append(
+                            f"{current_path_prefix} (no complete item in list)"
+                        )
+                        # And add all the detailed missing fields from all its items that we collected.
+                        target_missing_list.extend(
+                            all_items_missing_details_if_list_fails
+                        )
+                    # If one_item_is_fully_complete is true, we add nothing for this list field to target_missing_list.
+
+            elif node_data is None:
+                if current_path_prefix:  # Path must exist and be non-empty
+                    target_missing_list.append(f"{current_path_prefix} (is None)")
+            # Primitive types (str, int, float, bool, etc.) are implicitly complete if they are not None.
+
+        _recursive_check_and_collect(
+            data, "", overall_missing_fields
+        )  # Root path is empty for the initial call
+        return not overall_missing_fields, overall_missing_fields
 
     def get_knowledge_for_field(self, field_name: str) -> List[Dict[str, Any]]:
         """Get all discoveries for a specific field"""
@@ -323,9 +381,9 @@ Consider:
             [
                 f"# Knowledge Summary Report",
                 f"",
-                f"**Entity:** {entity_query}",
-                f"**Type:** {entity_type}",
-                f"**Generated:** {timestamp}",
+                f"**Entity/Original Query:** {entity_query}",
+                f"**Entity Type:** {entity_type}",
+                f"**Generated At:** {timestamp}",
                 f"",
                 "---",
                 f"",
@@ -419,6 +477,7 @@ Consider:
                 markdown_lines.extend([f"### {type_display} ({len(items)} items)", f""])
 
                 # Show top items by confidence
+                # TODO: remove confidence
                 sorted_items = sorted(items, key=lambda x: x.confidence, reverse=True)
                 for i, item in enumerate(sorted_items[:5], 1):  # Show top 5
                     confidence_pct = int(item.confidence * 100)
@@ -542,8 +601,11 @@ Consider:
             [
                 "---",
                 f"",
-                f"*Report generated by SPIN Knowledge Accumulator on {timestamp}*",
+                f"*Report generated by Knowledge Accumulator on {timestamp}*",
             ]
         )
+
+        with open(f"../knowledges/knowledge_summary_{entity_query.replace(' ', '_')}.md", "w") as f:
+            f.write("\n".join(markdown_lines))
 
         return "\n".join(markdown_lines)

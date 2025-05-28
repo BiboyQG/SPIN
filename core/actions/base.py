@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 from typing import Any, Dict
 
 from core.data_structures import ResearchContext, ResearchAction
-from core.config import get_config
 from core.logging_config import get_logger
+from core.config import get_config
 
 
 class ActionExecutor(ABC):
@@ -32,12 +32,17 @@ class ActionExecutor(ABC):
         )
 
     def post_execute(
-        self, action: ResearchAction, context: ResearchContext, result: Dict[str, Any]
+        self,
+        action: ResearchAction,
+        context: ResearchContext,
+        result: Dict[str, Any],
+        skip_step: bool = False,
     ):
         """Hook for post-execution tasks"""
         # Update context
         context.actions_taken.append(action)
-        context.current_step += 1
+        if not skip_step:
+            context.current_step += 1
 
         # Log completion
         self.logger.action_complete(

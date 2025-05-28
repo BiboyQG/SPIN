@@ -1,16 +1,16 @@
 from typing import Dict, Any, List
 from datetime import datetime
 
+from core.knowledge_accumulator import KnowledgeAccumulator
 from core.actions.base import ActionExecutor
+from core.search_engine import SearchEngine
+from core.url_manager import URLManager
 from core.data_structures import (
     ResearchContext,
     ResearchAction,
     KnowledgeItem,
     KnowledgeType,
 )
-from core.search_engine import SearchEngine
-from core.url_manager import URLManager
-from core.knowledge_accumulator import KnowledgeAccumulator
 
 
 class SearchExecutor(ActionExecutor):
@@ -47,14 +47,12 @@ class SearchExecutor(ActionExecutor):
             # Process search results
             discovered_urls = self.url_manager.discover_urls_from_search(all_results)
 
-            # Create knowledge items from search snippets
+            # TODO: delete this
             for result in all_results:
                 knowledge_item = KnowledgeItem(
                     question=f"What does the search result say about {context.original_query}?",
                     answer=result.snippet,
                     source_urls=[result.url],
-                    confidence=result.relevance_score
-                    * 0.5,  # Lower confidence for snippets
                     timestamp=datetime.now(),
                     item_type=KnowledgeType.SEARCH_RESULT,
                     schema_fields=self._identify_related_fields(

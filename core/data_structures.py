@@ -1,6 +1,6 @@
+from typing import Dict, List, Optional, Any, Set
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Dict, List, Optional, Any, Set
 from enum import Enum
 
 
@@ -30,15 +30,10 @@ class KnowledgeItem:
     question: str
     answer: str
     source_urls: List[str]
-    confidence: float
     timestamp: datetime
     item_type: KnowledgeType
     schema_fields: List[str]  # Which schema fields this relates to
     metadata: Dict[str, Any] = field(default_factory=dict)
-
-    def __post_init__(self):
-        if self.confidence < 0 or self.confidence > 1:
-            raise ValueError("Confidence must be between 0 and 1")
 
 
 @dataclass
@@ -123,10 +118,6 @@ class ResearchContext:
     # Search history
     search_queries: List[str] = field(default_factory=list)
 
-    # Evaluation metrics
-    completeness_score: float = 0.0
-    confidence_score: float = 0.0
-
     def update_field_status(self):
         """Update which fields are filled/empty based on current extraction"""
         self.filled_fields = {
@@ -141,16 +132,9 @@ class ResearchContext:
         self.knowledge_items.append(item)
         # Update filled fields if this knowledge relates to schema fields
         for field in item.schema_fields:
-            if field in self.empty_fields and item.confidence > 0.7:
+            if field in self.empty_fields:
                 self.filled_fields.add(field)
                 self.empty_fields.discard(field)
-
-    def get_progress_percentage(self) -> float:
-        """Calculate research progress as percentage"""
-        total_fields = len(self.schema.keys())
-        if total_fields == 0:
-            return 0.0
-        return (len(self.filled_fields) / total_fields) * 100
 
     def should_continue_research(self) -> bool:
         """Determine if research should continue"""
@@ -158,10 +142,8 @@ class ResearchContext:
             return False
         if self.current_step >= self.max_steps:
             return False
-        # if self.total_tokens_used >= self.max_tokens: # Ignore token budget for now
-        #     return False
-        # if self.get_progress_percentage() >= 95: # Ignore progress for now
-        #     return False
+        if self.total_tokens_used >= self.max_tokens:  # Ignore token budget for now
+            return False
         return True
 
 
@@ -169,7 +151,6 @@ class ResearchContext:
 class EvaluationResult:
     """Result of evaluating the current research state"""
 
-    completeness: float  # 0-1 score
     accuracy: float  # 0-1 score
     consistency: float  # 0-1 score
     overall_score: float  # 0-1 score

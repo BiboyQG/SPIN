@@ -1,14 +1,14 @@
 from typing import Optional, Dict, Any
 from openai import OpenAI
 
+from core.response_model import ResponseOfActionPlan, Action
+from core.logging_config import get_logger
+from core.config import get_config
 from core.data_structures import (
     ResearchContext,
     ResearchAction,
     ActionType,
 )
-from core.config import get_config
-from core.logging_config import get_logger
-from core.response_model import ResponseOfActionPlan, Action
 
 
 class ActionPlanner:
@@ -26,7 +26,6 @@ class ActionPlanner:
             self.logger.info(
                 "ACTION_PLANNING",
                 "Research complete or budget exhausted",
-                progress=context.get_progress_percentage(),
                 tokens_used=context.total_tokens_used,
             )
             return None
@@ -104,6 +103,9 @@ Consider:
 Choose one action and provide a clear reason and return your response in a JSON object, following schema:
 {ResponseOfActionPlan.model_json_schema()}"""
 
+        if self.config.llm_config.enable_reasoning:
+            prompt += "\n\nPlease reason and think about the given context and instructions before answering the question in JSON format."
+
         try:
             response = self.llm_client.chat.completions.create(
                 model=self.config.llm_config.model_name,
@@ -119,25 +121,22 @@ Choose one action and provide a clear reason and return your response in a JSON 
                 extra_body={"guided_json": ResponseOfActionPlan.model_json_schema()},
             )
 
-            if self.config.llm_config.enable_reasoning:
-                reasoning_content = response.choices[0].message.reasoning_content
-                print("=" * 80)
-                print("Reasoning content:\n\n")
-                print(reasoning_content)
-                print("=" * 80)
-
             try:
                 result = ResponseOfActionPlan.model_validate_json(
                     response.choices[0].message.content
                 )
             except Exception as e:
-                print("=" * 80)
-                print("Error:\n\n")
-                print(e)
-                print("=" * 80)
-                result = ResponseOfActionPlan.model_validate_json(
-                    response.choices[0].message.reasoning_content
-                )
+                try:
+                    result = ResponseOfActionPlan.model_validate_json(
+                        response.choices[0].message.reasoning_content
+                    )
+                except Exception as e:
+                    self.logger.error(
+                        "LLM_PLANNING_ERROR",
+                        f"Failed to get action plan: {str(e)}",
+                        response=response.choices[0].message.content,
+                    )
+                    raise ValueError("Action plan could not be determined")
 
             return result
 
@@ -312,5 +311,4 @@ Choose one action and provide a clear reason and return your response in a JSON 
             "total_actions": len(context.actions_taken),
             "action_counts": action_counts,
             "current_step": context.current_step,
-            "progress": context.get_progress_percentage(),
         }

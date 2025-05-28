@@ -1,6 +1,6 @@
-import os
-from dataclasses import dataclass
 from typing import Optional, Dict, Any
+from dataclasses import dataclass
+import os
 
 
 @dataclass
@@ -54,9 +54,6 @@ class ResearchConfig:
     # Timeouts and delays
     request_timeout: int = 30  # seconds
     step_delay: float = 1  # seconds between steps
-
-    # Completeness thresholds
-    min_completeness_for_finish: float = 1
 
     # URL filtering
     blocked_domains: list = None
