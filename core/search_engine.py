@@ -59,8 +59,8 @@ class SearchEngine:
     def _enforce_rate_limit(self):
         """Enforce rate limiting between searches"""
         time_since_last = time.time() - self.last_search_time
-        if time_since_last < 1.0:  # Minimum 1 second between searches
-            time.sleep(1.0 - time_since_last)
+        if time_since_last < 3.0:  # Minimum 3 seconds between searches
+            time.sleep(3.0 - time_since_last)
         self.last_search_time = time.time()
 
     def _brave_search(
@@ -105,9 +105,6 @@ class SearchEngine:
                     url=result.get("url", ""),
                     title=result.get("title", ""),
                     snippet=result.get("description", ""),
-                    relevance_score=self._calculate_relevance_score(
-                        idx, len(web_results)
-                    ),
                     timestamp=datetime.now(),
                     metadata={
                         "age": result.get("age"),
@@ -167,9 +164,6 @@ class SearchEngine:
                     url=result.get("link", ""),
                     title=result.get("title", ""),
                     snippet=result.get("snippet", ""),
-                    relevance_score=self._calculate_relevance_score(
-                        idx, len(organic_results)
-                    ),
                     timestamp=datetime.now(),
                     metadata={
                         "position": result.get("position"),
@@ -187,13 +181,6 @@ class SearchEngine:
             raise SearchError(f"SerpApi request failed: {str(e)}")
         except (KeyError, json.JSONDecodeError) as e:
             raise SearchError(f"Failed to parse SerpApi response: {str(e)}")
-
-    def _calculate_relevance_score(self, position: int, total_results: int) -> float:
-        """Calculate relevance score based on position in results"""
-        if total_results == 0:
-            return 0.0
-        # Higher positions get higher scores
-        return 1.0 - (position / total_results)
 
     def generate_queries(
         self, original_query: str, context: Dict[str, Any]
@@ -323,24 +310,3 @@ class SearchEngine:
         key_terms = [w for w in words if w not in stop_words and len(w) > 3]
 
         return key_terms
-
-    def batch_search(self, queries: List[str]) -> Dict[str, List[SearchResult]]:
-        """Execute multiple searches and return results mapped by query"""
-        results = {}
-
-        for query in queries:
-            try:
-                results[query] = self.search(query)
-            except SearchError as e:
-                self.logger.warning(
-                    "BATCH_SEARCH_PARTIAL_FAILURE",
-                    f"Failed to search for: {query}",
-                    error=str(e),
-                )
-                results[query] = []
-
-            # Add delay between searches
-            if len(queries) > 1:
-                time.sleep(self.config.step_delay)
-
-        return results
