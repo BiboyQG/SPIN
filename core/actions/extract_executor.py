@@ -45,13 +45,18 @@ class ExtractExecutor(ActionExecutor):
 
             # Update context with extraction
             context.current_extraction = extracted_data
-            context.update_field_status()
+            is_complete, empty_fields = self.knowledge_accumulator.check_schema_completeness(
+                extracted_data
+            )
+            if is_complete:
+                context.is_complete = True
+                context.completion_reason = "All schema fields have been filled with values"
+            else:
+                context.empty_fields = empty_fields
 
             result = {
                 "success": True,
                 "extracted_data": extracted_data,
-                "fields_filled": len(context.filled_fields),
-                "total_fields": len(context.schema),
                 "items_processed": 1,
             }
 
