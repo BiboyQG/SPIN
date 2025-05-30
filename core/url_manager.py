@@ -87,7 +87,6 @@ class URLManager:
             url_info = URLInfo(
                 url=url,
                 title=result.title,
-                schema_fields_coverage=[],
                 metadata={
                     "source": "search",
                     "snippet": result.snippet,
@@ -133,7 +132,6 @@ class URLManager:
                 url_info = URLInfo(
                     url=url,
                     title=link_text,  # Use link text as title
-                    schema_fields_coverage=[],
                     metadata={
                         "source": "content_extraction",
                         "found_on": base_url,
@@ -161,7 +159,6 @@ class URLManager:
             url_info = URLInfo(
                 url=url,
                 title="",
-                schema_fields_coverage=[],
                 metadata={
                     "source": "content_extraction",
                     "found_on": base_url,
