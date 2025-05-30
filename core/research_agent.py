@@ -1,6 +1,8 @@
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any, Optional, Tuple, get_origin, get_args, Union
+from pydantic import BaseModel
 from datetime import datetime
 from openai import OpenAI
+import inspect
 import time
 
 from core.data_structures import ResearchContext, ResearchAction, ActionType
@@ -92,7 +94,7 @@ class ResearchAgent:
                 raise ValueError(f"Unknown entity type: {entity_type}")
 
             # Initialize research context
-            context = self._initialize_context(query, entity_type)
+            context = self._initialize_context(query, entity_type, schema_class)
 
             # If we have initial URLs from detection, add them
             if initial_urls:
@@ -173,13 +175,19 @@ class ResearchAgent:
         """Detect entity type from query using search and initial page analysis"""
         self.logger.subsection("Detecting Entity Type")
 
-        # First, search for the entity
-        search_results = self.search_engine.search(query, num_results=6)
+        # # First, search for the entity
+        # search_results = self.search_engine.search(query, num_results=6)
 
-        if not search_results:
-            raise ValueError("No search results found for entity detection")
+        # if not search_results:
+        #     raise ValueError("No search results found for entity detection")
 
-        initial_urls = [search_result.url for search_result in search_results]
+        # initial_urls = [search_result.url for search_result in search_results]
+
+        # TODO: Remove mock initial urls
+        initial_urls = [
+            "https://www.linkedin.com/in/banghao-chi-550737276",
+            "https://biboyqg.github.io/",
+        ]
 
         visited_urls = []
 
@@ -259,7 +267,9 @@ class ResearchAgent:
 
         return result.schema, initial_urls
 
-    def _initialize_context(self, query: str, entity_type: str) -> ResearchContext:
+    def _initialize_context(
+        self, query: str, entity_type: str, schema_class: BaseModel
+    ) -> ResearchContext:
         """Initialize research context"""
         context = ResearchContext(
             original_query=query,
@@ -267,6 +277,9 @@ class ResearchAgent:
             max_steps=self.config.max_steps,
             max_tokens=self.config.max_tokens_budget,
             max_urls_per_step=self.config.max_urls_per_step,
+            empty_fields=self._get_all_field_names(
+                self._extract_schema_fields(schema_class)
+            ),
         )
 
         return context
@@ -350,3 +363,70 @@ class ResearchAgent:
                 "knowledge_summary": self.knowledge_accumulator.generate_summary(),
             },
         }
+
+    def _extract_schema_fields(self, schema_class: BaseModel, prefix: str = "") -> dict:
+        """Extract schema fields recursively, including nested models"""
+        schema_dict = {}
+
+        for field_name, field_info in schema_class.model_fields.items():
+            full_field_name = f"{prefix}.{field_name}" if prefix else field_name
+            field_type = field_info.annotation
+
+            # Handle the field info
+            field_data = {
+                "type": str(field_type),
+                "required": field_info.is_required(),
+                "description": field_info.description or "",
+            }
+
+            # Check if this is a nested Pydantic model
+            if inspect.isclass(field_type) and issubclass(field_type, BaseModel):
+                # It's a nested Pydantic model
+                field_data["nested_fields"] = self._extract_schema_fields(
+                    field_type, full_field_name
+                )
+            else:
+                # Handle generic types like List, Optional, Union
+                origin = get_origin(field_type)
+                args = get_args(field_type)
+
+                if origin is list and args:
+                    # Handle List[SomeModel]
+                    list_type = args[0]
+                    if inspect.isclass(list_type) and issubclass(list_type, BaseModel):
+                        field_data["list_item_type"] = str(list_type)
+                        field_data["nested_fields"] = self._extract_schema_fields(
+                            list_type, f"{full_field_name}[item]"
+                        )
+                elif origin is Union and args:
+                    # Handle Optional (Union[X, None]) and other unions
+                    non_none_types = [arg for arg in args if arg is not type(None)]
+                    if len(non_none_types) == 1:
+                        # This is Optional[X]
+                        optional_type = non_none_types[0]
+                        if inspect.isclass(optional_type) and issubclass(
+                            optional_type, BaseModel
+                        ):
+                            field_data["optional_type"] = str(optional_type)
+                            field_data["nested_fields"] = self._extract_schema_fields(
+                                optional_type, full_field_name
+                            )
+
+            schema_dict[full_field_name] = field_data
+
+        return schema_dict
+
+    def _get_all_field_names(self, schema_dict: dict) -> set:
+        """Extract all field names including nested fields from schema dictionary"""
+        all_fields = set()
+
+        for field_name, field_data in schema_dict.items():
+            # Add the current field
+            all_fields.add(field_name)
+
+            # If this field has nested fields, recursively add them
+            if "nested_fields" in field_data:
+                nested_fields = self._get_all_field_names(field_data["nested_fields"])
+                all_fields.update(nested_fields)
+
+        return all_fields
