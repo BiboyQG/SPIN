@@ -56,7 +56,6 @@ class URLManager:
                 r"/login",
                 r"/register",
                 r"/logout",
-                r"\.pdf$",
                 r"\.doc[x]?$",
                 r"\.ppt[x]?$",
                 r"/search\?",
@@ -131,7 +130,7 @@ class URLManager:
             if url not in self.url_registry:
                 url_info = URLInfo(
                     url=url,
-                    title=link_text,  # Use link text as title
+                    link_text=link_text,  # Use link text as title
                     metadata={
                         "source": "content_extraction",
                         "found_on": base_url,
@@ -158,7 +157,6 @@ class URLManager:
 
             url_info = URLInfo(
                 url=url,
-                title="",
                 metadata={
                     "source": "content_extraction",
                     "found_on": base_url,
