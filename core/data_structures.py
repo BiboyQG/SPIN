@@ -43,7 +43,6 @@ class SearchResult:
     url: str
     title: str
     snippet: str
-    relevance_score: float
     timestamp: Optional[datetime] = None
     metadata: Dict[str, Any] = field(default_factory=dict)
 
@@ -54,8 +53,6 @@ class URLInfo:
 
     url: str
     title: str
-    relevance_score: float
-    schema_fields_coverage: List[str]  # Which schema fields this URL might help fill
     content: Optional[str] = None
     last_visited: Optional[datetime] = None
     visit_count: int = 0
@@ -81,7 +78,6 @@ class ResearchContext:
     # Query and entity information
     original_query: str
     entity_type: str
-    schema: Dict[str, Any]
 
     # Knowledge accumulation
     knowledge_items: List[KnowledgeItem] = field(default_factory=list)
@@ -117,15 +113,6 @@ class ResearchContext:
 
     # Search history
     search_queries: List[str] = field(default_factory=list)
-
-    def update_field_status(self):
-        """Update which fields are filled/empty based on current extraction"""
-        self.filled_fields = {
-            k
-            for k, v in self.current_extraction.items()
-            if v is not None and v != "" and v != []
-        }
-        self.empty_fields = set(self.schema.keys()) - self.filled_fields
 
     def add_knowledge(self, item: KnowledgeItem):
         """Add a knowledge item and update relevant fields"""
