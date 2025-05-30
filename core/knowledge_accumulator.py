@@ -1,15 +1,12 @@
-from typing import List, Dict, Optional, Tuple, Any, TYPE_CHECKING
+from typing import List, Dict, Optional, Tuple, Any
 from collections import defaultdict
 from datetime import datetime
 from openai import OpenAI
 
+from core.data_structures import KnowledgeItem, ResearchContext
 from core.response_model import ResponseOfConsolidation
-from core.data_structures import KnowledgeItem
 from core.logging_config import get_logger
 from core.config import get_config
-
-if TYPE_CHECKING:
-    from core.data_structures import ResearchContext
 
 
 class KnowledgeAccumulator:
@@ -43,7 +40,7 @@ class KnowledgeAccumulator:
         # }
 
     def add_knowledge(
-        self, item: KnowledgeItem, context: Optional["ResearchContext"] = None
+        self, item: KnowledgeItem, context: ResearchContext = None
     ) -> None:
         """Add a knowledge item and update field values"""
         # Store raw knowledge item
@@ -60,7 +57,7 @@ class KnowledgeAccumulator:
         )
 
     def _extract_field_values(
-        self, item: KnowledgeItem, context: Optional["ResearchContext"] = None
+        self, item: KnowledgeItem, context: ResearchContext = None
     ) -> None:
         """Extract field values from a knowledge item"""
         # For each field this knowledge item relates to
@@ -79,7 +76,7 @@ class KnowledgeAccumulator:
             self._update_field_value(field, context)
 
     def _update_field_value(
-        self, field_name: str, context: Optional["ResearchContext"] = None
+        self, field_name: str, context: ResearchContext = None
     ) -> None:
         """Update the consolidated value for a field using LLM"""
         discoveries = self.field_discoveries.get(field_name, [])
@@ -186,23 +183,6 @@ Consider:
                 "last_updated": datetime.now(),
             }
 
-    def get_field_value(self, field_name: str) -> Optional[str]:
-        """Get the consolidated value for a field"""
-        field_data = self.field_values.get(field_name)
-        return field_data["value"] if field_data else None
-
-    def get_field_sources(self, field_name: str) -> List[str]:
-        """Get all sources for a field value"""
-        field_data = self.field_values.get(field_name)
-        return field_data["sources"] if field_data else []
-
-    def get_all_field_values(self) -> Dict[str, Any]:
-        """Get all field values with their sources"""
-        return {
-            field: {"value": data["value"], "sources": data["sources"]}
-            for field, data in self.field_values.items()
-        }
-
     def check_schema_completeness(self, data: Dict[str, Any]) -> Tuple[bool, List[str]]:
         """
         Check if all fields (including nested) in the data have values.
@@ -278,18 +258,6 @@ Consider:
         )  # Root path is empty for the initial call
         return not overall_missing_fields, overall_missing_fields
 
-    def get_knowledge_for_field(self, field_name: str) -> List[Dict[str, Any]]:
-        """Get all discoveries for a specific field"""
-        return self.field_discoveries.get(field_name, [])
-
-    def identify_knowledge_gaps(self, schema_fields: List[str]) -> List[str]:
-        """Identify schema fields that don't have values yet"""
-        gaps = []
-        for field in schema_fields:
-            if field not in self.field_values:
-                gaps.append(field)
-        return gaps
-
     def generate_summary(self) -> Dict[str, Any]:
         """Generate a summary of accumulated knowledge"""
         total_fields = len(self.field_values)
@@ -319,34 +287,6 @@ Consider:
         }
 
         return summary
-
-    def merge_knowledge_bases(self, other: "KnowledgeAccumulator") -> None:
-        """Merge another knowledge accumulator into this one"""
-        # Merge knowledge items
-        for item in other.knowledge_items:
-            self.add_knowledge(item, None)
-
-        # Merge discoveries (will trigger re-consolidation)
-        for field, discoveries in other.field_discoveries.items():
-            self.field_discoveries[field].extend(discoveries)
-            self._update_field_value(field, None)
-
-    def export_extraction(self) -> Dict[str, Any]:
-        """Export the current extraction with sources"""
-        extraction = {}
-        for field, data in self.field_values.items():
-            # Handle nested fields
-            parts = field.split(".")
-            current = extraction
-            for part in parts[:-1]:
-                if part not in current:
-                    current[part] = {}
-                current = current[part]
-
-            # Set the value with metadata
-            current[parts[-1]] = {"value": data["value"], "sources": data["sources"]}
-
-        return extraction
 
     def get_fields_needing_verification(self) -> List[str]:
         """Identify fields that might benefit from additional verification"""
@@ -396,7 +336,6 @@ Consider:
             [
                 "## Overview",
                 f"",
-                f"- **Fields with data:** {summary_stats['total_fields_filled']}",
                 f"- **Total discoveries:** {summary_stats['total_discoveries']}",
                 f"- **Unique sources:** {summary_stats['unique_sources']}",
                 f"- **Knowledge items:** {summary_stats['knowledge_items_count']}",
@@ -476,16 +415,14 @@ Consider:
                 type_display = item_type.replace("_", " ").title()
                 markdown_lines.extend([f"### {type_display} ({len(items)} items)", f""])
 
-                # Show top items by confidence
-                # TODO: remove confidence
-                sorted_items = sorted(items, key=lambda x: x.confidence, reverse=True)
+                # Show top items
+                sorted_items = sorted(items, reverse=True)
                 for i, item in enumerate(sorted_items[:5], 1):  # Show top 5
-                    confidence_pct = int(item.confidence * 100)
                     markdown_lines.extend(
                         [
                             f"{i}. **Q:** {item.question}",
-                            f"   **A:** {item.answer[:2000]}{'...' if len(item.answer) > 2000 else ''}",
-                            f"   **Confidence:** {confidence_pct}% | **Fields:** {', '.join(item.schema_fields)}",
+                            f"   **A:** {item.answer}",
+                            f"   **Fields:** {', '.join(item.schema_fields)}",
                             f"",
                         ]
                     )
@@ -535,9 +472,9 @@ Consider:
         if verification_fields:
             markdown_lines.extend(
                 [
-                    "## Fields Needing Verification",
+                    "## Fields Needing Verification, But can be used during Extraction",
                     f"",
-                    "The following fields have conflicting information from multiple sources:",
+                    "The following fields have information from multiple sources:",
                     f"",
                 ]
             )
@@ -548,7 +485,7 @@ Consider:
 
                 display_name = field.replace("_", " ").title()
                 markdown_lines.extend(
-                    [f"### {display_name}", f"**Conflicting values found:**"]
+                    [f"### {display_name}", f"**Values found:**"]
                 )
 
                 for i, value in enumerate(unique_values, 1):
@@ -561,16 +498,6 @@ Consider:
 
         # Research recommendations
         markdown_lines.extend(["## Research Recommendations", f""])
-
-        if verification_fields:
-            markdown_lines.extend(
-                [
-                    "### Priority Actions",
-                    f"1. **Verify conflicting information** for {len(verification_fields)} field{'s' if len(verification_fields) > 1 else ''}: {', '.join(verification_fields)}",
-                    f"2. **Cross-reference sources** to determine most reliable information",
-                    f"",
-                ]
-            )
 
         # Identify fields with single sources that might need more validation
         single_source_fields = [
@@ -605,7 +532,9 @@ Consider:
             ]
         )
 
-        with open(f"../knowledges/knowledge_summary_{entity_query.replace(' ', '_')}.md", "w") as f:
+        with open(
+            f"knowledges/knowledge_summary_{entity_query.replace(' ', '_')}.md", "w"
+        ) as f:
             f.write("\n".join(markdown_lines))
 
         return "\n".join(markdown_lines)
