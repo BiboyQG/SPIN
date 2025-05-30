@@ -1,9 +1,9 @@
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 from datetime import datetime
 import time
 
+from core.response_model import ResponseOfWorthVisiting, ResponseOfKnowledgeExtraction
 from core.knowledge_accumulator import KnowledgeAccumulator
-from core.response_model import ResponseOfWorthVisiting
 from core.actions.base import ActionExecutor
 from core.url_manager import URLManager
 from core.data_structures import (
@@ -69,8 +69,6 @@ class VisitExecutor(ActionExecutor):
             successful_visits = 0
             extracted_knowledge = []
 
-            self.num_considered_urls += len(urls)
-
             for url in tqdm(urls, desc="Visiting URLs"):
                 if url in context.visited_urls:
                     continue
@@ -112,8 +110,6 @@ class VisitExecutor(ActionExecutor):
                     # Discover new URLs from content
                     new_urls = self.url_manager.discover_urls_from_content(url, content)
 
-                    self.num_considered_urls += len(new_urls)
-
                     # Filter new URLs using LLM evaluation and add to context
                     for url_info in tqdm(new_urls, desc="Evaluating New URLs"):
                         if self.num_considered_urls > self.max_considered_urls:
@@ -141,6 +137,8 @@ class VisitExecutor(ActionExecutor):
                             self.logger.debug(
                                 "URL_FILTERED_OUT", f"Filtered out URL: {url_info.url}"
                             )
+
+                        self.num_considered_urls += 1
 
                     successful_visits += 1
 
@@ -171,7 +169,7 @@ class VisitExecutor(ActionExecutor):
     def _extract_knowledge_from_content(
         self, url: str, content: str, context: ResearchContext
     ) -> List[KnowledgeItem]:
-        """Extract knowledge items from webpage content using improved field-specific extraction"""
+        """Extract knowledge items from webpage content using LLM-based field-specific extraction"""
         knowledge_items = []
 
         # Get empty fields to focus extraction
@@ -179,125 +177,89 @@ class VisitExecutor(ActionExecutor):
         if not empty_fields:
             return knowledge_items
 
-        # Split content into meaningful sections
-        sections = self._split_content_into_sections(content)
+        # Prepare prompt for LLM
+        prompt = f"""You are an expert research assistant extracting information from a webpage.
 
-        for section in sections:
-            # Check if section is relevant to the entity
-            if not self._is_section_relevant(section, context.original_query):
-                continue
+Research Query: {context.original_query}
 
-            # For each empty field, try to extract relevant information
-            for field in empty_fields:
-                field_info = self._extract_field_specific_info(section, field, context)
+Entity Type: {context.entity_type}
 
-                if field_info:
-                    knowledge_item = KnowledgeItem(
-                        question=f"What is the {field} of {context.original_query}?",
-                        answer=field_info,
-                        source_urls=[url],
-                        timestamp=datetime.now(),
-                        item_type=KnowledgeType.EXTRACTION,
-                        schema_fields=[field],
-                        metadata={
-                            "extraction_method": "field_specific",
-                            "section_length": len(section),
-                            "url": url,
-                        },
+Webpage Content (Markdown):
+{content}
+
+Current information that we have for the entity: {context.current_extraction}
+
+Empty fields to fill: {empty_fields}
+
+Extract relevant information for each empty field from the provided content.
+Return your findings as a JSON object following this schema:
+{ResponseOfKnowledgeExtraction.model_json_schema()}
+
+Instructions:
+- For each field, if you find relevant information, provide the field name and the extracted value.
+- If no relevant information is found for a field, do not include it in the output.
+- Ensure the extracted value is detailed and directly answers the implicit question for that field.
+"""
+
+        if self.config.llm_config.enable_reasoning:
+            prompt += "\n\nPlease reason and think about the given context and instructions before answering the question in JSON format."
+
+        try:
+            response = self.llm_client.chat.completions.create(
+                model=self.config.llm_config.extraction_model,  # Assuming you have an extraction_model in your config
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an expert research assistant that extracts information from text.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.llm_config.temperature,
+                max_tokens=self.config.llm_config.max_tokens_extraction,  # Assuming a specific max_tokens for extraction
+                extra_body={
+                    "guided_json": ResponseOfKnowledgeExtraction.model_json_schema()
+                },
+            )
+
+            try:
+                llm_response = ResponseOfKnowledgeExtraction.model_validate_json(
+                    response.choices[0].message.content
+                )
+            except Exception as e:
+                try:
+                    llm_response = ResponseOfKnowledgeExtraction.model_validate_json(
+                        response.choices[0].message.reasoning_content
                     )
-                    knowledge_items.append(knowledge_item)
+                except Exception as e:
+                    self.logger.warning(
+                        "KNOWLEDGE_EXTRACTION_PARSE_ERROR",
+                        f"Failed to parse LLM response for knowledge extraction from {url}: {e}",
+                    )
+                    return knowledge_items  # Return empty if parsing fails
+
+            for item in llm_response.extracted_items:
+                knowledge_item = KnowledgeItem(
+                    question=f"What is the {item.field_name} of {context.original_query}?",
+                    answer=item.extracted_value,
+                    source_urls=[url],
+                    timestamp=datetime.now(),
+                    item_type=KnowledgeType.EXTRACTION,
+                    schema_fields=[item.field_name],
+                    metadata={
+                        "extraction_method": "llm_field_specific",
+                        "url": url,
+                        "reasoning": item.reasoning,
+                    },
+                )
+                knowledge_items.append(knowledge_item)
+
+        except Exception as e:
+            self.logger.error(
+                "KNOWLEDGE_EXTRACTION_ERROR",
+                f"Error during LLM-based knowledge extraction from {url}: {e}",
+            )
 
         return knowledge_items
-
-    def _split_content_into_sections(self, content: str) -> List[str]:
-        """Split content into meaningful sections"""
-        # Split by headers and major breaks
-        sections = []
-
-        # Split by markdown headers
-        lines = content.split("\n")
-        current_section = []
-
-        for line in lines:
-            # Check for section breaks (headers, horizontal rules, etc.)
-            if (
-                line.startswith("#")
-                or line.startswith("---")
-                or line.startswith("===")
-                or (
-                    len(current_section) > 0
-                    and len(line.strip()) == 0
-                    and len(current_section) > 10
-                )
-            ):
-                if current_section:
-                    section_text = "\n".join(current_section).strip()
-                    if len(section_text) > 50:  # Only keep substantial sections
-                        sections.append(section_text)
-                    current_section = []
-
-            current_section.append(line)
-
-        # Add the last section
-        if current_section:
-            section_text = "\n".join(current_section).strip()
-            if len(section_text) > 50:
-                sections.append(section_text)
-
-        # If no clear sections found, split by paragraphs
-        if not sections:
-            paragraphs = content.split("\n\n")
-            sections = [p.strip() for p in paragraphs if len(p.strip()) > 100]
-
-        return sections
-
-    def _is_section_relevant(self, section: str, entity_query: str) -> bool:
-        """Check if a section is relevant to the entity being researched"""
-        section_lower = section.lower()
-
-        # Check if entity name appears in section
-        entity_parts = entity_query.lower().split()
-        entity_mentions = sum(1 for part in entity_parts if part in section_lower)
-
-        # Require at least half of entity name parts to be mentioned
-        return entity_mentions >= len(entity_parts) / 2
-
-    def _extract_field_specific_info(
-        self, section: str, field: str, context: ResearchContext
-    ) -> Optional[str]:
-        """Extract information specific to a field from a section"""
-        section_lower = section.lower()
-        field_lower = field.lower()
-
-        # Get field-specific patterns and keywords
-        field_patterns = self._get_field_extraction_patterns(field)
-
-        # Check if any field keywords appear in the section
-        field_mentioned = any(
-            keyword in section_lower for keyword in field_patterns["keywords"]
-        )
-
-        if not field_mentioned:
-            return None
-
-        # Extract relevant sentences/phrases
-        sentences = section.split(".")
-        relevant_sentences = []
-
-        for sentence in sentences:
-            sentence_lower = sentence.lower().strip()
-            if any(keyword in sentence_lower for keyword in field_patterns["keywords"]):
-                # Clean up the sentence
-                clean_sentence = sentence.strip()
-                if len(clean_sentence) > 10:  # Avoid very short fragments
-                    relevant_sentences.append(clean_sentence)
-
-        if relevant_sentences:
-            # Join relevant sentences, limiting length
-            result = ". ".join(relevant_sentences[:3])  # Max 3 sentences
-            return result[:2000] if len(result) > 2000 else result  # Limit length
-
-        return None
 
     def _is_worth_visiting(self, url_info: URLInfo, context: ResearchContext) -> bool:
         """Use LLM to check if a URL is worth visiting"""
@@ -319,9 +281,8 @@ URL to Evaluate:
 - Snippet: {url_info.snippet or "Unknown"}
 
 Determine if this URL is worth visiting based on:
-1. Relevance to the research query
-2. Potential to fill empty fields
-3. URL quality
+1. URL or Title or Link Text or Snippet relevance to the entity fields in the entity schema
+2. Potential to fill empty fields in the entity
 
 Return your decision as a JSON object with 'worth_visiting' (boolean) and 'reason' (string explaining your decision)."""
 
@@ -373,70 +334,3 @@ Return your decision as a JSON object with 'worth_visiting' (boolean) and 'reaso
             )
             # Default to visiting if evaluation fails
             return False
-
-    def _get_field_extraction_patterns(self, field_name: str) -> Dict[str, List[str]]:
-        """Get extraction patterns for specific fields"""
-        patterns = {
-            "keywords": [field_name.replace("_", " ").lower()],
-            "indicators": [],
-        }
-
-        # Field-specific keyword mappings
-        field_mappings = {
-            "name": ["name", "called", "known as", "title"],
-            "email": ["email", "e-mail", "contact", "@", "reach"],
-            "phone": ["phone", "telephone", "tel", "mobile", "call", "contact"],
-            "address": ["address", "location", "office", "building", "street", "city"],
-            "education": [
-                "education",
-                "degree",
-                "university",
-                "college",
-                "phd",
-                "masters",
-                "bachelor",
-                "graduated",
-            ],
-            "experience": [
-                "experience",
-                "work",
-                "position",
-                "job",
-                "career",
-                "employed",
-                "worked",
-            ],
-            "research": [
-                "research",
-                "publication",
-                "paper",
-                "study",
-                "project",
-                "published",
-            ],
-            "bio": ["biography", "bio", "about", "background", "profile"],
-            "biography": ["biography", "bio", "about", "background", "profile", "life"],
-            "department": ["department", "dept", "division", "school", "faculty"],
-            "title": [
-                "title",
-                "position",
-                "role",
-                "professor",
-                "associate",
-                "director",
-            ],
-            "founded": ["founded", "established", "started", "began", "inception"],
-            "headquarters": ["headquarters", "hq", "based", "located", "office"],
-            "products": ["products", "services", "offers", "develops", "creates"],
-            "founders": ["founder", "founded by", "established by", "created by"],
-        }
-
-        # Add mapped keywords
-        for key, values in field_mappings.items():
-            if key in field_name.lower():
-                patterns["keywords"].extend(values)
-
-        # Remove duplicates
-        patterns["keywords"] = list(set(patterns["keywords"]))
-
-        return patterns
