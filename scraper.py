@@ -3,6 +3,7 @@ from urllib.parse import urljoin
 import requests
 import re
 
+from docling.document_converter import DocumentConverter
 from markdownify import markdownify as md
 from DrissionPage import ChromiumPage
 from bs4 import BeautifulSoup
@@ -18,6 +19,7 @@ class WebScraper:
         )
         # Initialize ChromiumPage for fallback
         self.chrome_page = ChromiumPage()
+        self.pdf_converter = DocumentConverter()
 
         self.MAX_TOKEN_LENGTH = 20000
 
@@ -162,6 +164,14 @@ class WebScraper:
         if self.is_txt_page(url):
             print(f"Skipping txt URL: {url}")
             return {"markdown": None}
+
+        if url.lower().endswith(".pdf"):
+            try:
+                result = self.pdf_converter.convert(url)
+                return {"markdown": result.document.export_to_markdown()}
+            except Exception as e:
+                print(f"Error converting PDF to markdown: {str(e)}")
+                return {"markdown": None}
 
         try:
             # First attempt with requests
