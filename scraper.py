@@ -19,7 +19,7 @@ class WebScraper:
         # Initialize ChromiumPage for fallback
         self.chrome_page = ChromiumPage()
 
-        self.MAX_TOKEN_LENGTH = 10000
+        self.MAX_TOKEN_LENGTH = 20000
 
         # Common class and ID names for navigation elements
         self.nav_selectors = [
