@@ -58,13 +58,18 @@ class ActionPlanner:
         # Analyze recent actions
         recent_actions_analysis = self._analyze_recent_actions(context)
 
+        # TODO: Remove context.schema
         prompt = f"""You are an intelligent research agent planning the next action.
 
 Research Goal: {context.original_query}
+
 Entity Type: {context.entity_type}
 
+Current information that we have for the entity: {context.current_extraction}
+
+Empty fields to fill: {list(context.empty_fields)}
+
 Current Progress:
-- Fields filled: {len(context.filled_fields)}/{len(context.schema.keys())}
 - URLs unvisited in the next step: {
             len(
                 list(
@@ -75,10 +80,7 @@ Current Progress:
             )
         }
 - URLs visited: {len(context.visited_urls)}
-- Knowledge items collected: {len(context.knowledge_items)}
 - Current step: {context.current_step}
-
-Empty fields remaining: {list(context.empty_fields)[:10]}
 
 Recent Actions Analysis:
 {recent_actions_analysis}
