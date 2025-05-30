@@ -1,6 +1,6 @@
 from typing import List, Dict, Set, Optional, Any
-from urllib.parse import urlparse, urljoin
 from collections import defaultdict
+from urllib.parse import urlparse
 from datetime import datetime
 from openai import OpenAI
 import json
@@ -32,21 +32,6 @@ class URLManager:
 
         self.domain_counts: Dict[str, int] = defaultdict(int)
 
-    def normalize_url(self, url: str) -> str:
-        """Normalize URL for consistency"""
-        # Remove fragment
-        url = url.split("#")[0]
-        # Remove trailing slash
-        url = url.rstrip("/")
-        # Convert to lowercase for domain
-        parsed = urlparse(url)
-        normalized = (
-            f"{parsed.scheme}://{parsed.netloc.lower()}{parsed.path}{parsed.params}"
-        )
-        if parsed.query:
-            normalized += f"?{parsed.query}"
-        return normalized
-
     def extract_domain(self, url: str) -> str:
         """Extract domain from URL"""
         parsed = urlparse(url)
@@ -55,13 +40,6 @@ class URLManager:
     def is_valid_url(self, url: str) -> bool:
         """Check if URL is valid and accessible"""
         try:
-            parsed = urlparse(url)
-            # Must have scheme and netloc
-            if not parsed.scheme or not parsed.netloc:
-                return False
-            # Must be http or https
-            if parsed.scheme not in ["http", "https"]:
-                return False
             # Check against blocked domains
             domain = self.extract_domain(url)
             if domain in self.config.blocked_domains:
@@ -100,7 +78,7 @@ class URLManager:
         discovered_urls = []
 
         for result in search_results:
-            url = self.normalize_url(result.url)
+            url = result.url
 
             if not self.is_valid_url(url):
                 continue
@@ -109,7 +87,6 @@ class URLManager:
             url_info = URLInfo(
                 url=url,
                 title=result.title,
-                relevance_score=result.relevance_score,
                 schema_fields_coverage=[],
                 metadata={
                     "source": "search",
@@ -149,22 +126,13 @@ class URLManager:
             # Clean up link text
             link_text = re.sub(r"\s+", " ", link_text.strip())
 
-            # Convert relative URLs to absolute
-            if not url.startswith(("http://", "https://")):
-                url = urljoin(base_url, url)
-
-            url = self.normalize_url(url)
-
             if not self.is_valid_url(url):
                 continue
-
-            url = url.rstrip(")")
 
             if url not in self.url_registry:
                 url_info = URLInfo(
                     url=url,
                     title=link_text,  # Use link text as title
-                    relevance_score=0.0,
                     schema_fields_coverage=[],
                     metadata={
                         "source": "content_extraction",
@@ -186,15 +154,13 @@ class URLManager:
         plain_urls = re.findall(url_pattern, content)
 
         for plain_url in plain_urls:
-            url = self.normalize_url(plain_url)
-
+            url = plain_url
             if not self.is_valid_url(url) or url in self.url_registry:
                 continue
 
             url_info = URLInfo(
                 url=url,
                 title="",
-                relevance_score=0.0,
                 schema_fields_coverage=[],
                 metadata={
                     "source": "content_extraction",
@@ -254,7 +220,7 @@ Available URLs (showing first 30):
 {json.dumps(unvisited_urls[:30], indent=2)}
 
 Select up to {max_urls} URLs that are most likely to contain information for the empty fields.
-Prioritize: URLs with **relevant titles/link text**.
+Prioritize: URLs with **relevant URL address or titles or link text or snippet**.
 
 If there are no URLs that are likely to contain information for the empty fields, return an empty list and explain why.
 
@@ -335,36 +301,3 @@ Respond in JSON format:
                     setattr(url_info, key, value)
                 else:
                     url_info.metadata[key] = value
-
-    def get_url_with_context(self, url: str) -> Dict[str, any]:
-        """Get URL information including link text"""
-        if url in self.url_registry:
-            entry = self.url_registry[url]
-            return {
-                "url": url,
-                "link_text": entry["link_text"],
-                "title": entry["info"].title,
-                "domain": entry["domain"],
-            }
-        return None
-
-    def get_statistics(self) -> Dict[str, any]:
-        """Get URL management statistics"""
-
-        return {
-            "total_discovered": len(self.url_registry),
-            "domains": dict(self.domain_counts),
-            "visited": sum(
-                1
-                for entry in self.url_registry.values()
-                if entry["info"].visit_count > 0
-            ),
-            "successful": sum(
-                1
-                for entry in self.url_registry.values()
-                if entry["info"].extraction_success
-            ),
-            "urls_with_link_text": sum(
-                1 for entry in self.url_registry.values() if entry["link_text"]
-            ),
-        }
