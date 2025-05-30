@@ -1,16 +1,16 @@
+from time import time
 from typing import Dict, Any, List
-from datetime import datetime
 
 from core.knowledge_accumulator import KnowledgeAccumulator
+from core.response_model import ResponseOfSearchQueries
 from core.actions.base import ActionExecutor
 from core.search_engine import SearchEngine
 from core.url_manager import URLManager
 from core.data_structures import (
     ResearchContext,
     ResearchAction,
-    KnowledgeItem,
-    KnowledgeType,
 )
+from openai import OpenAI
 
 
 class SearchExecutor(ActionExecutor):
@@ -21,11 +21,15 @@ class SearchExecutor(ActionExecutor):
         search_engine: SearchEngine,
         url_manager: URLManager,
         knowledge_accumulator: KnowledgeAccumulator,
+        llm_client: OpenAI,
+        config: Any,
     ):
         super().__init__()
         self.search_engine = search_engine
         self.url_manager = url_manager
         self.knowledge_accumulator = knowledge_accumulator
+        self.llm_client = llm_client
+        self.config = config
 
     def execute(
         self, action: ResearchAction, context: ResearchContext
@@ -41,32 +45,18 @@ class SearchExecutor(ActionExecutor):
             all_results = []
             for query in queries:
                 results = self.search_engine.search(query)
+                time.sleep(1)  # Rate limit 1 second between searches
                 all_results.extend(results)
                 context.search_queries.append(query)
 
             # Process search results
             discovered_urls = self.url_manager.discover_urls_from_search(all_results)
 
-            # TODO: delete this
-            for result in all_results:
-                knowledge_item = KnowledgeItem(
-                    question=f"What does the search result say about {context.original_query}?",
-                    answer=result.snippet,
-                    source_urls=[result.url],
-                    timestamp=datetime.now(),
-                    item_type=KnowledgeType.SEARCH_RESULT,
-                    schema_fields=self._identify_related_fields(
-                        result.snippet, context
-                    ),
-                )
-                self.knowledge_accumulator.add_knowledge(knowledge_item, context)
-
             result = {
                 "success": True,
                 "queries_executed": queries,
                 "results_found": len(all_results),
                 "new_urls_discovered": len(discovered_urls),
-                "items_processed": len(all_results),
             }
 
             self.post_execute(action, context, result)
@@ -79,53 +69,101 @@ class SearchExecutor(ActionExecutor):
     def _generate_queries(
         self, action: ResearchAction, context: ResearchContext
     ) -> List[str]:
-        """Generate search queries based on action parameters"""
-        queries = []
+        """Generate search queries based on action parameters using an LLM"""
+        try:
+            # Construct prompt for LLM
+            prompt_parts = [
+                "You are an expert research assistant tasked with generating effective search queries.",
+                f"Research Objective: {context.original_query}",
+                f"Entity Type: {context.entity_type}",
+                f"Current information we have: {context.current_extraction}",
+                f"Empty fields we need to fill: {list(context.empty_fields)}",
+            ]
 
-        if action.parameters.get("query_type") == "field_specific":
-            # Generate field-specific queries
-            target_field = action.parameters.get("target_field")
-            if target_field:
-                base_query = context.original_query
-                field_query = self.search_engine.rewrite_query_for_field(
-                    base_query, target_field
-                )
-                queries.append(field_query)
-
-                # Add variations
-                queries.extend(
-                    self.search_engine.generate_queries(
-                        field_query, {"empty_fields": [target_field]}
+            if action.parameters.get("query_type") == "field_specific":
+                target_fields = action.parameters.get("target_fields")
+                if target_fields:
+                    prompt_parts.append(
+                        f"Focus on generating queries to find information for the fields: '{', '.join(target_fields)}'. You should generate one query for each field above."
                     )
+                else:
+                    prompt_parts.append(
+                        "This is a field-specific search, but no target fields were specified. Generate general queries related to the research objective and empty fields."
+                    )
+            else:
+                prompt_parts.append(
+                    "Generate general search queries to achieve the research objective and fill the empty fields."
                 )
-        else:
-            # Generate general queries
-            queries = self.search_engine.generate_queries(
-                context.original_query,
-                {
-                    "empty_fields": list(context.empty_fields)[:3],
-                    "entity_type": context.entity_type,
-                },
+
+            prompt_parts.append(
+                " The queries should be specific to the field and the research objective. For example, if the research objective is 'Minjia Zhang UIUC', then your generated queries should be something like 'Minjia Zhang UIUC {field_name} or more detailed things that you want to know about the field (in case of nested fields)'"
+            )
+            prompt_parts.append(
+                "Return your response as a JSON object with a 'queries' field containing a list of strings (the search queries), and an optional 'reasoning' field explaining your choices."
             )
 
-        # Limit number of queries
-        return queries[: self.config.max_search_queries]
+            prompt = "\n\n".join(prompt_parts)
 
-    def _identify_related_fields(
-        self, text: str, context: ResearchContext
-    ) -> List[str]:
-        """Identify which schema fields a text snippet might relate to"""
-        related_fields = []
+            if self.config.llm_config.enable_reasoning:
+                prompt += "\n\nPlease reason and think about the given context and instructions before answering the question in JSON format."
 
-        # Simple keyword matching (in production, would use NLP)
-        text_lower = text.lower()
+            response = self.llm_client.chat.completions.create(
+                model=self.config.llm_config.model_name,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are an expert research assistant that generates search queries.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.llm_config.temperature,
+                max_tokens=self.config.llm_config.max_tokens,
+                extra_body={"guided_json": ResponseOfSearchQueries.model_json_schema()},
+            )
 
-        for field in context.schema.keys():
-            # Convert field name to readable format
-            field_words = field.replace("_", " ").lower().split()
+            try:
+                result = ResponseOfSearchQueries.model_validate_json(
+                    response.choices[0].message.content
+                )
+            except Exception as e:
+                self.logger.warning(
+                    "SEARCH_QUERY_PARSE_ERROR",
+                    f"Failed to parse LLM response for search query generation: {e}. Content: {response.choices[0].message.content}",
+                )
+                if response.choices[0].message.reasoning_content:
+                    try:
+                        result = ResponseOfSearchQueries.model_validate_json(
+                            response.choices[0].message.reasoning_content
+                        )
+                    except Exception as e_reasoning:
+                        self.logger.warning(
+                            "SEARCH_QUERY_PARSE_ERROR_REASONING",
+                            f"Failed to parse LLM reasoning_content for search query generation: {e_reasoning}. Content: {response.choices[0].message.reasoning_content}",
+                        )
+                        return [context.original_query]
+                else:
+                    return [context.original_query]
 
-            # Check if field words appear in text
-            if any(word in text_lower for word in field_words):
-                related_fields.append(field)
+            queries = result.queries
 
-        return related_fields
+            if not queries:
+                self.logger.warning(
+                    "LLM_EMPTY_QUERIES",
+                    "LLM returned no search queries. Using original query as fallback.",
+                )
+                queries = [context.original_query]
+
+            # Limit number of queries
+            return queries[: self.config.max_search_queries]
+
+        except Exception as e:
+            self.logger.error(
+                "LLM_QUERY_GENERATION_ERROR",
+                f"Error during LLM query generation: {e}",
+                exc_info=True,
+            )
+            self.logger.warning(
+                "LLM_QUERY_GENERATION_FALLBACK",
+                "Falling back to original query due to LLM error.",
+            )
+            return [context.original_query][: self.config.max_search_queries]
