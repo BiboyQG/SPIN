@@ -41,3 +41,18 @@ class ResponseOfSelection(BaseModel):
 class ResponseOfWorthVisiting(BaseModel):
     worth_visiting: bool
     reason: str
+
+
+class ExtractedKnowledgeItem(BaseModel):
+    field_name: str
+    extracted_value: str
+    reasoning: Optional[str] = None
+
+
+class ResponseOfKnowledgeExtraction(BaseModel):
+    extracted_items: Optional[List[ExtractedKnowledgeItem]]
+
+
+class ResponseOfSearchQueries(BaseModel):
+    queries: List[str]
+    reasoning: Optional[str] = None  # Optional field for LLM's reasoning
