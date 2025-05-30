@@ -52,8 +52,10 @@ class URLInfo:
     """Information about a URL"""
 
     url: str
-    title: str
-    content: Optional[str] = None
+    title: Optional[str] = None
+    link_text: Optional[str] = None
+    domain: Optional[str] = None
+    snippet: Optional[str] = None
     last_visited: Optional[datetime] = None
     visit_count: int = 0
     extraction_success: bool = False
@@ -113,15 +115,6 @@ class ResearchContext:
 
     # Search history
     search_queries: List[str] = field(default_factory=list)
-
-    def add_knowledge(self, item: KnowledgeItem):
-        """Add a knowledge item and update relevant fields"""
-        self.knowledge_items.append(item)
-        # Update filled fields if this knowledge relates to schema fields
-        for field in item.schema_fields:
-            if field in self.empty_fields:
-                self.filled_fields.add(field)
-                self.empty_fields.discard(field)
 
     def should_continue_research(self) -> bool:
         """Determine if research should continue"""
