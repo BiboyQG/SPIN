@@ -84,8 +84,6 @@ class ReflectExecutor(ActionExecutor):
 Entity Type: {context.entity_type}
 
 Current Progress:
-- Fields filled: {len(context.filled_fields)}/{len(context.schema)}
-- Knowledge items collected: {len(context.knowledge_items)}
 - URLs discovered: {len(context.discovered_urls)}
 - URLs visited: {len(context.visited_urls)}
 
