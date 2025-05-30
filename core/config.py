@@ -30,7 +30,7 @@ class LLMConfig:
     base_url: Optional[str] = None
     api_key: Optional[str] = None
     temperature: float = 0.0
-    max_tokens: int = 32768
+    max_tokens: int = 28000
     enable_reasoning: bool = True
 
     def __post_init__(self):
