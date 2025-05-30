@@ -206,7 +206,7 @@ Instructions:
 
         try:
             response = self.llm_client.chat.completions.create(
-                model=self.config.llm_config.extraction_model,  # Assuming you have an extraction_model in your config
+                model=self.config.llm_config.model_name,
                 messages=[
                     {
                         "role": "system",
@@ -215,7 +215,7 @@ Instructions:
                     {"role": "user", "content": prompt},
                 ],
                 temperature=self.config.llm_config.temperature,
-                max_tokens=self.config.llm_config.max_tokens_extraction,  # Assuming a specific max_tokens for extraction
+                max_tokens=self.config.llm_config.max_tokens,
                 extra_body={
                     "guided_json": ResponseOfKnowledgeExtraction.model_json_schema()
                 },
@@ -290,7 +290,7 @@ Return your decision as a JSON object with 'worth_visiting' (boolean) and 'reaso
                 prompt += "\n\nPlease reason and think about the given context and instructions before answering the question in JSON format."
 
             response = self.llm_client.chat.completions.create(
-                model=self.config.llm_config.planning_model,
+                model=self.config.llm_config.model_name,
                 messages=[
                     {
                         "role": "system",
