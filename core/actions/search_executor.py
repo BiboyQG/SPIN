@@ -1,5 +1,5 @@
-from time import time
 from typing import Dict, Any, List
+import time
 
 from core.knowledge_accumulator import KnowledgeAccumulator
 from core.response_model import ResponseOfSearchQueries
@@ -126,10 +126,6 @@ class SearchExecutor(ActionExecutor):
                     response.choices[0].message.content
                 )
             except Exception as e:
-                self.logger.warning(
-                    "SEARCH_QUERY_PARSE_ERROR",
-                    f"Failed to parse LLM response for search query generation: {e}. Content: {response.choices[0].message.content}",
-                )
                 if response.choices[0].message.reasoning_content:
                     try:
                         result = ResponseOfSearchQueries.model_validate_json(
