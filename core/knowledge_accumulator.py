@@ -92,10 +92,6 @@ class KnowledgeAccumulator:
             }
             return
 
-        # When there are multiple discoveries, add field to context.filled_fields if context is provided
-        if context is not None and len(discoveries) > 1:
-            context.filled_fields.add(field_name)
-
         # Use LLM to consolidate multiple discoveries
         consolidated = self._llm_consolidate_field(field_name, discoveries)
         if consolidated:
@@ -416,7 +412,8 @@ Consider:
                 markdown_lines.extend([f"### {type_display} ({len(items)} items)", f""])
 
                 # Show top items
-                sorted_items = sorted(items, reverse=True)
+                # TODO: sort items
+                sorted_items = items
                 for i, item in enumerate(sorted_items[:5], 1):  # Show top 5
                     markdown_lines.extend(
                         [
@@ -484,9 +481,7 @@ Consider:
                 unique_values = list(set(d["value"] for d in discoveries))
 
                 display_name = field.replace("_", " ").title()
-                markdown_lines.extend(
-                    [f"### {display_name}", f"**Values found:**"]
-                )
+                markdown_lines.extend([f"### {display_name}", f"**Values found:**"])
 
                 for i, value in enumerate(unique_values, 1):
                     sources = [d["source"] for d in discoveries if d["value"] == value]
