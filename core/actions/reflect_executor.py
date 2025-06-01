@@ -210,7 +210,7 @@ Return as a JSON object with key 'questions' containing a list of questions."""
         summary_parts = []
 
         # Group knowledge by field
-        for field in list(context.filled_fields):  # TODO: Limit to top 5 filled fields
+        for field in list(context.all_fields):  # TODO: Limit to top 5 filled fields
             knowledge = self.knowledge_accumulator.get_best_knowledge_for_field(field)
             if knowledge:
                 summary_parts.append(
