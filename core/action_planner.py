@@ -58,7 +58,6 @@ class ActionPlanner:
         # Analyze recent actions
         recent_actions_analysis = self._analyze_recent_actions(context)
 
-        # TODO: Remove context.schema
         prompt = f"""You are an intelligent research agent planning the next action.
 
 Research Goal: {context.original_query}
@@ -227,14 +226,6 @@ Choose one action and provide a clear reason and return your response in a JSON 
             if len(set(recent_types)) == 1:
                 analysis_parts.append(
                     f"Pattern detected: Repeating {recent_types[0]} actions"
-                )
-
-        # Progress check
-        if context.current_step > 10:
-            progress_rate = len(context.filled_fields) / context.current_step
-            if progress_rate < 0.5:
-                analysis_parts.append(
-                    "Slow progress detected - consider changing strategy"
                 )
 
         return "\n".join(analysis_parts)
