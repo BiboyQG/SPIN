@@ -45,14 +45,20 @@ class ExtractExecutor(ActionExecutor):
 
             # Update context with extraction
             context.current_extraction = extracted_data
-            is_complete, empty_fields = self.knowledge_accumulator.check_schema_completeness(
-                extracted_data
+            is_complete, empty_fields = (
+                self.knowledge_accumulator.check_schema_completeness(extracted_data)
             )
+            context.empty_fields = empty_fields
             if is_complete:
                 context.is_complete = True
-                context.completion_reason = "All schema fields have been filled with values"
+                context.completion_reason = (
+                    "All schema fields have been filled with values"
+                )
             else:
-                context.empty_fields = empty_fields
+                percentage = len(empty_fields) / len(context.all_fields)
+                if percentage <= 0.1:
+                    context.is_complete = True
+                    context.completion_reason = "Nearly all schema fields have been filled with values, with only a few fields (less than 10%) left to be verified"
 
             result = {
                 "success": True,
@@ -84,24 +90,24 @@ class ExtractExecutor(ActionExecutor):
     ) -> Dict[str, Any]:
         """Extract structured data using LLM with guided JSON"""
 
-        prompt = f"""You are extracting structured information about a {entity_type} entity.
+        prompt = f"""You are updating structured information about a {entity_type} entity.
 
 Entity Query: {entity_query}
 
-Based on the following research findings, extract all available information and structure it according to the provided JSON schema. The JSON schema is: {schema_class.model_json_schema()}.
+Based on the following research findings, update all available information and structure it according to the provided JSON schema. The JSON schema is: {schema_class.model_json_schema()}.
 If a field cannot be determined from the available information, leave it as null or empty (depending on the field type).
 
-Research Findings:
+Research Findings (if any):
 {knowledge_text}
 
 Important guidelines:
-1. Only extract information that is explicitly stated or can be reasonably inferred
+1. Only update information that is explicitly stated or can be reasonably inferred
 2. Maintain accuracy - do not make up information
 3. For lists, include all relevant items found
 4. For contact information, ensure proper formatting
 5. Preserve URLs and email addresses exactly as found
 
-Return the extracted information as a JSON object matching the schema."""
+Return the updated information as a JSON object matching the schema."""
 
         if self.config.llm_config.enable_reasoning:
             prompt += "\n\nPlease reason and think about the given context and instructions before generating the JSON object."
