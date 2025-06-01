@@ -2,6 +2,7 @@ from typing import Dict, List, Optional, Any, Set
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from pydantic import BaseModel
 
 
 class ActionType(Enum):
@@ -80,6 +81,7 @@ class ResearchContext:
     # Query and entity information
     original_query: str
     entity_type: str
+    schema_class: Optional[BaseModel] = None
 
     # Knowledge accumulation
     knowledge_items: List[KnowledgeItem] = field(default_factory=list)
@@ -91,8 +93,9 @@ class ResearchContext:
 
     # Current extraction state
     current_extraction: Dict[str, Any] = field(default_factory=dict)
-    filled_fields: Set[str] = field(default_factory=set)
+    all_fields: Set[str] = field(default_factory=set)
     empty_fields: Set[str] = field(default_factory=set)
+    general_empty_fields: Set[str] = field(default_factory=set)
 
     # Research progress
     actions_taken: List[ResearchAction] = field(default_factory=list)
