@@ -4,6 +4,7 @@ from datetime import datetime
 from openai import OpenAI
 import inspect
 import time
+import re
 
 from core.data_structures import ResearchContext, ResearchAction, ActionType
 from core.knowledge_accumulator import KnowledgeAccumulator
@@ -313,6 +314,7 @@ class ResearchAgent:
             # Execute extraction to update current_extraction
             executor = self.executors[ActionType.EXTRACT]
             result = executor.execute(extract_action, context, skip_step=True)
+            self._update_general_empty_fields(context)
 
             if result.get("success"):
                 self.logger.debug(
@@ -429,6 +431,101 @@ class ResearchAgent:
 
         return all_fields
 
+    def _update_general_empty_fields(self, context: ResearchContext):
+        """Update general_empty_fields in context, filtering for required fields and generalizing list indices."""
+        context.general_empty_fields.clear()
+        schema_details = self._extract_schema_fields(context.schema_class)
+
+        for empty_field_entry in context.empty_fields:
+            # Example entry: "instructors[0].email (is None)"
+            # or "instructors (no complete item in list)"
+            if " (no complete item in list)" in empty_field_entry:
+                # We are interested in specific missing fields, not general list completeness.
+                continue
+
+            parts = empty_field_entry.split(" (")
+            if len(parts) != 2:
+                continue  # Malformed entry
+
+            field_path_raw = parts[0]
+            reason = "(" + parts[1]
+
+            # Generalize list indices: instructors[0].email -> instructors[item].email
+            generalized_field_path = re.sub(r"\[\d+\]", "[item]", field_path_raw)
+
+            # Find the field in schema_details
+            # We need to find the corresponding entry in schema_details.
+            # schema_details keys are like: "instructors", "instructors.name", "instructors.email"
+            # generalized_field_path could be "instructors[item].email"
+            # We need to map this back to a key in schema_details.
+            # The _extract_schema_fields method already handles the [item] notation for list item models.
+            # So, if generalized_field_path is "instructors[item].email",
+            # the key in schema_details might be "instructors[item].email" if it's a nested model within a list,
+            # or we might need to look up "instructors" and then check its "nested_fields" for "email".
+
+            # Let's try to find the most specific matching field in schema_details
+            current_field_detail = None
+            path_parts = generalized_field_path.split(".")
+            current_schema_level = schema_details
+            temp_path = []
+
+            for i, part in enumerate(path_parts):
+                temp_path.append(part)
+                current_lookup_key = ".".join(temp_path)
+
+                if current_lookup_key in current_schema_level:
+                    current_field_detail = current_schema_level[current_lookup_key]
+                    if (
+                        "nested_fields" in current_field_detail
+                        and i < len(path_parts) - 1
+                    ):
+                        current_schema_level = current_field_detail["nested_fields"]
+                        temp_path = []  # Reset temp_path for nested structure
+                    elif i == len(path_parts) - 1:
+                        break  # Found the terminal field
+                    else:  # Path continues but no more nested_fields
+                        current_field_detail = (
+                            None  # Should not happen if path is valid
+                        )
+                        break
+                elif i == 0 and part.endswith("[item]"):  # Handle top-level list items
+                    base_list_field = part.replace("[item]", "")
+                    if (
+                        base_list_field in current_schema_level
+                        and "nested_fields" in current_schema_level[base_list_field]
+                    ):
+                        # The actual field name in nested_fields will not have "[item]" prefix
+                        # e.g. instructors[item].email -> in nested_fields, it is instructors[item].email
+                        # No, _extract_schema_fields uses f"{full_field_name}[item]" as prefix.
+                        # So if path_parts is ['instructors[item]', 'email'],
+                        # current_lookup_key would be 'instructors[item]'
+                        # then current_schema_level becomes nested_fields of 'instructors'
+                        # and next part is 'email', so current_lookup_key is 'instructors[item].email'
+                        target_nested_key = (
+                            generalized_field_path  #  e.g. instructors[item].email
+                        )
+                        if (
+                            target_nested_key
+                            in current_schema_level[base_list_field]["nested_fields"]
+                        ):
+                            current_field_detail = current_schema_level[
+                                base_list_field
+                            ]["nested_fields"][target_nested_key]
+                            break
+                        else:  # field not found
+                            current_field_detail = None
+                            break
+                    else:  # base list field not found or no nested fields
+                        current_field_detail = None
+                        break
+
+                else:  # Part not found in current schema level
+                    current_field_detail = None
+                    break
+
+            if current_field_detail and current_field_detail.get("required", False):
+                context.general_empty_fields.add(f"{generalized_field_path} {reason}")
+
     def _initial_extraction(self, context: ResearchContext, content: str):
         """Initial extraction"""
         self.logger.subsection("Initial Extraction")
@@ -491,14 +588,13 @@ Return the extracted information as a JSON object matching the schema."""
                 self.knowledge_accumulator.check_schema_completeness(extracted_data)
             )
             context.empty_fields = empty_fields
+            self._update_general_empty_fields(context)
             print("--------------------------------")
             print(extracted_data)
             print("--------------------------------")
-            print(context.empty_fields)
+            print(context.general_empty_fields)
             print("--------------------------------")
-            print(context.is_complete)
-            print("--------------------------------")
-            percentage = len(context.empty_fields) / len(context.all_fields)
+            percentage = len(context.general_empty_fields) / len(context.all_fields)
             print(f"Percentage of empty fields: {percentage * 100}%")
             print("--------------------------------")
             if is_complete:
