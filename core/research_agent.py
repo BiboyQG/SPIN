@@ -12,11 +12,11 @@ from core.actions.reflect_executor import ReflectExecutor
 from core.actions.extract_executor import ExtractExecutor
 from core.actions.search_executor import SearchExecutor
 from core.actions.visit_executor import VisitExecutor
+from core.logging_config import get_logger, LLMError
 from core.config import get_config, ResearchConfig
 from schemas.schema_manager import schema_manager
 from core.action_planner import ActionPlanner
 from core.search_engine import SearchEngine
-from core.logging_config import get_logger
 from core.url_manager import URLManager
 from scraper import WebScraper
 
@@ -84,7 +84,7 @@ class ResearchAgent:
         try:
             # Detect entity type and schema if not provided
             if not entity_type:
-                entity_type, initial_urls = self._detect_entity_type(query)
+                entity_type, initial_urls, content = self._detect_entity_type(query)
             else:
                 initial_urls = None
 
@@ -96,10 +96,13 @@ class ResearchAgent:
             # Initialize research context
             context = self._initialize_context(query, entity_type, schema_class)
 
-            # If we have initial URLs from detection, add them
+            # Initial extraction
+            self._initial_extraction(context, content)
+
+            # If we have urls from initial extraction, add them to context
             if initial_urls:
                 for url in initial_urls:
-                    self._add_initial_url(context, url)
+                    context.visited_urls.add(url)
 
             # Main research loop
             while context.should_continue_research():
@@ -175,19 +178,13 @@ class ResearchAgent:
         """Detect entity type from query using search and initial page analysis"""
         self.logger.subsection("Detecting Entity Type")
 
-        # # First, search for the entity
-        # search_results = self.search_engine.search(query, num_results=6)
+        # First, search for the entity
+        search_results = self.search_engine.search(query, num_results=6)
 
-        # if not search_results:
-        #     raise ValueError("No search results found for entity detection")
+        if not search_results:
+            raise ValueError("No search results found for entity detection")
 
-        # initial_urls = [search_result.url for search_result in search_results]
-
-        # TODO: Remove mock initial urls
-        initial_urls = [
-            "https://www.linkedin.com/in/banghao-chi-550737276",
-            "https://biboyqg.github.io/",
-        ]
+        initial_urls = [search_result.url for search_result in search_results]
 
         visited_urls = []
 
@@ -265,7 +262,7 @@ class ResearchAgent:
             url="\n".join(visited_urls),
         )
 
-        return result.schema, initial_urls
+        return result.schema, initial_urls, content
 
     def _initialize_context(
         self, query: str, entity_type: str, schema_class: BaseModel
@@ -274,10 +271,11 @@ class ResearchAgent:
         context = ResearchContext(
             original_query=query,
             entity_type=entity_type,
+            schema_class=schema_class,
             max_steps=self.config.max_steps,
             max_tokens=self.config.max_tokens_budget,
             max_urls_per_step=self.config.max_urls_per_step,
-            empty_fields=self._get_all_field_names(
+            all_fields=self._get_all_field_names(
                 self._extract_schema_fields(schema_class)
             ),
         )
@@ -430,3 +428,94 @@ class ResearchAgent:
                 all_fields.update(nested_fields)
 
         return all_fields
+
+    def _initial_extraction(self, context: ResearchContext, content: str):
+        """Initial extraction"""
+        self.logger.subsection("Initial Extraction")
+        prompt = f"""You are extracting structured information about a {context.entity_type} entity.
+
+Entity Query: {context.original_query}
+
+Based on the following content, extract all available information and structure it according to the provided JSON schema. The JSON schema is: {context.schema_class.model_json_schema()}.
+If a field cannot be determined from the available information, leave it as null or empty (depending on the field type).
+
+Content:
+{content}
+
+Important guidelines:
+1. Only extract information that is explicitly stated or can be reasonably inferred
+2. Maintain accuracy - do not make up information
+3. For lists, include all relevant items found
+4. For contact information, ensure proper formatting
+5. Preserve URLs and email addresses exactly as found
+
+Return the extracted information as a JSON object matching the schema."""
+
+        if self.config.llm_config.enable_reasoning:
+            prompt += "\n\nPlease reason and think about the given context and instructions before generating the JSON object."
+
+        try:
+            response = self.llm_client.chat.completions.create(
+                model=self.config.llm_config.model_name,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": f"You are an expert at extracting {context.entity_type} information in JSON format.",
+                    },
+                    {"role": "user", "content": prompt},
+                ],
+                temperature=self.config.llm_config.temperature,
+                max_tokens=self.config.llm_config.max_tokens,
+                extra_body={"guided_json": context.schema_class.model_json_schema()},
+            )
+
+            try:
+                result = context.schema_class.model_validate_json(
+                    response.choices[0].message.content
+                )
+            except Exception as e:
+                try:
+                    result = context.schema_class.model_validate_json(
+                        response.choices[0].message.reasoning_content
+                    )
+                except Exception as e:
+                    self.logger.error(
+                        "LLM_EXTRACTION_ERROR",
+                        f"Failed to extract structured data: {str(e)}",
+                    )
+                    raise ValueError("Extraction could not be determined")
+
+            extracted_data = result.model_dump()
+            context.current_extraction = extracted_data
+            is_complete, empty_fields = (
+                self.knowledge_accumulator.check_schema_completeness(extracted_data)
+            )
+            context.empty_fields = empty_fields
+            print("--------------------------------")
+            print(extracted_data)
+            print("--------------------------------")
+            print(context.empty_fields)
+            print("--------------------------------")
+            print(context.is_complete)
+            print("--------------------------------")
+            percentage = len(context.empty_fields) / len(context.all_fields)
+            print(f"Percentage of empty fields: {percentage * 100}%")
+            print("--------------------------------")
+            if is_complete:
+                print("--------------------------------")
+                print("Initial extraction is complete")
+                print("--------------------------------")
+                context.is_complete = True
+                context.completion_reason = "Initial extraction is complete. All schema fields have been filled with values."
+            elif percentage <= 0.1:
+                print("--------------------------------")
+                print("Initial extraction is complete")
+                print("--------------------------------")
+                context.is_complete = True
+                context.completion_reason = "Initial extraction is complete. Nearly all schema fields have been filled with values, with only a few fields (less than 10%) left to be verified."
+            else:
+                print("--------------------------------")
+                print("Initial extraction is not complete, continuing research")
+                print("--------------------------------")
+        except Exception as e:
+            raise LLMError(f"Failed to extract structured data: {str(e)}")
